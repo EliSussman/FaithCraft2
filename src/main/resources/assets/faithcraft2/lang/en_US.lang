@@ -1,0 +1,9 @@
+tile.Altar.name=Altar
+tile.HolyOre.name=Holy Ore
+item.Bible.name=Bible
+item.BodyOFChrist.name=Body Of Christ
+item.Cross.name=Cross
+item.Quran.name=Quran
+item.Torah.name=Torah
+item.HolyCross.name=Holy Cross
+itemGroup.FaithCraft 2.0 Tab=FaithCraft 2.0 Tab
