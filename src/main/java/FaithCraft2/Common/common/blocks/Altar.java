@@ -1,5 +1,7 @@
 package FaithCraft2.Common.common.blocks;
 
+import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -7,6 +9,7 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
@@ -34,6 +37,13 @@ public class Altar extends BlockContainer{
 	
 	public boolean renderAsNormalBlock(){
 		return false;
+	}
+	
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
+		if(!world.isRemote) {
+			FMLNetworkHandler.openGui(player, FaithCraft2.instance, FaithCraft2.guiIDAltar, world, x, y, z);
+		}
+		return true;
 	}
 	
 	public void onBlockAdded(World world, int x,int y, int z){

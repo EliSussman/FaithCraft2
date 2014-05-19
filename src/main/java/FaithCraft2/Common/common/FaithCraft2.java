@@ -1,6 +1,7 @@
 package FaithCraft2.Common.common;
 
 import FaithCraft2.Common.common.blocks.*;
+import FaithCraft2.Common.common.crafting.AltarCraftingManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -14,19 +15,27 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidContainerRegistry.FluidContainerData;
 import net.minecraftforge.fluids.FluidRegistry;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import FaithCraft2.Common.common.handler.GuiHandler;
 import FaithCraft2.Common.common.items.*;
 import FaithCraft2.Common.common.tileEntity.TileEntityAltar;
 import FaithCraft2.Common.common.worldgen.HolyWorldGen;
 import FaithCraft2.Common.common.fluids.*;
 
-@Mod(modid = "faithcraft2", name = "FaithCraft 2.0", version = "2.0 Alpha")
+@Mod(modid = FaithCraft2.modid, version = FaithCraft2.version)
 public class FaithCraft2{
-@SidedProxy(clientSide = "FaithCraft2.Common.client.ClientProxy", serverSide = "FaithCraft2.Common.common.CommonProxy")
-public static CommonProxy proxy;
+	public static final String modid = "FaithCraft2";
+	public static final String version = "2.0 Alpha";
 
 public static HolyWorldGen worldgen1 = new HolyWorldGen();
 
@@ -35,17 +44,38 @@ public static ToolMaterial Holy = EnumHelper.addToolMaterial("HOLY", 2, 1, 2.0F,
 
 public static CreativeTabs FaithCraft2Tab = new FaithCraft2Tab(CreativeTabs.getNextID(), "FaithCraft 2.0 Tab");
 
-public static Block Altar = new Altar(Material.rock).setBlockName("Altar").setBlockTextureName("FaithCraft2:Altar");
-public static Block HolyOre= new HolyOre(3006, Material.rock).setBlockName("HolyOre").setBlockTextureName("FaithCraft2:HolyOre");
+@Instance(modid)
+public static FaithCraft2 instance;
 
-public static Item Bible = new Bible(3001).setUnlocalizedName("Bible").setTextureName("FaithCraft2:Bible");
-public static Item BodyOFChrist = new BodyOFChrist(3002).setUnlocalizedName("BodyOFChrist").setTextureName("FaithCraft2:BodyOFChrist");
-public static Item Cross = new Cross(3003, Christianity).setUnlocalizedName("Cross").setTextureName("FaithCraft2:Cross");
-public static Item Quran = new Quran(3004).setUnlocalizedName("Quran").setTextureName("FaithCraft2:Quran");
-public static Item Torah = new Torah(3005).setUnlocalizedName("Torah").setTextureName("FaithCraft2:Torah");
-public static Item HolyCross = new HolyCross(3007, Holy).setUnlocalizedName("HolyCross").setTextureName("FaithCraft2:HolyCross");
+public static final int guiIDAltar = 1;
+public static Block Altar;
+
+public static Block HolyOre;
+
+public static Item Bible;
+public static Item BodyOFChrist;
+public static Item Cross;
+public static Item Quran;
+public static Item Torah;
+public static Item HolyCross;
 	
-	public FaithCraft2(){
+@SidedProxy(clientSide = "FaithCraft2.Common.client.ClientProxy", serverSide = "FaithCraft2.Common.common.CommonProxy")
+public static CommonProxy proxy;
+
+	@EventHandler
+	public void PreInit(FMLPreInitializationEvent preEvent){
+		proxy.registerRenderThings();
+		Altar = new Altar(Material.rock).setBlockName("Altar").setBlockTextureName("FaithCraft2:Altar"); 
+
+		HolyOre= new HolyOre(3006, Material.rock).setBlockName("HolyOre").setBlockTextureName("FaithCraft2:HolyOre");
+
+		Bible = new Bible(3001).setUnlocalizedName("Bible").setTextureName("FaithCraft2:Bible");
+		Item BodyOFChrist = new BodyOFChrist(3002).setUnlocalizedName("BodyOFChrist").setTextureName("FaithCraft2:BodyOFChrist");
+		Cross = new Cross(3003, Christianity).setUnlocalizedName("Cross").setTextureName("FaithCraft2:Cross");
+		Quran = new Quran(3004).setUnlocalizedName("Quran").setTextureName("FaithCraft2:Quran");
+		Torah = new Torah(3005).setUnlocalizedName("Torah").setTextureName("FaithCraft2:Torah");
+		HolyCross = new HolyCross(3007, Holy).setUnlocalizedName("HolyCross").setTextureName("FaithCraft2:HolyCross");
+		
 		GameRegistry.registerBlock(Altar, "Altar");
 		GameRegistry.registerBlock(HolyOre, "HolyOre");
 		
@@ -57,9 +87,18 @@ public static Item HolyCross = new HolyCross(3007, Holy).setUnlocalizedName("Hol
 		GameRegistry.registerItem(HolyCross, "HolyCross");
 		
 		GameRegistry.registerWorldGenerator(worldgen1, 1);
-		
-		GameRegistry.registerTileEntity(TileEntityAltar.class, "Altar");
-		
-		proxy.registerRenderThings();
 	}
+	
+	@EventHandler
+	public void Init(FMLInitializationEvent event){
+		GameRegistry.registerTileEntity(TileEntityAltar.class, "Altar");
+		FMLCommonHandler.instance().bus().register(new AltarCraftingManager());
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
+
+	}
+	
+	@EventHandler
+	public void PostInit(FMLPostInitializationEvent postevent){
+	}
+	
 }
