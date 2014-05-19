@@ -26,6 +26,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import FaithCraft2.Common.common.handler.CraftingHandler;
 import FaithCraft2.Common.common.handler.GuiHandler;
 import FaithCraft2.Common.common.items.*;
 import FaithCraft2.Common.common.tileEntity.TileEntityAltar;
@@ -92,7 +93,7 @@ public static CommonProxy proxy;
 	@EventHandler
 	public void Init(FMLInitializationEvent event){
 		GameRegistry.registerTileEntity(TileEntityAltar.class, "Altar");
-		FMLCommonHandler.instance().bus().register(new AltarCraftingManager());
+		FMLCommonHandler.instance().bus().register(new CraftingHandler());
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 
 	}

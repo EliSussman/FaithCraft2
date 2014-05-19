@@ -18,40 +18,47 @@ import FaithCraft2.Common.common.tileEntity.TileEntityAltar;
 public class ContainerAltar extends Container {
 
 	public InventoryCrafting craftMatrix;
-	public IInventory craftResult;
+	public InventoryCraftResult craftResult;
 	private World worldObj;
 	private int posX;
 	private int posY;
 	private int posZ;
 
 	public ContainerAltar(InventoryPlayer invPlayer, TileEntity tileEntity) {
-		craftMatrix = new InventoryCrafting(this, 5, 5);
+		craftMatrix = new InventoryCrafting(this, 3, 3);
 		craftResult = new InventoryCraftResult();
 
-		this.addSlotToContainer(new SlotCrafting(invPlayer.player, craftMatrix, craftResult, 0, 141, 43));
+		this.addSlotToContainer(new SlotCrafting(invPlayer.player, craftMatrix, craftResult, 0, 124, 35));
+        int l;
+        int i1;
 
-		for (int i = 0; i < 5; i++) {
-			for(int k = 0; k < 5; k++) {
-				this.addSlotToContainer(new Slot(craftMatrix, k + i * 5, 8 + k * 18, 7 + i * 18));
-			}
-		}
+        for (l = 0; l < 3; ++l)
+        {
+            for (i1 = 0; i1 < 3; ++i1)
+            {
+                this.addSlotToContainer(new Slot(this.craftMatrix, i1 + l * 3, 30 + i1 * 18, 17 + l * 18));
+            }
+        }
 
-		for (int i = 0; i < 3; i++) {
-			for(int k = 0; k < 9; k++) {
-				this.addSlotToContainer(new Slot(invPlayer, k + i * 9 + 9, 8 + k * 18, 106 + i * 18));
-			}
-		}
+        for (l = 0; l < 3; ++l)
+        {
+            for (i1 = 0; i1 < 9; ++i1)
+            {
+                this.addSlotToContainer(new Slot(invPlayer, i1 + l * 9 + 9, 8 + i1 * 18, 84 + l * 18));
+            }
+        }
 
-		for (int i = 0; i < 9; i++) {
-			this.addSlotToContainer(new Slot(invPlayer, i, 8 + i * 18, 164));
-		}
+        for (l = 0; l < 9; ++l)
+        {
+            this.addSlotToContainer(new Slot(invPlayer, l, 8 + l * 18, 142));
+        }
 
-		onCraftMatrixChanged(craftMatrix);
-	}
+        onCraftMatrixChanged(craftMatrix);
+    }
 
 
-	public void onCraftMatrixChanged(IInventory iiventory) {
-		//craftResult.setInventorySlotContents(0, AltarCraftingManager.getInstance().findMatchingRecipe(craftMatrix, worldObj));
+	public void onCraftMatrixChanged(IInventory iinventory) {
+		craftResult.setInventorySlotContents(0, AltarCraftingManager.getInstance().findMatchingRecipe(craftMatrix, worldObj));
 	}
 
 
@@ -60,20 +67,14 @@ public class ContainerAltar extends Container {
 		return true;
 	}
 
-	public void onContainerClosed(EntityPlayer par1EntityPlayer) {
-        super.onContainerClosed(par1EntityPlayer);
+	public void onContainerClosed(EntityPlayer par1EntityPlayer)
+    {
+        InventoryPlayer inventoryplayer = par1EntityPlayer.inventory;
 
-        if (!this.worldObj.isRemote)
+        if (inventoryplayer.getItemStack() != null)
         {
-            for (int i = 0; i < 9; ++i)
-            {
-                ItemStack itemstack = this.craftMatrix.getStackInSlotOnClosing(i);
-
-                if (itemstack != null)
-                {
-                    par1EntityPlayer.dropPlayerItemWithRandomChoice(itemstack, false);
-                }
-            }
+            par1EntityPlayer.dropPlayerItemWithRandomChoice(inventoryplayer.getItemStack(), false);
+            inventoryplayer.setItemStack((ItemStack)null);
         }
     }
 

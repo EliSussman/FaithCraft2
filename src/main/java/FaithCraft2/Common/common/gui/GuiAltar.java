@@ -14,9 +14,6 @@ import FaithCraft2.Common.common.container.ContainerAltar;
 import FaithCraft2.Common.common.tileEntity.TileEntityAltar;
 
 public class GuiAltar extends GuiContainer{
-	public GuiAltar(InventoryPlayer par1InventoryPlayer, TileEntity tileEntity){
-        super(new ContainerAltar(par1InventoryPlayer, tileEntity));
-    }
 	
 	private ResourceLocation texture = new ResourceLocation(FaithCraft2.modid + ":" + "textures/gui/AltarGUI.png");
 	
@@ -29,11 +26,6 @@ public class GuiAltar extends GuiContainer{
 
 		this.xSize = 176;
 		this.ySize = 166;
-	}
-
-
-	public void onGuiClosed() {
-		super.onGuiClosed();
 	}
 	
 	protected void drawGuiContainerForegroundLayer(int p_146979_1_, int p_146979_2_)
