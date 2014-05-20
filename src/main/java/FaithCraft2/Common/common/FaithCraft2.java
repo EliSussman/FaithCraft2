@@ -40,8 +40,8 @@ public class FaithCraft2{
 
 public static HolyWorldGen worldgen1 = new HolyWorldGen();
 
-public static ToolMaterial Christianity = EnumHelper.addToolMaterial("CHRISTIANITY", 1, 3, 1.0F, 10, 10);
-public static ToolMaterial Holy = EnumHelper.addToolMaterial("HOLY", 2, 1, 2.0F, 20, 20);
+public static ToolMaterial Christianity = EnumHelper.addToolMaterial("CHRISTIANITY", 1, 1, 1.0F, 10, 10);
+public static ToolMaterial Holy = EnumHelper.addToolMaterial("HOLY", 2, 3, 2.0F, 20, 20);
 
 public static CreativeTabs FaithCraft2Tab = new FaithCraft2Tab(CreativeTabs.getNextID(), "FaithCraft 2.0 Tab");
 
@@ -59,6 +59,8 @@ public static Item Cross;
 public static Item Quran;
 public static Item Torah;
 public static Item HolyCross;
+public static Item HolyStick;
+public static Item HolyGoldenStick;
 	
 @SidedProxy(clientSide = "FaithCraft2.Common.client.ClientProxy", serverSide = "FaithCraft2.Common.common.CommonProxy")
 public static CommonProxy proxy;
@@ -76,6 +78,8 @@ public static CommonProxy proxy;
 		Quran = new Quran(3004).setUnlocalizedName("Quran").setTextureName("FaithCraft2:Quran");
 		Torah = new Torah(3005).setUnlocalizedName("Torah").setTextureName("FaithCraft2:Torah");
 		HolyCross = new HolyCross(3007, Holy).setUnlocalizedName("HolyCross").setTextureName("FaithCraft2:HolyCross");
+		HolyStick = new HolyStick(3008).setUnlocalizedName("HolyStick").setTextureName("FaithCraft2:HolyStick");
+		HolyGoldenStick = new HolyGoldenStick(3009).setUnlocalizedName("HolyGoldenStick").setTextureName("FaithCraft2:HolyGoldenStick");
 		
 		GameRegistry.registerBlock(Altar, "Altar");
 		GameRegistry.registerBlock(HolyOre, "HolyOre");
@@ -86,6 +90,8 @@ public static CommonProxy proxy;
 		GameRegistry.registerItem(Quran, "Quran");
 		GameRegistry.registerItem(Torah, "Torah");
 		GameRegistry.registerItem(HolyCross, "HolyCross");
+		GameRegistry.registerItem(HolyStick, "HolyStick");
+		GameRegistry.registerItem(HolyGoldenStick, "HolyGoldenStick");
 		
 		GameRegistry.registerWorldGenerator(worldgen1, 1);
 	}

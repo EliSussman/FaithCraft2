@@ -6,4 +6,6 @@ item.Cross.name=Cross
 item.Quran.name=Quran
 item.Torah.name=Torah
 item.HolyCross.name=Holy Cross
+item.HolyStick.name=Holy Stick
+item.HolyGoldenStick.name=Holy Golden Stick
 itemGroup.FaithCraft 2.0 Tab=FaithCraft 2.0 Tab
