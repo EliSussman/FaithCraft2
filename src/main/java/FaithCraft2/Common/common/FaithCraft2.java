@@ -30,6 +30,7 @@ import FaithCraft2.Common.common.handler.CraftingHandler;
 import FaithCraft2.Common.common.handler.GuiHandler;
 import FaithCraft2.Common.common.items.*;
 import FaithCraft2.Common.common.tileEntity.TileEntityAltar;
+import FaithCraft2.Common.common.tileEntity.TileEntityHolyForge;
 import FaithCraft2.Common.common.worldgen.HolyWorldGen;
 import FaithCraft2.Common.common.fluids.*;
 
@@ -51,6 +52,9 @@ public static FaithCraft2 instance;
 public static final int guiIDAltar = 1;
 public static Block Altar;
 
+public static Block HolyForgeIdle;
+public static Block HolyForgeActive;
+
 public static Block HolyOre;
 public static Block HolyStone;
 
@@ -71,6 +75,9 @@ public static CommonProxy proxy;
 		proxy.registerRenderThings();
 		Altar = new Altar(Material.rock).setBlockName("Altar").setBlockTextureName("FaithCraft2:Altar"); 
 
+		HolyForgeIdle = new HolyForge(false).setBlockName("HolyForgeIdle").setCreativeTab(FaithCraft2.FaithCraft2Tab);
+		HolyForgeActive = new HolyForge(true).setBlockName("HolyForgeActive").setLightLevel(0.625F);
+		
 		HolyOre= new HolyOre(3006, Material.rock).setBlockName("HolyOre").setBlockTextureName("FaithCraft2:HolyOre");
 		HolyStone = new HolyStone(3010, Material.rock).setBlockName("HolyStone").setBlockTextureName("FaithCraft2:HolyStone");
 		
@@ -83,6 +90,8 @@ public static CommonProxy proxy;
 		HolyStick = new HolyStick(3008).setUnlocalizedName("HolyStick").setTextureName("FaithCraft2:HolyStick");
 		HolyGoldenStick = new HolyGoldenStick(3009).setUnlocalizedName("HolyGoldenStick").setTextureName("FaithCraft2:HolyGoldenStick");
 		
+		GameRegistry.registerBlock(HolyForgeIdle, "HolyForgeIdle");
+		GameRegistry.registerBlock(HolyForgeActive, "HolyForgeActive");
 		GameRegistry.registerBlock(Altar, "Altar");
 		GameRegistry.registerBlock(HolyOre, "HolyOre");
 		GameRegistry.registerBlock(HolyStone, "HolyStone");
@@ -102,6 +111,8 @@ public static CommonProxy proxy;
 	@EventHandler
 	public void Init(FMLInitializationEvent event){
 		GameRegistry.registerTileEntity(TileEntityAltar.class, "Altar");
+		GameRegistry.registerTileEntity(TileEntityHolyForge.class, "HolyForge");
+		
 		FMLCommonHandler.instance().bus().register(new CraftingHandler());
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 
