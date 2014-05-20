@@ -52,6 +52,7 @@ public static final int guiIDAltar = 1;
 public static Block Altar;
 
 public static Block HolyOre;
+public static Block HolyStone;
 
 public static Item Bible;
 public static Item BodyOFChrist;
@@ -71,7 +72,8 @@ public static CommonProxy proxy;
 		Altar = new Altar(Material.rock).setBlockName("Altar").setBlockTextureName("FaithCraft2:Altar"); 
 
 		HolyOre= new HolyOre(3006, Material.rock).setBlockName("HolyOre").setBlockTextureName("FaithCraft2:HolyOre");
-
+		HolyStone = new HolyStone(3010, Material.rock).setBlockName("HolyStone").setBlockTextureName("FaithCraft2:HolyStone");
+		
 		Bible = new Bible(3001).setUnlocalizedName("Bible").setTextureName("FaithCraft2:Bible");
 		Item BodyOFChrist = new BodyOFChrist(3002).setUnlocalizedName("BodyOFChrist").setTextureName("FaithCraft2:BodyOFChrist");
 		Cross = new Cross(3003, Christianity).setUnlocalizedName("Cross").setTextureName("FaithCraft2:Cross");
@@ -83,6 +85,7 @@ public static CommonProxy proxy;
 		
 		GameRegistry.registerBlock(Altar, "Altar");
 		GameRegistry.registerBlock(HolyOre, "HolyOre");
+		GameRegistry.registerBlock(HolyStone, "HolyStone");
 		
 		GameRegistry.registerItem(Bible, "Bible");
 		GameRegistry.registerItem(BodyOFChrist, "BodyOFChrist");

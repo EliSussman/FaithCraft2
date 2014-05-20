@@ -27,6 +27,13 @@ public class HolyWorldGen implements IWorldGenerator{
 			int Zcoords = z + random.nextInt(16);
 			new WorldGenMinable(FaithCraft2.HolyOre, 3).generate(world, random, Xcoords, Ycoords, Zcoords);
 		}
+		
+		for(int i = 0; i < 100; i++){
+			int Xcoords = x + random.nextInt(16);
+			int Ycoords = random.nextInt(256);
+			int Zcoords = z + random.nextInt(16);
+			new WorldGenMinable(FaithCraft2.HolyStone, 50).generate(world, random, Xcoords, Ycoords, Zcoords);
+		}
 	}
 
 	public void generateNether(World world, Random random, int x, int z) {
