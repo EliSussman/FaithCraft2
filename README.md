@@ -1,4 +1,6 @@
 FaithCraft2
 ===========
 
-The minecraft mod that involves all religion of Earth!
+The Minecraft mod that involves all religion of Earth!
+
+WIKI: http://faithcraft2.wikia.com/wiki/FaithCraft2_Wiki
