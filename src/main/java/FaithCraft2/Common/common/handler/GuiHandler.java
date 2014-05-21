@@ -6,8 +6,11 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
 import FaithCraft2.Common.common.FaithCraft2;
 import FaithCraft2.Common.common.container.ContainerAltar;
+import FaithCraft2.Common.common.container.ContainerHolyForge;
 import FaithCraft2.Common.common.gui.GuiAltar;
+import FaithCraft2.Common.common.gui.GuiHolyForge;
 import FaithCraft2.Common.common.tileEntity.TileEntityAltar;
+import FaithCraft2.Common.common.tileEntity.TileEntityHolyForge;
 
 public class GuiHandler implements IGuiHandler{
 	
@@ -24,6 +27,16 @@ public class GuiHandler implements IGuiHandler{
 				return null;
 			}
 		}
+		
+		if(entity != null){
+			switch(ID){
+			case FaithCraft2.guiIDHolyForge:
+				if(entity instanceof TileEntityHolyForge){
+					return new ContainerHolyForge(player.inventory, (TileEntityHolyForge) entity);
+				}
+				return null;
+			}
+		}
 		return null;
 	}
 
@@ -36,6 +49,16 @@ public class GuiHandler implements IGuiHandler{
 			case FaithCraft2.guiIDAltar:
 				if (entity instanceof TileEntityAltar) {
 					return new GuiAltar(player.inventory, (TileEntityAltar) entity);
+				}
+				return null;
+			}
+		}
+		
+		if(entity != null) {
+			switch(ID) {
+			case FaithCraft2.guiIDHolyForge:
+				if (entity instanceof TileEntityHolyForge) {
+					return new GuiHolyForge(player.inventory, (TileEntityHolyForge) entity);
 				}
 				return null;
 			}

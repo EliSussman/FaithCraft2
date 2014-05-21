@@ -1,5 +1,6 @@
 package FaithCraft2.Common.common.blocks;
 
+import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -7,6 +8,7 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -23,6 +25,8 @@ public class HolyForge extends BlockContainer{
 	@SideOnly(Side.CLIENT)
 	private IIcon iconFront;
 	private IIcon iconTop;
+	
+	private static boolean keepinventory;
 	
 	public HolyForge(boolean isActive) {
 		super(Material.iron);
@@ -80,7 +84,12 @@ public class HolyForge extends BlockContainer{
 		}
 	}
 	
-	
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ){
+		if(world.isRemote){
+			FMLNetworkHandler.openGui(player, FaithCraft2.instance, FaithCraft2.guiIDHolyForge, world, x, y, z);
+		}
+		return true;
+	}
 	
 	@Override
 	public TileEntity createNewTileEntity(World var1, int var2) {
@@ -108,6 +117,28 @@ public class HolyForge extends BlockContainer{
 		
 		if(itemstack.hasDisplayName()){
 			((TileEntityHolyForge)world.getTileEntity(x, y, z)).setGuiDisplayName(itemstack.getDisplayName());
+		}
+	}
+
+	public static void updateHolyForgeBlockState(boolean active, World worldObj, int xCoord, int yCoord, int zCoord) {
+		int i = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+		
+		TileEntity tileentity = worldObj.getTileEntity(xCoord, yCoord, zCoord);
+		keepinventory = true;
+		
+		if(active){
+			worldObj.setBlock(xCoord, yCoord, zCoord, FaithCraft2.HolyForgeActive);
+		}else{
+			worldObj.setBlock(xCoord, yCoord, zCoord, FaithCraft2.HolyForgeIdle);
+		}
+		
+		keepinventory = false;
+		
+		worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, i, 2);
+		
+		if(tileentity != null){
+			tileentity.validate();
+			worldObj.setTileEntity(xCoord, yCoord, zCoord, tileentity);
 		}
 	}
 	

@@ -52,6 +52,7 @@ public static FaithCraft2 instance;
 public static final int guiIDAltar = 1;
 public static Block Altar;
 
+public static final int guiIDHolyForge = 0;
 public static Block HolyForgeIdle;
 public static Block HolyForgeActive;
 
