@@ -32,7 +32,7 @@ public class HolyWorldGen implements IWorldGenerator{
 			int Xcoords = x + random.nextInt(16);
 			int Ycoords = random.nextInt(256);
 			int Zcoords = z + random.nextInt(16);
-			new WorldGenMinable(FaithCraft2.HolyStone, 50).generate(world, random, Xcoords, Ycoords, Zcoords);
+			new WorldGenMinable(FaithCraft2.HolyCobbleStone, 50).generate(world, random, Xcoords, Ycoords, Zcoords);
 		}
 	}
 

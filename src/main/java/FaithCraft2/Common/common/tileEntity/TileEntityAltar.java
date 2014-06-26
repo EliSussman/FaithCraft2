@@ -18,7 +18,7 @@ public class TileEntityAltar extends TileEntity implements ISidedInventory{
 	}
 	
 	public String getInventoryName() {
-		return this.hasCustomInventoryName() ? this.localizedName : "container.alabasterOven";
+		return this.hasCustomInventoryName() ? this.localizedName : "container.altar";
 	}
 
 	public boolean hasCustomInventoryName() {

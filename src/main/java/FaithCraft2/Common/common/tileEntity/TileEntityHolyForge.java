@@ -2,6 +2,7 @@ package FaithCraft2.Common.common.tileEntity;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import FaithCraft2.Common.common.blocks.HolyForge;
+import FaithCraft2.Common.common.smelting.HolyForgeSmeltingManager;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -190,7 +191,7 @@ public class TileEntityHolyForge extends TileEntity implements ISidedInventory{
 		if (this.slots[0] == null) {
 			return false;
 		}else{
-			ItemStack itemstack = FurnaceRecipes.smelting().getSmeltingResult(this.slots[0]);
+			ItemStack itemstack = HolyForgeSmeltingManager.smelting().getSmeltingResult(this.slots[0]);
 
 			if(itemstack == null) return false;
 			if(this.slots[2] == null) return true;
@@ -204,7 +205,7 @@ public class TileEntityHolyForge extends TileEntity implements ISidedInventory{
 
 	public void smeltItem() {
 		if(this.canSmelt()) {
-			ItemStack itemstack = FurnaceRecipes.smelting().getSmeltingResult(this.slots[0]);
+			ItemStack itemstack = HolyForgeSmeltingManager.smelting().getSmeltingResult(this.slots[0]);
 
 			if(this.slots[2] == null) {
 				this.slots[2] = itemstack.copy();

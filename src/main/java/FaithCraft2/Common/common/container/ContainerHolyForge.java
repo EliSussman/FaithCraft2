@@ -2,11 +2,14 @@ package FaithCraft2.Common.common.container;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import FaithCraft2.Common.common.crafting.AltarCraftingManager;
 import FaithCraft2.Common.common.tileEntity.TileEntityHolyForge;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.InventoryCraftResult;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnace;
 import net.minecraft.item.ItemStack;
@@ -20,7 +23,7 @@ public class ContainerHolyForge extends Container{
 	public int lastBurnTime;
 	public int lastCurrentItemBurnTime;
 	public int lastCookTime;
-	
+
 	public ContainerHolyForge(InventoryPlayer inventory, TileEntityHolyForge tileentity){
 		this.holyForge = tileentity;
 		

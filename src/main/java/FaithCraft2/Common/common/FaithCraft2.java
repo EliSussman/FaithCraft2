@@ -58,6 +58,7 @@ public static Block HolyForgeActive;
 
 public static Block HolyOre;
 public static Block HolyStone;
+public static Block HolyCobbleStone;
 
 public static Item Bible;
 public static Item BodyOFChrist;
@@ -81,6 +82,7 @@ public static CommonProxy proxy;
 		
 		HolyOre= new HolyOre(3006, Material.rock).setBlockName("HolyOre").setBlockTextureName("FaithCraft2:HolyOre");
 		HolyStone = new HolyStone(3010, Material.rock).setBlockName("HolyStone").setBlockTextureName("FaithCraft2:HolyStone");
+		HolyCobbleStone = new HolyCobbleStone(3011, Material.rock).setBlockName("HolyCobbleStone").setBlockTextureName("FaithCraft2:HolyCobbleStone");
 		
 		Bible = new Bible(3001).setUnlocalizedName("Bible").setTextureName("FaithCraft2:Bible");
 		Item BodyOFChrist = new BodyOFChrist(3002).setUnlocalizedName("BodyOFChrist").setTextureName("FaithCraft2:BodyOFChrist");
@@ -96,6 +98,7 @@ public static CommonProxy proxy;
 		GameRegistry.registerBlock(Altar, "Altar");
 		GameRegistry.registerBlock(HolyOre, "HolyOre");
 		GameRegistry.registerBlock(HolyStone, "HolyStone");
+		GameRegistry.registerBlock(HolyCobbleStone, "HolyCobbleStone");
 		
 		GameRegistry.registerItem(Bible, "Bible");
 		GameRegistry.registerItem(BodyOFChrist, "BodyOFChrist");
