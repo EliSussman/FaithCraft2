@@ -25,13 +25,9 @@ public class GuiHandler implements IGuiHandler{
 					return new ContainerAltar(player.inventory, (TileEntityAltar) entity);
 				}
 				return null;
-			}
-		}
-		
-		if(entity != null){
-			switch(ID){
+
 			case FaithCraft2.guiIDHolyForge:
-				if(entity instanceof TileEntityHolyForge){
+				if (entity instanceof TileEntityHolyForge) {
 					return new ContainerHolyForge(player.inventory, (TileEntityHolyForge) entity);
 				}
 				return null;
@@ -43,7 +39,7 @@ public class GuiHandler implements IGuiHandler{
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world,	int x, int y, int z) {
 		TileEntity entity = world.getTileEntity(x, y, z);
-
+		
 		if(entity != null) {
 			switch(ID) {
 			case FaithCraft2.guiIDAltar:
@@ -51,11 +47,7 @@ public class GuiHandler implements IGuiHandler{
 					return new GuiAltar(player.inventory, (TileEntityAltar) entity);
 				}
 				return null;
-			}
-		}
-		
-		if(entity != null) {
-			switch(ID) {
+
 			case FaithCraft2.guiIDHolyForge:
 				if (entity instanceof TileEntityHolyForge) {
 					return new GuiHolyForge(player.inventory, (TileEntityHolyForge) entity);
