@@ -72,6 +72,8 @@ public static Item HolyCross;
 public static Item HolyStick;
 public static Item HolyGoldenStick;
 public static Item WineBucket;
+public static Item HolyGrail;
+public static Item HolyGrailOFWine;
 
 public static Fluid Wine;
 	
@@ -104,6 +106,8 @@ public static CommonProxy proxy;
 		HolyStick = new HolyStick(3008).setUnlocalizedName("HolyStick").setTextureName("FaithCraft2:HolyStick");
 		HolyGoldenStick = new HolyGoldenStick(3009).setUnlocalizedName("HolyGoldenStick").setTextureName("FaithCraft2:HolyGoldenStick");
 		WineBucket = new WineBucket(WineBlock).setUnlocalizedName("WineBucket").setTextureName("FaithCraft2:WineBucket").setContainerItem(Items.bucket);
+		HolyGrail = new HolyGrail(WineBlock).setUnlocalizedName("HolyGrail").setTextureName("FaithCraft2:HolyGrail");
+		HolyGrailOFWine = new HolyGrail(WineBlock).setUnlocalizedName("HolyGrailOFWine").setTextureName("FaithCraft2:HolyGrailOFWine").setContainerItem(HolyGrail);
 		
 		GameRegistry.registerBlock(HolyForgeIdle, "HolyForgeIdle");
 		GameRegistry.registerBlock(HolyForgeActive, "HolyForgeActive");
@@ -121,11 +125,14 @@ public static CommonProxy proxy;
 		GameRegistry.registerItem(HolyCross, "HolyCross");
 		GameRegistry.registerItem(HolyStick, "HolyStick");
 		GameRegistry.registerItem(HolyGoldenStick, "HolyGoldenStick");
-		
 		GameRegistry.registerItem(WineBucket, "WineBucket");
+		GameRegistry.registerItem(HolyGrail, "HolyGrail");
+		GameRegistry.registerItem(HolyGrailOFWine, "HolyGrailOFWine");
 		
 		GameRegistry.registerWorldGenerator(worldgen1, 1);
 		
+		FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("wine", FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(HolyGrailOFWine), new ItemStack(HolyGrail));
+		FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("wine", FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(WineBucket), new ItemStack(Items.bucket));
 	}
 	
 	@EventHandler
@@ -138,6 +145,7 @@ public static CommonProxy proxy;
 		
 		MinecraftForge.EVENT_BUS.register(BucketHandler.INSTANCE);
 		BucketHandler.INSTANCE.buckets.put(WineBlock, WineBucket);
+		BucketHandler.INSTANCE.buckets.put(WineBlock, HolyGrailOFWine);
 	}
 	
 	@EventHandler

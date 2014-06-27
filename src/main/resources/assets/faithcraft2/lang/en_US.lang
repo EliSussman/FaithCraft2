@@ -14,4 +14,6 @@ item.HolyCross.name=Holy Cross
 item.HolyStick.name=Holy Stick
 item.HolyGoldenStick.name=Holy Golden Stick
 item.WineBucket.name=Wine Bucket
+item.HolyGrail.name=Holy Grail
+item.HolyGrailOFWine.name=Holy Grail O' Wine
 itemGroup.FaithCraft 2.0 Tab=FaithCraft 2.0 Tab
