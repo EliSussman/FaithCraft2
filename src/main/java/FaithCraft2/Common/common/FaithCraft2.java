@@ -10,6 +10,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fluids.Fluid;
@@ -27,6 +28,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import FaithCraft2.Common.common.handler.BucketHandler;
 import FaithCraft2.Common.common.handler.CraftingHandler;
 import FaithCraft2.Common.common.handler.GuiHandler;
 import FaithCraft2.Common.common.items.*;
@@ -69,6 +71,7 @@ public static Item Torah;
 public static Item HolyCross;
 public static Item HolyStick;
 public static Item HolyGoldenStick;
+public static Item WineBucket;
 
 public static Fluid Wine;
 	
@@ -100,6 +103,7 @@ public static CommonProxy proxy;
 		HolyCross = new HolyCross(3007, Holy).setUnlocalizedName("HolyCross").setTextureName("FaithCraft2:HolyCross");
 		HolyStick = new HolyStick(3008).setUnlocalizedName("HolyStick").setTextureName("FaithCraft2:HolyStick");
 		HolyGoldenStick = new HolyGoldenStick(3009).setUnlocalizedName("HolyGoldenStick").setTextureName("FaithCraft2:HolyGoldenStick");
+		WineBucket = new WineBucket(WineBlock).setUnlocalizedName("WineBucket").setTextureName("FaithCraft2:WineBucket").setContainerItem(Items.bucket);
 		
 		GameRegistry.registerBlock(HolyForgeIdle, "HolyForgeIdle");
 		GameRegistry.registerBlock(HolyForgeActive, "HolyForgeActive");
@@ -118,7 +122,10 @@ public static CommonProxy proxy;
 		GameRegistry.registerItem(HolyStick, "HolyStick");
 		GameRegistry.registerItem(HolyGoldenStick, "HolyGoldenStick");
 		
+		GameRegistry.registerItem(WineBucket, "WineBucket");
+		
 		GameRegistry.registerWorldGenerator(worldgen1, 1);
+		
 	}
 	
 	@EventHandler
@@ -128,7 +135,9 @@ public static CommonProxy proxy;
 		
 		FMLCommonHandler.instance().bus().register(new CraftingHandler());
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
-
+		
+		MinecraftForge.EVENT_BUS.register(BucketHandler.INSTANCE);
+		BucketHandler.INSTANCE.buckets.put(WineBlock, WineBucket);
 	}
 	
 	@EventHandler
