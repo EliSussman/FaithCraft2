@@ -3,6 +3,7 @@ package FaithCraft2.Common.common;
 import FaithCraft2.Common.common.blocks.*;
 import FaithCraft2.Common.common.crafting.AltarCraftingManager;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
@@ -58,6 +59,7 @@ public static Block HolyForgeActive;
 public static Block HolyOre;
 public static Block HolyStone;
 public static Block HolyCobbleStone;
+public static Block WineBlock;
 
 public static Item Bible;
 public static Item BodyOFChrist;
@@ -67,6 +69,8 @@ public static Item Torah;
 public static Item HolyCross;
 public static Item HolyStick;
 public static Item HolyGoldenStick;
+
+public static Fluid Wine;
 	
 @SidedProxy(clientSide = "FaithCraft2.Common.client.ClientProxy", serverSide = "FaithCraft2.Common.common.CommonProxy")
 public static CommonProxy proxy;
@@ -74,6 +78,10 @@ public static CommonProxy proxy;
 	@EventHandler
 	public void PreInit(FMLPreInitializationEvent preEvent){
 		proxy.registerRenderThings();
+		
+		Wine = new Fluid("Wine").setViscosity(900).setTemperature(250);
+		FluidRegistry.registerFluid(Wine);
+		
 		Altar = new Altar(Material.rock).setBlockName("Altar").setBlockTextureName("FaithCraft2:Altar"); 
 
 		HolyForgeIdle = new HolyForge(false).setBlockName("HolyForgeIdle").setCreativeTab(FaithCraft2.FaithCraft2Tab).setHardness(3.5F);
@@ -82,9 +90,10 @@ public static CommonProxy proxy;
 		HolyOre= new HolyOre(3006, Material.rock).setBlockName("HolyOre").setBlockTextureName("FaithCraft2:HolyOre");
 		HolyStone = new HolyStone(3010, Material.rock).setBlockName("HolyStone").setBlockTextureName("FaithCraft2:HolyStone");
 		HolyCobbleStone = new HolyCobbleStone(3011, Material.rock).setBlockName("HolyCobbleStone").setBlockTextureName("FaithCraft2:HolyCobbleStone");
+		WineBlock = new WineBlock(Wine, Material.water).setBlockName("Wine");
 		
 		Bible = new Bible(3001).setUnlocalizedName("Bible").setTextureName("FaithCraft2:Bible");
-		Item BodyOFChrist = new BodyOFChrist(3002).setUnlocalizedName("BodyOFChrist").setTextureName("FaithCraft2:BodyOFChrist");
+		BodyOFChrist = new BodyOFChrist(3002).setUnlocalizedName("BodyOFChrist").setTextureName("FaithCraft2:BodyOFChrist");
 		Cross = new Cross(3003, Christianity).setUnlocalizedName("Cross").setTextureName("FaithCraft2:Cross");
 		Quran = new Quran(3004).setUnlocalizedName("Quran").setTextureName("FaithCraft2:Quran");
 		Torah = new Torah(3005).setUnlocalizedName("Torah").setTextureName("FaithCraft2:Torah");
@@ -98,6 +107,7 @@ public static CommonProxy proxy;
 		GameRegistry.registerBlock(HolyOre, "HolyOre");
 		GameRegistry.registerBlock(HolyStone, "HolyStone");
 		GameRegistry.registerBlock(HolyCobbleStone, "HolyCobbleStone");
+		GameRegistry.registerBlock(WineBlock, "WineBlock");
 		
 		GameRegistry.registerItem(Bible, "Bible");
 		GameRegistry.registerItem(BodyOFChrist, "BodyOFChrist");
