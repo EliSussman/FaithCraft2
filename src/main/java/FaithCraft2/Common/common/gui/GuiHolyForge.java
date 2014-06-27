@@ -32,7 +32,8 @@ public class GuiHolyForge extends GuiContainer{
 
 		String name = this.holyForge.hasCustomInventoryName() ? this.holyForge.getInventoryName() : I18n.format(this.holyForge.getInventoryName(), new Object[0]);
 		this.fontRendererObj.drawString(name, this.xSize / 2 - this.fontRendererObj.getStringWidth(name) / 2, 6, 4210752);
-		this.fontRendererObj.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 96 + 5, 4210752);
+		this.fontRendererObj.drawString(I18n.format("container.inventory", new Object[0]), 118, this.ySize - 96 + 2, 4210752);
+		
 	}
 	
 	@Override

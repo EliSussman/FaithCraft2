@@ -32,7 +32,6 @@ import FaithCraft2.Common.common.items.*;
 import FaithCraft2.Common.common.tileEntity.TileEntityAltar;
 import FaithCraft2.Common.common.tileEntity.TileEntityHolyForge;
 import FaithCraft2.Common.common.worldgen.HolyWorldGen;
-import FaithCraft2.Common.common.fluids.*;
 
 @Mod(modid = FaithCraft2.modid, version = FaithCraft2.version)
 public class FaithCraft2{

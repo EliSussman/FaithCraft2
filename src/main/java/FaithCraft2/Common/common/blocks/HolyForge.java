@@ -91,18 +91,11 @@ public class HolyForge extends BlockContainer{
 	}
 	
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
-    	if (world.isRemote) {
-    		return true;
-    	}else if (!player.isSneaking()) {
-    		TileEntityHolyForge entity = (TileEntityHolyForge) world.getTileEntity(x, y, z);
-    		if (entity != null) {
-    			FMLNetworkHandler.openGui(player, FaithCraft2.instance, FaithCraft2.guiIDHolyForge, world, x, y, z);
-    		}
-    		return true;
-    	}else{
-    		return false;
-    	}
-    }
+		if(!world.isRemote) {
+			FMLNetworkHandler.openGui(player, FaithCraft2.instance, FaithCraft2.guiIDHolyForge, world, x, y, z);
+		}
+		return true;
+	}
 	
 	@Override
 	public TileEntity createNewTileEntity(World var1, int var2) {

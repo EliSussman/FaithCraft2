@@ -36,7 +36,7 @@ public class TileEntityHolyForge extends TileEntity implements ISidedInventory{
 	}
 	
 	public String getInventoryName(){
-		return this.hasCustomInventoryName() ? this.localizedName : "container.holyForge";
+		return this.hasCustomInventoryName() ? this.localizedName : "Holy Forge";
 	}
 
 	public boolean hasCustomInventoryName() {
@@ -255,7 +255,7 @@ public class TileEntityHolyForge extends TileEntity implements ISidedInventory{
 		
 		for(int i = 0; i < list.tagCount(); i++){
 			NBTTagCompound compound = (NBTTagCompound) list.getCompoundTagAt(i);
-			byte b = compound.getByte("slot");
+			byte b = compound.getByte("Slot");
 			
 			if(b >= 0 && b < this.slots.length){
 				this.slots[b] = ItemStack.loadItemStackFromNBT(compound);

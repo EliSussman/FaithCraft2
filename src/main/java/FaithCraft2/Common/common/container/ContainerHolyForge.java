@@ -33,7 +33,7 @@ public class ContainerHolyForge extends Container{
 		
 		for(int i = 0; i < 3; i++){
 			for(int j = 0; j < 9; j++){
-				this.addSlotToContainer(new Slot(inventory, j + i * 9 + 9, 8 + j * 18, 84 + 1 * 18));
+				this.addSlotToContainer(new Slot(inventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
 			}
 		}
 		
@@ -48,6 +48,8 @@ public class ContainerHolyForge extends Container{
 		icrafting.sendProgressBarUpdate(this, 1, this.holyForge.burnTime);
 		icrafting.sendProgressBarUpdate(this, 2, this.holyForge.currentItemBurnTime);
 	}
+	
+	
 	
 	public void detectAndSendChanges(){
 		super.detectAndSendChanges();
