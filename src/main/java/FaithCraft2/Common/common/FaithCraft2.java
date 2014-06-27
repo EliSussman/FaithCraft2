@@ -106,8 +106,8 @@ public static CommonProxy proxy;
 		HolyStick = new HolyStick(3008).setUnlocalizedName("HolyStick").setTextureName("FaithCraft2:HolyStick");
 		HolyGoldenStick = new HolyGoldenStick(3009).setUnlocalizedName("HolyGoldenStick").setTextureName("FaithCraft2:HolyGoldenStick");
 		WineBucket = new WineBucket(WineBlock).setUnlocalizedName("WineBucket").setTextureName("FaithCraft2:WineBucket").setContainerItem(Items.bucket);
-		HolyGrail = new HolyGrail(WineBlock).setUnlocalizedName("HolyGrail").setTextureName("FaithCraft2:HolyGrail");
-		HolyGrailOFWine = new HolyGrail(WineBlock).setUnlocalizedName("HolyGrailOFWine").setTextureName("FaithCraft2:HolyGrailOFWine").setContainerItem(HolyGrail);
+		HolyGrail = new HolyGrail(3012).setUnlocalizedName("HolyGrail").setTextureName("FaithCraft2:HolyGrail");
+		HolyGrailOFWine = new HolyGrailOFWine(3013).setUnlocalizedName("HolyGrailOFWine").setTextureName("FaithCraft2:HolyGrailOFWine").setContainerItem(HolyGrail);
 		
 		GameRegistry.registerBlock(HolyForgeIdle, "HolyForgeIdle");
 		GameRegistry.registerBlock(HolyForgeActive, "HolyForgeActive");
@@ -131,12 +131,13 @@ public static CommonProxy proxy;
 		
 		GameRegistry.registerWorldGenerator(worldgen1, 1);
 		
-		FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("wine", FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(HolyGrailOFWine), new ItemStack(HolyGrail));
 		FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("wine", FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(WineBucket), new ItemStack(Items.bucket));
 	}
 	
 	@EventHandler
 	public void Init(FMLInitializationEvent event){
+		
+		
 		GameRegistry.registerTileEntity(TileEntityAltar.class, "Altar");
 		GameRegistry.registerTileEntity(TileEntityHolyForge.class, "HolyForge");
 		
@@ -145,7 +146,6 @@ public static CommonProxy proxy;
 		
 		MinecraftForge.EVENT_BUS.register(BucketHandler.INSTANCE);
 		BucketHandler.INSTANCE.buckets.put(WineBlock, WineBucket);
-		BucketHandler.INSTANCE.buckets.put(WineBlock, HolyGrailOFWine);
 	}
 	
 	@EventHandler
