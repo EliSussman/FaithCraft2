@@ -26,7 +26,7 @@ public class HolyGrail extends Item{
     }
 	 
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float px, float py, float pz){
-			if(world.getBlock(x, y+1, z) == FaithCraft2.WineBlock){
+			if(world.getBlock(x, y+1, z) == FaithCraft2.WineBlock && world.getBlockMetadata(x, y+1, z) == 0){
 				world.setBlockToAir(x, y+1, z);
 				player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(FaithCraft2.HolyGrailOFWine));
 			}
