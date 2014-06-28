@@ -23,9 +23,8 @@ public class HolyGrailOFWine extends Item{
     }
 	
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float px, float py, float pz){
-		player.inventory.consumeInventoryItem(FaithCraft2.HolyGrailOFWine);
 		world.setBlock(x, y+1, z, FaithCraft2.WineBlock, 0, 3);
-		player.inventory.setInventorySlotContents(0, new ItemStack(FaithCraft2.HolyGrail));
+		player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(FaithCraft2.HolyGrail));
 		return true;
 	}
 
