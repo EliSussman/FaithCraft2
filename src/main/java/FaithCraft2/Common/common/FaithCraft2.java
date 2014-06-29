@@ -176,7 +176,7 @@ public static CommonProxy proxy;
 		BiomeManager.warmBiomes.add(new BiomeEntry(FaithCraft2.HeavenBiome, 100));
 		BiomeManager.icyBiomes.add(new BiomeEntry(FaithCraft2.HeavenBiome, 100));
 		
-		GameRegistry.registerWorldGenerator(genTemple, 100);
+		GameRegistry.registerWorldGenerator(genTemple, 1);
 	}
 	
 	@EventHandler
