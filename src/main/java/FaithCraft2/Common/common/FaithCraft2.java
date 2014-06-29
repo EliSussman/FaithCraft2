@@ -1,23 +1,56 @@
 package FaithCraft2.Common.common;
 
-import FaithCraft2.Common.common.blocks.*;
-import FaithCraft2.Common.common.crafting.AltarCraftingManager;
+import java.lang.reflect.Field;
+
 import net.minecraft.block.Block;
-import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.gen.layer.GenLayer;
+import net.minecraft.world.gen.layer.GenLayerBiome;
+import net.minecraft.world.gen.layer.GenLayerRiverMix;
+import net.minecraft.world.gen.structure.MapGenStronghold;
+import net.minecraft.world.gen.structure.MapGenStructureIO;
+import net.minecraftforge.common.BiomeManager;
+import net.minecraftforge.common.BiomeManager.BiomeEntry;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.event.terraingen.WorldTypeEvent;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.fluids.FluidContainerRegistry.FluidContainerData;
 import net.minecraftforge.fluids.FluidRegistry;
+import FaithCraft2.Common.common.biome.HeavenBiome;
+import FaithCraft2.Common.common.blocks.Altar;
+import FaithCraft2.Common.common.blocks.HolyCobbleStone;
+import FaithCraft2.Common.common.blocks.HolyForge;
+import FaithCraft2.Common.common.blocks.HolyOre;
+import FaithCraft2.Common.common.blocks.HolyStone;
+import FaithCraft2.Common.common.blocks.WineBlock;
+import FaithCraft2.Common.common.handler.BucketHandler;
+import FaithCraft2.Common.common.handler.CraftingHandler;
+import FaithCraft2.Common.common.handler.GuiHandler;
+import FaithCraft2.Common.common.items.Bible;
+import FaithCraft2.Common.common.items.BodyOFChrist;
+import FaithCraft2.Common.common.items.Cross;
+import FaithCraft2.Common.common.items.HolyCross;
+import FaithCraft2.Common.common.items.HolyGoldenStick;
+import FaithCraft2.Common.common.items.HolyGrail;
+import FaithCraft2.Common.common.items.HolyGrailOFWine;
+import FaithCraft2.Common.common.items.HolyStick;
+import FaithCraft2.Common.common.items.Quran;
+import FaithCraft2.Common.common.items.Torah;
+import FaithCraft2.Common.common.items.WineBucket;
+import FaithCraft2.Common.common.tileEntity.TileEntityAltar;
+import FaithCraft2.Common.common.tileEntity.TileEntityHolyForge;
+import FaithCraft2.Common.common.worldgen.HolyWorldGen;
+
+import com.google.common.base.Throwables;
+import com.google.common.collect.ObjectArrays;
+
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -26,16 +59,9 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
-import FaithCraft2.Common.common.handler.BucketHandler;
-import FaithCraft2.Common.common.handler.CraftingHandler;
-import FaithCraft2.Common.common.handler.GuiHandler;
-import FaithCraft2.Common.common.items.*;
-import FaithCraft2.Common.common.tileEntity.TileEntityAltar;
-import FaithCraft2.Common.common.tileEntity.TileEntityHolyForge;
-import FaithCraft2.Common.common.worldgen.HolyWorldGen;
 
 @Mod(modid = FaithCraft2.modid, version = FaithCraft2.version)
 public class FaithCraft2{
@@ -77,7 +103,9 @@ public static Item HolyGrail;
 public static Item HolyGrailOFWine;
 
 public static Fluid Wine;
-	
+
+public static BiomeGenBase HeavenBiome;
+
 @SidedProxy(clientSide = "FaithCraft2.Common.client.ClientProxy", serverSide = "FaithCraft2.Common.common.CommonProxy")
 public static CommonProxy proxy;
 
@@ -110,6 +138,8 @@ public static CommonProxy proxy;
 		HolyGrail = new HolyGrail(3012).setUnlocalizedName("HolyGrail").setTextureName("FaithCraft2:HolyGrail");
 		HolyGrailOFWine = new HolyGrailOFWine(0, 0.0F, true).setAlwaysEdible().setUnlocalizedName("HolyGrailOFWine").setTextureName("FaithCraft2:HolyGrailOFWine");
 		
+		HeavenBiome = new HeavenBiome(245).setBiomeName("Heaven").setDisableRain();
+		
 		GameRegistry.registerBlock(HolyForgeIdle, "HolyForgeIdle");
 		GameRegistry.registerBlock(HolyForgeActive, "HolyForgeActive");
 		GameRegistry.registerBlock(Altar, "Altar");
@@ -133,6 +163,12 @@ public static CommonProxy proxy;
 		GameRegistry.registerWorldGenerator(worldgen1, 1);
 		
 		FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("wine", FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(WineBucket), new ItemStack(Items.bucket));
+	
+		BiomeManager.addSpawnBiome(HeavenBiome);
+		BiomeManager.desertBiomes.add(new BiomeEntry(FaithCraft2.HeavenBiome, 100));
+		BiomeManager.coolBiomes.add(new BiomeEntry(FaithCraft2.HeavenBiome, 100));
+		BiomeManager.warmBiomes.add(new BiomeEntry(FaithCraft2.HeavenBiome, 100));
+		BiomeManager.icyBiomes.add(new BiomeEntry(FaithCraft2.HeavenBiome, 100));
 	}
 	
 	@EventHandler
