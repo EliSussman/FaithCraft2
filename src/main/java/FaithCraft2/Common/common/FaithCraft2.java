@@ -47,11 +47,13 @@ import FaithCraft2.Common.common.items.WineBucket;
 import FaithCraft2.Common.common.tileEntity.TileEntityAltar;
 import FaithCraft2.Common.common.tileEntity.TileEntityHolyForge;
 import FaithCraft2.Common.common.worldgen.HolyWorldGen;
+import FaithCraft2.Common.common.worldgen.WorldGenTemple;
 
 import com.google.common.base.Throwables;
 import com.google.common.collect.ObjectArrays;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -106,6 +108,8 @@ public static Fluid Wine;
 
 public static BiomeGenBase HeavenBiome;
 
+public static IWorldGenerator genTemple;
+
 @SidedProxy(clientSide = "FaithCraft2.Common.client.ClientProxy", serverSide = "FaithCraft2.Common.common.CommonProxy")
 public static CommonProxy proxy;
 
@@ -140,6 +144,8 @@ public static CommonProxy proxy;
 		
 		HeavenBiome = new HeavenBiome(245).setBiomeName("Heaven").setDisableRain();
 		
+		genTemple = new WorldGenTemple();
+		
 		GameRegistry.registerBlock(HolyForgeIdle, "HolyForgeIdle");
 		GameRegistry.registerBlock(HolyForgeActive, "HolyForgeActive");
 		GameRegistry.registerBlock(Altar, "Altar");
@@ -169,6 +175,8 @@ public static CommonProxy proxy;
 		BiomeManager.coolBiomes.add(new BiomeEntry(FaithCraft2.HeavenBiome, 100));
 		BiomeManager.warmBiomes.add(new BiomeEntry(FaithCraft2.HeavenBiome, 100));
 		BiomeManager.icyBiomes.add(new BiomeEntry(FaithCraft2.HeavenBiome, 100));
+		
+		GameRegistry.registerWorldGenerator(genTemple, 100);
 	}
 	
 	@EventHandler
