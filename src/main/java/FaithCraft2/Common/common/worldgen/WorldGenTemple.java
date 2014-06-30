@@ -7,7 +7,11 @@ package FaithCraft2.Common.common.worldgen;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import cpw.mods.fml.common.IWorldGenerator;
@@ -33,7 +37,6 @@ public class WorldGenTemple implements IWorldGenerator{
 	}
 
 	private void generateEnd(World world, Random random, int i, int j) {
-		// TODO Auto-generated method stub
 		
 	}
 

@@ -10,6 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.GenLayerBiome;
 import net.minecraft.world.gen.layer.GenLayerRiverMix;
@@ -17,6 +18,7 @@ import net.minecraft.world.gen.structure.MapGenStronghold;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.BiomeManager.BiomeEntry;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.terraingen.WorldTypeEvent;
@@ -30,6 +32,7 @@ import FaithCraft2.Common.common.blocks.HolyForge;
 import FaithCraft2.Common.common.blocks.HolyOre;
 import FaithCraft2.Common.common.blocks.HolyStone;
 import FaithCraft2.Common.common.blocks.WineBlock;
+import FaithCraft2.Common.common.dimension.WorldProviderHeaven;
 import FaithCraft2.Common.common.handler.BucketHandler;
 import FaithCraft2.Common.common.handler.CraftingHandler;
 import FaithCraft2.Common.common.handler.GuiHandler;
@@ -47,7 +50,9 @@ import FaithCraft2.Common.common.items.WineBucket;
 import FaithCraft2.Common.common.tileEntity.TileEntityAltar;
 import FaithCraft2.Common.common.tileEntity.TileEntityHolyForge;
 import FaithCraft2.Common.common.worldgen.HolyWorldGen;
+import FaithCraft2.Common.common.worldgen.WorldGenChurch;
 import FaithCraft2.Common.common.worldgen.WorldGenTemple;
+import FaithCraft2.Common.common.blocks.HeavenPortal;
 
 import com.google.common.base.Throwables;
 import com.google.common.collect.ObjectArrays;
@@ -91,6 +96,7 @@ public static Block HolyOre;
 public static Block HolyStone;
 public static Block HolyCobbleStone;
 public static Block WineBlock;
+public static Block HeavenPortal;
 
 public static Item Bible;
 public static Item BodyOFChrist;
@@ -109,6 +115,9 @@ public static Fluid Wine;
 public static BiomeGenBase HeavenBiome;
 
 public static IWorldGenerator genTemple;
+public static IWorldGenerator genChurch;
+
+public static int HeavenId = 10;
 
 @SidedProxy(clientSide = "FaithCraft2.Common.client.ClientProxy", serverSide = "FaithCraft2.Common.common.CommonProxy")
 public static CommonProxy proxy;
@@ -129,6 +138,7 @@ public static CommonProxy proxy;
 		HolyStone = new HolyStone(3010, Material.rock).setBlockName("HolyStone").setBlockTextureName("FaithCraft2:HolyStone");
 		HolyCobbleStone = new HolyCobbleStone(3011, Material.rock).setBlockName("HolyCobbleStone").setBlockTextureName("FaithCraft2:HolyCobbleStone");
 		WineBlock = new WineBlock(Wine, Material.water).setBlockName("Wine");
+		HeavenPortal = new HeavenPortal(3014).setBlockName("HeavenPortal");
 		
 		Bible = new Bible(3001).setUnlocalizedName("Bible").setTextureName("FaithCraft2:Bible");
 		BodyOFChrist = new BodyOFChrist(3002).setUnlocalizedName("BodyOFChrist").setTextureName("FaithCraft2:BodyOFChrist");
@@ -145,6 +155,7 @@ public static CommonProxy proxy;
 		HeavenBiome = new HeavenBiome(245).setBiomeName("Heaven").setDisableRain();
 		
 		genTemple = new WorldGenTemple();
+		genChurch = new WorldGenChurch();
 		
 		GameRegistry.registerBlock(HolyForgeIdle, "HolyForgeIdle");
 		GameRegistry.registerBlock(HolyForgeActive, "HolyForgeActive");
@@ -153,6 +164,7 @@ public static CommonProxy proxy;
 		GameRegistry.registerBlock(HolyStone, "HolyStone");
 		GameRegistry.registerBlock(HolyCobbleStone, "HolyCobbleStone");
 		GameRegistry.registerBlock(WineBlock, "WineBlock");
+		GameRegistry.registerBlock(HeavenPortal, "HeavenPortal");
 		
 		GameRegistry.registerItem(Bible, "Bible");
 		GameRegistry.registerItem(BodyOFChrist, "BodyOFChrist");
@@ -177,6 +189,10 @@ public static CommonProxy proxy;
 		BiomeManager.icyBiomes.add(new BiomeEntry(FaithCraft2.HeavenBiome, 100));
 		
 		GameRegistry.registerWorldGenerator(genTemple, 1);
+		GameRegistry.registerWorldGenerator(genChurch, 1);
+		
+		DimensionManager.registerProviderType(HeavenId, WorldProviderHeaven.class, true);
+		DimensionManager.registerDimension(HeavenId, HeavenId);
 	}
 	
 	@EventHandler
