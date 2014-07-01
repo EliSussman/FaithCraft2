@@ -51,10 +51,9 @@ public class HolyGrailOFWine extends ItemFood{
 
         if (!par2World.isRemote)
         {
-            //par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.blindness.id, 600, 0));
-            //par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.regeneration.id, 600, 4));
-            //par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.confusion.id, 600, 1));
-        	par3EntityPlayer.travelToDimension(FaithCraft2.HeavenId);
+            par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.blindness.id, 600, 0));
+            par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.regeneration.id, 600, 4));
+            par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.confusion.id, 600, 1));
         }
 
         return par1ItemStack.stackSize <= 0 ? new ItemStack(FaithCraft2.HolyGrail) : par1ItemStack;

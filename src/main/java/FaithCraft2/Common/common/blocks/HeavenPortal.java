@@ -2,6 +2,7 @@ package FaithCraft2.Common.common.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPortal;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;

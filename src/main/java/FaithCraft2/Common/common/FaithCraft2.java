@@ -53,6 +53,7 @@ import FaithCraft2.Common.common.worldgen.HolyWorldGen;
 import FaithCraft2.Common.common.worldgen.WorldGenChurch;
 import FaithCraft2.Common.common.worldgen.WorldGenTemple;
 import FaithCraft2.Common.common.blocks.HeavenPortal;
+import FaithCraft2.Common.common.blocks.HolyBlock;
 
 import com.google.common.base.Throwables;
 import com.google.common.collect.ObjectArrays;
@@ -97,6 +98,7 @@ public static Block HolyStone;
 public static Block HolyCobbleStone;
 public static Block WineBlock;
 public static Block HeavenPortal;
+public static Block HolyBlock;
 
 public static Item Bible;
 public static Item BodyOFChrist;
@@ -139,6 +141,7 @@ public static CommonProxy proxy;
 		HolyCobbleStone = new HolyCobbleStone(3011, Material.rock).setBlockName("HolyCobbleStone").setBlockTextureName("FaithCraft2:HolyCobbleStone");
 		WineBlock = new WineBlock(Wine, Material.water).setBlockName("Wine");
 		HeavenPortal = new HeavenPortal(3014).setBlockName("HeavenPortal");
+		HolyBlock = new HolyBlock(3015, Material.rock).setBlockName("HolyBlock");
 		
 		Bible = new Bible(3001).setUnlocalizedName("Bible").setTextureName("FaithCraft2:Bible");
 		BodyOFChrist = new BodyOFChrist(3002).setUnlocalizedName("BodyOFChrist").setTextureName("FaithCraft2:BodyOFChrist");
@@ -165,6 +168,7 @@ public static CommonProxy proxy;
 		GameRegistry.registerBlock(HolyCobbleStone, "HolyCobbleStone");
 		GameRegistry.registerBlock(WineBlock, "WineBlock");
 		GameRegistry.registerBlock(HeavenPortal, "HeavenPortal");
+		GameRegistry.registerBlock(HolyBlock, "HolyBlock");
 		
 		GameRegistry.registerItem(Bible, "Bible");
 		GameRegistry.registerItem(BodyOFChrist, "BodyOFChrist");
