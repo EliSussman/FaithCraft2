@@ -1,7 +1,5 @@
 package FaithCraft2.Common.common.dimension;
 
-import com.sun.prism.paint.Color;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPortal;
 import net.minecraft.block.material.MapColor;
@@ -19,7 +17,6 @@ public class HeavenPortal extends BlockPortal
         super();
         this.setBlockName("HeavenPortal");
         setCreativeTab(FaithCraft2.FaithCraft2Tab);
-        this.getBlockColor();
     }
  
     @Override
