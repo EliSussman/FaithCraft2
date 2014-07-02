@@ -1,4 +1,6 @@
-package FaithCraft2.Common.common.blocks;
+package FaithCraft2.Common.common.dimension;
+
+import com.sun.prism.paint.Color;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPortal;
@@ -9,7 +11,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
 import FaithCraft2.Common.common.FaithCraft2;
-import FaithCraft2.Common.common.dimension.TeleporterHeaven;
 
 public class HeavenPortal extends BlockPortal
 {
@@ -18,6 +19,7 @@ public class HeavenPortal extends BlockPortal
         super();
         this.setBlockName("HeavenPortal");
         setCreativeTab(FaithCraft2.FaithCraft2Tab);
+        this.getBlockColor();
     }
  
     @Override
@@ -53,12 +55,12 @@ public class HeavenPortal extends BlockPortal
         byte b0 = 0;
         byte b1 = 0;
  
-        if (par1World.getBlock(par2 - 1, par3, par4) == Blocks.quartz_block || par1World.getBlock(par2 + 1, par3, par4) == Blocks.quartz_block)
+        if (par1World.getBlock(par2 - 1, par3, par4) == FaithCraft2.HolyBlock || par1World.getBlock(par2 + 1, par3, par4) == FaithCraft2.HolyBlock)
         {
             b0 = 1;
         }
  
-        if (par1World.getBlock(par2, par3, par4 - 1) == Blocks.quartz_block || par1World.getBlock(par2, par3, par4 + 1) == Blocks.quartz_block)
+        if (par1World.getBlock(par2, par3, par4 - 1) == FaithCraft2.HolyBlock || par1World.getBlock(par2, par3, par4 + 1) == FaithCraft2.HolyBlock)
         {
             b1 = 1;
         }
@@ -91,7 +93,7 @@ public class HeavenPortal extends BlockPortal
  
                         if (flag)
                         {
-                            if (j1 != Blocks.quartz_block)
+                            if (j1 != FaithCraft2.HolyBlock)
                             {
                                 return false;
                             }
@@ -135,7 +137,7 @@ public class HeavenPortal extends BlockPortal
             ;
         }
  
-        if (par1World.getBlock(par2, i1 - 1, par4) != Blocks.quartz_block)
+        if (par1World.getBlock(par2, i1 - 1, par4) != FaithCraft2.HolyBlock)
         {
             par1World.setBlockToAir(par2, par3, par4);
         }
@@ -148,7 +150,7 @@ public class HeavenPortal extends BlockPortal
                 ;
             }
  
-            if (j1 == 3 && par1World.getBlock(par2, i1 + j1, par4) == Blocks.quartz_block)
+            if (j1 == 3 && par1World.getBlock(par2, i1 + j1, par4) == FaithCraft2.HolyBlock)
             {
                 boolean flag = par1World.getBlock(par2 - 1, par3, par4) == this || par1World.getBlock(par2 + 1, par3, par4) == this;
                 boolean flag1 = par1World.getBlock(par2, par3, par4 - 1) == this || par1World.getBlock(par2, par3, par4 + 1) == this;
@@ -159,7 +161,7 @@ public class HeavenPortal extends BlockPortal
                 }
                 else
                 {
-                    if ((par1World.getBlock(par2 + b0, par3, par4 + b1) != Blocks.quartz_block || par1World.getBlock(par2 - b0, par3, par4 - b1) != this) && (par1World.getBlock(par2 - b0, par3, par4 - b1) != Blocks.quartz_block || par1World.getBlock(par2 + b0, par3, par4 + b1) != this))
+                    if ((par1World.getBlock(par2 + b0, par3, par4 + b1) != FaithCraft2.HolyBlock || par1World.getBlock(par2 - b0, par3, par4 - b1) != this) && (par1World.getBlock(par2 - b0, par3, par4 - b1) != FaithCraft2.HolyBlock || par1World.getBlock(par2 + b0, par3, par4 + b1) != this))
                     {
                         par1World.setBlockToAir(par2, par3, par4);
                     }
