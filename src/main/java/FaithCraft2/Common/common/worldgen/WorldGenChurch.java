@@ -1156,8 +1156,6 @@ public class WorldGenChurch extends WorldGenerator implements IWorldGenerator
 		
 		ItemDoor.placeDoorBlock(world, i + 5, j + 1, k + 10, 3, Blocks.iron_door);
 		ItemDoor.placeDoorBlock(world, i + 6, j + 1, k + 10, 3, Blocks.iron_door);
-		//world.setBlock(i + 5, j + 1, k + 10, Blocks.iron_door, 3, 2);
-		//world.setBlock(i + 6, j + 1, k + 10, Blocks.iron_door, 3, 2);
 			
 			}
 		}
