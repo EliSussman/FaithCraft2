@@ -10,6 +10,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
@@ -40,8 +41,9 @@ public class Altar extends BlockContainer{
 	}
 	
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
-		if(!world.isRemote) {
+		if(!world.isRemote && isMultiBlockStructure(world, x, y, z)) {
 			FMLNetworkHandler.openGui(player, FaithCraft2.instance, FaithCraft2.guiIDAltar, world, x, y, z);
+			System.out.println("Hello Eli");
 		}
 		return true;
 	}
@@ -60,19 +62,19 @@ public class Altar extends BlockContainer{
 			
 			byte b0 = 3;
 			
-			if(b1.func_149730_j() && !b2.func_149730_j()){
+			if(b1.func_149730_j() && b2.func_149730_j()) {
 				b0 = 3;
 			}
 			
-			if(b2.func_149730_j() && !b1.func_149730_j()){
+			if(b2.func_149730_j() && b1.func_149730_j()) {
 				b0 = 2;
 			}
 			
-			if(b3.func_149730_j() && !b4.func_149730_j()){
+			if(b3.func_149730_j() && b4.func_149730_j()) {
 				b0 = 5;
 			}
 			
-			if(b4.func_149730_j() && !b3.func_149730_j()){
+			if(b4.func_149730_j() && b3.func_149730_j()) {
 				b0 = 4;
 			}
 			
@@ -89,20 +91,3281 @@ public class Altar extends BlockContainer{
 		int l = MathHelper.floor_double((double)(entityplayer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 		
 		if(l == 0){
+			world.setBlockMetadataWithNotify(x, y, z, 4, 2);
+		}
+		
+		if(l == 1){
+			world.setBlockMetadataWithNotify(x, y, z, 1, 2);
+		}
+		
+		if(l == 2){
 			world.setBlockMetadataWithNotify(x, y, z, 2, 2);
 		}
 		
-		if(l == 0){
-			world.setBlockMetadataWithNotify(x, y, z, 5, 2);
-		}
-		
-		if(l == 0){
+		if(l == 3){
 			world.setBlockMetadataWithNotify(x, y, z, 3, 2);
 		}
-		
-		if(l == 0){
-			world.setBlockMetadataWithNotify(x, y, z, 4, 2);
+
+	}
+	
+	public boolean isMultiBlockStructure(World world, int x, int y, int z) {
+		if (checkNorth(world, x, y, z))/* North */
+			return true;
+		if (checkEast(world, x, y, z))/* East */
+			return true;
+		if (checkSouth(world, x, y, z))/* South */
+			return true;
+		if (checkWest(world, x, y, z))/* West */
+			return true;
+		return false;
+	}
+
+	private static boolean checkNorth(World world, int x, int y, int z) {
+		if (world.getBlock(x + -2, y + -1, z + 2) == FaithCraft2.HolyBlock) {
+			if (world.getBlock(x + -2, y + -1, z + 1) == FaithCraft2.HolyBlock) {
+				if (world.getBlock(x + -2, y + -1, z + 0) == FaithCraft2.HolyBlock) {
+					if (world.getBlock(x + -2, y + -1, z + -1) == FaithCraft2.HolyBlock) {
+						if (world.getBlock(x + -2, y + -1, z + -2) == FaithCraft2.HolyBlock) {
+							if (world.getBlock(x + -2, y + 0, z + 2) == Blocks.air) {
+								if (world.getBlock(x + -2, y + 0, z + 1) == Blocks.air) {
+									if (world.getBlock(x + -2, y + 0, z + 0) == Blocks.air) {
+										if (world.getBlock(x + -2, y + 0, z
+												+ -1) == Blocks.air) {
+											if (world.getBlock(x + -2, y + 0,
+													z + -2) == Blocks.air) {
+												if (world.getBlock(x + -2,
+														y + 1, z + 2) == Blocks.air) {
+													if (world.getBlock(
+															x + -2, y + 1,
+															z + 1) == Blocks.air) {
+														if (world.getBlock(x
+																+ -2, y + 1,
+																z + 0) == Blocks.air) {
+															if (world
+																	.getBlock(
+																			x
+																					+ -2,
+																			y + 1,
+																			z
+																					+ -1) == Blocks.air) {
+																if (world
+																		.getBlock(
+																				x
+																						+ -2,
+																				y + 1,
+																				z
+																						+ -2) == Blocks.air) {
+																	if (world
+																			.getBlock(
+																					x
+																							+ -2,
+																					y + 2,
+																					z + 2) == Blocks.air) {
+																		if (world
+																				.getBlock(
+																						x
+																								+ -2,
+																						y + 2,
+																						z + 1) == Blocks.air) {
+																			if (world
+																					.getBlock(
+																							x
+																									+ -2,
+																							y + 2,
+																							z + 0) == Blocks.air) {
+																				if (world
+																						.getBlock(
+																								x
+																										+ -2,
+																								y + 2,
+																								z
+																										+ -1) == Blocks.air) {
+																					if (world
+																							.getBlock(
+																									x
+																											+ -2,
+																									y + 2,
+																									z
+																											+ -2) == Blocks.air) {
+																						if (world
+																								.getBlock(
+																										x
+																												+ -2,
+																										y + 3,
+																										z + 2) == Blocks.air) {
+																							if (world
+																									.getBlock(
+																											x
+																													+ -2,
+																											y + 3,
+																											z + 1) == Blocks.air) {
+																								if (world
+																										.getBlock(
+																												x
+																														+ -2,
+																												y + 3,
+																												z + 0) == Blocks.air) {
+																									if (world
+																											.getBlock(
+																													x
+																															+ -2,
+																													y + 3,
+																													z
+																															+ -1) == Blocks.air) {
+																										if (world
+																												.getBlock(
+																														x
+																																+ -2,
+																														y + 3,
+																														z
+																																+ -2) == Blocks.air) {
+																											if (world
+																													.getBlock(
+																															x
+																																	+ -1,
+																															y
+																																	+ -1,
+																															z + 2) == FaithCraft2.HolyBlock) {
+																												if (world
+																														.getBlock(
+																																x
+																																		+ -1,
+																																y
+																																		+ -1,
+																																z + 1) == FaithCraft2.WineBlock) {
+																													if (world
+																															.getBlock(
+																																	x
+																																			+ -1,
+																																	y
+																																			+ -1,
+																																	z + 0) == FaithCraft2.WineBlock) {
+																														if (world
+																																.getBlock(
+																																		x
+																																				+ -1,
+																																		y
+																																				+ -1,
+																																		z
+																																				+ -1) == FaithCraft2.WineBlock) {
+																															if (world
+																																	.getBlock(
+																																			x
+																																					+ -1,
+																																			y
+																																					+ -1,
+																																			z
+																																					+ -2) == FaithCraft2.HolyBlock) {
+																																if (world
+																																		.getBlock(
+																																				x
+																																						+ -1,
+																																				y + 0,
+																																				z + 2) == Blocks.air) {
+																																	if (world
+																																			.getBlock(
+																																					x
+																																							+ -1,
+																																					y + 0,
+																																					z + 1) == Blocks.air) {
+																																		if (world
+																																				.getBlock(
+																																						x
+																																								+ -1,
+																																						y + 0,
+																																						z + 0) == Blocks.air) {
+																																			if (world
+																																					.getBlock(
+																																							x
+																																									+ -1,
+																																							y + 0,
+																																							z
+																																									+ -1) == Blocks.air) {
+																																				if (world
+																																						.getBlock(
+																																								x
+																																										+ -1,
+																																								y + 0,
+																																								z
+																																										+ -2) == Blocks.air) {
+																																					if (world
+																																							.getBlock(
+																																									x
+																																											+ -1,
+																																									y + 1,
+																																									z + 2) == Blocks.air) {
+																																						if (world
+																																								.getBlock(
+																																										x
+																																												+ -1,
+																																										y + 1,
+																																										z + 1) == Blocks.air) {
+																																							if (world
+																																									.getBlock(
+																																											x
+																																													+ -1,
+																																											y + 1,
+																																											z + 0) == Blocks.air) {
+																																								if (world
+																																										.getBlock(
+																																												x
+																																														+ -1,
+																																												y + 1,
+																																												z
+																																														+ -1) == Blocks.air) {
+																																									if (world
+																																											.getBlock(
+																																													x
+																																															+ -1,
+																																													y + 1,
+																																													z
+																																															+ -2) == Blocks.air) {
+																																										if (world
+																																												.getBlock(
+																																														x
+																																																+ -1,
+																																														y + 2,
+																																														z + 2) == Blocks.air) {
+																																											if (world
+																																													.getBlock(
+																																															x
+																																																	+ -1,
+																																															y + 2,
+																																															z + 1) == Blocks.air) {
+																																												if (world
+																																														.getBlock(
+																																																x
+																																																		+ -1,
+																																																y + 2,
+																																																z + 0) == Blocks.air) {
+																																													if (world
+																																															.getBlock(
+																																																	x
+																																																			+ -1,
+																																																	y + 2,
+																																																	z
+																																																			+ -1) == Blocks.air) {
+																																														if (world
+																																																.getBlock(
+																																																		x
+																																																				+ -1,
+																																																		y + 2,
+																																																		z
+																																																				+ -2) == Blocks.air) {
+																																															if (world
+																																																	.getBlock(
+																																																			x
+																																																					+ -1,
+																																																			y + 3,
+																																																			z + 2) == Blocks.air) {
+																																																if (world
+																																																		.getBlock(
+																																																				x
+																																																						+ -1,
+																																																				y + 3,
+																																																				z + 1) == Blocks.air) {
+																																																	if (world
+																																																			.getBlock(
+																																																					x
+																																																							+ -1,
+																																																					y + 3,
+																																																					z + 0) == Blocks.air) {
+																																																		if (world
+																																																				.getBlock(
+																																																						x
+																																																								+ -1,
+																																																						y + 3,
+																																																						z
+																																																								+ -1) == Blocks.air) {
+																																																			if (world
+																																																					.getBlock(
+																																																							x
+																																																									+ -1,
+																																																							y + 3,
+																																																							z
+																																																									+ -2) == Blocks.air) {
+																																																				if (world
+																																																						.getBlock(
+																																																								x + 0,
+																																																								y
+																																																										+ -1,
+																																																								z + 2) == FaithCraft2.HolyBlock) {
+																																																					if (world
+																																																							.getBlock(
+																																																									x + 0,
+																																																									y
+																																																											+ -1,
+																																																									z + 1) == FaithCraft2.WineBlock) {
+																																																						if (world
+																																																								.getBlock(
+																																																										x + 0,
+																																																										y
+																																																												+ -1,
+																																																										z + 0) == FaithCraft2.HolyBlock) {
+																																																							if (world
+																																																									.getBlock(
+																																																											x + 0,
+																																																											y
+																																																													+ -1,
+																																																											z
+																																																													+ -1) == FaithCraft2.WineBlock) {
+																																																								if (world
+																																																										.getBlock(
+																																																												x + 0,
+																																																												y
+																																																														+ -1,
+																																																												z
+																																																														+ -2) == FaithCraft2.HolyBlock) {
+																																																									if (world
+																																																											.getBlock(
+																																																													x + 0,
+																																																													y + 0,
+																																																													z + 2) == Blocks.air) {
+																																																										if (world
+																																																												.getBlock(
+																																																														x + 0,
+																																																														y + 0,
+																																																														z + 1) == Blocks.air) {
+																																																											if (world
+																																																													.getBlock(
+																																																															x + 0,
+																																																															y + 0,
+																																																															z
+																																																																	+ -1) == Blocks.air) {
+																																																												if (world
+																																																														.getBlock(
+																																																																x + 0,
+																																																																y + 0,
+																																																																z
+																																																																		+ -2) == Blocks.air) {
+																																																													if (world
+																																																															.getBlock(
+																																																																	x + 0,
+																																																																	y + 1,
+																																																																	z + 2) == Blocks.air) {
+																																																														if (world
+																																																																.getBlock(
+																																																																		x + 0,
+																																																																		y + 1,
+																																																																		z + 1) == Blocks.air) {
+																																																															if (world
+																																																																	.getBlock(
+																																																																			x + 0,
+																																																																			y + 1,
+																																																																			z + 0) == Blocks.air) {
+																																																																if (world
+																																																																		.getBlock(
+																																																																				x + 0,
+																																																																				y + 1,
+																																																																				z
+																																																																						+ -1) == Blocks.air) {
+																																																																	if (world
+																																																																			.getBlock(
+																																																																					x + 0,
+																																																																					y + 1,
+																																																																					z
+																																																																							+ -2) == Blocks.air) {
+																																																																		if (world
+																																																																				.getBlock(
+																																																																						x + 0,
+																																																																						y + 2,
+																																																																						z + 2) == Blocks.air) {
+																																																																			if (world
+																																																																					.getBlock(
+																																																																							x + 0,
+																																																																							y + 2,
+																																																																							z + 1) == Blocks.air) {
+																																																																				if (world
+																																																																						.getBlock(
+																																																																								x + 0,
+																																																																								y + 2,
+																																																																								z + 0) == Blocks.air) {
+																																																																					if (world
+																																																																							.getBlock(
+																																																																									x + 0,
+																																																																									y + 2,
+																																																																									z
+																																																																											+ -1) == Blocks.air) {
+																																																																						if (world
+																																																																								.getBlock(
+																																																																										x + 0,
+																																																																										y + 2,
+																																																																										z
+																																																																												+ -2) == Blocks.air) {
+																																																																							if (world
+																																																																									.getBlock(
+																																																																											x + 0,
+																																																																											y + 3,
+																																																																											z + 2) == Blocks.air) {
+																																																																								if (world
+																																																																										.getBlock(
+																																																																												x + 0,
+																																																																												y + 3,
+																																																																												z + 1) == Blocks.air) {
+																																																																									if (world
+																																																																											.getBlock(
+																																																																													x + 0,
+																																																																													y + 3,
+																																																																													z + 0) == Blocks.air) {
+																																																																										if (world
+																																																																												.getBlock(
+																																																																														x + 0,
+																																																																														y + 3,
+																																																																														z
+																																																																																+ -1) == Blocks.air) {
+																																																																											if (world
+																																																																													.getBlock(
+																																																																															x + 0,
+																																																																															y + 3,
+																																																																															z
+																																																																																	+ -2) == Blocks.air) {
+																																																																												if (world
+																																																																														.getBlock(
+																																																																																x + 1,
+																																																																																y
+																																																																																		+ -1,
+																																																																																z + 2) == FaithCraft2.HolyBlock) {
+																																																																													if (world
+																																																																															.getBlock(
+																																																																																	x + 1,
+																																																																																	y
+																																																																																			+ -1,
+																																																																																	z + 1) == FaithCraft2.WineBlock) {
+																																																																														if (world
+																																																																																.getBlock(
+																																																																																		x + 1,
+																																																																																		y
+																																																																																				+ -1,
+																																																																																		z + 0) == FaithCraft2.WineBlock) {
+																																																																															if (world
+																																																																																	.getBlock(
+																																																																																			x + 1,
+																																																																																			y
+																																																																																					+ -1,
+																																																																																			z
+																																																																																					+ -1) == FaithCraft2.WineBlock) {
+																																																																																if (world
+																																																																																		.getBlock(
+																																																																																				x + 1,
+																																																																																				y
+																																																																																						+ -1,
+																																																																																				z
+																																																																																						+ -2) == FaithCraft2.HolyBlock) {
+																																																																																	if (world
+																																																																																			.getBlock(
+																																																																																					x + 1,
+																																																																																					y + 0,
+																																																																																					z + 2) == Blocks.air) {
+																																																																																		if (world
+																																																																																				.getBlock(
+																																																																																						x + 1,
+																																																																																						y + 0,
+																																																																																						z + 1) == Blocks.air) {
+																																																																																			if (world
+																																																																																					.getBlock(
+																																																																																							x + 1,
+																																																																																							y + 0,
+																																																																																							z + 0) == Blocks.air) {
+																																																																																				if (world
+																																																																																						.getBlock(
+																																																																																								x + 1,
+																																																																																								y + 0,
+																																																																																								z
+																																																																																										+ -1) == Blocks.air) {
+																																																																																					if (world
+																																																																																							.getBlock(
+																																																																																									x + 1,
+																																																																																									y + 0,
+																																																																																									z
+																																																																																											+ -2) == Blocks.air) {
+																																																																																						if (world
+																																																																																								.getBlock(
+																																																																																										x + 1,
+																																																																																										y + 1,
+																																																																																										z + 2) == Blocks.air) {
+																																																																																							if (world
+																																																																																									.getBlock(
+																																																																																											x + 1,
+																																																																																											y + 1,
+																																																																																											z + 1) == Blocks.air) {
+																																																																																								if (world
+																																																																																										.getBlock(
+																																																																																												x + 1,
+																																																																																												y + 1,
+																																																																																												z + 0) == Blocks.air) {
+																																																																																									if (world
+																																																																																											.getBlock(
+																																																																																													x + 1,
+																																																																																													y + 1,
+																																																																																													z
+																																																																																															+ -1) == Blocks.air) {
+																																																																																										if (world
+																																																																																												.getBlock(
+																																																																																														x + 1,
+																																																																																														y + 1,
+																																																																																														z
+																																																																																																+ -2) == Blocks.air) {
+																																																																																											if (world
+																																																																																													.getBlock(
+																																																																																															x + 1,
+																																																																																															y + 2,
+																																																																																															z + 2) == Blocks.air) {
+																																																																																												if (world
+																																																																																														.getBlock(
+																																																																																																x + 1,
+																																																																																																y + 2,
+																																																																																																z + 1) == Blocks.air) {
+																																																																																													if (world
+																																																																																															.getBlock(
+																																																																																																	x + 1,
+																																																																																																	y + 2,
+																																																																																																	z + 0) == Blocks.air) {
+																																																																																														if (world
+																																																																																																.getBlock(
+																																																																																																		x + 1,
+																																																																																																		y + 2,
+																																																																																																		z
+																																																																																																				+ -1) == Blocks.air) {
+																																																																																															if (world
+																																																																																																	.getBlock(
+																																																																																																			x + 1,
+																																																																																																			y + 2,
+																																																																																																			z
+																																																																																																					+ -2) == Blocks.air) {
+																																																																																																if (world
+																																																																																																		.getBlock(
+																																																																																																				x + 1,
+																																																																																																				y + 3,
+																																																																																																				z + 2) == Blocks.air) {
+																																																																																																	if (world
+																																																																																																			.getBlock(
+																																																																																																					x + 1,
+																																																																																																					y + 3,
+																																																																																																					z + 1) == Blocks.air) {
+																																																																																																		if (world
+																																																																																																				.getBlock(
+																																																																																																						x + 1,
+																																																																																																						y + 3,
+																																																																																																						z + 0) == Blocks.air) {
+																																																																																																			if (world
+																																																																																																					.getBlock(
+																																																																																																							x + 1,
+																																																																																																							y + 3,
+																																																																																																							z
+																																																																																																									+ -1) == Blocks.air) {
+																																																																																																				if (world
+																																																																																																						.getBlock(
+																																																																																																								x + 1,
+																																																																																																								y + 3,
+																																																																																																								z
+																																																																																																										+ -2) == Blocks.air) {
+																																																																																																					if (world
+																																																																																																							.getBlock(
+																																																																																																									x + 2,
+																																																																																																									y
+																																																																																																											+ -1,
+																																																																																																									z + 2) == FaithCraft2.HolyBlock) {
+																																																																																																						if (world
+																																																																																																								.getBlock(
+																																																																																																										x + 2,
+																																																																																																										y
+																																																																																																												+ -1,
+																																																																																																										z + 1) == FaithCraft2.HolyBlock) {
+																																																																																																							if (world
+																																																																																																									.getBlock(
+																																																																																																											x + 2,
+																																																																																																											y
+																																																																																																													+ -1,
+																																																																																																											z + 0) == FaithCraft2.HolyBlock) {
+																																																																																																								if (world
+																																																																																																										.getBlock(
+																																																																																																												x + 2,
+																																																																																																												y
+																																																																																																														+ -1,
+																																																																																																												z
+																																																																																																														+ -1) == FaithCraft2.HolyBlock) {
+																																																																																																									if (world
+																																																																																																											.getBlock(
+																																																																																																													x + 2,
+																																																																																																													y
+																																																																																																															+ -1,
+																																																																																																													z
+																																																																																																															+ -2) == FaithCraft2.HolyBlock) {
+																																																																																																										if (world
+																																																																																																												.getBlock(
+																																																																																																														x + 2,
+																																																																																																														y + 0,
+																																																																																																														z + 2) == Blocks.air) {
+																																																																																																											if (world
+																																																																																																													.getBlock(
+																																																																																																															x + 2,
+																																																																																																															y + 0,
+																																																																																																															z + 1) == Blocks.air) {
+																																																																																																												if (world
+																																																																																																														.getBlock(
+																																																																																																																x + 2,
+																																																																																																																y + 0,
+																																																																																																																z + 0) == Blocks.air) {
+																																																																																																													if (world
+																																																																																																															.getBlock(
+																																																																																																																	x + 2,
+																																																																																																																	y + 0,
+																																																																																																																	z
+																																																																																																																			+ -1) == Blocks.air) {
+																																																																																																														if (world
+																																																																																																																.getBlock(
+																																																																																																																		x + 2,
+																																																																																																																		y + 0,
+																																																																																																																		z
+																																																																																																																				+ -2) == Blocks.air) {
+																																																																																																															if (world
+																																																																																																																	.getBlock(
+																																																																																																																			x + 2,
+																																																																																																																			y + 1,
+																																																																																																																			z + 2) == Blocks.air) {
+																																																																																																																if (world
+																																																																																																																		.getBlock(
+																																																																																																																				x + 2,
+																																																																																																																				y + 1,
+																																																																																																																				z + 1) == Blocks.air) {
+																																																																																																																	if (world
+																																																																																																																			.getBlock(
+																																																																																																																					x + 2,
+																																																																																																																					y + 1,
+																																																																																																																					z + 0) == Blocks.air) {
+																																																																																																																		if (world
+																																																																																																																				.getBlock(
+																																																																																																																						x + 2,
+																																																																																																																						y + 1,
+																																																																																																																						z
+																																																																																																																								+ -1) == Blocks.air) {
+																																																																																																																			if (world
+																																																																																																																					.getBlock(
+																																																																																																																							x + 2,
+																																																																																																																							y + 1,
+																																																																																																																							z
+																																																																																																																									+ -2) == Blocks.air) {
+																																																																																																																				if (world
+																																																																																																																						.getBlock(
+																																																																																																																								x + 2,
+																																																																																																																								y + 2,
+																																																																																																																								z + 2) == Blocks.air) {
+																																																																																																																					if (world
+																																																																																																																							.getBlock(
+																																																																																																																									x + 2,
+																																																																																																																									y + 2,
+																																																																																																																									z + 1) == Blocks.air) {
+																																																																																																																						if (world
+																																																																																																																								.getBlock(
+																																																																																																																										x + 2,
+																																																																																																																										y + 2,
+																																																																																																																										z + 0) == Blocks.air) {
+																																																																																																																							if (world
+																																																																																																																									.getBlock(
+																																																																																																																											x + 2,
+																																																																																																																											y + 2,
+																																																																																																																											z
+																																																																																																																													+ -1) == Blocks.air) {
+																																																																																																																								if (world
+																																																																																																																										.getBlock(
+																																																																																																																												x + 2,
+																																																																																																																												y + 2,
+																																																																																																																												z
+																																																																																																																														+ -2) == Blocks.air) {
+																																																																																																																									if (world
+																																																																																																																											.getBlock(
+																																																																																																																													x + 2,
+																																																																																																																													y + 3,
+																																																																																																																													z + 2) == Blocks.air) {
+																																																																																																																										if (world
+																																																																																																																												.getBlock(
+																																																																																																																														x + 2,
+																																																																																																																														y + 3,
+																																																																																																																														z + 1) == Blocks.air) {
+																																																																																																																											if (world
+																																																																																																																													.getBlock(
+																																																																																																																															x + 2,
+																																																																																																																															y + 3,
+																																																																																																																															z + 0) == Blocks.air) {
+																																																																																																																												if (world
+																																																																																																																														.getBlock(
+																																																																																																																																x + 2,
+																																																																																																																																y + 3,
+																																																																																																																																z
+																																																																																																																																		+ -1) == Blocks.air) {
+																																																																																																																													if (world
+																																																																																																																															.getBlock(
+																																																																																																																																	x + 2,
+																																																																																																																																	y + 3,
+																																																																																																																																	z
+																																																																																																																																			+ -2) == Blocks.air) {
+																																																																																																																														return true;
+																																																																																																																													}
+																																																																																																																												}
+																																																																																																																											}
+																																																																																																																										}
+																																																																																																																									}
+																																																																																																																								}
+																																																																																																																							}
+																																																																																																																						}
+																																																																																																																					}
+																																																																																																																				}
+																																																																																																																			}
+																																																																																																																		}
+																																																																																																																	}
+																																																																																																																}
+																																																																																																															}
+																																																																																																														}
+																																																																																																													}
+																																																																																																												}
+																																																																																																											}
+																																																																																																										}
+																																																																																																									}
+																																																																																																								}
+																																																																																																							}
+																																																																																																						}
+																																																																																																					}
+																																																																																																				}
+																																																																																																			}
+																																																																																																		}
+																																																																																																	}
+																																																																																																}
+																																																																																															}
+																																																																																														}
+																																																																																													}
+																																																																																												}
+																																																																																											}
+																																																																																										}
+																																																																																									}
+																																																																																								}
+																																																																																							}
+																																																																																						}
+																																																																																					}
+																																																																																				}
+																																																																																			}
+																																																																																		}
+																																																																																	}
+																																																																																}
+																																																																															}
+																																																																														}
+																																																																													}
+																																																																												}
+																																																																											}
+																																																																										}
+																																																																									}
+																																																																								}
+																																																																							}
+																																																																						}
+																																																																					}
+																																																																				}
+																																																																			}
+																																																																		}
+																																																																	}
+																																																																}
+																																																															}
+																																																														}
+																																																													}
+																																																												}
+																																																											}
+																																																										}
+																																																									}
+																																																								}
+																																																							}
+																																																						}
+																																																					}
+																																																				}
+																																																			}
+																																																		}
+																																																	}
+																																																}
+																																															}
+																																														}
+																																													}
+																																												}
+																																											}
+																																										}
+																																									}
+																																								}
+																																							}
+																																						}
+																																					}
+																																				}
+																																			}
+																																		}
+																																	}
+																																}
+																															}
+																														}
+																													}
+																												}
+																											}
+																										}
+																									}
+																								}
+																							}
+																						}
+																					}
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 		}
+		return false;
+	}
+
+	private static boolean checkEast(World world, int x, int y, int z) {
+		if (world.getBlock(x + -2, y + -1, z + -2) == FaithCraft2.HolyBlock) {
+			if (world.getBlock(x + -1, y + -1, z + -2) == FaithCraft2.HolyBlock) {
+				if (world.getBlock(x + 0, y + -1, z + -2) == FaithCraft2.HolyBlock) {
+					if (world.getBlock(x + 1, y + -1, z + -2) == FaithCraft2.HolyBlock) {
+						if (world.getBlock(x + 2, y + -1, z + -2) == FaithCraft2.HolyBlock) {
+							if (world.getBlock(x + -2, y + 0, z + -2) == Blocks.air) {
+								if (world.getBlock(x + -1, y + 0, z + -2) == Blocks.air) {
+									if (world.getBlock(x + 0, y + 0, z + -2) == Blocks.air) {
+										if (world.getBlock(x + 1, y + 0, z
+												+ -2) == Blocks.air) {
+											if (world.getBlock(x + 2, y + 0,
+													z + -2) == Blocks.air) {
+												if (world.getBlock(x + -2,
+														y + 1, z + -2) == Blocks.air) {
+													if (world.getBlock(
+															x + -1, y + 1, z
+																	+ -2) == Blocks.air) {
+														if (world.getBlock(
+																x + 0, y + 1, z
+																		+ -2) == Blocks.air) {
+															if (world
+																	.getBlock(
+																			x + 1,
+																			y + 1,
+																			z
+																					+ -2) == Blocks.air) {
+																if (world
+																		.getBlock(
+																				x + 2,
+																				y + 1,
+																				z
+																						+ -2) == Blocks.air) {
+																	if (world
+																			.getBlock(
+																					x
+																							+ -2,
+																					y + 2,
+																					z
+																							+ -2) == Blocks.air) {
+																		if (world
+																				.getBlock(
+																						x
+																								+ -1,
+																						y + 2,
+																						z
+																								+ -2) == Blocks.air) {
+																			if (world
+																					.getBlock(
+																							x + 0,
+																							y + 2,
+																							z
+																									+ -2) == Blocks.air) {
+																				if (world
+																						.getBlock(
+																								x + 1,
+																								y + 2,
+																								z
+																										+ -2) == Blocks.air) {
+																					if (world
+																							.getBlock(
+																									x + 2,
+																									y + 2,
+																									z
+																											+ -2) == Blocks.air) {
+																						if (world
+																								.getBlock(
+																										x
+																												+ -2,
+																										y + 3,
+																										z
+																												+ -2) == Blocks.air) {
+																							if (world
+																									.getBlock(
+																											x
+																													+ -1,
+																											y + 3,
+																											z
+																													+ -2) == Blocks.air) {
+																								if (world
+																										.getBlock(
+																												x + 0,
+																												y + 3,
+																												z
+																														+ -2) == Blocks.air) {
+																									if (world
+																											.getBlock(
+																													x + 1,
+																													y + 3,
+																													z
+																															+ -2) == Blocks.air) {
+																										if (world
+																												.getBlock(
+																														x + 2,
+																														y + 3,
+																														z
+																																+ -2) == Blocks.air) {
+																											if (world
+																													.getBlock(
+																															x
+																																	+ -2,
+																															y
+																																	+ -1,
+																															z
+																																	+ -1) == FaithCraft2.HolyBlock) {
+																												if (world
+																														.getBlock(
+																																x
+																																		+ -1,
+																																y
+																																		+ -1,
+																																z
+																																		+ -1) == FaithCraft2.WineBlock) {
+																													if (world
+																															.getBlock(
+																																	x + 0,
+																																	y
+																																			+ -1,
+																																	z
+																																			+ -1) == FaithCraft2.WineBlock) {
+																														if (world
+																																.getBlock(
+																																		x + 1,
+																																		y
+																																				+ -1,
+																																		z
+																																				+ -1) == FaithCraft2.WineBlock) {
+																															if (world
+																																	.getBlock(
+																																			x + 2,
+																																			y
+																																					+ -1,
+																																			z
+																																					+ -1) == FaithCraft2.HolyBlock) {
+																																if (world
+																																		.getBlock(
+																																				x
+																																						+ -2,
+																																				y + 0,
+																																				z
+																																						+ -1) == Blocks.air) {
+																																	if (world
+																																			.getBlock(
+																																					x
+																																							+ -1,
+																																					y + 0,
+																																					z
+																																							+ -1) == Blocks.air) {
+																																		if (world
+																																				.getBlock(
+																																						x + 0,
+																																						y + 0,
+																																						z
+																																								+ -1) == Blocks.air) {
+																																			if (world
+																																					.getBlock(
+																																							x + 1,
+																																							y + 0,
+																																							z
+																																									+ -1) == Blocks.air) {
+																																				if (world
+																																						.getBlock(
+																																								x + 2,
+																																								y + 0,
+																																								z
+																																										+ -1) == Blocks.air) {
+																																					if (world
+																																							.getBlock(
+																																									x
+																																											+ -2,
+																																									y + 1,
+																																									z
+																																											+ -1) == Blocks.air) {
+																																						if (world
+																																								.getBlock(
+																																										x
+																																												+ -1,
+																																										y + 1,
+																																										z
+																																												+ -1) == Blocks.air) {
+																																							if (world
+																																									.getBlock(
+																																											x + 0,
+																																											y + 1,
+																																											z
+																																													+ -1) == Blocks.air) {
+																																								if (world
+																																										.getBlock(
+																																												x + 1,
+																																												y + 1,
+																																												z
+																																														+ -1) == Blocks.air) {
+																																									if (world
+																																											.getBlock(
+																																													x + 2,
+																																													y + 1,
+																																													z
+																																															+ -1) == Blocks.air) {
+																																										if (world
+																																												.getBlock(
+																																														x
+																																																+ -2,
+																																														y + 2,
+																																														z
+																																																+ -1) == Blocks.air) {
+																																											if (world
+																																													.getBlock(
+																																															x
+																																																	+ -1,
+																																															y + 2,
+																																															z
+																																																	+ -1) == Blocks.air) {
+																																												if (world
+																																														.getBlock(
+																																																x + 0,
+																																																y + 2,
+																																																z
+																																																		+ -1) == Blocks.air) {
+																																													if (world
+																																															.getBlock(
+																																																	x + 1,
+																																																	y + 2,
+																																																	z
+																																																			+ -1) == Blocks.air) {
+																																														if (world
+																																																.getBlock(
+																																																		x + 2,
+																																																		y + 2,
+																																																		z
+																																																				+ -1) == Blocks.air) {
+																																															if (world
+																																																	.getBlock(
+																																																			x
+																																																					+ -2,
+																																																			y + 3,
+																																																			z
+																																																					+ -1) == Blocks.air) {
+																																																if (world
+																																																		.getBlock(
+																																																				x
+																																																						+ -1,
+																																																				y + 3,
+																																																				z
+																																																						+ -1) == Blocks.air) {
+																																																	if (world
+																																																			.getBlock(
+																																																					x + 0,
+																																																					y + 3,
+																																																					z
+																																																							+ -1) == Blocks.air) {
+																																																		if (world
+																																																				.getBlock(
+																																																						x + 1,
+																																																						y + 3,
+																																																						z
+																																																								+ -1) == Blocks.air) {
+																																																			if (world
+																																																					.getBlock(
+																																																							x + 2,
+																																																							y + 3,
+																																																							z
+																																																									+ -1) == Blocks.air) {
+																																																				if (world
+																																																						.getBlock(
+																																																								x
+																																																										+ -2,
+																																																								y
+																																																										+ -1,
+																																																								z + 0) == FaithCraft2.HolyBlock) {
+																																																					if (world
+																																																							.getBlock(
+																																																									x
+																																																											+ -1,
+																																																									y
+																																																											+ -1,
+																																																									z + 0) == FaithCraft2.WineBlock) {
+																																																						if (world
+																																																								.getBlock(
+																																																										x + 0,
+																																																										y
+																																																												+ -1,
+																																																										z + 0) == FaithCraft2.HolyBlock) {
+																																																							if (world
+																																																									.getBlock(
+																																																											x + 1,
+																																																											y
+																																																													+ -1,
+																																																											z + 0) == FaithCraft2.WineBlock) {
+																																																								if (world
+																																																										.getBlock(
+																																																												x + 2,
+																																																												y
+																																																														+ -1,
+																																																												z + 0) == FaithCraft2.HolyBlock) {
+																																																									if (world
+																																																											.getBlock(
+																																																													x
+																																																															+ -2,
+																																																													y + 0,
+																																																													z + 0) == Blocks.air) {
+																																																										if (world
+																																																												.getBlock(
+																																																														x
+																																																																+ -1,
+																																																														y + 0,
+																																																														z + 0) == Blocks.air) {
+																																																											if (world
+																																																													.getBlock(
+																																																															x + 1,
+																																																															y + 0,
+																																																															z + 0) == Blocks.air) {
+																																																												if (world
+																																																														.getBlock(
+																																																																x + 2,
+																																																																y + 0,
+																																																																z + 0) == Blocks.air) {
+																																																													if (world
+																																																															.getBlock(
+																																																																	x
+																																																																			+ -2,
+																																																																	y + 1,
+																																																																	z + 0) == Blocks.air) {
+																																																														if (world
+																																																																.getBlock(
+																																																																		x
+																																																																				+ -1,
+																																																																		y + 1,
+																																																																		z + 0) == Blocks.air) {
+																																																															if (world
+																																																																	.getBlock(
+																																																																			x + 0,
+																																																																			y + 1,
+																																																																			z + 0) == Blocks.air) {
+																																																																if (world
+																																																																		.getBlock(
+																																																																				x + 1,
+																																																																				y + 1,
+																																																																				z + 0) == Blocks.air) {
+																																																																	if (world
+																																																																			.getBlock(
+																																																																					x + 2,
+																																																																					y + 1,
+																																																																					z + 0) == Blocks.air) {
+																																																																		if (world
+																																																																				.getBlock(
+																																																																						x
+																																																																								+ -2,
+																																																																						y + 2,
+																																																																						z + 0) == Blocks.air) {
+																																																																			if (world
+																																																																					.getBlock(
+																																																																							x
+																																																																									+ -1,
+																																																																							y + 2,
+																																																																							z + 0) == Blocks.air) {
+																																																																				if (world
+																																																																						.getBlock(
+																																																																								x + 0,
+																																																																								y + 2,
+																																																																								z + 0) == Blocks.air) {
+																																																																					if (world
+																																																																							.getBlock(
+																																																																									x + 1,
+																																																																									y + 2,
+																																																																									z + 0) == Blocks.air) {
+																																																																						if (world
+																																																																								.getBlock(
+																																																																										x + 2,
+																																																																										y + 2,
+																																																																										z + 0) == Blocks.air) {
+																																																																							if (world
+																																																																									.getBlock(
+																																																																											x
+																																																																													+ -2,
+																																																																											y + 3,
+																																																																											z + 0) == Blocks.air) {
+																																																																								if (world
+																																																																										.getBlock(
+																																																																												x
+																																																																														+ -1,
+																																																																												y + 3,
+																																																																												z + 0) == Blocks.air) {
+																																																																									if (world
+																																																																											.getBlock(
+																																																																													x + 0,
+																																																																													y + 3,
+																																																																													z + 0) == Blocks.air) {
+																																																																										if (world
+																																																																												.getBlock(
+																																																																														x + 1,
+																																																																														y + 3,
+																																																																														z + 0) == Blocks.air) {
+																																																																											if (world
+																																																																													.getBlock(
+																																																																															x + 2,
+																																																																															y + 3,
+																																																																															z + 0) == Blocks.air) {
+																																																																												if (world
+																																																																														.getBlock(
+																																																																																x
+																																																																																		+ -2,
+																																																																																y
+																																																																																		+ -1,
+																																																																																z + 1) == FaithCraft2.HolyBlock) {
+																																																																													if (world
+																																																																															.getBlock(
+																																																																																	x
+																																																																																			+ -1,
+																																																																																	y
+																																																																																			+ -1,
+																																																																																	z + 1) == FaithCraft2.WineBlock) {
+																																																																														if (world
+																																																																																.getBlock(
+																																																																																		x + 0,
+																																																																																		y
+																																																																																				+ -1,
+																																																																																		z + 1) == FaithCraft2.WineBlock) {
+																																																																															if (world
+																																																																																	.getBlock(
+																																																																																			x + 1,
+																																																																																			y
+																																																																																					+ -1,
+																																																																																			z + 1) == FaithCraft2.WineBlock) {
+																																																																																if (world
+																																																																																		.getBlock(
+																																																																																				x + 2,
+																																																																																				y
+																																																																																						+ -1,
+																																																																																				z + 1) == FaithCraft2.HolyBlock) {
+																																																																																	if (world
+																																																																																			.getBlock(
+																																																																																					x
+																																																																																							+ -2,
+																																																																																					y + 0,
+																																																																																					z + 1) == Blocks.air) {
+																																																																																		if (world
+																																																																																				.getBlock(
+																																																																																						x
+																																																																																								+ -1,
+																																																																																						y + 0,
+																																																																																						z + 1) == Blocks.air) {
+																																																																																			if (world
+																																																																																					.getBlock(
+																																																																																							x + 0,
+																																																																																							y + 0,
+																																																																																							z + 1) == Blocks.air) {
+																																																																																				if (world
+																																																																																						.getBlock(
+																																																																																								x + 1,
+																																																																																								y + 0,
+																																																																																								z + 1) == Blocks.air) {
+																																																																																					if (world
+																																																																																							.getBlock(
+																																																																																									x + 2,
+																																																																																									y + 0,
+																																																																																									z + 1) == Blocks.air) {
+																																																																																						if (world
+																																																																																								.getBlock(
+																																																																																										x
+																																																																																												+ -2,
+																																																																																										y + 1,
+																																																																																										z + 1) == Blocks.air) {
+																																																																																							if (world
+																																																																																									.getBlock(
+																																																																																											x
+																																																																																													+ -1,
+																																																																																											y + 1,
+																																																																																											z + 1) == Blocks.air) {
+																																																																																								if (world
+																																																																																										.getBlock(
+																																																																																												x + 0,
+																																																																																												y + 1,
+																																																																																												z + 1) == Blocks.air) {
+																																																																																									if (world
+																																																																																											.getBlock(
+																																																																																													x + 1,
+																																																																																													y + 1,
+																																																																																													z + 1) == Blocks.air) {
+																																																																																										if (world
+																																																																																												.getBlock(
+																																																																																														x + 2,
+																																																																																														y + 1,
+																																																																																														z + 1) == Blocks.air) {
+																																																																																											if (world
+																																																																																													.getBlock(
+																																																																																															x
+																																																																																																	+ -2,
+																																																																																															y + 2,
+																																																																																															z + 1) == Blocks.air) {
+																																																																																												if (world
+																																																																																														.getBlock(
+																																																																																																x
+																																																																																																		+ -1,
+																																																																																																y + 2,
+																																																																																																z + 1) == Blocks.air) {
+																																																																																													if (world
+																																																																																															.getBlock(
+																																																																																																	x + 0,
+																																																																																																	y + 2,
+																																																																																																	z + 1) == Blocks.air) {
+																																																																																														if (world
+																																																																																																.getBlock(
+																																																																																																		x + 1,
+																																																																																																		y + 2,
+																																																																																																		z + 1) == Blocks.air) {
+																																																																																															if (world
+																																																																																																	.getBlock(
+																																																																																																			x + 2,
+																																																																																																			y + 2,
+																																																																																																			z + 1) == Blocks.air) {
+																																																																																																if (world
+																																																																																																		.getBlock(
+																																																																																																				x
+																																																																																																						+ -2,
+																																																																																																				y + 3,
+																																																																																																				z + 1) == Blocks.air) {
+																																																																																																	if (world
+																																																																																																			.getBlock(
+																																																																																																					x
+																																																																																																							+ -1,
+																																																																																																					y + 3,
+																																																																																																					z + 1) == Blocks.air) {
+																																																																																																		if (world
+																																																																																																				.getBlock(
+																																																																																																						x + 0,
+																																																																																																						y + 3,
+																																																																																																						z + 1) == Blocks.air) {
+																																																																																																			if (world
+																																																																																																					.getBlock(
+																																																																																																							x + 1,
+																																																																																																							y + 3,
+																																																																																																							z + 1) == Blocks.air) {
+																																																																																																				if (world
+																																																																																																						.getBlock(
+																																																																																																								x + 2,
+																																																																																																								y + 3,
+																																																																																																								z + 1) == Blocks.air) {
+																																																																																																					if (world
+																																																																																																							.getBlock(
+																																																																																																									x
+																																																																																																											+ -2,
+																																																																																																									y
+																																																																																																											+ -1,
+																																																																																																									z + 2) == FaithCraft2.HolyBlock) {
+																																																																																																						if (world
+																																																																																																								.getBlock(
+																																																																																																										x
+																																																																																																												+ -1,
+																																																																																																										y
+																																																																																																												+ -1,
+																																																																																																										z + 2) == FaithCraft2.HolyBlock) {
+																																																																																																							if (world
+																																																																																																									.getBlock(
+																																																																																																											x + 0,
+																																																																																																											y
+																																																																																																													+ -1,
+																																																																																																											z + 2) == FaithCraft2.HolyBlock) {
+																																																																																																								if (world
+																																																																																																										.getBlock(
+																																																																																																												x + 1,
+																																																																																																												y
+																																																																																																														+ -1,
+																																																																																																												z + 2) == FaithCraft2.HolyBlock) {
+																																																																																																									if (world
+																																																																																																											.getBlock(
+																																																																																																													x + 2,
+																																																																																																													y
+																																																																																																															+ -1,
+																																																																																																													z + 2) == FaithCraft2.HolyBlock) {
+																																																																																																										if (world
+																																																																																																												.getBlock(
+																																																																																																														x
+																																																																																																																+ -2,
+																																																																																																														y + 0,
+																																																																																																														z + 2) == Blocks.air) {
+																																																																																																											if (world
+																																																																																																													.getBlock(
+																																																																																																															x
+																																																																																																																	+ -1,
+																																																																																																															y + 0,
+																																																																																																															z + 2) == Blocks.air) {
+																																																																																																												if (world
+																																																																																																														.getBlock(
+																																																																																																																x + 0,
+																																																																																																																y + 0,
+																																																																																																																z + 2) == Blocks.air) {
+																																																																																																													if (world
+																																																																																																															.getBlock(
+																																																																																																																	x + 1,
+																																																																																																																	y + 0,
+																																																																																																																	z + 2) == Blocks.air) {
+																																																																																																														if (world
+																																																																																																																.getBlock(
+																																																																																																																		x + 2,
+																																																																																																																		y + 0,
+																																																																																																																		z + 2) == Blocks.air) {
+																																																																																																															if (world
+																																																																																																																	.getBlock(
+																																																																																																																			x
+																																																																																																																					+ -2,
+																																																																																																																			y + 1,
+																																																																																																																			z + 2) == Blocks.air) {
+																																																																																																																if (world
+																																																																																																																		.getBlock(
+																																																																																																																				x
+																																																																																																																						+ -1,
+																																																																																																																				y + 1,
+																																																																																																																				z + 2) == Blocks.air) {
+																																																																																																																	if (world
+																																																																																																																			.getBlock(
+																																																																																																																					x + 0,
+																																																																																																																					y + 1,
+																																																																																																																					z + 2) == Blocks.air) {
+																																																																																																																		if (world
+																																																																																																																				.getBlock(
+																																																																																																																						x + 1,
+																																																																																																																						y + 1,
+																																																																																																																						z + 2) == Blocks.air) {
+																																																																																																																			if (world
+																																																																																																																					.getBlock(
+																																																																																																																							x + 2,
+																																																																																																																							y + 1,
+																																																																																																																							z + 2) == Blocks.air) {
+																																																																																																																				if (world
+																																																																																																																						.getBlock(
+																																																																																																																								x
+																																																																																																																										+ -2,
+																																																																																																																								y + 2,
+																																																																																																																								z + 2) == Blocks.air) {
+																																																																																																																					if (world
+																																																																																																																							.getBlock(
+																																																																																																																									x
+																																																																																																																											+ -1,
+																																																																																																																									y + 2,
+																																																																																																																									z + 2) == Blocks.air) {
+																																																																																																																						if (world
+																																																																																																																								.getBlock(
+																																																																																																																										x + 0,
+																																																																																																																										y + 2,
+																																																																																																																										z + 2) == Blocks.air) {
+																																																																																																																							if (world
+																																																																																																																									.getBlock(
+																																																																																																																											x + 1,
+																																																																																																																											y + 2,
+																																																																																																																											z + 2) == Blocks.air) {
+																																																																																																																								if (world
+																																																																																																																										.getBlock(
+																																																																																																																												x + 2,
+																																																																																																																												y + 2,
+																																																																																																																												z + 2) == Blocks.air) {
+																																																																																																																									if (world
+																																																																																																																											.getBlock(
+																																																																																																																													x
+																																																																																																																															+ -2,
+																																																																																																																													y + 3,
+																																																																																																																													z + 2) == Blocks.air) {
+																																																																																																																										if (world
+																																																																																																																												.getBlock(
+																																																																																																																														x
+																																																																																																																																+ -1,
+																																																																																																																														y + 3,
+																																																																																																																														z + 2) == Blocks.air) {
+																																																																																																																											if (world
+																																																																																																																													.getBlock(
+																																																																																																																															x + 0,
+																																																																																																																															y + 3,
+																																																																																																																															z + 2) == Blocks.air) {
+																																																																																																																												if (world
+																																																																																																																														.getBlock(
+																																																																																																																																x + 1,
+																																																																																																																																y + 3,
+																																																																																																																																z + 2) == Blocks.air) {
+																																																																																																																													if (world
+																																																																																																																															.getBlock(
+																																																																																																																																	x + 2,
+																																																																																																																																	y + 3,
+																																																																																																																																	z + 2) == Blocks.air) {
+																																																																																																																														return true;
+																																																																																																																													}
+																																																																																																																												}
+																																																																																																																											}
+																																																																																																																										}
+																																																																																																																									}
+																																																																																																																								}
+																																																																																																																							}
+																																																																																																																						}
+																																																																																																																					}
+																																																																																																																				}
+																																																																																																																			}
+																																																																																																																		}
+																																																																																																																	}
+																																																																																																																}
+																																																																																																															}
+																																																																																																														}
+																																																																																																													}
+																																																																																																												}
+																																																																																																											}
+																																																																																																										}
+																																																																																																									}
+																																																																																																								}
+																																																																																																							}
+																																																																																																						}
+																																																																																																					}
+																																																																																																				}
+																																																																																																			}
+																																																																																																		}
+																																																																																																	}
+																																																																																																}
+																																																																																															}
+																																																																																														}
+																																																																																													}
+																																																																																												}
+																																																																																											}
+																																																																																										}
+																																																																																									}
+																																																																																								}
+																																																																																							}
+																																																																																						}
+																																																																																					}
+																																																																																				}
+																																																																																			}
+																																																																																		}
+																																																																																	}
+																																																																																}
+																																																																															}
+																																																																														}
+																																																																													}
+																																																																												}
+																																																																											}
+																																																																										}
+																																																																									}
+																																																																								}
+																																																																							}
+																																																																						}
+																																																																					}
+																																																																				}
+																																																																			}
+																																																																		}
+																																																																	}
+																																																																}
+																																																															}
+																																																														}
+																																																													}
+																																																												}
+																																																											}
+																																																										}
+																																																									}
+																																																								}
+																																																							}
+																																																						}
+																																																					}
+																																																				}
+																																																			}
+																																																		}
+																																																	}
+																																																}
+																																															}
+																																														}
+																																													}
+																																												}
+																																											}
+																																										}
+																																									}
+																																								}
+																																							}
+																																						}
+																																					}
+																																				}
+																																			}
+																																		}
+																																	}
+																																}
+																															}
+																														}
+																													}
+																												}
+																											}
+																										}
+																									}
+																								}
+																							}
+																						}
+																					}
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+	private static boolean checkSouth(World world, int x, int y, int z) {
+		if (world.getBlock(x + 2, y + -1, z + -2) == FaithCraft2.HolyBlock) {
+			if (world.getBlock(x + 2, y + -1, z + -1) == FaithCraft2.HolyBlock) {
+				if (world.getBlock(x + 2, y + -1, z + 0) == FaithCraft2.HolyBlock) {
+					if (world.getBlock(x + 2, y + -1, z + 1) == FaithCraft2.HolyBlock) {
+						if (world.getBlock(x + 2, y + -1, z + 2) == FaithCraft2.HolyBlock) {
+							if (world.getBlock(x + 2, y + 0, z + -2) == Blocks.air) {
+								if (world.getBlock(x + 2, y + 0, z + -1) == Blocks.air) {
+									if (world.getBlock(x + 2, y + 0, z + 0) == Blocks.air) {
+										if (world.getBlock(x + 2, y + 0,
+												z + 1) == Blocks.air) {
+											if (world.getBlock(x + 2, y + 0,
+													z + 2) == Blocks.air) {
+												if (world.getBlock(x + 2,
+														y + 1, z + -2) == Blocks.air) {
+													if (world.getBlock(x + 2,
+															y + 1, z + -1) == Blocks.air) {
+														if (world.getBlock(
+																x + 2, y + 1,
+																z + 0) == Blocks.air) {
+															if (world
+																	.getBlock(
+																			x + 2,
+																			y + 1,
+																			z + 1) == Blocks.air) {
+																if (world
+																		.getBlock(
+																				x + 2,
+																				y + 1,
+																				z + 2) == Blocks.air) {
+																	if (world
+																			.getBlock(
+																					x + 2,
+																					y + 2,
+																					z
+																							+ -2) == Blocks.air) {
+																		if (world
+																				.getBlock(
+																						x + 2,
+																						y + 2,
+																						z
+																								+ -1) == Blocks.air) {
+																			if (world
+																					.getBlock(
+																							x + 2,
+																							y + 2,
+																							z + 0) == Blocks.air) {
+																				if (world
+																						.getBlock(
+																								x + 2,
+																								y + 2,
+																								z + 1) == Blocks.air) {
+																					if (world
+																							.getBlock(
+																									x + 2,
+																									y + 2,
+																									z + 2) == Blocks.air) {
+																						if (world
+																								.getBlock(
+																										x + 2,
+																										y + 3,
+																										z
+																												+ -2) == Blocks.air) {
+																							if (world
+																									.getBlock(
+																											x + 2,
+																											y + 3,
+																											z
+																													+ -1) == Blocks.air) {
+																								if (world
+																										.getBlock(
+																												x + 2,
+																												y + 3,
+																												z + 0) == Blocks.air) {
+																									if (world
+																											.getBlock(
+																													x + 2,
+																													y + 3,
+																													z + 1) == Blocks.air) {
+																										if (world
+																												.getBlock(
+																														x + 2,
+																														y + 3,
+																														z + 2) == Blocks.air) {
+																											if (world
+																													.getBlock(
+																															x + 1,
+																															y
+																																	+ -1,
+																															z
+																																	+ -2) == FaithCraft2.HolyBlock) {
+																												if (world
+																														.getBlock(
+																																x + 1,
+																																y
+																																		+ -1,
+																																z
+																																		+ -1) == FaithCraft2.WineBlock) {
+																													if (world
+																															.getBlock(
+																																	x + 1,
+																																	y
+																																			+ -1,
+																																	z + 0) == FaithCraft2.WineBlock) {
+																														if (world
+																																.getBlock(
+																																		x + 1,
+																																		y
+																																				+ -1,
+																																		z + 1) == FaithCraft2.WineBlock) {
+																															if (world
+																																	.getBlock(
+																																			x + 1,
+																																			y
+																																					+ -1,
+																																			z + 2) == FaithCraft2.HolyBlock) {
+																																if (world
+																																		.getBlock(
+																																				x + 1,
+																																				y + 0,
+																																				z
+																																						+ -2) == Blocks.air) {
+																																	if (world
+																																			.getBlock(
+																																					x + 1,
+																																					y + 0,
+																																					z
+																																							+ -1) == Blocks.air) {
+																																		if (world
+																																				.getBlock(
+																																						x + 1,
+																																						y + 0,
+																																						z + 0) == Blocks.air) {
+																																			if (world
+																																					.getBlock(
+																																							x + 1,
+																																							y + 0,
+																																							z + 1) == Blocks.air) {
+																																				if (world
+																																						.getBlock(
+																																								x + 1,
+																																								y + 0,
+																																								z + 2) == Blocks.air) {
+																																					if (world
+																																							.getBlock(
+																																									x + 1,
+																																									y + 1,
+																																									z
+																																											+ -2) == Blocks.air) {
+																																						if (world
+																																								.getBlock(
+																																										x + 1,
+																																										y + 1,
+																																										z
+																																												+ -1) == Blocks.air) {
+																																							if (world
+																																									.getBlock(
+																																											x + 1,
+																																											y + 1,
+																																											z + 0) == Blocks.air) {
+																																								if (world
+																																										.getBlock(
+																																												x + 1,
+																																												y + 1,
+																																												z + 1) == Blocks.air) {
+																																									if (world
+																																											.getBlock(
+																																													x + 1,
+																																													y + 1,
+																																													z + 2) == Blocks.air) {
+																																										if (world
+																																												.getBlock(
+																																														x + 1,
+																																														y + 2,
+																																														z
+																																																+ -2) == Blocks.air) {
+																																											if (world
+																																													.getBlock(
+																																															x + 1,
+																																															y + 2,
+																																															z
+																																																	+ -1) == Blocks.air) {
+																																												if (world
+																																														.getBlock(
+																																																x + 1,
+																																																y + 2,
+																																																z + 0) == Blocks.air) {
+																																													if (world
+																																															.getBlock(
+																																																	x + 1,
+																																																	y + 2,
+																																																	z + 1) == Blocks.air) {
+																																														if (world
+																																																.getBlock(
+																																																		x + 1,
+																																																		y + 2,
+																																																		z + 2) == Blocks.air) {
+																																															if (world
+																																																	.getBlock(
+																																																			x + 1,
+																																																			y + 3,
+																																																			z
+																																																					+ -2) == Blocks.air) {
+																																																if (world
+																																																		.getBlock(
+																																																				x + 1,
+																																																				y + 3,
+																																																				z
+																																																						+ -1) == Blocks.air) {
+																																																	if (world
+																																																			.getBlock(
+																																																					x + 1,
+																																																					y + 3,
+																																																					z + 0) == Blocks.air) {
+																																																		if (world
+																																																				.getBlock(
+																																																						x + 1,
+																																																						y + 3,
+																																																						z + 1) == Blocks.air) {
+																																																			if (world
+																																																					.getBlock(
+																																																							x + 1,
+																																																							y + 3,
+																																																							z + 2) == Blocks.air) {
+																																																				if (world
+																																																						.getBlock(
+																																																								x + 0,
+																																																								y
+																																																										+ -1,
+																																																								z
+																																																										+ -2) == FaithCraft2.HolyBlock) {
+																																																					if (world
+																																																							.getBlock(
+																																																									x + 0,
+																																																									y
+																																																											+ -1,
+																																																									z
+																																																											+ -1) == FaithCraft2.WineBlock) {
+																																																						if (world
+																																																								.getBlock(
+																																																										x + 0,
+																																																										y
+																																																												+ -1,
+																																																										z + 0) == FaithCraft2.HolyBlock) {
+																																																							if (world
+																																																									.getBlock(
+																																																											x + 0,
+																																																											y
+																																																													+ -1,
+																																																											z + 1) == FaithCraft2.WineBlock) {
+																																																								if (world
+																																																										.getBlock(
+																																																												x + 0,
+																																																												y
+																																																														+ -1,
+																																																												z + 2) == FaithCraft2.HolyBlock) {
+																																																									if (world
+																																																											.getBlock(
+																																																													x + 0,
+																																																													y + 0,
+																																																													z
+																																																															+ -2) == Blocks.air) {
+																																																										if (world
+																																																												.getBlock(
+																																																														x + 0,
+																																																														y + 0,
+																																																														z
+																																																																+ -1) == Blocks.air) {
+																																																											if (world
+																																																													.getBlock(
+																																																															x + 0,
+																																																															y + 0,
+																																																															z + 1) == Blocks.air) {
+																																																												if (world
+																																																														.getBlock(
+																																																																x + 0,
+																																																																y + 0,
+																																																																z + 2) == Blocks.air) {
+																																																													if (world
+																																																															.getBlock(
+																																																																	x + 0,
+																																																																	y + 1,
+																																																																	z
+																																																																			+ -2) == Blocks.air) {
+																																																														if (world
+																																																																.getBlock(
+																																																																		x + 0,
+																																																																		y + 1,
+																																																																		z
+																																																																				+ -1) == Blocks.air) {
+																																																															if (world
+																																																																	.getBlock(
+																																																																			x + 0,
+																																																																			y + 1,
+																																																																			z + 0) == Blocks.air) {
+																																																																if (world
+																																																																		.getBlock(
+																																																																				x + 0,
+																																																																				y + 1,
+																																																																				z + 1) == Blocks.air) {
+																																																																	if (world
+																																																																			.getBlock(
+																																																																					x + 0,
+																																																																					y + 1,
+																																																																					z + 2) == Blocks.air) {
+																																																																		if (world
+																																																																				.getBlock(
+																																																																						x + 0,
+																																																																						y + 2,
+																																																																						z
+																																																																								+ -2) == Blocks.air) {
+																																																																			if (world
+																																																																					.getBlock(
+																																																																							x + 0,
+																																																																							y + 2,
+																																																																							z
+																																																																									+ -1) == Blocks.air) {
+																																																																				if (world
+																																																																						.getBlock(
+																																																																								x + 0,
+																																																																								y + 2,
+																																																																								z + 0) == Blocks.air) {
+																																																																					if (world
+																																																																							.getBlock(
+																																																																									x + 0,
+																																																																									y + 2,
+																																																																									z + 1) == Blocks.air) {
+																																																																						if (world
+																																																																								.getBlock(
+																																																																										x + 0,
+																																																																										y + 2,
+																																																																										z + 2) == Blocks.air) {
+																																																																							if (world
+																																																																									.getBlock(
+																																																																											x + 0,
+																																																																											y + 3,
+																																																																											z
+																																																																													+ -2) == Blocks.air) {
+																																																																								if (world
+																																																																										.getBlock(
+																																																																												x + 0,
+																																																																												y + 3,
+																																																																												z
+																																																																														+ -1) == Blocks.air) {
+																																																																									if (world
+																																																																											.getBlock(
+																																																																													x + 0,
+																																																																													y + 3,
+																																																																													z + 0) == Blocks.air) {
+																																																																										if (world
+																																																																												.getBlock(
+																																																																														x + 0,
+																																																																														y + 3,
+																																																																														z + 1) == Blocks.air) {
+																																																																											if (world
+																																																																													.getBlock(
+																																																																															x + 0,
+																																																																															y + 3,
+																																																																															z + 2) == Blocks.air) {
+																																																																												if (world
+																																																																														.getBlock(
+																																																																																x
+																																																																																		+ -1,
+																																																																																y
+																																																																																		+ -1,
+																																																																																z
+																																																																																		+ -2) == FaithCraft2.HolyBlock) {
+																																																																													if (world
+																																																																															.getBlock(
+																																																																																	x
+																																																																																			+ -1,
+																																																																																	y
+																																																																																			+ -1,
+																																																																																	z
+																																																																																			+ -1) == FaithCraft2.WineBlock) {
+																																																																														if (world
+																																																																																.getBlock(
+																																																																																		x
+																																																																																				+ -1,
+																																																																																		y
+																																																																																				+ -1,
+																																																																																		z + 0) == FaithCraft2.WineBlock) {
+																																																																															if (world
+																																																																																	.getBlock(
+																																																																																			x
+																																																																																					+ -1,
+																																																																																			y
+																																																																																					+ -1,
+																																																																																			z + 1) == FaithCraft2.WineBlock) {
+																																																																																if (world
+																																																																																		.getBlock(
+																																																																																				x
+																																																																																						+ -1,
+																																																																																				y
+																																																																																						+ -1,
+																																																																																				z + 2) == FaithCraft2.HolyBlock) {
+																																																																																	if (world
+																																																																																			.getBlock(
+																																																																																					x
+																																																																																							+ -1,
+																																																																																					y + 0,
+																																																																																					z
+																																																																																							+ -2) == Blocks.air) {
+																																																																																		if (world
+																																																																																				.getBlock(
+																																																																																						x
+																																																																																								+ -1,
+																																																																																						y + 0,
+																																																																																						z
+																																																																																								+ -1) == Blocks.air) {
+																																																																																			if (world
+																																																																																					.getBlock(
+																																																																																							x
+																																																																																									+ -1,
+																																																																																							y + 0,
+																																																																																							z + 0) == Blocks.air) {
+																																																																																				if (world
+																																																																																						.getBlock(
+																																																																																								x
+																																																																																										+ -1,
+																																																																																								y + 0,
+																																																																																								z + 1) == Blocks.air) {
+																																																																																					if (world
+																																																																																							.getBlock(
+																																																																																									x
+																																																																																											+ -1,
+																																																																																									y + 0,
+																																																																																									z + 2) == Blocks.air) {
+																																																																																						if (world
+																																																																																								.getBlock(
+																																																																																										x
+																																																																																												+ -1,
+																																																																																										y + 1,
+																																																																																										z
+																																																																																												+ -2) == Blocks.air) {
+																																																																																							if (world
+																																																																																									.getBlock(
+																																																																																											x
+																																																																																													+ -1,
+																																																																																											y + 1,
+																																																																																											z
+																																																																																													+ -1) == Blocks.air) {
+																																																																																								if (world
+																																																																																										.getBlock(
+																																																																																												x
+																																																																																														+ -1,
+																																																																																												y + 1,
+																																																																																												z + 0) == Blocks.air) {
+																																																																																									if (world
+																																																																																											.getBlock(
+																																																																																													x
+																																																																																															+ -1,
+																																																																																													y + 1,
+																																																																																													z + 1) == Blocks.air) {
+																																																																																										if (world
+																																																																																												.getBlock(
+																																																																																														x
+																																																																																																+ -1,
+																																																																																														y + 1,
+																																																																																														z + 2) == Blocks.air) {
+																																																																																											if (world
+																																																																																													.getBlock(
+																																																																																															x
+																																																																																																	+ -1,
+																																																																																															y + 2,
+																																																																																															z
+																																																																																																	+ -2) == Blocks.air) {
+																																																																																												if (world
+																																																																																														.getBlock(
+																																																																																																x
+																																																																																																		+ -1,
+																																																																																																y + 2,
+																																																																																																z
+																																																																																																		+ -1) == Blocks.air) {
+																																																																																													if (world
+																																																																																															.getBlock(
+																																																																																																	x
+																																																																																																			+ -1,
+																																																																																																	y + 2,
+																																																																																																	z + 0) == Blocks.air) {
+																																																																																														if (world
+																																																																																																.getBlock(
+																																																																																																		x
+																																																																																																				+ -1,
+																																																																																																		y + 2,
+																																																																																																		z + 1) == Blocks.air) {
+																																																																																															if (world
+																																																																																																	.getBlock(
+																																																																																																			x
+																																																																																																					+ -1,
+																																																																																																			y + 2,
+																																																																																																			z + 2) == Blocks.air) {
+																																																																																																if (world
+																																																																																																		.getBlock(
+																																																																																																				x
+																																																																																																						+ -1,
+																																																																																																				y + 3,
+																																																																																																				z
+																																																																																																						+ -2) == Blocks.air) {
+																																																																																																	if (world
+																																																																																																			.getBlock(
+																																																																																																					x
+																																																																																																							+ -1,
+																																																																																																					y + 3,
+																																																																																																					z
+																																																																																																							+ -1) == Blocks.air) {
+																																																																																																		if (world
+																																																																																																				.getBlock(
+																																																																																																						x
+																																																																																																								+ -1,
+																																																																																																						y + 3,
+																																																																																																						z + 0) == Blocks.air) {
+																																																																																																			if (world
+																																																																																																					.getBlock(
+																																																																																																							x
+																																																																																																									+ -1,
+																																																																																																							y + 3,
+																																																																																																							z + 1) == Blocks.air) {
+																																																																																																				if (world
+																																																																																																						.getBlock(
+																																																																																																								x
+																																																																																																										+ -1,
+																																																																																																								y + 3,
+																																																																																																								z + 2) == Blocks.air) {
+																																																																																																					if (world
+																																																																																																							.getBlock(
+																																																																																																									x
+																																																																																																											+ -2,
+																																																																																																									y
+																																																																																																											+ -1,
+																																																																																																									z
+																																																																																																											+ -2) == FaithCraft2.HolyBlock) {
+																																																																																																						if (world
+																																																																																																								.getBlock(
+																																																																																																										x
+																																																																																																												+ -2,
+																																																																																																										y
+																																																																																																												+ -1,
+																																																																																																										z
+																																																																																																												+ -1) == FaithCraft2.HolyBlock) {
+																																																																																																							if (world
+																																																																																																									.getBlock(
+																																																																																																											x
+																																																																																																													+ -2,
+																																																																																																											y
+																																																																																																													+ -1,
+																																																																																																											z + 0) == FaithCraft2.HolyBlock) {
+																																																																																																								if (world
+																																																																																																										.getBlock(
+																																																																																																												x
+																																																																																																														+ -2,
+																																																																																																												y
+																																																																																																														+ -1,
+																																																																																																												z + 1) == FaithCraft2.HolyBlock) {
+																																																																																																									if (world
+																																																																																																											.getBlock(
+																																																																																																													x
+																																																																																																															+ -2,
+																																																																																																													y
+																																																																																																															+ -1,
+																																																																																																													z + 2) == FaithCraft2.HolyBlock) {
+																																																																																																										if (world
+																																																																																																												.getBlock(
+																																																																																																														x
+																																																																																																																+ -2,
+																																																																																																														y + 0,
+																																																																																																														z
+																																																																																																																+ -2) == Blocks.air) {
+																																																																																																											if (world
+																																																																																																													.getBlock(
+																																																																																																															x
+																																																																																																																	+ -2,
+																																																																																																															y + 0,
+																																																																																																															z
+																																																																																																																	+ -1) == Blocks.air) {
+																																																																																																												if (world
+																																																																																																														.getBlock(
+																																																																																																																x
+																																																																																																																		+ -2,
+																																																																																																																y + 0,
+																																																																																																																z + 0) == Blocks.air) {
+																																																																																																													if (world
+																																																																																																															.getBlock(
+																																																																																																																	x
+																																																																																																																			+ -2,
+																																																																																																																	y + 0,
+																																																																																																																	z + 1) == Blocks.air) {
+																																																																																																														if (world
+																																																																																																																.getBlock(
+																																																																																																																		x
+																																																																																																																				+ -2,
+																																																																																																																		y + 0,
+																																																																																																																		z + 2) == Blocks.air) {
+																																																																																																															if (world
+																																																																																																																	.getBlock(
+																																																																																																																			x
+																																																																																																																					+ -2,
+																																																																																																																			y + 1,
+																																																																																																																			z
+																																																																																																																					+ -2) == Blocks.air) {
+																																																																																																																if (world
+																																																																																																																		.getBlock(
+																																																																																																																				x
+																																																																																																																						+ -2,
+																																																																																																																				y + 1,
+																																																																																																																				z
+																																																																																																																						+ -1) == Blocks.air) {
+																																																																																																																	if (world
+																																																																																																																			.getBlock(
+																																																																																																																					x
+																																																																																																																							+ -2,
+																																																																																																																					y + 1,
+																																																																																																																					z + 0) == Blocks.air) {
+																																																																																																																		if (world
+																																																																																																																				.getBlock(
+																																																																																																																						x
+																																																																																																																								+ -2,
+																																																																																																																						y + 1,
+																																																																																																																						z + 1) == Blocks.air) {
+																																																																																																																			if (world
+																																																																																																																					.getBlock(
+																																																																																																																							x
+																																																																																																																									+ -2,
+																																																																																																																							y + 1,
+																																																																																																																							z + 2) == Blocks.air) {
+																																																																																																																				if (world
+																																																																																																																						.getBlock(
+																																																																																																																								x
+																																																																																																																										+ -2,
+																																																																																																																								y + 2,
+																																																																																																																								z
+																																																																																																																										+ -2) == Blocks.air) {
+																																																																																																																					if (world
+																																																																																																																							.getBlock(
+																																																																																																																									x
+																																																																																																																											+ -2,
+																																																																																																																									y + 2,
+																																																																																																																									z
+																																																																																																																											+ -1) == Blocks.air) {
+																																																																																																																						if (world
+																																																																																																																								.getBlock(
+																																																																																																																										x
+																																																																																																																												+ -2,
+																																																																																																																										y + 2,
+																																																																																																																										z + 0) == Blocks.air) {
+																																																																																																																							if (world
+																																																																																																																									.getBlock(
+																																																																																																																											x
+																																																																																																																													+ -2,
+																																																																																																																											y + 2,
+																																																																																																																											z + 1) == Blocks.air) {
+																																																																																																																								if (world
+																																																																																																																										.getBlock(
+																																																																																																																												x
+																																																																																																																														+ -2,
+																																																																																																																												y + 2,
+																																																																																																																												z + 2) == Blocks.air) {
+																																																																																																																									if (world
+																																																																																																																											.getBlock(
+																																																																																																																													x
+																																																																																																																															+ -2,
+																																																																																																																													y + 3,
+																																																																																																																													z
+																																																																																																																															+ -2) == Blocks.air) {
+																																																																																																																										if (world
+																																																																																																																												.getBlock(
+																																																																																																																														x
+																																																																																																																																+ -2,
+																																																																																																																														y + 3,
+																																																																																																																														z
+																																																																																																																																+ -1) == Blocks.air) {
+																																																																																																																											if (world
+																																																																																																																													.getBlock(
+																																																																																																																															x
+																																																																																																																																	+ -2,
+																																																																																																																															y + 3,
+																																																																																																																															z + 0) == Blocks.air) {
+																																																																																																																												if (world
+																																																																																																																														.getBlock(
+																																																																																																																																x
+																																																																																																																																		+ -2,
+																																																																																																																																y + 3,
+																																																																																																																																z + 1) == Blocks.air) {
+																																																																																																																													if (world
+																																																																																																																															.getBlock(
+																																																																																																																																	x
+																																																																																																																																			+ -2,
+																																																																																																																																	y + 3,
+																																																																																																																																	z + 2) == Blocks.air) {
+																																																																																																																														return true;
+																																																																																																																													}
+																																																																																																																												}
+																																																																																																																											}
+																																																																																																																										}
+																																																																																																																									}
+																																																																																																																								}
+																																																																																																																							}
+																																																																																																																						}
+																																																																																																																					}
+																																																																																																																				}
+																																																																																																																			}
+																																																																																																																		}
+																																																																																																																	}
+																																																																																																																}
+																																																																																																															}
+																																																																																																														}
+																																																																																																													}
+																																																																																																												}
+																																																																																																											}
+																																																																																																										}
+																																																																																																									}
+																																																																																																								}
+																																																																																																							}
+																																																																																																						}
+																																																																																																					}
+																																																																																																				}
+																																																																																																			}
+																																																																																																		}
+																																																																																																	}
+																																																																																																}
+																																																																																															}
+																																																																																														}
+																																																																																													}
+																																																																																												}
+																																																																																											}
+																																																																																										}
+																																																																																									}
+																																																																																								}
+																																																																																							}
+																																																																																						}
+																																																																																					}
+																																																																																				}
+																																																																																			}
+																																																																																		}
+																																																																																	}
+																																																																																}
+																																																																															}
+																																																																														}
+																																																																													}
+																																																																												}
+																																																																											}
+																																																																										}
+																																																																									}
+																																																																								}
+																																																																							}
+																																																																						}
+																																																																					}
+																																																																				}
+																																																																			}
+																																																																		}
+																																																																	}
+																																																																}
+																																																															}
+																																																														}
+																																																													}
+																																																												}
+																																																											}
+																																																										}
+																																																									}
+																																																								}
+																																																							}
+																																																						}
+																																																					}
+																																																				}
+																																																			}
+																																																		}
+																																																	}
+																																																}
+																																															}
+																																														}
+																																													}
+																																												}
+																																											}
+																																										}
+																																									}
+																																								}
+																																							}
+																																						}
+																																					}
+																																				}
+																																			}
+																																		}
+																																	}
+																																}
+																															}
+																														}
+																													}
+																												}
+																											}
+																										}
+																									}
+																								}
+																							}
+																						}
+																					}
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+	private static boolean checkWest(World world, int x, int y, int z) {
+		if (world.getBlock(x + 2, y + -1, z + 2) == FaithCraft2.HolyBlock) {
+			if (world.getBlock(x + 1, y + -1, z + 2) == FaithCraft2.HolyBlock) {
+				if (world.getBlock(x + 0, y + -1, z + 2) == FaithCraft2.HolyBlock) {
+					if (world.getBlock(x + -1, y + -1, z + 2) == FaithCraft2.HolyBlock) {
+						if (world.getBlock(x + -2, y + -1, z + 2) == FaithCraft2.HolyBlock) {
+							if (world.getBlock(x + 2, y + 0, z + 2) == Blocks.air) {
+								if (world.getBlock(x + 1, y + 0, z + 2) == Blocks.air) {
+									if (world.getBlock(x + 0, y + 0, z + 2) == Blocks.air) {
+										if (world.getBlock(x + -1, y + 0,
+												z + 2) == Blocks.air) {
+											if (world.getBlock(x + -2, y + 0,
+													z + 2) == Blocks.air) {
+												if (world.getBlock(x + 2,
+														y + 1, z + 2) == Blocks.air) {
+													if (world.getBlock(x + 1,
+															y + 1, z + 2) == Blocks.air) {
+														if (world.getBlock(
+																x + 0, y + 1,
+																z + 2) == Blocks.air) {
+															if (world
+																	.getBlock(
+																			x
+																					+ -1,
+																			y + 1,
+																			z + 2) == Blocks.air) {
+																if (world
+																		.getBlock(
+																				x
+																						+ -2,
+																				y + 1,
+																				z + 2) == Blocks.air) {
+																	if (world
+																			.getBlock(
+																					x + 2,
+																					y + 2,
+																					z + 2) == Blocks.air) {
+																		if (world
+																				.getBlock(
+																						x + 1,
+																						y + 2,
+																						z + 2) == Blocks.air) {
+																			if (world
+																					.getBlock(
+																							x + 0,
+																							y + 2,
+																							z + 2) == Blocks.air) {
+																				if (world
+																						.getBlock(
+																								x
+																										+ -1,
+																								y + 2,
+																								z + 2) == Blocks.air) {
+																					if (world
+																							.getBlock(
+																									x
+																											+ -2,
+																									y + 2,
+																									z + 2) == Blocks.air) {
+																						if (world
+																								.getBlock(
+																										x + 2,
+																										y + 3,
+																										z + 2) == Blocks.air) {
+																							if (world
+																									.getBlock(
+																											x + 1,
+																											y + 3,
+																											z + 2) == Blocks.air) {
+																								if (world
+																										.getBlock(
+																												x + 0,
+																												y + 3,
+																												z + 2) == Blocks.air) {
+																									if (world
+																											.getBlock(
+																													x
+																															+ -1,
+																													y + 3,
+																													z + 2) == Blocks.air) {
+																										if (world
+																												.getBlock(
+																														x
+																																+ -2,
+																														y + 3,
+																														z + 2) == Blocks.air) {
+																											if (world
+																													.getBlock(
+																															x + 2,
+																															y
+																																	+ -1,
+																															z + 1) == FaithCraft2.HolyBlock) {
+																												if (world
+																														.getBlock(
+																																x + 1,
+																																y
+																																		+ -1,
+																																z + 1) == FaithCraft2.WineBlock) {
+																													if (world
+																															.getBlock(
+																																	x + 0,
+																																	y
+																																			+ -1,
+																																	z + 1) == FaithCraft2.WineBlock) {
+																														if (world
+																																.getBlock(
+																																		x
+																																				+ -1,
+																																		y
+																																				+ -1,
+																																		z + 1) == FaithCraft2.WineBlock) {
+																															if (world
+																																	.getBlock(
+																																			x
+																																					+ -2,
+																																			y
+																																					+ -1,
+																																			z + 1) == FaithCraft2.HolyBlock) {
+																																if (world
+																																		.getBlock(
+																																				x + 2,
+																																				y + 0,
+																																				z + 1) == Blocks.air) {
+																																	if (world
+																																			.getBlock(
+																																					x + 1,
+																																					y + 0,
+																																					z + 1) == Blocks.air) {
+																																		if (world
+																																				.getBlock(
+																																						x + 0,
+																																						y + 0,
+																																						z + 1) == Blocks.air) {
+																																			if (world
+																																					.getBlock(
+																																							x
+																																									+ -1,
+																																							y + 0,
+																																							z + 1) == Blocks.air) {
+																																				if (world
+																																						.getBlock(
+																																								x
+																																										+ -2,
+																																								y + 0,
+																																								z + 1) == Blocks.air) {
+																																					if (world
+																																							.getBlock(
+																																									x + 2,
+																																									y + 1,
+																																									z + 1) == Blocks.air) {
+																																						if (world
+																																								.getBlock(
+																																										x + 1,
+																																										y + 1,
+																																										z + 1) == Blocks.air) {
+																																							if (world
+																																									.getBlock(
+																																											x + 0,
+																																											y + 1,
+																																											z + 1) == Blocks.air) {
+																																								if (world
+																																										.getBlock(
+																																												x
+																																														+ -1,
+																																												y + 1,
+																																												z + 1) == Blocks.air) {
+																																									if (world
+																																											.getBlock(
+																																													x
+																																															+ -2,
+																																													y + 1,
+																																													z + 1) == Blocks.air) {
+																																										if (world
+																																												.getBlock(
+																																														x + 2,
+																																														y + 2,
+																																														z + 1) == Blocks.air) {
+																																											if (world
+																																													.getBlock(
+																																															x + 1,
+																																															y + 2,
+																																															z + 1) == Blocks.air) {
+																																												if (world
+																																														.getBlock(
+																																																x + 0,
+																																																y + 2,
+																																																z + 1) == Blocks.air) {
+																																													if (world
+																																															.getBlock(
+																																																	x
+																																																			+ -1,
+																																																	y + 2,
+																																																	z + 1) == Blocks.air) {
+																																														if (world
+																																																.getBlock(
+																																																		x
+																																																				+ -2,
+																																																		y + 2,
+																																																		z + 1) == Blocks.air) {
+																																															if (world
+																																																	.getBlock(
+																																																			x + 2,
+																																																			y + 3,
+																																																			z + 1) == Blocks.air) {
+																																																if (world
+																																																		.getBlock(
+																																																				x + 1,
+																																																				y + 3,
+																																																				z + 1) == Blocks.air) {
+																																																	if (world
+																																																			.getBlock(
+																																																					x + 0,
+																																																					y + 3,
+																																																					z + 1) == Blocks.air) {
+																																																		if (world
+																																																				.getBlock(
+																																																						x
+																																																								+ -1,
+																																																						y + 3,
+																																																						z + 1) == Blocks.air) {
+																																																			if (world
+																																																					.getBlock(
+																																																							x
+																																																									+ -2,
+																																																							y + 3,
+																																																							z + 1) == Blocks.air) {
+																																																				if (world
+																																																						.getBlock(
+																																																								x + 2,
+																																																								y
+																																																										+ -1,
+																																																								z + 0) == FaithCraft2.HolyBlock) {
+																																																					if (world
+																																																							.getBlock(
+																																																									x + 1,
+																																																									y
+																																																											+ -1,
+																																																									z + 0) == FaithCraft2.WineBlock) {
+																																																						if (world
+																																																								.getBlock(
+																																																										x + 0,
+																																																										y
+																																																												+ -1,
+																																																										z + 0) == FaithCraft2.HolyBlock) {
+																																																							if (world
+																																																									.getBlock(
+																																																											x
+																																																													+ -1,
+																																																											y
+																																																													+ -1,
+																																																											z + 0) == FaithCraft2.WineBlock) {
+																																																								if (world
+																																																										.getBlock(
+																																																												x
+																																																														+ -2,
+																																																												y
+																																																														+ -1,
+																																																												z + 0) == FaithCraft2.HolyBlock) {
+																																																									if (world
+																																																											.getBlock(
+																																																													x + 2,
+																																																													y + 0,
+																																																													z + 0) == Blocks.air) {
+																																																										if (world
+																																																												.getBlock(
+																																																														x + 1,
+																																																														y + 0,
+																																																														z + 0) == Blocks.air) {
+																																																											if (world
+																																																													.getBlock(
+																																																															x
+																																																																	+ -1,
+																																																															y + 0,
+																																																															z + 0) == Blocks.air) {
+																																																												if (world
+																																																														.getBlock(
+																																																																x
+																																																																		+ -2,
+																																																																y + 0,
+																																																																z + 0) == Blocks.air) {
+																																																													if (world
+																																																															.getBlock(
+																																																																	x + 2,
+																																																																	y + 1,
+																																																																	z + 0) == Blocks.air) {
+																																																														if (world
+																																																																.getBlock(
+																																																																		x + 1,
+																																																																		y + 1,
+																																																																		z + 0) == Blocks.air) {
+																																																															if (world
+																																																																	.getBlock(
+																																																																			x + 0,
+																																																																			y + 1,
+																																																																			z + 0) == Blocks.air) {
+																																																																if (world
+																																																																		.getBlock(
+																																																																				x
+																																																																						+ -1,
+																																																																				y + 1,
+																																																																				z + 0) == Blocks.air) {
+																																																																	if (world
+																																																																			.getBlock(
+																																																																					x
+																																																																							+ -2,
+																																																																					y + 1,
+																																																																					z + 0) == Blocks.air) {
+																																																																		if (world
+																																																																				.getBlock(
+																																																																						x + 2,
+																																																																						y + 2,
+																																																																						z + 0) == Blocks.air) {
+																																																																			if (world
+																																																																					.getBlock(
+																																																																							x + 1,
+																																																																							y + 2,
+																																																																							z + 0) == Blocks.air) {
+																																																																				if (world
+																																																																						.getBlock(
+																																																																								x + 0,
+																																																																								y + 2,
+																																																																								z + 0) == Blocks.air) {
+																																																																					if (world
+																																																																							.getBlock(
+																																																																									x
+																																																																											+ -1,
+																																																																									y + 2,
+																																																																									z + 0) == Blocks.air) {
+																																																																						if (world
+																																																																								.getBlock(
+																																																																										x
+																																																																												+ -2,
+																																																																										y + 2,
+																																																																										z + 0) == Blocks.air) {
+																																																																							if (world
+																																																																									.getBlock(
+																																																																											x + 2,
+																																																																											y + 3,
+																																																																											z + 0) == Blocks.air) {
+																																																																								if (world
+																																																																										.getBlock(
+																																																																												x + 1,
+																																																																												y + 3,
+																																																																												z + 0) == Blocks.air) {
+																																																																									if (world
+																																																																											.getBlock(
+																																																																													x + 0,
+																																																																													y + 3,
+																																																																													z + 0) == Blocks.air) {
+																																																																										if (world
+																																																																												.getBlock(
+																																																																														x
+																																																																																+ -1,
+																																																																														y + 3,
+																																																																														z + 0) == Blocks.air) {
+																																																																											if (world
+																																																																													.getBlock(
+																																																																															x
+																																																																																	+ -2,
+																																																																															y + 3,
+																																																																															z + 0) == Blocks.air) {
+																																																																												if (world
+																																																																														.getBlock(
+																																																																																x + 2,
+																																																																																y
+																																																																																		+ -1,
+																																																																																z
+																																																																																		+ -1) == FaithCraft2.HolyBlock) {
+																																																																													if (world
+																																																																															.getBlock(
+																																																																																	x + 1,
+																																																																																	y
+																																																																																			+ -1,
+																																																																																	z
+																																																																																			+ -1) == FaithCraft2.WineBlock) {
+																																																																														if (world
+																																																																																.getBlock(
+																																																																																		x + 0,
+																																																																																		y
+																																																																																				+ -1,
+																																																																																		z
+																																																																																				+ -1) == FaithCraft2.WineBlock) {
+																																																																															if (world
+																																																																																	.getBlock(
+																																																																																			x
+																																																																																					+ -1,
+																																																																																			y
+																																																																																					+ -1,
+																																																																																			z
+																																																																																					+ -1) == FaithCraft2.WineBlock) {
+																																																																																if (world
+																																																																																		.getBlock(
+																																																																																				x
+																																																																																						+ -2,
+																																																																																				y
+																																																																																						+ -1,
+																																																																																				z
+																																																																																						+ -1) == FaithCraft2.HolyBlock) {
+																																																																																	if (world
+																																																																																			.getBlock(
+																																																																																					x + 2,
+																																																																																					y + 0,
+																																																																																					z
+																																																																																							+ -1) == Blocks.air) {
+																																																																																		if (world
+																																																																																				.getBlock(
+																																																																																						x + 1,
+																																																																																						y + 0,
+																																																																																						z
+																																																																																								+ -1) == Blocks.air) {
+																																																																																			if (world
+																																																																																					.getBlock(
+																																																																																							x + 0,
+																																																																																							y + 0,
+																																																																																							z
+																																																																																									+ -1) == Blocks.air) {
+																																																																																				if (world
+																																																																																						.getBlock(
+																																																																																								x
+																																																																																										+ -1,
+																																																																																								y + 0,
+																																																																																								z
+																																																																																										+ -1) == Blocks.air) {
+																																																																																					if (world
+																																																																																							.getBlock(
+																																																																																									x
+																																																																																											+ -2,
+																																																																																									y + 0,
+																																																																																									z
+																																																																																											+ -1) == Blocks.air) {
+																																																																																						if (world
+																																																																																								.getBlock(
+																																																																																										x + 2,
+																																																																																										y + 1,
+																																																																																										z
+																																																																																												+ -1) == Blocks.air) {
+																																																																																							if (world
+																																																																																									.getBlock(
+																																																																																											x + 1,
+																																																																																											y + 1,
+																																																																																											z
+																																																																																													+ -1) == Blocks.air) {
+																																																																																								if (world
+																																																																																										.getBlock(
+																																																																																												x + 0,
+																																																																																												y + 1,
+																																																																																												z
+																																																																																														+ -1) == Blocks.air) {
+																																																																																									if (world
+																																																																																											.getBlock(
+																																																																																													x
+																																																																																															+ -1,
+																																																																																													y + 1,
+																																																																																													z
+																																																																																															+ -1) == Blocks.air) {
+																																																																																										if (world
+																																																																																												.getBlock(
+																																																																																														x
+																																																																																																+ -2,
+																																																																																														y + 1,
+																																																																																														z
+																																																																																																+ -1) == Blocks.air) {
+																																																																																											if (world
+																																																																																													.getBlock(
+																																																																																															x + 2,
+																																																																																															y + 2,
+																																																																																															z
+																																																																																																	+ -1) == Blocks.air) {
+																																																																																												if (world
+																																																																																														.getBlock(
+																																																																																																x + 1,
+																																																																																																y + 2,
+																																																																																																z
+																																																																																																		+ -1) == Blocks.air) {
+																																																																																													if (world
+																																																																																															.getBlock(
+																																																																																																	x + 0,
+																																																																																																	y + 2,
+																																																																																																	z
+																																																																																																			+ -1) == Blocks.air) {
+																																																																																														if (world
+																																																																																																.getBlock(
+																																																																																																		x
+																																																																																																				+ -1,
+																																																																																																		y + 2,
+																																																																																																		z
+																																																																																																				+ -1) == Blocks.air) {
+																																																																																															if (world
+																																																																																																	.getBlock(
+																																																																																																			x
+																																																																																																					+ -2,
+																																																																																																			y + 2,
+																																																																																																			z
+																																																																																																					+ -1) == Blocks.air) {
+																																																																																																if (world
+																																																																																																		.getBlock(
+																																																																																																				x + 2,
+																																																																																																				y + 3,
+																																																																																																				z
+																																																																																																						+ -1) == Blocks.air) {
+																																																																																																	if (world
+																																																																																																			.getBlock(
+																																																																																																					x + 1,
+																																																																																																					y + 3,
+																																																																																																					z
+																																																																																																							+ -1) == Blocks.air) {
+																																																																																																		if (world
+																																																																																																				.getBlock(
+																																																																																																						x + 0,
+																																																																																																						y + 3,
+																																																																																																						z
+																																																																																																								+ -1) == Blocks.air) {
+																																																																																																			if (world
+																																																																																																					.getBlock(
+																																																																																																							x
+																																																																																																									+ -1,
+																																																																																																							y + 3,
+																																																																																																							z
+																																																																																																									+ -1) == Blocks.air) {
+																																																																																																				if (world
+																																																																																																						.getBlock(
+																																																																																																								x
+																																																																																																										+ -2,
+																																																																																																								y + 3,
+																																																																																																								z
+																																																																																																										+ -1) == Blocks.air) {
+																																																																																																					if (world
+																																																																																																							.getBlock(
+																																																																																																									x + 2,
+																																																																																																									y
+																																																																																																											+ -1,
+																																																																																																									z
+																																																																																																											+ -2) == FaithCraft2.HolyBlock) {
+																																																																																																						if (world
+																																																																																																								.getBlock(
+																																																																																																										x + 1,
+																																																																																																										y
+																																																																																																												+ -1,
+																																																																																																										z
+																																																																																																												+ -2) == FaithCraft2.HolyBlock) {
+																																																																																																							if (world
+																																																																																																									.getBlock(
+																																																																																																											x + 0,
+																																																																																																											y
+																																																																																																													+ -1,
+																																																																																																											z
+																																																																																																													+ -2) == FaithCraft2.HolyBlock) {
+																																																																																																								if (world
+																																																																																																										.getBlock(
+																																																																																																												x
+																																																																																																														+ -1,
+																																																																																																												y
+																																																																																																														+ -1,
+																																																																																																												z
+																																																																																																														+ -2) == FaithCraft2.HolyBlock) {
+																																																																																																									if (world
+																																																																																																											.getBlock(
+																																																																																																													x
+																																																																																																															+ -2,
+																																																																																																													y
+																																																																																																															+ -1,
+																																																																																																													z
+																																																																																																															+ -2) == FaithCraft2.HolyBlock) {
+																																																																																																										if (world
+																																																																																																												.getBlock(
+																																																																																																														x + 2,
+																																																																																																														y + 0,
+																																																																																																														z
+																																																																																																																+ -2) == Blocks.air) {
+																																																																																																											if (world
+																																																																																																													.getBlock(
+																																																																																																															x + 1,
+																																																																																																															y + 0,
+																																																																																																															z
+																																																																																																																	+ -2) == Blocks.air) {
+																																																																																																												if (world
+																																																																																																														.getBlock(
+																																																																																																																x + 0,
+																																																																																																																y + 0,
+																																																																																																																z
+																																																																																																																		+ -2) == Blocks.air) {
+																																																																																																													if (world
+																																																																																																															.getBlock(
+																																																																																																																	x
+																																																																																																																			+ -1,
+																																																																																																																	y + 0,
+																																																																																																																	z
+																																																																																																																			+ -2) == Blocks.air) {
+																																																																																																														if (world
+																																																																																																																.getBlock(
+																																																																																																																		x
+																																																																																																																				+ -2,
+																																																																																																																		y + 0,
+																																																																																																																		z
+																																																																																																																				+ -2) == Blocks.air) {
+																																																																																																															if (world
+																																																																																																																	.getBlock(
+																																																																																																																			x + 2,
+																																																																																																																			y + 1,
+																																																																																																																			z
+																																																																																																																					+ -2) == Blocks.air) {
+																																																																																																																if (world
+																																																																																																																		.getBlock(
+																																																																																																																				x + 1,
+																																																																																																																				y + 1,
+																																																																																																																				z
+																																																																																																																						+ -2) == Blocks.air) {
+																																																																																																																	if (world
+																																																																																																																			.getBlock(
+																																																																																																																					x + 0,
+																																																																																																																					y + 1,
+																																																																																																																					z
+																																																																																																																							+ -2) == Blocks.air) {
+																																																																																																																		if (world
+																																																																																																																				.getBlock(
+																																																																																																																						x
+																																																																																																																								+ -1,
+																																																																																																																						y + 1,
+																																																																																																																						z
+																																																																																																																								+ -2) == Blocks.air) {
+																																																																																																																			if (world
+																																																																																																																					.getBlock(
+																																																																																																																							x
+																																																																																																																									+ -2,
+																																																																																																																							y + 1,
+																																																																																																																							z
+																																																																																																																									+ -2) == Blocks.air) {
+																																																																																																																				if (world
+																																																																																																																						.getBlock(
+																																																																																																																								x + 2,
+																																																																																																																								y + 2,
+																																																																																																																								z
+																																																																																																																										+ -2) == Blocks.air) {
+																																																																																																																					if (world
+																																																																																																																							.getBlock(
+																																																																																																																									x + 1,
+																																																																																																																									y + 2,
+																																																																																																																									z
+																																																																																																																											+ -2) == Blocks.air) {
+																																																																																																																						if (world
+																																																																																																																								.getBlock(
+																																																																																																																										x + 0,
+																																																																																																																										y + 2,
+																																																																																																																										z
+																																																																																																																												+ -2) == Blocks.air) {
+																																																																																																																							if (world
+																																																																																																																									.getBlock(
+																																																																																																																											x
+																																																																																																																													+ -1,
+																																																																																																																											y + 2,
+																																																																																																																											z
+																																																																																																																													+ -2) == Blocks.air) {
+																																																																																																																								if (world
+																																																																																																																										.getBlock(
+																																																																																																																												x
+																																																																																																																														+ -2,
+																																																																																																																												y + 2,
+																																																																																																																												z
+																																																																																																																														+ -2) == Blocks.air) {
+																																																																																																																									if (world
+																																																																																																																											.getBlock(
+																																																																																																																													x + 2,
+																																																																																																																													y + 3,
+																																																																																																																													z
+																																																																																																																															+ -2) == Blocks.air) {
+																																																																																																																										if (world
+																																																																																																																												.getBlock(
+																																																																																																																														x + 1,
+																																																																																																																														y + 3,
+																																																																																																																														z
+																																																																																																																																+ -2) == Blocks.air) {
+																																																																																																																											if (world
+																																																																																																																													.getBlock(
+																																																																																																																															x + 0,
+																																																																																																																															y + 3,
+																																																																																																																															z
+																																																																																																																																	+ -2) == Blocks.air) {
+																																																																																																																												if (world
+																																																																																																																														.getBlock(
+																																																																																																																																x
+																																																																																																																																		+ -1,
+																																																																																																																																y + 3,
+																																																																																																																																z
+																																																																																																																																		+ -2) == Blocks.air) {
+																																																																																																																													if (world
+																																																																																																																															.getBlock(
+																																																																																																																																	x
+																																																																																																																																			+ -2,
+																																																																																																																																	y + 3,
+																																																																																																																																	z
+																																																																																																																																			+ -2) == Blocks.air) {
+																																																																																																																														return true;
+																																																																																																																													}
+																																																																																																																												}
+																																																																																																																											}
+																																																																																																																										}
+																																																																																																																									}
+																																																																																																																								}
+																																																																																																																							}
+																																																																																																																						}
+																																																																																																																					}
+																																																																																																																				}
+																																																																																																																			}
+																																																																																																																		}
+																																																																																																																	}
+																																																																																																																}
+																																																																																																															}
+																																																																																																														}
+																																																																																																													}
+																																																																																																												}
+																																																																																																											}
+																																																																																																										}
+																																																																																																									}
+																																																																																																								}
+																																																																																																							}
+																																																																																																						}
+																																																																																																					}
+																																																																																																				}
+																																																																																																			}
+																																																																																																		}
+																																																																																																	}
+																																																																																																}
+																																																																																															}
+																																																																																														}
+																																																																																													}
+																																																																																												}
+																																																																																											}
+																																																																																										}
+																																																																																									}
+																																																																																								}
+																																																																																							}
+																																																																																						}
+																																																																																					}
+																																																																																				}
+																																																																																			}
+																																																																																		}
+																																																																																	}
+																																																																																}
+																																																																															}
+																																																																														}
+																																																																													}
+																																																																												}
+																																																																											}
+																																																																										}
+																																																																									}
+																																																																								}
+																																																																							}
+																																																																						}
+																																																																					}
+																																																																				}
+																																																																			}
+																																																																		}
+																																																																	}
+																																																																}
+																																																															}
+																																																														}
+																																																													}
+																																																												}
+																																																											}
+																																																										}
+																																																									}
+																																																								}
+																																																							}
+																																																						}
+																																																					}
+																																																				}
+																																																			}
+																																																		}
+																																																	}
+																																																}
+																																															}
+																																														}
+																																													}
+																																												}
+																																											}
+																																										}
+																																									}
+																																								}
+																																							}
+																																						}
+																																					}
+																																				}
+																																			}
+																																		}
+																																	}
+																																}
+																															}
+																														}
+																													}
+																												}
+																											}
+																										}
+																									}
+																								}
+																							}
+																						}
+																					}
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		return false;
 	}
 	
 }

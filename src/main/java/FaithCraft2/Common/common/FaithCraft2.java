@@ -49,13 +49,11 @@ import FaithCraft2.Common.common.items.Quran;
 import FaithCraft2.Common.common.items.Torah;
 import FaithCraft2.Common.common.items.WineBucket;
 import FaithCraft2.Common.common.tileEntity.TileEntityAltar;
-import FaithCraft2.Common.common.tileEntity.TileEntityAltarMB;
 import FaithCraft2.Common.common.tileEntity.TileEntityHolyForge;
 import FaithCraft2.Common.common.worldgen.HolyWorldGen;
 import FaithCraft2.Common.common.worldgen.WorldGenChurch;
 import FaithCraft2.Common.common.worldgen.WorldGenTemple;
 import FaithCraft2.Common.common.blocks.HolyBlock;
-import FaithCraft2.Common.common.blocks.AltarMB;
 
 import com.google.common.base.Throwables;
 import com.google.common.collect.ObjectArrays;
@@ -145,7 +143,6 @@ public static CommonProxy proxy;
 		WineBlock = new WineBlock(Wine, Material.water).setBlockName("Wine");
 		HeavenPortal = new HeavenPortal(3014).setBlockName("HeavenPortal").setBlockTextureName("FaithCraft2:HeavenPortal");
 		HolyBlock = new HolyBlock(3015, Material.rock).setBlockName("HolyBlock");
-		AltarMB = new AltarMB(3016, Material.rock).setBlockName("AltarMB");
 		
 		Bible = new Bible(3001).setUnlocalizedName("Bible").setTextureName("FaithCraft2:Bible");
 		BodyOFChrist = new BodyOFChrist(3002).setUnlocalizedName("BodyOFChrist").setTextureName("FaithCraft2:BodyOFChrist");
@@ -173,7 +170,6 @@ public static CommonProxy proxy;
 		GameRegistry.registerBlock(WineBlock, "WineBlock");
 		GameRegistry.registerBlock(HeavenPortal, "HeavenPortal");
 		GameRegistry.registerBlock(HolyBlock, "HolyBlock");
-		GameRegistry.registerBlock(AltarMB, "AltarMB");
 		
 		GameRegistry.registerItem(Bible, "Bible");
 		GameRegistry.registerItem(BodyOFChrist, "BodyOFChrist");
@@ -210,7 +206,6 @@ public static CommonProxy proxy;
 		
 		GameRegistry.registerTileEntity(TileEntityAltar.class, "Altar");
 		GameRegistry.registerTileEntity(TileEntityHolyForge.class, "HolyForge");
-		GameRegistry.registerTileEntity(TileEntityAltarMB.class, "TileEntityAltarMB");
 		
 		FMLCommonHandler.instance().bus().register(new CraftingHandler());
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
