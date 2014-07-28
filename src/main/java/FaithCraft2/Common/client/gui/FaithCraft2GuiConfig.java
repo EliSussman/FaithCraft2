@@ -8,13 +8,13 @@ import cpw.mods.fml.client.config.GuiConfig;
 import FaithCraft2.Common.common.FaithCraft2;
 
 public class FaithCraft2GuiConfig extends GuiConfig{
-	public FaithCraft2GuiConfig(GuiScreen guiScreen){
-		super(guiScreen,
-				new ConfigElement(ConfigHandler.configuration.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements(),
-				FaithCraft2.modid,
-				false,
-				false,
-				GuiConfig.getAbridgedConfigPath(ConfigHandler.configuration.toString())
-				);
+	public FaithCraft2GuiConfig(GuiScreen guiScreen)
+	{
+		super (guiScreen,
+				new ConfigElement(ConfigHandler.config.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements(),
+					FaithCraft2.modid,
+					false,
+					false,
+					GuiConfig.getAbridgedConfigPath(ConfigHandler.config.toString()));
 	}
 }

@@ -132,6 +132,7 @@ public static CommonProxy proxy;
 		proxy.registerRenderThings();
 		
 		ConfigHandler.init(preEvent.getSuggestedConfigurationFile());
+		FMLCommonHandler.instance().bus().register(new ConfigHandler());
 		
 		Wine = new Fluid("Wine").setViscosity(900).setTemperature(250);
 		FluidRegistry.registerFluid(Wine);
@@ -203,7 +204,7 @@ public static CommonProxy proxy;
 		DimensionManager.registerProviderType(HeavenId, WorldProviderHeaven.class, true);
 		DimensionManager.registerDimension(HeavenId, HeavenId);
 	}
-	
+
 	@EventHandler
 	public void Init(FMLInitializationEvent event){
 		
