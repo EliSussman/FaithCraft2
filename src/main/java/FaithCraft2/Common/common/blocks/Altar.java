@@ -43,7 +43,6 @@ public class Altar extends BlockContainer{
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
 		if(!world.isRemote && isMultiBlockStructure(world, x, y, z)) {
 			FMLNetworkHandler.openGui(player, FaithCraft2.instance, FaithCraft2.guiIDAltar, world, x, y, z);
-			System.out.println("Hello Eli");
 		}
 		return true;
 	}
