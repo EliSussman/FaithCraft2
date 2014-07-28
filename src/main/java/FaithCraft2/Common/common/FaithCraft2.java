@@ -35,6 +35,7 @@ import FaithCraft2.Common.common.blocks.WineBlock;
 import FaithCraft2.Common.common.dimension.HeavenPortal;
 import FaithCraft2.Common.common.dimension.WorldProviderHeaven;
 import FaithCraft2.Common.common.handler.BucketHandler;
+import FaithCraft2.Common.common.handler.ConfigHandler;
 import FaithCraft2.Common.common.handler.CraftingHandler;
 import FaithCraft2.Common.common.handler.GuiHandler;
 import FaithCraft2.Common.common.items.Bible;
@@ -71,10 +72,11 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = FaithCraft2.modid, version = FaithCraft2.version)
+@Mod(modid = FaithCraft2.modid, version = FaithCraft2.version, guiFactory = FaithCraft2.guiFactory)
 public class FaithCraft2{
 	public static final String modid = "FaithCraft2";
 	public static final String version = "2.0 Alpha";
+	public static final String guiFactory = "FaithCraft2.Common.client.gui.GuiFactory";
 
 public static HolyWorldGen worldgen1 = new HolyWorldGen();
 
@@ -128,6 +130,8 @@ public static CommonProxy proxy;
 	@EventHandler
 	public void PreInit(FMLPreInitializationEvent preEvent){
 		proxy.registerRenderThings();
+		
+		ConfigHandler.init(preEvent.getSuggestedConfigurationFile());
 		
 		Wine = new Fluid("Wine").setViscosity(900).setTemperature(250);
 		FluidRegistry.registerFluid(Wine);
