@@ -4,18 +4,28 @@ package FaithCraft2.Common.common.worldgen;
 
 import java.util.Random;
 
+import javafx.geometry.BoundingBox;
 import cpw.mods.fml.common.IWorldGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemDoor;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraft.world.gen.structure.StructureBoundingBox;
+import net.minecraftforge.common.ChestGenHooks;
 import FaithCraft2.Common.common.FaithCraft2;
 
 public class WorldGenChurch extends WorldGenerator implements IWorldGenerator
 {
+
 	protected Block[] GetValidSpawnBlocks()
 	{
 		return new Block[]
@@ -1022,6 +1032,25 @@ public class WorldGenChurch extends WorldGenerator implements IWorldGenerator
 		world.setBlock(i + 4, j + 12, k + 4, Blocks.glass, 0, 3);
 		world.setBlock(i + 5, j + 12, k + 4, Blocks.chest, 2, 3);
 		world.setBlock(i + 6, j + 12, k + 4, Blocks.chest, 2, 3);
+		TileEntityChest tileentitychest = (TileEntityChest)world.getTileEntity(i+6, j+12, k+4);
+		 int l3 = 0;
+		 do
+		 {
+			 if (l3 >= 20)
+			 {
+				 break;
+			 }
+			 ItemStack itemstack = pickCheckLootItem(rand);
+			 if (itemstack != null)
+			 {
+				 tileentitychest.setInventorySlotContents(rand.nextInt(tileentitychest.getSizeInventory()), itemstack);
+			 }
+			 l3++;
+		 }
+		 while (true);
+		 tileentitychest.setInventorySlotContents(7, new ItemStack(FaithCraft2.Cross));
+		 tileentitychest.setInventorySlotContents(10, new ItemStack(Items.diamond));
+		 tileentitychest.setInventorySlotContents(13, new ItemStack(FaithCraft2.HolyCross));
 		world.setBlock(i + 7, j + 12, k + 4, Blocks.glass, 0, 3);
 		world.setBlock(i + 5, j + 12, k + 5, Blocks.glass, 0, 3);
 		world.setBlock(i + 6, j + 12, k + 5, Blocks.glass, 0, 3);
@@ -1161,9 +1190,24 @@ public class WorldGenChurch extends WorldGenerator implements IWorldGenerator
 		}
 	}
 
+	private ItemStack pickCheckLootItem(Random rand) {
+		return null;
+	}
+
+	private void generateStructureChestContents(World world, Random rand,
+			int i, int j, int k, WeightedRandomChestContent[] churchGenChest,
+			int l) {
+		
+	}
+
 	@Override
 	public boolean generate(World var1, Random var2, int var3, int var4,
 			int var5) {
 		return false;
 	}
+	
+	protected static final WeightedRandomChestContent[] Church_Gen_Chest = new WeightedRandomChestContent[] {
+			new WeightedRandomChestContent(Items.diamond, 0, 1, 3, 5),
+			new WeightedRandomChestContent(new ItemStack(FaithCraft2.Cross), 1, 7, 100),
+			new WeightedRandomChestContent(new ItemStack(FaithCraft2.HolyCross), 1, 1, 1000)};
 }

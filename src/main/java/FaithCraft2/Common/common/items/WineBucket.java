@@ -17,39 +17,5 @@ public class WineBucket extends ItemBucket{
 		super(fluidBlock);
 		this.setCreativeTab(FaithCraft2.FaithCraft2Tab);
 	}
-	
-	public ItemStack onEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
-    {
-        if (!par3EntityPlayer.capabilities.isCreativeMode)
-        {
-            --par1ItemStack.stackSize;
-        }
-
-        if (!par2World.isRemote)
-        {
-            par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.regeneration.id, 600, 4));
-            par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 600, 4));
-            par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 600, 4));
-            par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.heal.id, 600, 4));
-        }
-
-        return par1ItemStack.stackSize <= 0 ? new ItemStack(Items.bucket) : par1ItemStack;
-    }
-
-	public EnumAction getItemUseAction(ItemStack par1ItemStack)
-    {
-        return EnumAction.drink;
-    }
-	
-    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
-    {
-        par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
-        return par1ItemStack;
-    }
-    
-    public int getMaxItemUseDuration(ItemStack par1ItemStack)
-    {
-        return 32;
-    }
 
 }
