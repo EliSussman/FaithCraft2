@@ -34,6 +34,7 @@ import FaithCraft2.Common.common.blocks.HolyStone;
 import FaithCraft2.Common.common.blocks.WineBlock;
 import FaithCraft2.Common.common.dimension.HeavenPortal;
 import FaithCraft2.Common.common.dimension.WorldProviderHeaven;
+import FaithCraft2.Common.common.entity.EntityMobRegistry;
 import FaithCraft2.Common.common.handler.BucketHandler;
 import FaithCraft2.Common.common.handler.ConfigHandler;
 import FaithCraft2.Common.common.handler.CraftingHandler;
@@ -129,6 +130,8 @@ public static CommonProxy proxy;
 
 	@EventHandler
 	public void PreInit(FMLPreInitializationEvent preEvent){
+		EntityMobRegistry.mainRegistry();
+		
 		proxy.registerRenderThings();
 		
 		ConfigHandler.init(preEvent.getSuggestedConfigurationFile());

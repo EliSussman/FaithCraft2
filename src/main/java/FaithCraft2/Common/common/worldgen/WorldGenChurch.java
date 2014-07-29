@@ -22,6 +22,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraftforge.common.ChestGenHooks;
 import FaithCraft2.Common.common.FaithCraft2;
+import FaithCraft2.Common.common.handler.ConfigHandler;
 
 public class WorldGenChurch extends WorldGenerator implements IWorldGenerator
 {

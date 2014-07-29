@@ -25,6 +25,7 @@ public class ConfigHandler
 	public static void loadConfiguration()
 	{
 		config.load();
+		
 		testValue = config.getBoolean("configValue", Configuration.CATEGORY_GENERAL, false, "This is just a test value");
 		
 		if (config.hasChanged())
