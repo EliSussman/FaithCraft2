@@ -20,4 +20,19 @@ public class WorldProviderHeaven extends WorldProvider{
 	public IChunkProvider createChunkGenerator(){
 		return new ChunkProviderHeaven(worldObj, worldObj.getSeed(), true);
 	}
+	
+	public String getWelcomeMessage()
+	{
+		return "Entering Heaven";
+	}
+
+	/** Can player re-spawn here **/
+	public boolean canRespawnHere()
+	{
+		return false;
+	}
+	protected synchronized String setUserMessage(String par1Str)
+	{
+		return "Becoming an Angel";
+	}
 }

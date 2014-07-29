@@ -1,12 +1,16 @@
 package FaithCraft2.Common.common.dimension;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPortal;
 import net.minecraft.block.material.MapColor;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import FaithCraft2.Common.common.FaithCraft2;
 
@@ -45,7 +49,7 @@ public class HeavenPortal extends BlockPortal
             }
         }
     }
- 
+    
     @Override
     public boolean func_150000_e(World par1World, int par2, int par3, int par4)
     {
@@ -95,7 +99,7 @@ public class HeavenPortal extends BlockPortal
                                 return false;
                             }
                         }
-                        else if (!isAirBlock && j1 != Blocks.fire)
+                        else if (!isAirBlock && j1 != FaithCraft2.WineBlock)
                         {
                             return false;
                         }
@@ -170,4 +174,16 @@ public class HeavenPortal extends BlockPortal
             }
         }
     }
+    
+    @Override
+	public IIcon getIcon(int par1, int par2)
+	{
+		return this.blockIcon;
+	}
+
+	@SideOnly(Side.CLIENT)
+	public void registerBlockIcons(IIconRegister par1IconRegister)
+	{
+		blockIcon = par1IconRegister.registerIcon(FaithCraft2.modid + ":" + "HeavenPortal");
+	} 
 }
