@@ -3,8 +3,6 @@
 package FaithCraft2.Common.common.worldgen;
 
 import java.util.Random;
-
-import javafx.geometry.BoundingBox;
 import cpw.mods.fml.common.IWorldGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
