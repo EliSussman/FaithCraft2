@@ -33,10 +33,6 @@ public class TeleporterHeaven extends Teleporter {
      * location.
      */
     private final List destinationCoordinateKeys = new ArrayList();
-    private static final String __OBFID = "CL_00000153";
-
-
-
 
     public TeleporterHeaven(WorldServer par1WorldServer){
         super(par1WorldServer);
@@ -88,15 +84,15 @@ public class TeleporterHeaven extends Teleporter {
     /**
      * Place an entity in a nearby portal which already exists.
      */
-    public boolean placeInExistingPortal(Entity par1Entity, double par2, double par4, double par6, float par8)
+    public boolean placeInExistingPortal(Entity p_77184_1_, double p_77184_2_, double p_77184_4_, double p_77184_6_, float p_77184_8_)
     {
         short short1 = 128;
         double d3 = -1.0D;
         int i = 0;
         int j = 0;
         int k = 0;
-        int l = MathHelper.floor_double(par1Entity.posX);
-        int i1 = MathHelper.floor_double(par1Entity.posZ);
+        int l = MathHelper.floor_double(p_77184_1_.posX);
+        int i1 = MathHelper.floor_double(p_77184_1_.posZ);
         long j1 = ChunkCoordIntPair.chunkXZ2Int(l, i1);
         boolean flag = true;
         double d7;
@@ -116,22 +112,22 @@ public class TeleporterHeaven extends Teleporter {
         {
             for (l3 = l - short1; l3 <= l + short1; ++l3)
             {
-                double d4 = (double)l3 + 0.5D - par1Entity.posX;
+                double d4 = (double)l3 + 0.5D - p_77184_1_.posX;
 
                 for (int l1 = i1 - short1; l1 <= i1 + short1; ++l1)
                 {
-                    double d5 = (double)l1 + 0.5D - par1Entity.posZ;
+                    double d5 = (double)l1 + 0.5D - p_77184_1_.posZ;
 
                     for (int i2 = this.worldServerInstance.getActualHeight() - 1; i2 >= 0; --i2)
                     {
-                        if (this.worldServerInstance.getBlock(l3, i2, l1) == FaithCraft2.HeavenPortal)
+                        if (this.worldServerInstance.getBlock(l3, i2, l1) == Blocks.portal)
                         {
-                            while (this.worldServerInstance.getBlock(l3, i2 - 1, l1) == FaithCraft2.HeavenPortal)
+                            while (this.worldServerInstance.getBlock(l3, i2 - 1, l1) == Blocks.portal)
                             {
                                 --i2;
                             }
 
-                            d7 = (double)i2 + 0.5D - par1Entity.posY;
+                            d7 = (double)i2 + 0.5D - p_77184_1_.posY;
                             double d8 = d4 * d4 + d7 * d7 + d5 * d5;
 
                             if (d3 < 0.0D || d8 < d3)
@@ -180,7 +176,7 @@ public class TeleporterHeaven extends Teleporter {
                 i4 = 1;
             }
 
-            int j2 = par1Entity.getTeleportDirection();
+            int j2 = p_77184_1_.getTeleportDirection();
 
             if (i4 > -1)
             {
@@ -252,18 +248,18 @@ public class TeleporterHeaven extends Teleporter {
                     f6 = 1.0F;
                 }
 
-                double d9 = par1Entity.motionX;
-                double d10 = par1Entity.motionZ;
-                par1Entity.motionX = d9 * (double)f3 + d10 * (double)f6;
-                par1Entity.motionZ = d9 * (double)f5 + d10 * (double)f4;
-                par1Entity.rotationYaw = par8 - (float)(j2 * 90) + (float)(i4 * 90);
+                double d9 = p_77184_1_.motionX;
+                double d10 = p_77184_1_.motionZ;
+                p_77184_1_.motionX = d9 * (double)f3 + d10 * (double)f6;
+                p_77184_1_.motionZ = d9 * (double)f5 + d10 * (double)f4;
+                p_77184_1_.rotationYaw = p_77184_8_ - (float)(j2 * 90) + (float)(i4 * 90);
             }
             else
             {
-                par1Entity.motionX = par1Entity.motionY = par1Entity.motionZ = 0.0D;
+                p_77184_1_.motionX = p_77184_1_.motionY = p_77184_1_.motionZ = 0.0D;
             }
 
-            par1Entity.setLocationAndAngles(d11, d6, d7, par1Entity.rotationYaw, par1Entity.rotationPitch);
+            p_77184_1_.setLocationAndAngles(d11, d6, d7, p_77184_1_.rotationYaw, p_77184_1_.rotationPitch);
             return true;
         }
         else

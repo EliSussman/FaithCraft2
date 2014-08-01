@@ -92,6 +92,7 @@ public class Jesus extends EntityCreature implements IBossDisplayData{
 		int z = z2 + rand.nextInt(15);
 
 		int y = worldObj.getHeightValue(x,z)-1;
+		
     	worldObj.setBlock(x + 0, y + 0, z + 0, FaithCraft2.HolyBlock, 0, 3);
 		worldObj.setBlock(x + 1, y + 0, z + 0, FaithCraft2.HolyBlock, 0, 3);
 		worldObj.setBlock(x + 2, y + 0, z + 0, FaithCraft2.HolyBlock, 0, 3);
