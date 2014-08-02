@@ -20,10 +20,10 @@ public class HeavenBiome extends BiomeGenBase{
 		this.heightVariation = 0;
 		this.enableSnow = true;
 		this.enableRain = false;
-		this.theBiomeDecorator.treesPerChunk = 0;
 		this.spawnableCreatureList.clear();
 		this.setTemperatureRainfall(0.8F, 0.4F);
-		
+		this.setColor(0xFFFFFF);
+		this.height_LowPlains.rootHeight = -2;
 		
 	}
 	
