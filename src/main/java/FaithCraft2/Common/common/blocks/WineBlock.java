@@ -72,24 +72,9 @@ public class WineBlock extends BlockFluidClassic{
         return world.getBlock(x, y, z).isFlammable(world, x, y, z, face);
     }
     
-    public void onBlockAdded(World world, int x, int y, int z)
-    {
-        if (world.getBlock(x, y - 1, z) == FaithCraft2.HolyBlock &&
-        		world.getBlock(x - 1, y - 1, z) == FaithCraft2.HolyBlock &&
-        		world.getBlock(x - 2, y - 1, z) == FaithCraft2.HolyBlock &&
-        		world.getBlock(x - 2, y, z) == FaithCraft2.HolyBlock &&
-        		world.getBlock(x - 2, y + 1, z) == FaithCraft2.HolyBlock &&
-        		world.getBlock(x - 2, y + 2, z) == FaithCraft2.HolyBlock &&
-        		world.getBlock(x - 2, y + 3, z) == FaithCraft2.HolyBlock &&
-        		world.getBlock(x - 1, y + 3, z) == FaithCraft2.HolyBlock &&
-        		world.getBlock(x, y + 3, z) == FaithCraft2.HolyBlock &&
-        		world.getBlock(x + 1, y + 3, z) == FaithCraft2.HolyBlock &&
-        		world.getBlock(x + 1, y + 2, z) == FaithCraft2.HolyBlock &&
-        		world.getBlock(x + 1, y + 1, z) == FaithCraft2.HolyBlock &&
-        		world.getBlock(x + 1, y, z) == FaithCraft2.HolyBlock &&
-        		world.getBlock(x + 1, y - 1, z) == FaithCraft2.HolyBlock ||
-        		
-        		world.getBlock(x, y - 1, z) == FaithCraft2.HolyBlock &&
+    
+    public void onBlockAdded(World world, int x, int y, int z){
+    	if(world.getBlock(x, y - 1, z) == FaithCraft2.HolyBlock &&
         		world.getBlock(x - 1, y - 1, z) == FaithCraft2.HolyBlock &&
         		world.getBlock(x - 1, y, z) == FaithCraft2.HolyBlock &&
         		world.getBlock(x - 1, y + 1, z) == FaithCraft2.HolyBlock &&
@@ -102,9 +87,36 @@ public class WineBlock extends BlockFluidClassic{
         		world.getBlock(x + 2, y + 1, z) == FaithCraft2.HolyBlock &&
         		world.getBlock(x + 2, y, z) == FaithCraft2.HolyBlock &&
         		world.getBlock(x + 2, y - 1, z) == FaithCraft2.HolyBlock &&
-        		world.getBlock(x + 1, y - 1, z) == FaithCraft2.HolyBlock ||
-        		
-        		world.getBlock(x, y - 1, z) == FaithCraft2.HolyBlock &&
+        		world.getBlock(x + 1, y - 1, z) == FaithCraft2.HolyBlock){
+    		world.setBlockToAir(x, y, z);
+        	world.setBlock(x, y, z, FaithCraft2.HeavenPortal, 0, 3);
+        	world.setBlock(x + 1, y, z, FaithCraft2.HeavenPortal, 0, 3);
+        	world.setBlock(x, y + 1, z, FaithCraft2.HeavenPortal, 0, 3);
+        	world.setBlock(x + 1, y + 1, z, FaithCraft2.HeavenPortal, 0, 3);
+        	world.setBlock(x, y + 2, z, FaithCraft2.HeavenPortal, 0, 3);
+        	world.setBlock(x + 1, y + 2, z, FaithCraft2.HeavenPortal, 0, 3);
+    	}else if(world.getBlock(x, y - 1, z) == FaithCraft2.HolyBlock &&
+        		world.getBlock(x - 1, y - 1, z) == FaithCraft2.HolyBlock &&
+        		world.getBlock(x - 2, y - 1, z) == FaithCraft2.HolyBlock &&
+        		world.getBlock(x - 2, y, z) == FaithCraft2.HolyBlock &&
+        		world.getBlock(x - 2, y + 1, z) == FaithCraft2.HolyBlock &&
+        		world.getBlock(x - 2, y + 2, z) == FaithCraft2.HolyBlock &&
+        		world.getBlock(x - 2, y + 3, z) == FaithCraft2.HolyBlock &&
+        		world.getBlock(x - 1, y + 3, z) == FaithCraft2.HolyBlock &&
+        		world.getBlock(x, y + 3, z) == FaithCraft2.HolyBlock &&
+        		world.getBlock(x + 1, y + 3, z) == FaithCraft2.HolyBlock &&
+        		world.getBlock(x + 1, y + 2, z) == FaithCraft2.HolyBlock &&
+        		world.getBlock(x + 1, y + 1, z) == FaithCraft2.HolyBlock &&
+        		world.getBlock(x + 1, y, z) == FaithCraft2.HolyBlock &&
+        		world.getBlock(x + 1, y - 1, z) == FaithCraft2.HolyBlock){
+    		world.setBlockToAir(x, y, z);
+    		world.setBlock(x, y, z, FaithCraft2.HeavenPortal, 0, 3);
+        	world.setBlock(x - 1, y, z, FaithCraft2.HeavenPortal, 0, 3);
+        	world.setBlock(x, y + 1, z, FaithCraft2.HeavenPortal, 0, 3);
+        	world.setBlock(x - 1, y + 1, z, FaithCraft2.HeavenPortal, 0, 3);
+        	world.setBlock(x, y + 2, z, FaithCraft2.HeavenPortal, 0, 3);
+        	world.setBlock(x - 1, y + 2, z, FaithCraft2.HeavenPortal, 0, 3);
+    	}else if(world.getBlock(x, y - 1, z) == FaithCraft2.HolyBlock &&
         		world.getBlock(x, y - 1, z - 1) == FaithCraft2.HolyBlock &&
         		world.getBlock(x, y, z - 1) == FaithCraft2.HolyBlock &&
         		world.getBlock(x, y + 1, z - 1) == FaithCraft2.HolyBlock &&
@@ -117,9 +129,15 @@ public class WineBlock extends BlockFluidClassic{
         		world.getBlock(x, y + 1, z + 2) == FaithCraft2.HolyBlock &&
         		world.getBlock(x, y, z + 2) == FaithCraft2.HolyBlock &&
         		world.getBlock(x, y - 1, z + 2) == FaithCraft2.HolyBlock &&
-        		world.getBlock(x, y - 1, z + 1) == FaithCraft2.HolyBlock ||
-        		
-        		world.getBlock(x, y - 1, z) == FaithCraft2.HolyBlock &&
+        		world.getBlock(x, y - 1, z + 1) == FaithCraft2.HolyBlock){
+    		world.setBlockToAir(x, y, z);
+    		world.setBlock(x, y, z, FaithCraft2.HeavenPortal, 0, 3);
+        	world.setBlock(x, y, z + 1, FaithCraft2.HeavenPortal, 0, 3);
+        	world.setBlock(x, y + 1, z, FaithCraft2.HeavenPortal, 0, 3);
+        	world.setBlock(x, y + 1, z + 1, FaithCraft2.HeavenPortal, 0, 3);
+        	world.setBlock(x, y + 2, z, FaithCraft2.HeavenPortal, 0, 3);
+        	world.setBlock(x, y + 2, z + 1, FaithCraft2.HeavenPortal, 0, 3);
+    	}else if(world.getBlock(x, y - 1, z) == FaithCraft2.HolyBlock &&
         		world.getBlock(x, y - 1, z + 1) == FaithCraft2.HolyBlock &&
         		world.getBlock(x, y, z + 1) == FaithCraft2.HolyBlock &&
         		world.getBlock(x, y + 1, z + 1) == FaithCraft2.HolyBlock &&
@@ -132,13 +150,15 @@ public class WineBlock extends BlockFluidClassic{
         		world.getBlock(x, y + 1, z - 2) == FaithCraft2.HolyBlock &&
         		world.getBlock(x, y, z - 2) == FaithCraft2.HolyBlock &&
         		world.getBlock(x, y - 1, z - 2) == FaithCraft2.HolyBlock &&
-        		world.getBlock(x, y - 1, z - 1) == FaithCraft2.HolyBlock
-        		){
-        	world.setBlockToAir(x, y, z);
-        	world.setBlock(x, y, z, FaithCraft2.HeavenPortal, 0, 3);
-        }else{
-        	System.out.println("Hello World!");
-        }
+        		world.getBlock(x, y - 1, z - 1) == FaithCraft2.HolyBlock){
+    		world.setBlockToAir(x, y, z);
+    		world.setBlock(x, y, z, FaithCraft2.HeavenPortal, 0, 3);
+        	world.setBlock(x, y, z - 1, FaithCraft2.HeavenPortal, 0, 3);
+        	world.setBlock(x, y + 1, z, FaithCraft2.HeavenPortal, 0, 3);
+        	world.setBlock(x, y + 1, z - 1, FaithCraft2.HeavenPortal, 0, 3);
+        	world.setBlock(x, y + 2, z, FaithCraft2.HeavenPortal, 0, 3);
+        	world.setBlock(x, y + 2, z - 1, FaithCraft2.HeavenPortal, 0, 3);
+    	}
     }
         
 }

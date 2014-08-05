@@ -1,178 +1,107 @@
 package FaithCraft2.Common.common.dimension;
 
+import java.util.List;
+
+import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockBreakable;
 import net.minecraft.block.BlockPortal;
 import net.minecraft.block.material.MapColor;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import FaithCraft2.Common.common.FaithCraft2;
 
-public class HeavenPortal extends BlockPortal
+public class HeavenPortal extends BlockBreakable
 {
-    public HeavenPortal(int id)
+	
+	
+    public HeavenPortal(int id, Material material)
     {
-        super();
+        super("HeavenPortal", material, true);
         this.setBlockName("HeavenPortal");
         setCreativeTab(FaithCraft2.FaithCraft2Tab);
     }
- 
-    @Override
-    public void onEntityCollidedWithBlock(World par1World, int par2, int par3, int par4, Entity par5Entity)
+    
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
     {
-        if ((par5Entity.ridingEntity == null) && (par5Entity.riddenByEntity == null) && ((par5Entity instanceof EntityPlayerMP)))
-        {
-            EntityPlayerMP player = (EntityPlayerMP) par5Entity;
- 
-            MinecraftServer mServer = MinecraftServer.getServer();
- 
-            if (player.timeUntilPortal > 0)
-            {
-                player.timeUntilPortal = 10;
-            }
-            else if (player.dimension != FaithCraft2.HeavenId)
-            {
-                player.timeUntilPortal = 10;
- 
-                player.mcServer.getConfigurationManager().transferPlayerToDimension(player, FaithCraft2.HeavenId, new TeleporterHeaven(mServer.worldServerForDimension(FaithCraft2.HeavenId)));
-            }
-            else
-            {
-                player.timeUntilPortal = 10;
-                player.mcServer.getConfigurationManager().transferPlayerToDimension(player, 0, new TeleporterHeaven(mServer.worldServerForDimension(1)));
-            }
-        }
+        return null;
     }
     
-    @Override
-    public boolean func_150000_e(World par1World, int par2, int par3, int par4)
+    public static int func_149999_b(int p_149999_0_)
     {
-        byte b0 = 0;
-        byte b1 = 0;
- 
-        if (par1World.getBlock(par2 - 1, par3, par4) == FaithCraft2.HolyBlock || par1World.getBlock(par2 + 1, par3, par4) == FaithCraft2.HolyBlock)
-        {
-            b0 = 1;
-        }
- 
-        if (par1World.getBlock(par2, par3, par4 - 1) == FaithCraft2.HolyBlock || par1World.getBlock(par2, par3, par4 + 1) == FaithCraft2.HolyBlock)
-        {
-            b1 = 1;
-        }
- 
-        if (b0 == b1)
-        {
-            return false;
-        }
-        else
-        {
-            if (par1World.isAirBlock(par2 - b0, par3, par4 - b1))
-            {
-                par2 -= b0;
-                par4 -= b1;
-            }
- 
-            int l;
-            int i1;
- 
-            for (l = -1; l <= 2; ++l)
-            {
-                for (i1 = -1; i1 <= 3; ++i1)
-                {
-                    boolean flag = l == -1 || l == 2 || i1 == -1 || i1 == 3;
- 
-                    if (l != -1 && l != 2 || i1 != -1 && i1 != 3)
-                    {
-                        Block j1 = par1World.getBlock(par2 + b0 * l, par3 + i1, par4 + b1 * l);
-                        boolean isAirBlock = par1World.isAirBlock(par2 + b0 * l, par3 + i1, par4 + b1 * l);
- 
-                        if (flag)
-                        {
-                            if (j1 != FaithCraft2.HolyBlock)
-                            {
-                                return false;
-                            }
-                        }
-                        else if (!isAirBlock && j1 != FaithCraft2.WineBlock)
-                        {
-                            return false;
-                        }
-                    }
-                }
-            }
- 
-            for (l = 0; l < 2; ++l)
-            {
-                for (i1 = 0; i1 < 3; ++i1)
-                {
-                    par1World.setBlock(par2 + b0 * l, par3 + i1, par4 + b1 * l, FaithCraft2.HeavenPortal, 0, 2);
-                }
-            }
- 
-            return true;
-        }
+        return p_149999_0_ & 3;
     }
- 
-    @Override
-    public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, Block par5)
+    
+    public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
     {
-        byte b0 = 0;
-        byte b1 = 1;
- 
-        if (par1World.getBlock(par2 - 1, par3, par4) == this || par1World.getBlock(par2 + 1, par3, par4) == this)
+    	if(!world.isRemote);
+
+    	   if (entity instanceof EntityPlayerMP)  {
+    	EntityPlayerMP	EMPlayer = (EntityPlayerMP) entity;
+    	int dimension = (entity.dimension == 0)? FaithCraft2.HeavenId : 0;
+        WorldServer worldserver = EMPlayer.mcServer.worldServerForDimension(dimension);
+    	TeleporterHeaven teleporter = new TeleporterHeaven (worldserver);
+    	EMPlayer.mcServer.getConfigurationManager().transferPlayerToDimension(EMPlayer, dimension, teleporter);
+    	   }
+    }
+    
+    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
+    {
+        int l = func_149999_b(p_149719_1_.getBlockMetadata(p_149719_2_, p_149719_3_, p_149719_4_));
+
+        if (l == 0)
         {
-            b0 = 1;
-            b1 = 0;
-        }
- 
-        int i1;
- 
-        for (i1 = par3; par1World.getBlock(par2, i1 - 1, par4) == this; --i1)
-        {
-            ;
-        }
- 
-        if (par1World.getBlock(par2, i1 - 1, par4) != FaithCraft2.HolyBlock)
-        {
-            par1World.setBlockToAir(par2, par3, par4);
-        }
-        else
-        {
-            int j1;
- 
-            for (j1 = 1; j1 < 4 && par1World.getBlock(par2, i1 + j1, par4) == this; ++j1)
+            if (p_149719_1_.getBlock(p_149719_2_ - 1, p_149719_3_, p_149719_4_) != this && p_149719_1_.getBlock(p_149719_2_ + 1, p_149719_3_, p_149719_4_) != this)
             {
-                ;
-            }
- 
-            if (j1 == 3 && par1World.getBlock(par2, i1 + j1, par4) == FaithCraft2.HolyBlock)
-            {
-                boolean flag = par1World.getBlock(par2 - 1, par3, par4) == this || par1World.getBlock(par2 + 1, par3, par4) == this;
-                boolean flag1 = par1World.getBlock(par2, par3, par4 - 1) == this || par1World.getBlock(par2, par3, par4 + 1) == this;
- 
-                if (flag && flag1)
-                {
-                    par1World.setBlockToAir(par2, par3, par4);
-                }
-                else
-                {
-                    if ((par1World.getBlock(par2 + b0, par3, par4 + b1) != FaithCraft2.HolyBlock || par1World.getBlock(par2 - b0, par3, par4 - b1) != this) && (par1World.getBlock(par2 - b0, par3, par4 - b1) != FaithCraft2.HolyBlock || par1World.getBlock(par2 + b0, par3, par4 + b1) != this))
-                    {
-                        par1World.setBlockToAir(par2, par3, par4);
-                    }
-                }
+                l = 2;
             }
             else
             {
-                par1World.setBlockToAir(par2, par3, par4);
+                l = 1;
+            }
+
+            if (p_149719_1_ instanceof World && !((World)p_149719_1_).isRemote)
+            {
+                ((World)p_149719_1_).setBlockMetadataWithNotify(p_149719_2_, p_149719_3_, p_149719_4_, l, 2);
             }
         }
+
+        float f = 0.125F;
+        float f1 = 0.125F;
+
+        if (l == 1)
+        {
+            f = 0.5F;
+        }
+
+        if (l == 2)
+        {
+            f1 = 0.5F;
+        }
+
+        this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f1, 0.5F + f, 1.0F, 0.5F + f1);
+    }
+    
+    public boolean renderAsNormalBlock()
+    {
+        return false;
+    }
+    
+    public boolean isOpaqueCube()
+    {
+        return false;
     }
     
     @Override

@@ -149,7 +149,7 @@ public static CommonProxy proxy;
 		HolyStone = new HolyStone(3010, Material.rock).setBlockName("HolyStone").setBlockTextureName("FaithCraft2:HolyStone");
 		HolyCobbleStone = new HolyCobbleStone(3011, Material.rock).setBlockName("HolyCobbleStone").setBlockTextureName("FaithCraft2:HolyCobbleStone");
 		WineBlock = new WineBlock(Wine, Material.water).setBlockName("Wine");
-		HeavenPortal = new HeavenPortal(3014).setBlockName("HeavenPortal").setBlockTextureName("FaithCraft2:HeavenPortal");
+		HeavenPortal = new HeavenPortal(3014, Material.portal).setBlockName("HeavenPortal").setBlockTextureName("FaithCraft2:HeavenPortal");
 		HolyBlock = new HolyBlock(3015, Material.rock).setBlockName("HolyBlock");
 		
 		Bible = new Bible(3001).setUnlocalizedName("Bible").setTextureName("FaithCraft2:Bible");

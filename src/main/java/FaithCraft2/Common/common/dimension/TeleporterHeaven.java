@@ -7,6 +7,7 @@ import java.util.Random;
 
 import FaithCraft2.Common.common.FaithCraft2;
 import net.minecraft.block.Block;
+import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.Direction;
@@ -34,10 +35,10 @@ public class TeleporterHeaven extends Teleporter {
      */
     private final List destinationCoordinateKeys = new ArrayList();
 
-    public TeleporterHeaven(WorldServer par1WorldServer){
-        super(par1WorldServer);
-        this.worldServerInstance = par1WorldServer;
-        this.random = new Random(par1WorldServer.getSeed());
+    public TeleporterHeaven(WorldServer worldserver){
+        super(worldserver);
+        this.worldServerInstance = worldserver;
+        this.random = new Random(worldserver.getSeed());
     }
 
     /**
