@@ -45,17 +45,27 @@ public class HeavenPortal extends BlockBreakable
     }
     
     public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
-    {
+    {	
     	if(!world.isRemote);
 
     	   if (entity instanceof EntityPlayerMP)  {
     	EntityPlayerMP	EMPlayer = (EntityPlayerMP) entity;
-    	int dimension = (entity.dimension == 0)? FaithCraft2.HeavenId : 0;
+    	int dimension = FaithCraft2.HeavenId;
         WorldServer worldserver = EMPlayer.mcServer.worldServerForDimension(dimension);
     	TeleporterHeaven teleporter = new TeleporterHeaven (worldserver);
     	EMPlayer.mcServer.getConfigurationManager().transferPlayerToDimension(EMPlayer, dimension, teleporter);
+    	
+    	/*double par2 = 0;
+    	double par4 = 0;
+    	double par6 = 0;
+    	float par8 = 0;
+    	int x2 = 0;
+    	int z2 = 0;
+    	(teleporter).placeInPortal(entity, par2, par4, par6, par8);*/
     	   }
+    	
     }
+    
     
     public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
