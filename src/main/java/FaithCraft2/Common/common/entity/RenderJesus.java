@@ -20,7 +20,6 @@ import FaithCraft2.Common.common.entity.Jesus;;
 @SideOnly(Side.CLIENT)
 public class RenderJesus extends RenderLiving
 {
-	private int field_82419_a;
     private static final ResourceLocation jesusTextures = new ResourceLocation("faithcraft2:textures/entity/Jesus.png");
 
     public RenderJesus(ModelJesus jesus, float p_i1253_2_)

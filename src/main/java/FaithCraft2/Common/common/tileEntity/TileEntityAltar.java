@@ -108,6 +108,7 @@ public class TileEntityAltar extends TileEntity implements ISidedInventory{
 		return true;
 	}
 
+	@Override
     public void readFromNBT(NBTTagCompound p_145839_1_)
     {
         super.readFromNBT(p_145839_1_);
@@ -131,6 +132,7 @@ public class TileEntityAltar extends TileEntity implements ISidedInventory{
         }
     }
 
+	@Override
     public void writeToNBT(NBTTagCompound p_145841_1_)
     {
         super.writeToNBT(p_145841_1_);
@@ -154,7 +156,9 @@ public class TileEntityAltar extends TileEntity implements ISidedInventory{
             p_145841_1_.setString("CustomName", this.localizedName);
         }
     }
-    public ItemStack getStackInSlotOnClosing(int par1)
+    
+	@Override
+	public ItemStack getStackInSlotOnClosing(int par1)
     {
         if (this.slots[par1] != null)
         {

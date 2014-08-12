@@ -19,6 +19,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import FaithCraft2.Common.common.FaithCraft2;
@@ -46,23 +47,36 @@ public class HeavenPortal extends BlockBreakable
     
     public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
     {	
-    	if(!world.isRemote);
+    	if(entity.dimension != FaithCraft2.HeavenId){
 
     	   if (entity instanceof EntityPlayerMP)  {
     	EntityPlayerMP	EMPlayer = (EntityPlayerMP) entity;
-    	int dimension = FaithCraft2.HeavenId;
-        WorldServer worldserver = EMPlayer.mcServer.worldServerForDimension(dimension);
-    	TeleporterHeaven teleporter = new TeleporterHeaven (worldserver);
-    	EMPlayer.mcServer.getConfigurationManager().transferPlayerToDimension(EMPlayer, dimension, teleporter);
+    	int dimensionHeaven = FaithCraft2.HeavenId;
+        WorldServer worldserver = EMPlayer.mcServer.worldServerForDimension(dimensionHeaven);
+    	TeleporterHeaven teleporterHeaven = new TeleporterHeaven (worldserver);
+    	EMPlayer.mcServer.getConfigurationManager().transferPlayerToDimension(EMPlayer, dimensionHeaven, teleporterHeaven);
     	
-    	/*double par2 = 0;
+    	double par2 = 0;
     	double par4 = 0;
     	double par6 = 0;
     	float par8 = 0;
-    	int x2 = 0;
-    	int z2 = 0;
-    	(teleporter).placeInPortal(entity, par2, par4, par6, par8);*/
+    	(teleporterHeaven).placeInPortal(entity, par2, par4, par6, par8);
     	   }
+    	}else if(entity.dimension == FaithCraft2.HeavenId){
+	    	
+		if (entity instanceof EntityPlayerMP)  {
+			EntityPlayerMP	EMPlayer = (EntityPlayerMP) entity;
+	    	int dimension = FaithCraft2.HeavenId;
+	        WorldServer worldserver = EMPlayer.mcServer.worldServerForDimension(dimension);
+	    	TeleporterHeaven teleporterHeaven = new TeleporterHeaven (worldserver);
+	    	
+	    	double par2 = 0;
+	    	double par4 = 0;
+	    	double par6 = 0;
+	    	float par8 = 0;
+	    	(teleporterHeaven).placeInExistingPortal(entity, par2, par4, par6, par8);
+		}
+    	}
     	
     }
     

@@ -11,6 +11,7 @@ public class EntityMobRegistry {
 
 	private static void registerEntity() {
 		createEntity(Jesus.class, "Jesus", 0xD1CE1B, 0x4A3503);
+		createEntity(Angel.class, "Angel", 0xD1CE1B, 0xffffff);
 	}
 	
 	public static void createEntity(Class entityClass, String entityName, int solid, int spots){
@@ -19,6 +20,7 @@ public class EntityMobRegistry {
 		EntityRegistry.registerGlobalEntityID(entityClass, entityName, randomID);
 		EntityRegistry.registerModEntity(entityClass, entityName, randomID, FaithCraft2.instance, 64, 1, true);
 		createEgg(randomID, solid, spots);
+		
 	}
 
 	private static void createEgg(int randomID, int solid, int spots) {
