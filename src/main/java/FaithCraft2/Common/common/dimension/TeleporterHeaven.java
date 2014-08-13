@@ -87,9 +87,9 @@ public class TeleporterHeaven extends Teleporter{
         {
             if (!this.placeInExistingPortal(entity, p_77185_2_, p_77185_4_, p_77185_6_, p_77185_8_))
             {
-            	this.placeInExistingPortal(entity, p_77185_2_, p_77185_4_, p_77185_6_, p_77185_8_);
+                this.createHeavenPortal(entity);
+                this.placeInExistingPortal(entity, p_77185_2_, p_77185_4_, p_77185_6_, p_77185_8_);
             }
-            this.createHeavenPortal(entity);
         }
         else
         {
@@ -113,12 +113,16 @@ public class TeleporterHeaven extends Teleporter{
                     }
                 }
             }
+
             entity.setLocationAndAngles((double)i, (double)j, (double)k, entity.rotationYaw, 0.0F);
             entity.motionX = entity.motionY = entity.motionZ = 0.0D;
         }
     }
-    
-    public boolean placeInExistingPortal(Entity entity, double p_77185_2_, double p_771845_4_, double p_77185_6_, float p_77185_8_)
+
+    /**
+     * Place an entity in a nearby portal which already exists.
+     */
+    public boolean placeInExistingPortal(Entity entity, double p_77184_2_, double p_77184_4_, double p_77184_6_, float p_77184_8_)
     {
         short short1 = 128;
         double d3 = -1.0D;
@@ -221,6 +225,7 @@ public class TeleporterHeaven extends Teleporter{
                 int k3 = Direction.offsetZ[k2];
                 boolean flag1 = !this.worldServerInstance.isAirBlock(i + l2 + j3, j, k + i3 + k3) || !this.worldServerInstance.isAirBlock(i + l2 + j3, j + 1, k + i3 + k3);
                 boolean flag2 = !this.worldServerInstance.isAirBlock(i + l2, j, k + i3) || !this.worldServerInstance.isAirBlock(i + l2, j + 1, k + i3);
+
                 if (flag1 && flag2)
                 {
                     i4 = Direction.rotateOpposite[i4];
@@ -243,20 +248,14 @@ public class TeleporterHeaven extends Teleporter{
                 if (!flag1 && flag2)
                 {
                     f1 = 1.0F;
-                    
-                    
                 }
                 else if (flag1 && !flag2)
                 {
                     f1 = 0.0F;
-                    
-                    
                 }
                 else if (flag1 && flag2)
                 {
                     f2 = 0.0F;
-                    
-                    
                 }
 
                 d11 += (double)((float)j3 * f1 + f2 * (float)l2);
@@ -270,210 +269,75 @@ public class TeleporterHeaven extends Teleporter{
                 {
                     f3 = 1.0F;
                     f4 = 1.0F;
-                    
-                    
                 }
                 else if (i4 == Direction.rotateOpposite[j2])
                 {
                     f3 = -1.0F;
                     f4 = -1.0F;
-                    
-                    
                 }
                 else if (i4 == Direction.rotateRight[j2])
                 {
                     f5 = 1.0F;
                     f6 = -1.0F;
-                    
-                    
                 }
                 else
                 {
                     f5 = -1.0F;
                     f6 = 1.0F;
-                    
-                    
                 }
 
                 double d9 = entity.motionX;
                 double d10 = entity.motionZ;
                 entity.motionX = d9 * (double)f3 + d10 * (double)f6;
                 entity.motionZ = d9 * (double)f5 + d10 * (double)f4;
-                entity.rotationYaw = p_77185_8_ - (float)(j2 * 90) + (float)(i4 * 90);
-                
-                
+                entity.rotationYaw = p_77184_8_ - (float)(j2 * 90) + (float)(i4 * 90);
             }
             else
             {
                 entity.motionX = entity.motionY = entity.motionZ = 0.0D;
-                
-                
             }
-            entity.timeUntilPortal = 10;
-            entity.setLocationAndAngles(i + 3, j + 3, k + 3, entity.rotationYaw, entity.rotationPitch);
+
+            entity.setLocationAndAngles(d11 + 3, d6, d7 + 3, entity.rotationYaw, entity.rotationPitch);
             return true;
         }
         else
         {
-            return true;
+            return false;
         }
     }
     
-    
-    /*if(entity.dimension == FaithCraft2.HeavenId){
-			EMPlayer.mcServer.getConfigurationManager().transferPlayerToDimension(EMPlayer, dimension, this);
-			if(worldserver.getBlock(x, y, z) instanceof HeavenPortal){
-				EMPlayer.setLocationAndAngles(x + 3, y, z + 3, entity.rotationYaw, entity.rotationPitch);
-				System.out.println("Hello2");
-			}else{
-			this.createHeavenPortal(x, z, worldserver);
-			EMPlayer.setLocationAndAngles(x + 3, y, z + 3, entity.rotationYaw, entity.rotationPitch);
-			System.out.println("Hello3");
-			}
-		}
-    	return true;*/
-    
-    /*public boolean placeInExistingPortal(Entity entity, double par2, double par4, double par6, float par8){
-		
-		int x = 0;
-		int z = 0;
-		int y = worldServerInstance.getHeightValue(x,z);
-		
-		EntityPlayerMP	EMPlayer = (EntityPlayerMP) entity;
-    	int dimension = 0;
-        WorldServer worldserver = EMPlayer.mcServer.worldServerForDimension(dimension);
-        
-      if(entity.dimension == FaithCraft2.HeavenId){
-        EMPlayer.mcServer.getConfigurationManager().transferPlayerToDimension(EMPlayer, dimension, this);
-        if(
-        		worldserver.getBlock(x, y, z) instanceof HolyBlock &&
-				worldserver.getBlock(x + 1, y + 0, z + 0) instanceof HolyBlock &&
-				worldserver.getBlock(x + 2, y + 0, z + 0) instanceof HolyBlock &&
-				worldserver.getBlock(x + 3, y + 0, z + 0) instanceof HolyBlock &&
-				worldserver.getBlock(x + 3, y + 1, z + 0) instanceof HolyBlock &&
-				worldserver.getBlock(x + 3, y + 2, z + 0) instanceof HolyBlock &&
-				worldserver.getBlock(x + 3, y + 3, z + 0) instanceof HolyBlock &&
-				worldserver.getBlock(x + 3, y + 4, z + 0) instanceof HolyBlock &&
-				worldserver.getBlock(x + 2, y + 4, z + 0) instanceof HolyBlock &&
-				worldserver.getBlock(x + 1, y + 4, z + 0) instanceof HolyBlock &&
-				worldserver.getBlock(x + 0, y + 4, z + 0) instanceof HolyBlock &&
-				worldserver.getBlock(x + 0, y + 3, z + 0) instanceof HolyBlock &&
-				worldserver.getBlock(x + 0, y + 2, z + 0) instanceof HolyBlock &&
-				worldserver.getBlock(x + 0, y + 1, z + 0) instanceof HolyBlock &&
-				worldserver.getBlock(x + 1, y + 1, z + 0) instanceof HeavenPortal &&
-				worldserver.getBlock(x + 2, y + 1, z + 0) instanceof HeavenPortal &&
-				worldserver.getBlock(x + 1, y + 2, z + 0) instanceof HeavenPortal &&
-				worldserver.getBlock(x + 2, y + 2, z + 0) instanceof HeavenPortal &&
-				worldserver.getBlock(x + 1, y + 3, z + 0) instanceof HeavenPortal &&
-				worldserver.getBlock(x + 2, y + 3, z + 0) instanceof HeavenPortal ||
-				
-				worldserver.getBlock(x, y, z) instanceof HolyBlock &&
-				worldserver.getBlock(x - 1, y + 0, z + 0) instanceof HolyBlock &&
-				worldserver.getBlock(x - 2, y + 0, z + 0) instanceof HolyBlock &&
-				worldserver.getBlock(x - 3, y + 0, z + 0) instanceof HolyBlock &&
-				worldserver.getBlock(x - 3, y + 1, z + 0) instanceof HolyBlock &&
-				worldserver.getBlock(x - 3, y + 2, z + 0) instanceof HolyBlock &&
-				worldserver.getBlock(x - 3, y + 3, z + 0) instanceof HolyBlock &&
-				worldserver.getBlock(x - 3, y + 4, z + 0) instanceof HolyBlock &&
-				worldserver.getBlock(x - 2, y + 4, z + 0) instanceof HolyBlock &&
-				worldserver.getBlock(x - 1, y + 4, z + 0) instanceof HolyBlock &&
-				worldserver.getBlock(x - 0, y + 4, z + 0) instanceof HolyBlock &&
-				worldserver.getBlock(x - 0, y + 3, z + 0) instanceof HolyBlock &&
-				worldserver.getBlock(x - 0, y + 2, z + 0) instanceof HolyBlock &&
-				worldserver.getBlock(x - 0, y + 1, z + 0) instanceof HolyBlock &&
-				worldserver.getBlock(x - 1, y + 1, z + 0) instanceof HeavenPortal &&
-				worldserver.getBlock(x - 2, y + 1, z + 0) instanceof HeavenPortal &&
-				worldserver.getBlock(x - 1, y + 2, z + 0) instanceof HeavenPortal &&
-				worldserver.getBlock(x - 2, y + 2, z + 0) instanceof HeavenPortal &&
-				worldserver.getBlock(x - 1, y + 3, z + 0) instanceof HeavenPortal &&
-				worldserver.getBlock(x - 2, y + 3, z + 0) instanceof HeavenPortal ||
-				
-				worldserver.getBlock(x, y, z) instanceof HolyBlock &&
-				worldserver.getBlock(x, y + 0, z + 1) instanceof HolyBlock &&
-				worldserver.getBlock(x, y + 0, z + 2) instanceof HolyBlock &&
-				worldserver.getBlock(x, y + 0, z + 3) instanceof HolyBlock &&
-				worldserver.getBlock(x, y + 1, z + 3) instanceof HolyBlock &&
-				worldserver.getBlock(x, y + 2, z + 3) instanceof HolyBlock &&
-				worldserver.getBlock(x, y + 3, z + 3) instanceof HolyBlock &&
-				worldserver.getBlock(x, y + 4, z + 3) instanceof HolyBlock &&
-				worldserver.getBlock(x, y + 4, z + 2) instanceof HolyBlock &&
-				worldserver.getBlock(x, y + 4, z + 1) instanceof HolyBlock &&
-				worldserver.getBlock(x, y + 4, z + 0) instanceof HolyBlock &&
-				worldserver.getBlock(x, y + 3, z + 0) instanceof HolyBlock &&
-				worldserver.getBlock(x, y + 2, z + 0) instanceof HolyBlock &&
-				worldserver.getBlock(x, y + 1, z + 0) instanceof HolyBlock &&
-				worldserver.getBlock(x, y + 1, z + 1) instanceof HeavenPortal &&
-				worldserver.getBlock(x, y + 1, z + 2) instanceof HeavenPortal &&
-				worldserver.getBlock(x, y + 2, z + 1) instanceof HeavenPortal &&
-				worldserver.getBlock(x, y + 2, z + 2) instanceof HeavenPortal &&
-				worldserver.getBlock(x, y + 3, z + 1) instanceof HeavenPortal &&
-				worldserver.getBlock(x, y + 3, z + 2) instanceof HeavenPortal ||
-				
-				worldserver.getBlock(x, y, z) instanceof HolyBlock &&
-				worldserver.getBlock(x, y + 0, z - 1) instanceof HolyBlock &&
-				worldserver.getBlock(x, y + 0, z - 2) instanceof HolyBlock &&
-				worldserver.getBlock(x, y + 0, z - 3) instanceof HolyBlock &&
-				worldserver.getBlock(x, y + 1, z - 3) instanceof HolyBlock &&
-				worldserver.getBlock(x, y + 2, z - 3) instanceof HolyBlock &&
-				worldserver.getBlock(x, y + 3, z - 3) instanceof HolyBlock &&
-				worldserver.getBlock(x, y + 4, z - 3) instanceof HolyBlock &&
-				worldserver.getBlock(x, y + 4, z - 2) instanceof HolyBlock &&
-				worldserver.getBlock(x, y + 4, z - 1) instanceof HolyBlock &&
-				worldserver.getBlock(x, y + 4, z - 0) instanceof HolyBlock &&
-				worldserver.getBlock(x, y + 3, z - 0) instanceof HolyBlock &&
-				worldserver.getBlock(x, y + 2, z - 0) instanceof HolyBlock &&
-				worldserver.getBlock(x, y + 1, z - 0) instanceof HolyBlock &&
-				worldserver.getBlock(x, y + 1, z - 1) instanceof HeavenPortal &&
-				worldserver.getBlock(x, y + 1, z - 2) instanceof HeavenPortal &&
-				worldserver.getBlock(x, y + 2, z - 1) instanceof HeavenPortal &&
-				worldserver.getBlock(x, y + 2, z - 2) instanceof HeavenPortal &&
-				worldserver.getBlock(x, y + 3, z - 1) instanceof HeavenPortal &&
-				worldserver.getBlock(x, y + 3, z - 2) instanceof HeavenPortal
-        		){
-        	entity.setLocationAndAngles(x + 3, y, z + 3, entity.rotationYaw, entity.rotationPitch);
-			System.out.println("Hello2");
-		}else{
-			this.createHeavenPortal(x, z, worldserver);
-			entity.setLocationAndAngles(x + 3, y, z + 3, entity.rotationYaw, entity.rotationPitch);
-			System.out.println("Hello3");
-		}
-      }
-    	return true;
-    	
-    }*/
-    
-public void removeStalePortalLocations(long p_85189_1_)
-{
-    if (p_85189_1_ % 100L == 0L)
+    public void removeStalePortalLocations(long p_85189_1_)
     {
-        Iterator iterator = this.destinationCoordinateKeys.iterator();
-        long j = p_85189_1_ - 600L;
-
-        while (iterator.hasNext())
+        if (p_85189_1_ % 100L == 0L)
         {
-            Long olong = (Long)iterator.next();
-            Teleporter.PortalPosition portalposition = (Teleporter.PortalPosition)this.destinationCoordinateCache.getValueByKey(olong.longValue());
+            Iterator iterator = this.destinationCoordinateKeys.iterator();
+            long j = p_85189_1_ - 600L;
 
-            if (portalposition == null || portalposition.lastUpdateTime < j)
+            while (iterator.hasNext())
             {
-                iterator.remove();
-                this.destinationCoordinateCache.remove(olong.longValue());
+                Long olong = (Long)iterator.next();
+                Teleporter.PortalPosition portalposition = (Teleporter.PortalPosition)this.destinationCoordinateCache.getValueByKey(olong.longValue());
+
+                if (portalposition == null || portalposition.lastUpdateTime < j)
+                {
+                    iterator.remove();
+                    this.destinationCoordinateCache.remove(olong.longValue());
+                }
             }
         }
     }
-}
 
-public class PortalPosition extends ChunkCoordinates
-{
-    /** The worldtime at which this PortalPosition was last verified */
-    public long lastUpdateTime;
-
-    public PortalPosition(int p_i1962_2_, int p_i1962_3_, int p_i1962_4_, long p_i1962_5_)
+    public class PortalPosition extends ChunkCoordinates
     {
-        super(p_i1962_2_, p_i1962_3_, p_i1962_4_);
-        this.lastUpdateTime = p_i1962_5_;
+        /** The worldtime at which this PortalPosition was last verified */
+        public long lastUpdateTime;
+
+        public PortalPosition(int p_i1962_2_, int p_i1962_3_, int p_i1962_4_, long p_i1962_5_)
+        {
+            super(p_i1962_2_, p_i1962_3_, p_i1962_4_);
+            this.lastUpdateTime = p_i1962_5_;
+        }
     }
-}
     
     
 }

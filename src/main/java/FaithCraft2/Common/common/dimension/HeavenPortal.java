@@ -13,10 +13,12 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.Direction;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.Teleporter;
@@ -26,7 +28,9 @@ import FaithCraft2.Common.common.FaithCraft2;
 
 public class HeavenPortal extends BlockBreakable
 {
-	
+	public int timeUntilPortal;
+	public boolean inPortal;
+	protected int teleportDirection;
 	
     public HeavenPortal(int id, Material material)
     {
@@ -45,53 +49,39 @@ public class HeavenPortal extends BlockBreakable
         return p_149999_0_ & 3;
     }
     
+    public int getPortalCooldown()
+    {
+        return 300;
+    }
+    
     public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
     {	
-    	
-    	if(entity.dimension != FaithCraft2.HeavenId){
-
-    	   if (entity instanceof EntityPlayerMP)  {
-    	EntityPlayerMP	EMPlayer = (EntityPlayerMP) entity;
-    	int dimensionHeaven = FaithCraft2.HeavenId;
-        WorldServer worldserver = EMPlayer.mcServer.worldServerForDimension(dimensionHeaven);
-    	TeleporterHeaven teleporterHeaven = new TeleporterHeaven (worldserver);
-    	EMPlayer.mcServer.getConfigurationManager().transferPlayerToDimension(EMPlayer, dimensionHeaven, teleporterHeaven);
-    	
     	double par2 = 0;
     	double par4 = 0;
     	double par6 = 0;
     	float par8 = 0;
+    	if (entity instanceof EntityPlayerMP)  {
+    	EntityPlayerMP	EMPlayer = (EntityPlayerMP) entity;
+    	int dimensionHeaven = FaithCraft2.HeavenId;
+        WorldServer worldserver = EMPlayer.mcServer.worldServerForDimension(dimensionHeaven);
+    	TeleporterHeaven teleporterHeaven = new TeleporterHeaven (worldserver);
     	
-    	if(worldserver.getBlock((int)Math.floor(entity.posX), (int)Math.floor(entity.posY), (int)Math.floor(entity.posZ)) instanceof HeavenPortal){
-    		System.out.println("Hello438989354");
+    	if(world.provider.dimensionId == 0){
+    		
+    		EMPlayer.mcServer.getConfigurationManager().transferPlayerToDimension(EMPlayer, dimensionHeaven, teleporterHeaven);
+    		entity.setLocationAndAngles(x + 3, y, z + 3, entity.rotationYaw, entity.rotationPitch);
     		(teleporterHeaven).placeInExistingPortal(entity, par2, par4, par6, par8);
-    	
-    	   }else{
-    		   (teleporterHeaven).placeInPortal(entity, par2, par4, par6, par8);
-    	   }
+    		
+    	}else if(world.provider.dimensionId == FaithCraft2.HeavenId){
+    		int dimension = 0;
+    		EMPlayer.mcServer.getConfigurationManager().transferPlayerToDimension(EMPlayer, dimension, teleporterHeaven);
+    		entity.setLocationAndAngles(x + 3, y, z + 3, entity.rotationYaw, entity.rotationPitch);
+    		(teleporterHeaven).placeInPortal(entity, par2, par4, par6, par8);
     	}
-    	}else if(entity.dimension == FaithCraft2.HeavenId){
-	    	
-		if (entity instanceof EntityPlayerMP)  {
-			EntityPlayerMP	EMPlayer = (EntityPlayerMP) entity;
-	    	int dimension = 0;
-	        WorldServer worldserver = EMPlayer.mcServer.worldServerForDimension(dimension);
-	    	TeleporterHeaven teleporterHeaven = new TeleporterHeaven (worldserver);
-	    	
-	    	double par2 = 0;
-	    	double par4 = 0;
-	    	double par6 = 0;
-	    	float par8 = 0;
-	    	EMPlayer.mcServer.getConfigurationManager().transferPlayerToDimension(EMPlayer, dimension, teleporterHeaven);
-	    	if(worldserver.getBlock((int)entity.posX, (int)entity.posY, (int)entity.posZ) instanceof HeavenPortal){
-	    	(teleporterHeaven).placeInExistingPortal(entity, par2, par4, par6, par8);
-	    	}else{
-	    		(teleporterHeaven).placeInPortal(entity, par2, par4, par6, par8);
-	    	}
-	    	}
     	}
     	
     }
+    	
     
     
     public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
