@@ -47,6 +47,7 @@ public class HeavenPortal extends BlockBreakable
     
     public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
     {	
+    	
     	if(entity.dimension != FaithCraft2.HeavenId){
 
     	   if (entity instanceof EntityPlayerMP)  {
@@ -60,13 +61,20 @@ public class HeavenPortal extends BlockBreakable
     	double par4 = 0;
     	double par6 = 0;
     	float par8 = 0;
-    	(teleporterHeaven).placeInPortal(entity, par2, par4, par6, par8);
+    	
+    	if(worldserver.getBlock((int)Math.floor(entity.posX), (int)Math.floor(entity.posY), (int)Math.floor(entity.posZ)) instanceof HeavenPortal){
+    		System.out.println("Hello438989354");
+    		(teleporterHeaven).placeInExistingPortal(entity, par2, par4, par6, par8);
+    	
+    	   }else{
+    		   (teleporterHeaven).placeInPortal(entity, par2, par4, par6, par8);
     	   }
+    	}
     	}else if(entity.dimension == FaithCraft2.HeavenId){
 	    	
 		if (entity instanceof EntityPlayerMP)  {
 			EntityPlayerMP	EMPlayer = (EntityPlayerMP) entity;
-	    	int dimension = FaithCraft2.HeavenId;
+	    	int dimension = 0;
 	        WorldServer worldserver = EMPlayer.mcServer.worldServerForDimension(dimension);
 	    	TeleporterHeaven teleporterHeaven = new TeleporterHeaven (worldserver);
 	    	
@@ -74,8 +82,13 @@ public class HeavenPortal extends BlockBreakable
 	    	double par4 = 0;
 	    	double par6 = 0;
 	    	float par8 = 0;
+	    	EMPlayer.mcServer.getConfigurationManager().transferPlayerToDimension(EMPlayer, dimension, teleporterHeaven);
+	    	if(worldserver.getBlock((int)entity.posX, (int)entity.posY, (int)entity.posZ) instanceof HeavenPortal){
 	    	(teleporterHeaven).placeInExistingPortal(entity, par2, par4, par6, par8);
-		}
+	    	}else{
+	    		(teleporterHeaven).placeInPortal(entity, par2, par4, par6, par8);
+	    	}
+	    	}
     	}
     	
     }
