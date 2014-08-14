@@ -22,7 +22,6 @@ public class AltarCraftingManager{
     private static final AltarCraftingManager instance = new AltarCraftingManager();
     /** A list of all the recipes added */
     private List recipes = new ArrayList();
-    private static final String __OBFID = "CL_00000090";
 
     /**
      * Returns the static instance of this class
