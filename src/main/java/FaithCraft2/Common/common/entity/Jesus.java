@@ -3,6 +3,8 @@ package FaithCraft2.Common.common.entity;
 import java.util.Random;
 
 import net.minecraft.block.BlockEndPortal;
+import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.boss.BossStatus;
@@ -21,6 +23,7 @@ public class Jesus extends EntityCreature implements IBossDisplayData{
 	
 	public Jesus(World world) {
 		super(world);
+		this.yOffset = this.height / 2.0F;
 	}
 	
 	protected void applyEntityAttributes()
