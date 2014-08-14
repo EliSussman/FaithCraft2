@@ -56,27 +56,26 @@ public class HeavenPortal extends BlockBreakable
     
     public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
     {	
-    	double par2 = 0;
-    	double par4 = 0;
-    	double par6 = 0;
-    	float par8 = 0;
-    	if (entity instanceof EntityPlayerMP)  {
-    	EntityPlayerMP	EMPlayer = (EntityPlayerMP) entity;
-    	int dimensionHeaven = FaithCraft2.HeavenId;
-        WorldServer worldserver = EMPlayer.mcServer.worldServerForDimension(dimensionHeaven);
-    	TeleporterHeaven teleporterHeaven = new TeleporterHeaven (worldserver);
-    	
-    	if(world.provider.dimensionId == 0){
-    		
-    		EMPlayer.mcServer.getConfigurationManager().transferPlayerToDimension(EMPlayer, dimensionHeaven, teleporterHeaven);
-    		entity.setLocationAndAngles(x + 3, y, z + 3, entity.rotationYaw, entity.rotationPitch);
-    		(teleporterHeaven).placeInExistingPortal(entity, par2, par4, par6, par8);
-    		
-    	}else if(world.provider.dimensionId == FaithCraft2.HeavenId){
-    		int dimension = 0;
-    		EMPlayer.mcServer.getConfigurationManager().transferPlayerToDimension(EMPlayer, dimension, teleporterHeaven);
-    		entity.setLocationAndAngles(x + 3, y, z + 3, entity.rotationYaw, entity.rotationPitch);
-    		(teleporterHeaven).placeInPortal(entity, par2, par4, par6, par8);
+    	if ((entity.ridingEntity == null) && (entity.riddenByEntity == null) && ((entity instanceof EntityPlayerMP)))
+    	{
+    	EntityPlayerMP thePlayer = (EntityPlayerMP)entity;
+    	if (thePlayer.timeUntilPortal > 0)
+    	{
+    	thePlayer.timeUntilPortal = 10;
+    	}
+    	else if (thePlayer.dimension != FaithCraft2.HeavenId)
+    	{
+    	thePlayer.timeUntilPortal = 10;
+    	{
+    		 thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, FaithCraft2.HeavenId, new TeleporterHeaven(thePlayer.mcServer.worldServerForDimension(FaithCraft2.HeavenId)));
+    	}
+    	}
+    	else
+    	{
+    	thePlayer.timeUntilPortal = 10;
+    	{
+    		 thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, 0, new TeleporterHeaven(thePlayer.mcServer.worldServerForDimension(0)));
+    	}
     	}
     	}
     	

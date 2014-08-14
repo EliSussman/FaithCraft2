@@ -8,6 +8,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.BiomeGenBase.FlowerEntry;
 import net.minecraftforge.event.terraingen.DeferredBiomeDecorator;
 import FaithCraft2.Common.common.FaithCraft2;
+import FaithCraft2.Common.common.entity.Angel;
 
 public class HeavenBiome extends BiomeGenBase{
 	
@@ -24,6 +25,8 @@ public class HeavenBiome extends BiomeGenBase{
 		this.setTemperatureRainfall(0.8F, 0.4F);
 		this.setColor(0xFFFFFF);
 		this.height_LowPlains.rootHeight = -2;
+		this.theBiomeDecorator.treesPerChunk = 0;
+		this.spawnableCreatureList.add(new SpawnListEntry(Angel.class, 3, 4, 4));
 		
 	}
 	
