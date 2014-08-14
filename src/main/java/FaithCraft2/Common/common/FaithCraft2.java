@@ -204,12 +204,6 @@ public static CommonProxy proxy;
 		GameRegistry.registerWorldGenerator(worldgen1, 1);
 		
 		FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("wine", FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(WineBucket), new ItemStack(Items.bucket));
-	
-		BiomeManager.addSpawnBiome(HeavenBiome);
-		BiomeManager.desertBiomes.add(new BiomeEntry(FaithCraft2.HeavenBiome, 100));
-		BiomeManager.coolBiomes.add(new BiomeEntry(FaithCraft2.HeavenBiome, 100));
-		BiomeManager.warmBiomes.add(new BiomeEntry(FaithCraft2.HeavenBiome, 100));
-		BiomeManager.icyBiomes.add(new BiomeEntry(FaithCraft2.HeavenBiome, 100));
 		
 		GameRegistry.registerWorldGenerator(genTemple, 1);
 		GameRegistry.registerWorldGenerator(genChurch, 1);
