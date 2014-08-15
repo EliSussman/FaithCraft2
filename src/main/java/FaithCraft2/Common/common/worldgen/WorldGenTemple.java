@@ -33,15 +33,13 @@ public class WorldGenTemple implements IWorldGenerator{
 		case 1:
 		generateEnd(world, random, chunkX * 16, chunkZ * 16);
 		break;
+		case 10:
+		generateHeaven(world, random, chunkX * 16, chunkZ * 16);
+		break;
 		}
 	}
 
-	private void generateEnd(World world, Random random, int i, int j) {
-		
-	}
-
-	private void generateSurface(World world, Random random, int i2, int k2) {
-		
+	private void generateHeaven(World world, Random random, int i2, int k2) {
 		int i = i2 + random.nextInt(15);
 		int k = k2 + random.nextInt(15);
 
@@ -452,6 +450,13 @@ public class WorldGenTemple implements IWorldGenerator{
 
 		return;
 		}
+	}
+
+	private void generateEnd(World world, Random random, int i, int j) {
+		
+	}
+
+	private void generateSurface(World world, Random random, int i2, int k2) {
 	}
 
 	private void generateNether(World world, Random random, int i, int j) {

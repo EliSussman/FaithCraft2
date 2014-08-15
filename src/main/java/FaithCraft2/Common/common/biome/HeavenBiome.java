@@ -52,7 +52,6 @@ public class HeavenBiome extends BiomeGenBase{
 		this.theBiomeDecorator.treesPerChunk = -999;
 		this.spawnableCreatureList.add(new SpawnListEntry(Angel.class, 3, 4, 4));
 		this.theBiomeDecorator.generateLakes = false;
-		
 	}
 	
 	public void addDefaultFlowers()
