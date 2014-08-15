@@ -36,8 +36,6 @@ public class HeavenBiome extends BiomeGenBase{
 		this.spawnableCreatureList.add(new SpawnListEntry(Angel.class, 3, 4, 4));
 		this.theBiomeDecorator.generateLakes = false;
 		
-		
-		
 	}
 	
 	public void addDefaultFlowers()
@@ -58,5 +56,10 @@ public class HeavenBiome extends BiomeGenBase{
             worldgenlakes.generate(world, random, k, world.getHeightValue(k, l) + 1, l);
         }
     }
+	
+	 public int getBiomeFoliageColor(int x, int y, int z)
+	    {
+			return 0xFFFFFF;
+		}
 	
 }

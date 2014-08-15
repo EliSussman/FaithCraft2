@@ -61,6 +61,8 @@ import FaithCraft2.Common.common.worldgen.WorldGenChurch;
 import FaithCraft2.Common.common.worldgen.WorldGenTemple;
 import FaithCraft2.Common.common.blocks.HolyBlock;
 import FaithCraft2.Common.common.entity.Angel;
+import FaithCraft2.Common.common.blocks.DogwoodLeaves;
+import FaithCraft2.Common.common.blocks.DogwoodLog;
 
 import com.google.common.base.Throwables;
 import com.google.common.collect.ObjectArrays;
@@ -109,6 +111,8 @@ public static Block WineBlock;
 public static Block HeavenPortal;
 public static Block HolyBlock;
 public static Block AltarMB;
+public static Block DogwoodLeaves;
+public static Block DogwoodLog;
 
 public static Item Bible;
 public static Item BodyOFChrist;
@@ -161,6 +165,8 @@ public static CommonProxy proxy;
 		WineBlock = new WineBlock(Wine, Material.water).setBlockName("Wine");
 		HeavenPortal = new HeavenPortal(3014, Material.portal).setBlockName("HeavenPortal").setBlockTextureName("FaithCraft2:HeavenPortal");
 		HolyBlock = new HolyBlock(3015, Material.rock).setBlockName("HolyBlock");
+		DogwoodLeaves = new DogwoodLeaves(3016).setBlockName("DogwoodLeaves");
+		DogwoodLog = new DogwoodLog(3017, Material.wood).setBlockName("DogwoodLog");
 		
 		Bible = new Bible(3001).setUnlocalizedName("Bible").setTextureName("FaithCraft2:Bible");
 		BodyOFChrist = new BodyOFChrist(3002).setUnlocalizedName("BodyOFChrist").setTextureName("FaithCraft2:BodyOFChrist");
@@ -188,6 +194,8 @@ public static CommonProxy proxy;
 		GameRegistry.registerBlock(WineBlock, "WineBlock");
 		GameRegistry.registerBlock(HeavenPortal, "HeavenPortal");
 		GameRegistry.registerBlock(HolyBlock, "HolyBlock");
+		GameRegistry.registerBlock(DogwoodLeaves, "DogwoodLeaves");
+		GameRegistry.registerBlock(DogwoodLog, "DogwoodLog");
 		
 		GameRegistry.registerItem(Bible, "Bible");
 		GameRegistry.registerItem(BodyOFChrist, "BodyOFChrist");
