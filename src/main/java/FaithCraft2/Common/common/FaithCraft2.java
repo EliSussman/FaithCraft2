@@ -242,7 +242,7 @@ public static CommonProxy proxy;
 		BucketHandler.INSTANCE.buckets.put(WineBlock, WineBucket);
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(FaithCraft2.DogwoodPlank, 2), new ItemStack(FaithCraft2.DogwoodLog));
-		
+		GameRegistry.addRecipe(new ItemStack(FaithCraft2.DogwoodStick, 2), new Object[] {"D", "D", 'D', FaithCraft2.DogwoodPlank});
 	}
 	
 	@EventHandler
