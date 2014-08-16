@@ -54,7 +54,26 @@ public class Angel extends EntityVillager implements INpc, IMerchant{
 		this.tasks.addTask(1, new EntityAITradePlayer(this));
 	}
 	
-	
+	public boolean interact(EntityPlayer p_70085_1_)
+    {
+        ItemStack itemstack = p_70085_1_.inventory.getCurrentItem();
+        boolean flag = itemstack != null && itemstack.getItem() == Items.spawn_egg;
+
+        if (!flag && this.isEntityAlive() && !this.isTrading() && !this.isChild() && !p_70085_1_.isSneaking())
+        {
+            if (!this.worldObj.isRemote)
+            {
+                this.setCustomer(p_70085_1_);
+                p_70085_1_.displayGUIMerchant(this, "Angel");
+            }
+
+            return true;
+        }
+        else
+        {
+            return super.interact(p_70085_1_);
+        }
+    }
 	
 	@Override
 	protected void updateAITick()
