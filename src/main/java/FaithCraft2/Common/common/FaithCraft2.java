@@ -47,10 +47,10 @@ import FaithCraft2.Common.common.items.Bible;
 import FaithCraft2.Common.common.items.BodyOFChrist;
 import FaithCraft2.Common.common.items.Cross;
 import FaithCraft2.Common.common.items.HolyCross;
-import FaithCraft2.Common.common.items.HolyGoldenStick;
+import FaithCraft2.Common.common.items.GoldenDogwoodStick;
 import FaithCraft2.Common.common.items.HolyGrail;
 import FaithCraft2.Common.common.items.HolyGrailOFWine;
-import FaithCraft2.Common.common.items.HolyStick;
+import FaithCraft2.Common.common.items.DogwoodStick;
 import FaithCraft2.Common.common.items.Quran;
 import FaithCraft2.Common.common.items.Torah;
 import FaithCraft2.Common.common.items.WineBucket;
@@ -64,7 +64,7 @@ import FaithCraft2.Common.common.entity.Angel;
 import FaithCraft2.Common.common.blocks.DogwoodLeaves;
 import FaithCraft2.Common.common.blocks.DogwoodLog;
 import FaithCraft2.Common.common.blocks.DogwoodSapling;
-import FaithCraft2.Common.common.blocks.DogwoodPlanks;
+import FaithCraft2.Common.common.blocks.DogwoodPlank;
 
 import com.google.common.base.Throwables;
 import com.google.common.collect.ObjectArrays;
@@ -116,7 +116,7 @@ public static Block AltarMB;
 public static Block DogwoodLeaves;
 public static Block DogwoodLog;
 public static Block DogwoodSapling;
-public static Block DogwoodPlanks;
+public static Block DogwoodPlank;
 
 public static Item Bible;
 public static Item BodyOFChrist;
@@ -124,8 +124,8 @@ public static Item Cross;
 public static Item Quran;
 public static Item Torah;
 public static Item HolyCross;
-public static Item HolyStick;
-public static Item HolyGoldenStick;
+public static Item DogwoodStick;
+public static Item GoldenDogwoodStick;
 public static Item WineBucket;
 public static Item HolyGrail;
 public static Item HolyGrailOFWine;
@@ -172,7 +172,7 @@ public static CommonProxy proxy;
 		DogwoodLeaves = new DogwoodLeaves(3016).setBlockName("DogwoodLeaves");
 		DogwoodLog = new DogwoodLog(3017, Material.wood).setBlockName("DogwoodLog");
 		DogwoodSapling = new DogwoodSapling(3018).setBlockName("DogwoodSapling");
-		DogwoodPlanks = new DogwoodPlanks(3019, Material.wood).setBlockName("DogwoodPlanks");
+		DogwoodPlank = new DogwoodPlank(3019, Material.wood).setBlockName("DogwoodPlank");
 		
 		Bible = new Bible(3001).setUnlocalizedName("Bible").setTextureName("FaithCraft2:Bible");
 		BodyOFChrist = new BodyOFChrist(3002).setUnlocalizedName("BodyOFChrist").setTextureName("FaithCraft2:BodyOFChrist");
@@ -180,8 +180,8 @@ public static CommonProxy proxy;
 		Quran = new Quran(3004).setUnlocalizedName("Quran").setTextureName("FaithCraft2:Quran");
 		Torah = new Torah(3005).setUnlocalizedName("Torah").setTextureName("FaithCraft2:Torah");
 		HolyCross = new HolyCross(3007, Holy).setUnlocalizedName("HolyCross").setTextureName("FaithCraft2:HolyCross");
-		HolyStick = new HolyStick(3008).setUnlocalizedName("HolyStick").setTextureName("FaithCraft2:HolyStick");
-		HolyGoldenStick = new HolyGoldenStick(3009).setUnlocalizedName("HolyGoldenStick").setTextureName("FaithCraft2:HolyGoldenStick");
+		DogwoodStick = new DogwoodStick(3008).setUnlocalizedName("DogwoodStick").setTextureName("FaithCraft2:DogwoodStick");
+		GoldenDogwoodStick = new GoldenDogwoodStick(3009).setUnlocalizedName("GoldenDogwoodStick").setTextureName("FaithCraft2:GoldenDogwoodStick");
 		WineBucket = new WineBucket(WineBlock).setUnlocalizedName("WineBucket").setTextureName("FaithCraft2:WineBucket").setContainerItem(Items.bucket);
 		HolyGrail = new HolyGrail(3012).setUnlocalizedName("HolyGrail").setTextureName("FaithCraft2:HolyGrail");
 		HolyGrailOFWine = new HolyGrailOFWine(0, 0.0F, true).setAlwaysEdible().setUnlocalizedName("HolyGrailOFWine").setTextureName("FaithCraft2:HolyGrailOFWine");
@@ -190,7 +190,7 @@ public static CommonProxy proxy;
 		
 		genTemple = new WorldGenTemple();
 		genChurch = new WorldGenChurch();
-				
+		
 		GameRegistry.registerBlock(HolyForgeIdle, "HolyForgeIdle");
 		GameRegistry.registerBlock(HolyForgeActive, "HolyForgeActive");
 		GameRegistry.registerBlock(Altar, "Altar");
@@ -203,7 +203,7 @@ public static CommonProxy proxy;
 		GameRegistry.registerBlock(DogwoodLeaves, "DogwoodLeaves");
 		GameRegistry.registerBlock(DogwoodLog, "DogwoodLog");
 		GameRegistry.registerBlock(DogwoodSapling, "DogwoodSapling");
-		GameRegistry.registerBlock(DogwoodPlanks, "DogwoodPlanks");
+		GameRegistry.registerBlock(DogwoodPlank, "DogwoodPlank");
 		
 		GameRegistry.registerItem(Bible, "Bible");
 		GameRegistry.registerItem(BodyOFChrist, "BodyOFChrist");
@@ -211,8 +211,8 @@ public static CommonProxy proxy;
 		GameRegistry.registerItem(Quran, "Quran");
 		GameRegistry.registerItem(Torah, "Torah");
 		GameRegistry.registerItem(HolyCross, "HolyCross");
-		GameRegistry.registerItem(HolyStick, "HolyStick");
-		GameRegistry.registerItem(HolyGoldenStick, "HolyGoldenStick");
+		GameRegistry.registerItem(DogwoodStick, "DogwoodStick");
+		GameRegistry.registerItem(GoldenDogwoodStick, "GoldenDogwoodStick");
 		GameRegistry.registerItem(WineBucket, "WineBucket");
 		GameRegistry.registerItem(HolyGrail, "HolyGrail");
 		GameRegistry.registerItem(HolyGrailOFWine, "HolyGrailOFWine");
@@ -241,7 +241,8 @@ public static CommonProxy proxy;
 		MinecraftForge.EVENT_BUS.register(BucketHandler.INSTANCE);
 		BucketHandler.INSTANCE.buckets.put(WineBlock, WineBucket);
 		
-		GameRegistry.addShapelessRecipe(new ItemStack(FaithCraft2.DogwoodPlanks, 2), new ItemStack(FaithCraft2.DogwoodLog));
+		GameRegistry.addShapelessRecipe(new ItemStack(FaithCraft2.DogwoodPlank, 2), new ItemStack(FaithCraft2.DogwoodLog));
+		
 	}
 	
 	@EventHandler

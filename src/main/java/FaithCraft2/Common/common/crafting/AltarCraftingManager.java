@@ -37,8 +37,8 @@ public class AltarCraftingManager{
         
     	recipes = new ArrayList();
     	
-    	this.addRecipe(new ItemStack(FaithCraft2.Cross, 1), new Object[] {"SSS", "XSX", "XSX", 'S', FaithCraft2.HolyStick});
-    	this.addRecipe(new ItemStack(FaithCraft2.HolyCross, 1), new Object[] {"SSS", "XSX", "XSX", 'S', FaithCraft2.HolyGoldenStick});
+    	this.addRecipe(new ItemStack(FaithCraft2.Cross, 1), new Object[] {"SSS", "XSX", "XSX", 'S', FaithCraft2.DogwoodStick});
+    	this.addRecipe(new ItemStack(FaithCraft2.HolyCross, 1), new Object[] {"SSS", "XSX", "XSX", 'S', FaithCraft2.GoldenDogwoodStick});
     	
         Collections.sort(this.recipes, new AltarRecipeSorter(this));
     }

@@ -14,12 +14,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import FaithCraft2.Common.common.*;
 
-public class DogwoodPlanks extends Block{
+public class DogwoodPlank extends Block{
 	
 	@SideOnly(Side.CLIENT)
-    private IIcon dogwoodPlanks;
+    private IIcon dogwoodPlank;
 	
-	public DogwoodPlanks(int id, Material material){
+	public DogwoodPlank(int id, Material material){
 		super(material);
 		this.setCreativeTab(FaithCraft2.FaithCraft2Tab);
 	}
@@ -27,11 +27,11 @@ public class DogwoodPlanks extends Block{
 	@SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister)
     {
-		dogwoodPlanks = iconRegister.registerIcon(FaithCraft2.modid + ":" + "DogwoodPlanks");
+		dogwoodPlank = iconRegister.registerIcon(FaithCraft2.modid + ":" + "DogwoodPlank");
     }
 	
 	@Override
 	public IIcon getIcon(int side, int metadata) {
-		return dogwoodPlanks;
+		return dogwoodPlank;
 	}
 }
