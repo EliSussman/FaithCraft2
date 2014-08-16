@@ -19,7 +19,16 @@ import FaithCraft2.Common.common.*;
 
 public class WorldGenTemple implements IWorldGenerator{
 
-	
+	protected Block[] GetValidSpawnBlocks()
+	{
+		return new Block[]
+		{
+			Blocks.grass,
+			Blocks.dirt,
+			FaithCraft2.HolyCobbleStone,
+			FaithCraft2.HolyStone,
+		};
+	}
 	
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 		switch(world.provider.dimensionId)

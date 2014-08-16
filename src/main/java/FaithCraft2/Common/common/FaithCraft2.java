@@ -64,6 +64,7 @@ import FaithCraft2.Common.common.entity.Angel;
 import FaithCraft2.Common.common.blocks.DogwoodLeaves;
 import FaithCraft2.Common.common.blocks.DogwoodLog;
 import FaithCraft2.Common.common.blocks.DogwoodSapling;
+import FaithCraft2.Common.common.blocks.DogwoodPlanks;
 
 import com.google.common.base.Throwables;
 import com.google.common.collect.ObjectArrays;
@@ -115,6 +116,7 @@ public static Block AltarMB;
 public static Block DogwoodLeaves;
 public static Block DogwoodLog;
 public static Block DogwoodSapling;
+public static Block DogwoodPlanks;
 
 public static Item Bible;
 public static Item BodyOFChrist;
@@ -170,6 +172,7 @@ public static CommonProxy proxy;
 		DogwoodLeaves = new DogwoodLeaves(3016).setBlockName("DogwoodLeaves");
 		DogwoodLog = new DogwoodLog(3017, Material.wood).setBlockName("DogwoodLog");
 		DogwoodSapling = new DogwoodSapling(3018).setBlockName("DogwoodSapling");
+		DogwoodPlanks = new DogwoodPlanks(3019, Material.wood).setBlockName("DogwoodPlanks");
 		
 		Bible = new Bible(3001).setUnlocalizedName("Bible").setTextureName("FaithCraft2:Bible");
 		BodyOFChrist = new BodyOFChrist(3002).setUnlocalizedName("BodyOFChrist").setTextureName("FaithCraft2:BodyOFChrist");
@@ -200,6 +203,7 @@ public static CommonProxy proxy;
 		GameRegistry.registerBlock(DogwoodLeaves, "DogwoodLeaves");
 		GameRegistry.registerBlock(DogwoodLog, "DogwoodLog");
 		GameRegistry.registerBlock(DogwoodSapling, "DogwoodSapling");
+		GameRegistry.registerBlock(DogwoodPlanks, "DogwoodPlanks");
 		
 		GameRegistry.registerItem(Bible, "Bible");
 		GameRegistry.registerItem(BodyOFChrist, "BodyOFChrist");
@@ -236,6 +240,8 @@ public static CommonProxy proxy;
 		
 		MinecraftForge.EVENT_BUS.register(BucketHandler.INSTANCE);
 		BucketHandler.INSTANCE.buckets.put(WineBlock, WineBucket);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(FaithCraft2.DogwoodPlanks, 2), new ItemStack(FaithCraft2.DogwoodLog));
 	}
 	
 	@EventHandler
