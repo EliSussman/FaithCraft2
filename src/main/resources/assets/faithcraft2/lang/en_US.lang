@@ -22,6 +22,7 @@ item.GoldenDogwoodStick.name=Golden Dogwood Stick
 item.WineBucket.name=Wine Bucket
 item.HolyGrail.name=Holy Grail
 item.HolyGrailOFWine.name=Holy Grail O' Wine
+item.InstructionBook.name=FaithCraft2 Instructions
 itemGroup.FaithCraft 2.0 Tab=FaithCraft 2.0 Tab
 entity.Jesus.name=Jesus
 entity.Angel.name=Angel

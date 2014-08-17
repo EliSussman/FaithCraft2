@@ -43,6 +43,7 @@ import FaithCraft2.Common.common.handler.BucketHandler;
 import FaithCraft2.Common.common.handler.ConfigHandler;
 import FaithCraft2.Common.common.handler.CraftingHandler;
 import FaithCraft2.Common.common.handler.GuiHandler;
+import FaithCraft2.Common.common.handler.PlayerSpawnHandler;
 import FaithCraft2.Common.common.items.Bible;
 import FaithCraft2.Common.common.items.BodyOFChrist;
 import FaithCraft2.Common.common.items.Cross;
@@ -65,6 +66,7 @@ import FaithCraft2.Common.common.blocks.DogwoodLeaves;
 import FaithCraft2.Common.common.blocks.DogwoodLog;
 import FaithCraft2.Common.common.blocks.DogwoodSapling;
 import FaithCraft2.Common.common.blocks.DogwoodPlank;
+import FaithCraft2.Common.common.items.InstructionBook;
 
 import com.google.common.base.Throwables;
 import com.google.common.collect.ObjectArrays;
@@ -129,6 +131,7 @@ public static Item GoldenDogwoodStick;
 public static Item WineBucket;
 public static Item HolyGrail;
 public static Item HolyGrailOFWine;
+public static Item InstructionBook;
 
 public static Fluid Wine;
 
@@ -185,6 +188,7 @@ public static CommonProxy proxy;
 		WineBucket = new WineBucket(WineBlock).setUnlocalizedName("WineBucket").setTextureName("FaithCraft2:WineBucket").setContainerItem(Items.bucket);
 		HolyGrail = new HolyGrail(3012).setUnlocalizedName("HolyGrail").setTextureName("FaithCraft2:HolyGrail");
 		HolyGrailOFWine = new HolyGrailOFWine(0, 0.0F, true).setAlwaysEdible().setUnlocalizedName("HolyGrailOFWine").setTextureName("FaithCraft2:HolyGrailOFWine");
+		InstructionBook = new InstructionBook(3020).setUnlocalizedName("InstructionBook").setTextureName("FaithCraft2:InstructionBook");
 		
 		HeavenBiome = new HeavenBiome(245).setBiomeName("Heaven").setDisableRain();
 		
@@ -216,6 +220,7 @@ public static CommonProxy proxy;
 		GameRegistry.registerItem(WineBucket, "WineBucket");
 		GameRegistry.registerItem(HolyGrail, "HolyGrail");
 		GameRegistry.registerItem(HolyGrailOFWine, "HolyGrailOFWine");
+		GameRegistry.registerItem(InstructionBook, "InstructionBook");
 		
 		GameRegistry.registerWorldGenerator(worldgen1, 1);
 		
@@ -237,6 +242,8 @@ public static CommonProxy proxy;
 		
 		FMLCommonHandler.instance().bus().register(new CraftingHandler());
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
+		
+		MinecraftForge.EVENT_BUS.register(PlayerSpawnHandler.INSTANCE);
 		
 		MinecraftForge.EVENT_BUS.register(BucketHandler.INSTANCE);
 		BucketHandler.INSTANCE.buckets.put(WineBlock, WineBucket);
