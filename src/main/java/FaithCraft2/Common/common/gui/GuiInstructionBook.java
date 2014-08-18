@@ -5,6 +5,8 @@ import org.lwjgl.opengl.GL11;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.PositionedSoundRecord;
+import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -15,22 +17,33 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagInt;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.ResourceLocation;
 import FaithCraft2.Common.common.FaithCraft2;
 import FaithCraft2.Common.common.items.InstructionBook;
 
 public class GuiInstructionBook extends GuiScreen{
 	
+	private NextPageButton prevPage;
+	private NextPageButton nextPage;
     private int bookTotalPages = 2;
     private int currPage;
     private NBTTagList bookPages;
 	private boolean field_146480_s;
     private GuiInstructionBook.NextPageButton buttonNextPage;
     private GuiInstructionBook.NextPageButton buttonPreviousPage;
+    private ItemStack bookStack;
+    private NBTTagCompound bookInfo;
 	private int bookImageWidth = 166;
 	private int bookImageHeight = 185;
-	private static final ResourceLocation FaithCraft2InstructionBookTexture = new ResourceLocation(FaithCraft2.modid + ":" + "textures/gui/bookPage1.png");
+	private static final ResourceLocation FaithCraft2InstructionBookTextureP1 = new ResourceLocation(FaithCraft2.modid + ":" + "textures/gui/bookPage1.png");
+	private static final ResourceLocation FaithCraft2InstructionBookTextureP2 = new ResourceLocation(FaithCraft2.modid + ":" + "textures/gui/bookPage2.png");
+	
+	public void updateScreen() {
+	}
 	
 	public void initGui(){
 		int i = (this.width - this.bookImageWidth) / 2;
@@ -44,6 +57,11 @@ public class GuiInstructionBook extends GuiScreen{
 	public GuiInstructionBook() {
 		super();
 	}
+	
+	public void actionPerformed(NextPageButton button){
+			++this.currPage;
+			this.updateScreen();
+	}
     
     @Override
     public void drawDefaultBackground()
@@ -56,11 +74,18 @@ public class GuiInstructionBook extends GuiScreen{
     {
         drawDefaultBackground();
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.getTextureManager().bindTexture(FaithCraft2InstructionBookTexture);
+        this.mc.getTextureManager().bindTexture(FaithCraft2InstructionBookTextureP1);
         int k = (this.width - this.bookImageWidth) / 2;
         byte b0 = 2;
         this.drawTexturedModalRect(k, b0, 0, 0, this.bookImageWidth, this.bookImageHeight);
         super.drawScreen(par1, par2, par3);
+        if(currPage > 0){
+			this.mc.getTextureManager().bindTexture(FaithCraft2InstructionBookTextureP2);
+		}
+    }
+    
+    public void chooseDrawScreen(int par1, int par2, float par3){
+    	drawScreen(par1, par2, par3);
     }
     
     @Override
@@ -70,16 +95,22 @@ public class GuiInstructionBook extends GuiScreen{
     }
     
     @SideOnly(Side.CLIENT)
-    static class NextPageButton extends GuiButton
+    public static class NextPageButton extends GuiButton
         {
             private final boolean field_146151_o;
-
+            private int bookTotalPages = 2;
+            private NextPageButton prevPage;
+        	private NextPageButton nextPage;
+        	private GuiInstructionBook gib;
+        	private NBTTagList bookPages;
+            
             public NextPageButton(int p_i1079_1_, int p_i1079_2_, int p_i1079_3_, boolean p_i1079_4_)
             {
-                super(p_i1079_1_, p_i1079_2_, p_i1079_3_, 23, 33, "");
+            	super(p_i1079_1_, p_i1079_2_, p_i1079_3_, 23, 33, "");
                 this.field_146151_o = p_i1079_4_;
+                
             }
-
+            
             /**
              * Draws this button to the screen.
              */
@@ -89,7 +120,7 @@ public class GuiInstructionBook extends GuiScreen{
                 {
                     boolean flag = p_146112_2_ >= this.xPosition && p_146112_3_ >= this.yPosition + 20 && p_146112_2_ < this.xPosition + this.width && p_146112_3_ < this.yPosition + this.height + 20;
                     GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-                    p_146112_1_.getTextureManager().bindTexture(GuiInstructionBook.FaithCraft2InstructionBookTexture);
+                    p_146112_1_.getTextureManager().bindTexture(GuiInstructionBook.FaithCraft2InstructionBookTextureP1);
                     int k = 0;
                     int l = 192;
 

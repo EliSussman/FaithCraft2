@@ -19,15 +19,17 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.MouseHelper;
 import net.minecraft.util.StatCollector;
 import net.minecraft.util.StringUtils;
 import net.minecraft.world.World;
 import FaithCraft2.Common.common.*;
 import FaithCraft2.Common.common.gui.GuiInstructionBook;
+import FaithCraft2.Common.common.gui.GuiInstructionBook.NextPageButton;
 import FaithCraft2.Common.common.handler.PlayerSpawnHandler;
 
 public class InstructionBook extends ItemBook{
-
+	
 	public InstructionBook(int id){
 		super();
 		this.setMaxStackSize(1);
@@ -41,7 +43,7 @@ public class InstructionBook extends ItemBook{
     }
 	
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player){
-			Minecraft.getMinecraft().displayGuiScreen(new GuiInstructionBook());
+		Minecraft.getMinecraft().displayGuiScreen(new GuiInstructionBook());
 		return stack;
 	}
 	
