@@ -101,6 +101,8 @@ public static CreativeTabs FaithCraft2Tab = new FaithCraft2Tab(CreativeTabs.getN
 @Instance(modid)
 public static FaithCraft2 instance;
 
+public static final int guiIDInstructionBook = 2;
+
 public static final int guiIDAltar = 1;
 public static Block Altar;
 

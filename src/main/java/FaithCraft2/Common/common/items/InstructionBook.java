@@ -1,9 +1,12 @@
 package FaithCraft2.Common.common.items;
 
+import java.util.List;
+
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.Minecraft;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,11 +18,15 @@ import net.minecraft.item.ItemWritableBook;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
+import net.minecraft.util.StringUtils;
 import net.minecraft.world.World;
 import FaithCraft2.Common.common.*;
+import FaithCraft2.Common.common.gui.GuiInstructionBook;
 import FaithCraft2.Common.common.handler.PlayerSpawnHandler;
 
-public class InstructionBook extends ItemEditableBook{
+public class InstructionBook extends ItemBook{
 
 	public InstructionBook(int id){
 		super();
@@ -28,19 +35,14 @@ public class InstructionBook extends ItemEditableBook{
 	}
 	
 	@SideOnly(Side.CLIENT)
-    public boolean hasEffect(ItemStack p_77636_1_)
+    public boolean hasEffect(ItemStack stack)
     {
         return true;
     }
 	
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player){
-		int x = 0;
-		int y = 0;
-		int z = 0;
-		player.openGui(FaithCraft2.instance, FaithCraft2.guiIDAltar, world, x, y, z);
-		
+			Minecraft.getMinecraft().displayGuiScreen(new GuiInstructionBook());
 		return stack;
-		
 	}
 	
 }

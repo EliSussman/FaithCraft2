@@ -1,6 +1,7 @@
 package FaithCraft2.Common.common.handler;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
@@ -9,6 +10,8 @@ import FaithCraft2.Common.common.container.ContainerAltar;
 import FaithCraft2.Common.common.container.ContainerHolyForge;
 import FaithCraft2.Common.common.gui.GuiAltar;
 import FaithCraft2.Common.common.gui.GuiHolyForge;
+import FaithCraft2.Common.common.gui.GuiInstructionBook;
+import FaithCraft2.Common.common.items.InstructionBook;
 import FaithCraft2.Common.common.tileEntity.TileEntityAltar;
 import FaithCraft2.Common.common.tileEntity.TileEntityHolyForge;
 
@@ -53,6 +56,8 @@ public class GuiHandler implements IGuiHandler{
 					return new GuiHolyForge(player.inventory, (TileEntityHolyForge) entity);
 				}
 				return null;
+			case FaithCraft2.guiIDInstructionBook:
+				return new GuiInstructionBook();
 			}
 		}
 		return null;
