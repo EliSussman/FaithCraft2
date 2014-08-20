@@ -1,5 +1,6 @@
 package FaithCraft2.Common.common.gui;
 
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.Side;
@@ -30,7 +31,7 @@ public class GuiInstructionBook extends GuiScreen{
 	private NextPageButton prevPage;
 	private NextPageButton nextPage;
     private int bookTotalPages = 2;
-    private int currPage;
+    public int currPage;
     private NBTTagList bookPages;
 	private boolean field_146480_s;
     private GuiInstructionBook.NextPageButton buttonNextPage;
@@ -43,24 +44,27 @@ public class GuiInstructionBook extends GuiScreen{
 	private static final ResourceLocation FaithCraft2InstructionBookTextureP2 = new ResourceLocation(FaithCraft2.modid + ":" + "textures/gui/bookPage2.png");
 	
 	public void updateScreen() {
+		
 	}
 	
-	public void initGui(){
-		int i = (this.width - this.bookImageWidth) / 2;
-        byte b0 = 2;
-		this.buttonList.add(this.buttonNextPage = new GuiInstructionBook.NextPageButton(1, i + 120, b0 + 154, true));
-        this.buttonList.add(this.buttonPreviousPage = new GuiInstructionBook.NextPageButton(2, i + 38, b0 + 154, false));
+	/*public void initGui(){
+		this.buttonList.clear();
+        int i = (this.width - this.bookImageWidth) / 2;
+        int b0 = (this.height - this.bookImageHeight) / 2;
+        this.buttonList.add(this.nextPage = new NextPageButton(0, 10, 100, 50, 20, "Next"));
+        this.buttonList.add(this.prevPage = new NextPageButton(1, 10, 130, 50, 20, "Previous"));
         this.updateButtons();
-	}
+	}*/
+	
+	 public void updateButtons()
+	    {
+		 	this.buttonNextPage.visible = (this.currPage < this.bookTotalPages - 1);
+		 	this.buttonPreviousPage.visible = this.currPage > 0;
+	    }
 	
 	
 	public GuiInstructionBook() {
 		super();
-	}
-	
-	public void actionPerformed(NextPageButton button){
-			++this.currPage;
-			this.updateScreen();
 	}
     
     @Override
@@ -72,16 +76,17 @@ public class GuiInstructionBook extends GuiScreen{
     @Override
     public void drawScreen(int par1, int par2, float par3)
     {
-        drawDefaultBackground();
+       drawDefaultBackground();
+       if(currPage > 0){
+			this.mc.getTextureManager().bindTexture(FaithCraft2InstructionBookTextureP2);
+		}else{
+			this.mc.getTextureManager().bindTexture(FaithCraft2InstructionBookTextureP1);
+		}
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.getTextureManager().bindTexture(FaithCraft2InstructionBookTextureP1);
         int k = (this.width - this.bookImageWidth) / 2;
         byte b0 = 2;
         this.drawTexturedModalRect(k, b0, 0, 0, this.bookImageWidth, this.bookImageHeight);
         super.drawScreen(par1, par2, par3);
-        if(currPage > 0){
-			this.mc.getTextureManager().bindTexture(FaithCraft2InstructionBookTextureP2);
-		}
     }
     
     public void chooseDrawScreen(int par1, int par2, float par3){
@@ -92,6 +97,14 @@ public class GuiInstructionBook extends GuiScreen{
 	public boolean doesGuiPauseGame()
     {
         return true;
+    }
+    
+    @Override
+    public void actionPerformed(GuiButton nextPage){
+		if(nextPage.mousePressed(Minecraft.getMinecraft(), nextPage.xPosition, nextPage.yPosition)){
+			++this.currPage;
+			this.updateScreen();
+		}
     }
     
     @SideOnly(Side.CLIENT)
@@ -110,8 +123,8 @@ public class GuiInstructionBook extends GuiScreen{
                 this.field_146151_o = p_i1079_4_;
                 
             }
-            
-            /**
+
+			/**
              * Draws this button to the screen.
              */
             public void drawButton(Minecraft p_146112_1_, int p_146112_2_, int p_146112_3_)
@@ -138,10 +151,4 @@ public class GuiInstructionBook extends GuiScreen{
                 }
             }
         }
-    
-    private void updateButtons()
-    {
-        this.buttonNextPage.visible = !this.field_146480_s && (this.currPage < this.bookTotalPages - 1);
-        this.buttonPreviousPage.visible = !this.field_146480_s && this.currPage > 0;
-    }
 }
