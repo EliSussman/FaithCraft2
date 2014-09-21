@@ -28,14 +28,10 @@ import FaithCraft2.Common.common.items.InstructionBook;
 
 public class GuiInstructionBook extends GuiScreen{
 	
-	private NextPageButton prevPage;
-	private NextPageButton nextPage;
     private int bookTotalPages = 2;
     public int currPage;
     private NBTTagList bookPages;
 	private boolean field_146480_s;
-    private GuiInstructionBook.NextPageButton buttonNextPage;
-    private GuiInstructionBook.NextPageButton buttonPreviousPage;
     private ItemStack bookStack;
     private NBTTagCompound bookInfo;
 	private int bookImageWidth = 166;
@@ -47,20 +43,21 @@ public class GuiInstructionBook extends GuiScreen{
 		
 	}
 	
-	/*public void initGui(){
-		this.buttonList.clear();
-        int i = (this.width - this.bookImageWidth) / 2;
-        int b0 = (this.height - this.bookImageHeight) / 2;
-        this.buttonList.add(this.nextPage = new NextPageButton(0, 10, 100, 50, 20, "Next"));
-        this.buttonList.add(this.prevPage = new NextPageButton(1, 10, 130, 50, 20, "Previous"));
-        this.updateButtons();
-	}*/
+	public void initGui(){
+		 super.initGui();
+		 this.buttonList.add(new GuiButton(5, 300, 200, 100, 20, "Next"));
+		 this.buttonList.add(new GuiButton(6, 50, 200, 100, 20, "Back"));
+	}
 	
-	 public void updateButtons()
-	    {
-		 	this.buttonNextPage.visible = (this.currPage < this.bookTotalPages - 1);
-		 	this.buttonPreviousPage.visible = this.currPage > 0;
-	    }
+	 @Override
+	 protected void actionPerformed(GuiButton button)
+	 {
+		 if(button.id == 5){
+			 this.currPage = 1;
+		 }else if(button.id == 6){
+			 this.currPage = 0;
+		 }
+	 }
 	
 	
 	public GuiInstructionBook() {
@@ -98,57 +95,4 @@ public class GuiInstructionBook extends GuiScreen{
     {
         return true;
     }
-    
-    @Override
-    public void actionPerformed(GuiButton nextPage){
-		if(nextPage.mousePressed(Minecraft.getMinecraft(), nextPage.xPosition, nextPage.yPosition)){
-			++this.currPage;
-			this.updateScreen();
-		}
-    }
-    
-    @SideOnly(Side.CLIENT)
-    public static class NextPageButton extends GuiButton
-        {
-            private final boolean field_146151_o;
-            private int bookTotalPages = 2;
-            private NextPageButton prevPage;
-        	private NextPageButton nextPage;
-        	private GuiInstructionBook gib;
-        	private NBTTagList bookPages;
-            
-            public NextPageButton(int p_i1079_1_, int p_i1079_2_, int p_i1079_3_, boolean p_i1079_4_)
-            {
-            	super(p_i1079_1_, p_i1079_2_, p_i1079_3_, 23, 33, "");
-                this.field_146151_o = p_i1079_4_;
-                
-            }
-
-			/**
-             * Draws this button to the screen.
-             */
-            public void drawButton(Minecraft p_146112_1_, int p_146112_2_, int p_146112_3_)
-            {
-                if (this.visible)
-                {
-                    boolean flag = p_146112_2_ >= this.xPosition && p_146112_3_ >= this.yPosition + 20 && p_146112_2_ < this.xPosition + this.width && p_146112_3_ < this.yPosition + this.height + 20;
-                    GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-                    p_146112_1_.getTextureManager().bindTexture(GuiInstructionBook.FaithCraft2InstructionBookTextureP1);
-                    int k = 0;
-                    int l = 192;
-
-                    if (flag)
-                    {
-                        k += 23;
-                    }
-
-                    if (!this.field_146151_o)
-                    {
-                        l += 33;
-                    }
-
-                    this.drawTexturedModalRect(this.xPosition, this.yPosition + 20, k, l, 23, 13);
-                }
-            }
-        }
 }
