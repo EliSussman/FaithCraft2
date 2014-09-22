@@ -1,8 +1,12 @@
 package FaithCraft2.Common.common.entity;
 
+import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 
 public class Demon extends EntityMob{
@@ -18,7 +22,5 @@ public class Demon extends EntityMob{
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.5D);
         this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(10.0D);
     }
-	
-	
 
 }
