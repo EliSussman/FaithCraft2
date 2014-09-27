@@ -37,7 +37,7 @@ public class HellBiome extends BiomeGenBase{
 		this.setColor(0x000000);
 		this.height_LowPlains.rootHeight = -2;
 		this.theBiomeDecorator.treesPerChunk = -999;
-		this.spawnableCreatureList.add(new SpawnListEntry(Demon.class, 3, 4, 4));
+		this.spawnableCreatureList.add(new SpawnListEntry(Demon.class, 4, 4, 4));
 		this.theBiomeDecorator.generateLakes = false;
 	}
 	
