@@ -1,9 +1,12 @@
 package FaithCraft2.Common.common.blocks;
 
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import FaithCraft2.Common.common.FaithCraft2Tab;
@@ -19,6 +22,8 @@ public class HellRock extends Block{
 	public HellRock(int id, Material material) {
 		super(material);
 		this.setCreativeTab(FaithCraft2.FaithCraft2Tab);
+		this.setHardness(1.0F);
+		this.setLightLevel(1.5F);
 	}
 	
 	@Override
@@ -31,17 +36,15 @@ public class HellRock extends Block{
 		return hellRock;
 	}
 	
-	public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
-	    boolean isShape = world.getBlock(x, y, z) == this &&
-	    		world.getBlock(x, y + 1, z) == this;
+	public int quantityDropped(Random p_149745_1_)
+    {
+        return 1;
+    }
 
-	    if (isShape) {
-	        Demon entity = new Demon(world);
-	        entity.setPosition(x, y, z);
-	        world.spawnEntityInWorld(entity);
-	        world.setBlock(x, y, z, Blocks.air);
-	        world.setBlock(x, y + 1, z, Blocks.air);
-	    }
-	}
+    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
+    {
+        return Item.getItemFromBlock(this);
+    }
+	
 
 }

@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.dimension;
+package FaithCraft2.Common.common.dimension.heaven;
 
 import java.util.ArrayList;
 import java.util.List;

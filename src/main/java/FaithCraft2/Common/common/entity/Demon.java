@@ -11,7 +11,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import FaithCraft2.Common.common.FaithCraft2;
-import FaithCraft2.Common.common.dimension.TeleporterHeaven;
+import FaithCraft2.Common.common.dimension.heaven.TeleporterHeaven;
 
 public class Demon extends EntityMob{
 

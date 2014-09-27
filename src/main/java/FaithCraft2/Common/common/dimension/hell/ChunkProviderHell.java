@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.dimension;
+package FaithCraft2.Common.common.dimension.hell;
 
 import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.CAVE;
 import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.MINESHAFT;
@@ -45,7 +45,7 @@ import net.minecraftforge.event.terraingen.ChunkProviderEvent;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 
-public class ChunkProviderHeaven implements IChunkProvider{
+public class ChunkProviderHell implements IChunkProvider{
 
 	/** RNG. */
     private Random rand;
@@ -93,7 +93,7 @@ public class ChunkProviderHeaven implements IChunkProvider{
         ravineGenerator = TerrainGen.getModdedMapGen(ravineGenerator, RAVINE);
     }  
     
-    public ChunkProviderHeaven(World world, long var2, boolean var4)
+    public ChunkProviderHell(World world, long var2, boolean var4)
     {
         this.worldObj = world;
         this.mapFeaturesEnabled = var4;
@@ -492,7 +492,7 @@ public class ChunkProviderHeaven implements IChunkProvider{
 	@Override
 	public String makeString() {
 	
-		return "Heaven";
+		return "Hell";
 	}
 
 	@Override
@@ -505,7 +505,7 @@ public class ChunkProviderHeaven implements IChunkProvider{
 	@Override
 	public ChunkPosition func_147416_a(World p_147416_1_, String p_147416_2_, int p_147416_3_, int p_147416_4_, int p_147416_5_) {
 	
-		return "Stronghold".equals(p_147416_2_) && this.strongholdGenerator != null ? this.strongholdGenerator.func_151545_a(p_147416_1_, p_147416_3_, p_147416_4_, p_147416_5_) : null;
+		return null;
 	}
 
 	@Override
@@ -518,10 +518,7 @@ public class ChunkProviderHeaven implements IChunkProvider{
 	public void recreateStructures(int var1, int var2) {
 		if (this.mapFeaturesEnabled)
         {
-            this.mineshaftGenerator.func_151539_a(this, this.worldObj, var1, var2, (Block[])null);
-            this.villageGenerator.func_151539_a(this, this.worldObj, var1, var2, (Block[])null);
-            this.strongholdGenerator.func_151539_a(this, this.worldObj, var1, var2, (Block[])null);
-            this.scatteredFeatureGenerator.func_151539_a(this, this.worldObj, var1, var2, (Block[])null);
+        
         }
 		
 	}
@@ -532,3 +529,4 @@ public class ChunkProviderHeaven implements IChunkProvider{
 	}
 
 }
+
