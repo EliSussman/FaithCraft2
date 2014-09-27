@@ -25,7 +25,6 @@ import net.minecraft.util.StringUtils;
 import net.minecraft.world.World;
 import FaithCraft2.Common.common.*;
 import FaithCraft2.Common.common.gui.GuiInstructionBook;
-import FaithCraft2.Common.common.gui.GuiInstructionBook.NextPageButton;
 import FaithCraft2.Common.common.handler.PlayerSpawnHandler;
 
 public class InstructionBook extends ItemBook{

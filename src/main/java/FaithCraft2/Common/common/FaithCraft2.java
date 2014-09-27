@@ -7,6 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
@@ -30,14 +31,15 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import FaithCraft2.Common.common.biome.HeavenBiome;
+import FaithCraft2.Common.common.biome.HellBiome;
 import FaithCraft2.Common.common.blocks.Altar;
 import FaithCraft2.Common.common.blocks.HolyCobbleStone;
 import FaithCraft2.Common.common.blocks.HolyForge;
 import FaithCraft2.Common.common.blocks.HolyOre;
 import FaithCraft2.Common.common.blocks.HolyStone;
 import FaithCraft2.Common.common.blocks.WineBlock;
-import FaithCraft2.Common.common.dimension.HeavenPortal;
-import FaithCraft2.Common.common.dimension.WorldProviderHeaven;
+import FaithCraft2.Common.common.dimension.heaven.WorldProviderHeaven;
+import FaithCraft2.Common.common.dimension.hell.WorldProviderHell;
 import FaithCraft2.Common.common.entity.EntityMobRegistry;
 import FaithCraft2.Common.common.handler.BucketHandler;
 import FaithCraft2.Common.common.handler.ConfigHandler;
@@ -67,6 +69,9 @@ import FaithCraft2.Common.common.blocks.DogwoodLog;
 import FaithCraft2.Common.common.blocks.DogwoodSapling;
 import FaithCraft2.Common.common.blocks.DogwoodPlank;
 import FaithCraft2.Common.common.items.InstructionBook;
+import FaithCraft2.Common.common.blocks.HellRock;
+import FaithCraft2.Common.common.handler.PlayerInteractWithHell;
+import FaithCraft2.Common.common.blocks.HellCobbleStone;
 
 import com.google.common.base.Throwables;
 import com.google.common.collect.ObjectArrays;
@@ -121,6 +126,8 @@ public static Block DogwoodLeaves;
 public static Block DogwoodLog;
 public static Block DogwoodSapling;
 public static Block DogwoodPlank;
+public static Block HellRock;
+public static Block HellCobbleStone;
 
 public static Item Bible;
 public static Item BodyOFChrist;
@@ -139,10 +146,14 @@ public static Fluid Wine;
 
 public static BiomeGenBase HeavenBiome;
 
+public static BiomeGenBase HellBiome;
+
 public static IWorldGenerator genTemple;
 public static IWorldGenerator genChurch;
 
 public static int HeavenId = 10;
+
+public static int HellId = 11;
 
 public static MerchantRecipeList merchantRecipeList;
 public static Angel angel;
@@ -172,12 +183,13 @@ public static CommonProxy proxy;
 		HolyStone = new HolyStone(3010, Material.rock).setBlockName("HolyStone").setBlockTextureName("FaithCraft2:HolyStone");
 		HolyCobbleStone = new HolyCobbleStone(3011, Material.rock).setBlockName("HolyCobbleStone").setBlockTextureName("FaithCraft2:HolyCobbleStone");
 		WineBlock = new WineBlock(Wine, Material.water).setBlockName("Wine");
-		HeavenPortal = new HeavenPortal(3014, Material.portal).setBlockName("HeavenPortal").setBlockTextureName("FaithCraft2:HeavenPortal");
 		HolyBlock = new HolyBlock(3015, Material.rock).setBlockName("HolyBlock");
 		DogwoodLeaves = new DogwoodLeaves(3016).setBlockName("DogwoodLeaves");
 		DogwoodLog = new DogwoodLog(3017, Material.wood).setBlockName("DogwoodLog");
 		DogwoodSapling = new DogwoodSapling(3018).setBlockName("DogwoodSapling");
 		DogwoodPlank = new DogwoodPlank(3019, Material.wood).setBlockName("DogwoodPlank");
+		HellRock = new HellRock(3021, Material.rock).setBlockName("HellRock").setBlockTextureName("FaithCraft2:HellRock");
+		HellCobbleStone = new HellCobbleStone(3022, Material.rock).setBlockName("HellCobbleStone").setBlockTextureName("FaithCraft2:HellCobbleStone");
 		
 		Bible = new Bible(3001).setUnlocalizedName("Bible").setTextureName("FaithCraft2:Bible");
 		BodyOFChrist = new BodyOFChrist(3002).setUnlocalizedName("BodyOFChrist").setTextureName("FaithCraft2:BodyOFChrist");
@@ -193,6 +205,7 @@ public static CommonProxy proxy;
 		InstructionBook = new InstructionBook(3020).setUnlocalizedName("InstructionBook").setTextureName("FaithCraft2:InstructionBook");
 		
 		HeavenBiome = new HeavenBiome(245).setBiomeName("Heaven").setDisableRain();
+		HellBiome = new HellBiome(246).setBiomeName("Hell").setDisableRain();
 		
 		genTemple = new WorldGenTemple();
 		genChurch = new WorldGenChurch();
@@ -204,12 +217,13 @@ public static CommonProxy proxy;
 		GameRegistry.registerBlock(HolyStone, "HolyStone");
 		GameRegistry.registerBlock(HolyCobbleStone, "HolyCobbleStone");
 		GameRegistry.registerBlock(WineBlock, "WineBlock");
-		GameRegistry.registerBlock(HeavenPortal, "HeavenPortal");
 		GameRegistry.registerBlock(HolyBlock, "HolyBlock");
 		GameRegistry.registerBlock(DogwoodLeaves, "DogwoodLeaves");
 		GameRegistry.registerBlock(DogwoodLog, "DogwoodLog");
 		GameRegistry.registerBlock(DogwoodSapling, "DogwoodSapling");
 		GameRegistry.registerBlock(DogwoodPlank, "DogwoodPlank");
+		GameRegistry.registerBlock(HellRock, "HellRock");
+		GameRegistry.registerBlock(HellCobbleStone, "HellCobbleStone");
 		
 		GameRegistry.registerItem(Bible, "Bible");
 		GameRegistry.registerItem(BodyOFChrist, "BodyOFChrist");
@@ -233,6 +247,9 @@ public static CommonProxy proxy;
 		
 		DimensionManager.registerProviderType(HeavenId, WorldProviderHeaven.class, true);
 		DimensionManager.registerDimension(HeavenId, HeavenId);
+		
+		DimensionManager.registerProviderType(HellId, WorldProviderHell.class, true);
+		DimensionManager.registerDimension(HellId, HellId);
 	}
 
 	@EventHandler
@@ -247,11 +264,14 @@ public static CommonProxy proxy;
 		
 		MinecraftForge.EVENT_BUS.register(PlayerSpawnHandler.INSTANCE);
 		
+		MinecraftForge.EVENT_BUS.register(PlayerInteractWithHell.INSTANCE);
+		
 		MinecraftForge.EVENT_BUS.register(BucketHandler.INSTANCE);
 		BucketHandler.INSTANCE.buckets.put(WineBlock, WineBucket);
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(FaithCraft2.DogwoodPlank, 2), new ItemStack(FaithCraft2.DogwoodLog));
 		GameRegistry.addRecipe(new ItemStack(FaithCraft2.DogwoodStick, 2), new Object[] {"D", "D", 'D', FaithCraft2.DogwoodPlank});
+		GameRegistry.addRecipe(new ItemStack(FaithCraft2.HellRock, 2), new Object[] {"NNN", "NGN", "NNN", 'N', Blocks.netherrack, 'G', Items.gold_ingot});
 	}
 	
 	@EventHandler

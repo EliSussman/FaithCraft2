@@ -10,6 +10,7 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.IEntityLivingData;
@@ -19,6 +20,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAITradePlayer;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -33,6 +35,8 @@ import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.village.Village;
 import net.minecraft.world.World;
 import FaithCraft2.Common.common.FaithCraft2;
+import FaithCraft2.Common.common.dimension.heaven.TeleporterHeaven;
+import FaithCraft2.Common.common.dimension.hell.TeleporterHell;
 
 public class Angel extends EntityVillager implements INpc, IMerchant{
 
@@ -346,6 +350,22 @@ public class Angel extends EntityVillager implements INpc, IMerchant{
     public boolean allowLeashing()
     {
         return true;
+    }
+    
+    protected void onDeathUpdate()
+	{
+		this.setDead();
+		
+		Entity entity = attackingPlayer;
+		if (entity instanceof EntityPlayerMP){
+			EntityPlayerMP player = (EntityPlayerMP) entity;
+            if (entity.dimension != FaithCraft2.HellId){
+            	player.timeUntilPortal = 10;
+            	{
+            		 player.mcServer.getConfigurationManager().transferPlayerToDimension(player, FaithCraft2.HellId, new TeleporterHell(player.mcServer.worldServerForDimension(FaithCraft2.HellId)));
+            	}
+            }
+        }
     }
 	
 }

@@ -81,36 +81,8 @@ public class Jesus extends EntityCreature implements IBossDisplayData{
                 i -= j;
                 this.worldObj.spawnEntityInWorld(new EntityXPOrb(this.worldObj, this.posX, this.posY, this.posZ, j));
             }
-
-            createHeavenPortal(chunkCoordX * 16, chunkCoordZ * 16);
             this.setDead();
         }
-    }
-
-    /**
-     * Creates the Heaven portal leading to Heaven after defeating Jesus.
-     */
-	private void createHeavenPortal(int x2, int z2){
-		int x = x2 + rand.nextInt(15);
-		int z = z2 + rand.nextInt(15);
-
-		int y = worldObj.getHeightValue(x,z)-1;
-		
-    	worldObj.setBlock(x + 0, y + 0, z + 0, FaithCraft2.HolyBlock, 0, 3);
-		worldObj.setBlock(x + 1, y + 0, z + 0, FaithCraft2.HolyBlock, 0, 3);
-		worldObj.setBlock(x + 2, y + 0, z + 0, FaithCraft2.HolyBlock, 0, 3);
-		worldObj.setBlock(x + 3, y + 0, z + 0, FaithCraft2.HolyBlock, 0, 3);
-		worldObj.setBlock(x + 0, y + 1, z + 0, FaithCraft2.HolyBlock, 0, 3);
-		worldObj.setBlock(x + 1, y + 1, z + 0, FaithCraft2.WineBlock, 0, 3);
-		worldObj.setBlock(x + 3, y + 1, z + 0, FaithCraft2.HolyBlock, 0, 3);
-		worldObj.setBlock(x + 0, y + 2, z + 0, FaithCraft2.HolyBlock, 0, 3);
-		worldObj.setBlock(x + 3, y + 2, z + 0, FaithCraft2.HolyBlock, 0, 3);
-		worldObj.setBlock(x + 0, y + 3, z + 0, FaithCraft2.HolyBlock, 0, 3);
-		worldObj.setBlock(x + 3, y + 3, z + 0, FaithCraft2.HolyBlock, 0, 3);
-		worldObj.setBlock(x + 0, y + 4, z + 0, FaithCraft2.HolyBlock, 0, 3);
-		worldObj.setBlock(x + 1, y + 4, z + 0, FaithCraft2.HolyBlock, 0, 3);
-		worldObj.setBlock(x + 2, y + 4, z + 0, FaithCraft2.HolyBlock, 0, 3);
-		worldObj.setBlock(x + 3, y + 4, z + 0, FaithCraft2.HolyBlock, 0, 3);
     }
 
 }
