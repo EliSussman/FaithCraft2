@@ -70,7 +70,6 @@ import FaithCraft2.Common.common.blocks.DogwoodSapling;
 import FaithCraft2.Common.common.blocks.DogwoodPlank;
 import FaithCraft2.Common.common.items.InstructionBook;
 import FaithCraft2.Common.common.blocks.HellRock;
-import FaithCraft2.Common.common.handler.PlayerInteractWithHell;
 import FaithCraft2.Common.common.blocks.HellCobbleStone;
 
 import com.google.common.base.Throwables;
@@ -263,8 +262,6 @@ public static CommonProxy proxy;
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 		
 		MinecraftForge.EVENT_BUS.register(PlayerSpawnHandler.INSTANCE);
-		
-		MinecraftForge.EVENT_BUS.register(PlayerInteractWithHell.INSTANCE);
 		
 		MinecraftForge.EVENT_BUS.register(BucketHandler.INSTANCE);
 		BucketHandler.INSTANCE.buckets.put(WineBlock, WineBucket);
