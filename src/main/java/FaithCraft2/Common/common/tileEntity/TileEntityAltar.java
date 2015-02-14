@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.tileEntity;
+/*package FaithCraft2.Common.common.tileEntity;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -7,6 +7,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.IChatComponent;
 
 public class TileEntityAltar extends TileEntity implements ISidedInventory{
 	private String localizedName;
@@ -75,16 +78,17 @@ public class TileEntityAltar extends TileEntity implements ISidedInventory{
 
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-		return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : entityplayer.getDistanceSq((double)this.xCoord + 0.5D, (double)this.yCoord + 0.5D, (double)this.zCoord + 0.5D) <= 64.0D;
+		BlockPos pos = entityplayer.getPosition();
+		return this.worldObj.getTileEntity(pos) != this ? false : entityplayer.getDistanceSq((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D) <= 64.0D;
 	}
 
 	@Override
-	public void openInventory() {
+	public void openInventory(EntityPlayer player) {
 		
 	}
 
 	@Override
-	public void closeInventory() {
+	public void closeInventory(EntityPlayer player) {
 		
 	}
 
@@ -94,17 +98,12 @@ public class TileEntityAltar extends TileEntity implements ISidedInventory{
 	}
 
 	@Override
-	public int[] getAccessibleSlotsFromSide(int var1) {
-		return null;
-	}
-
-	@Override
-	public boolean canInsertItem(int var1, ItemStack var2, int var3) {
+	public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction) {
 		return true;
 	}
 
 	@Override
-	public boolean canExtractItem(int var1, ItemStack var2, int var3) {
+	public boolean canExtractItem(int index, ItemStack itemStackOut, EnumFacing direction) {
 		return true;
 	}
 
@@ -171,5 +170,45 @@ public class TileEntityAltar extends TileEntity implements ISidedInventory{
             return null;
         }
     }
+
+	@Override
+	public int getField(int id) {
+		return 0;
+	}
+
+	@Override
+	public void setField(int id, int value) {
+		
+	}
+
+	@Override
+	public int getFieldCount() {
+		return 0;
+	}
+
+	@Override
+	public void clear() {
+		
+	}
+
+	@Override
+	public String getName() {
+		return "Altar";
+	}
+
+	@Override
+	public boolean hasCustomName() {
+		return true;
+	}
+
+	@Override
+	public IChatComponent getDisplayName() {
+		return null;
+	}
+
+	@Override
+	public int[] getSlotsForFace(EnumFacing side) {
+		return null;
+	}
 	
-}
+}*/

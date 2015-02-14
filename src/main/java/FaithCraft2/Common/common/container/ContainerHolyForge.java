@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.container;
+/*package FaithCraft2.Common.common.container;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -148,3 +148,4 @@ public class ContainerHolyForge extends Container{
     }
 	
 }
+*/

@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.entity;
+/*package FaithCraft2.Common.common.entity;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -369,3 +369,4 @@ public class Angel extends EntityVillager implements INpc, IMerchant{
     }
 	
 }
+*/

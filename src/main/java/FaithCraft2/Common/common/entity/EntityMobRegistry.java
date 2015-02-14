@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.entity;
+/*package FaithCraft2.Common.common.entity;
 
 import net.minecraft.entity.EntityList;
 import cpw.mods.fml.common.registry.EntityRegistry;
@@ -28,3 +28,4 @@ public class EntityMobRegistry {
 		EntityList.entityEggs.put(Integer.valueOf(randomID), new EntityList.EntityEggInfo(randomID, solid, spots));
 	}
 }
+*/

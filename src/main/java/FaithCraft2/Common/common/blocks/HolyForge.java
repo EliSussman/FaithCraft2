@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.blocks;
+/*package FaithCraft2.Common.common.blocks;
 
 import java.util.Random;
 
@@ -223,3 +223,4 @@ public class HolyForge extends BlockContainer{
 		return Item.getItemFromBlock(FaithCraft2.HolyForgeIdle);
 	}	
 }
+*/

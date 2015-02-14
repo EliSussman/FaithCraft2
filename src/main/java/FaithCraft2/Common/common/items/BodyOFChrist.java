@@ -6,7 +6,10 @@ import net.minecraft.item.ItemStack;
 
 public class BodyOFChrist extends Item{
 	
+	private final String name = "BodyOFChrist";
+	
 	public BodyOFChrist(int i){
+		setUnlocalizedName(FaithCraft2.modid + ":" + name);
 		this.setCreativeTab(FaithCraft2.FaithCraft2Tab);
 	}
 	
@@ -14,5 +17,9 @@ public class BodyOFChrist extends Item{
     public boolean hasEffect(ItemStack par1ItemStack) {
         return true;
     }
+	
+	public String getName(){
+		return name;
+	}
 	
 }

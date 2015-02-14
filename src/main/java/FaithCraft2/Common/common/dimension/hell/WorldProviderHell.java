@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.dimension.hell;
+/*package FaithCraft2.Common.common.dimension.hell;
 
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.WorldChunkManagerHell;
@@ -25,10 +25,9 @@ public class WorldProviderHell extends WorldProvider{
 	{
 		return "Entering Hell";
 	}
-
-	/** Can player re-spawn here **/
 	public boolean canRespawnHere()
 	{
 		return false;
 	}
 }
+*/

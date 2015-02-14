@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.worldgen;
+/*package FaithCraft2.Common.common.worldgen;
 
 import java.util.Random;
 
@@ -41,3 +41,4 @@ public class HolyWorldGen implements IWorldGenerator{
 		
 	}
 }
+*/

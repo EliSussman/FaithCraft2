@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.container;
+/*package FaithCraft2.Common.common.container;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -137,3 +137,4 @@ public class ContainerAltar extends Container {
     }
 
 }
+*/

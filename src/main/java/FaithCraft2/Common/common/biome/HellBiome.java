@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.biome;
+/*package FaithCraft2.Common.common.biome;
 
 import java.util.Random;
 
@@ -14,13 +14,9 @@ import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
 import net.minecraft.world.gen.feature.WorldGenLakes;
 
 public class HellBiome extends BiomeGenBase{
-	/** The world the BiomeDecorator is currently decorating */
     public World currentWorld;
-    /** The Biome Decorator's random number generator. */
     public Random randomGenerator;
-    /** The X-coordinate of the chunk currently being decorated */
     public int chunk_X;
-    /** The Z-coordinate of the chunk currently being decorated */
     public int chunk_Z;
     
     public HellBiome(int par1) {
@@ -47,3 +43,4 @@ public class HellBiome extends BiomeGenBase{
 		}
 	
 }
+*/

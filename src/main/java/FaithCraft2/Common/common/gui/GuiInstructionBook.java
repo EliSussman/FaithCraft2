@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.gui;
+/*package FaithCraft2.Common.common.gui;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
@@ -96,3 +96,4 @@ public class GuiInstructionBook extends GuiScreen{
         return true;
     }
 }
+*/

@@ -9,21 +9,28 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.util.ForgeDirection;
 import FaithCraft2.Common.common.FaithCraft2;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class HolyCobbleStone extends Block{
+	
+	private final String name = "HolyCobbleStone";
+	
 	public HolyCobbleStone(int i, Material material) {
 		super(material);
+		setUnlocalizedName(FaithCraft2.modid + ":" + name);
 		this.setCreativeTab(FaithCraft2.FaithCraft2Tab);
 		this.setHardness(5F);
 		this.setResistance(11.0F);
 		this.setLightLevel(1.0F);
 	}
 	
-	public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection direction, IPlantable plantable)
+	public String getName(){
+		return name;
+	}
+	
+	/*public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection direction, IPlantable plantable)
     {
         Block plant = plantable.getPlant(world, x, y + 1, z);
         EnumPlantType plantType = plantable.getPlantType(world, x, y + 1, z);
@@ -38,5 +45,5 @@ public class HolyCobbleStone extends Block{
             return true;
         }
 		return true;
-    }
+    }*/
 }

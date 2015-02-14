@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.biome;
+/*package FaithCraft2.Common.common.biome;
 
 import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.TREE;
 
@@ -26,14 +26,9 @@ import FaithCraft2.Common.common.entity.Angel;
 import FaithCraft2.Common.common.worldgen.WorldGenDogwoodTrees;
 
 public class HeavenBiome extends BiomeGenBase{
-	
-	/** The world the BiomeDecorator is currently decorating */
     public World currentWorld;
-    /** The Biome Decorator's random number generator. */
     public Random randomGenerator;
-    /** The X-coordinate of the chunk currently being decorated */
     public int chunk_X;
-    /** The Z-coordinate of the chunk currently being decorated */
     public int chunk_Z;
 	
 	public HeavenBiome(int par1) {
@@ -89,3 +84,4 @@ public class HeavenBiome extends BiomeGenBase{
 		}
 	
 }
+*/

@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.dimension.hell;
+/*package FaithCraft2.Common.common.dimension.hell;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +12,6 @@ import net.minecraft.world.WorldServer;
 public class TeleporterHell extends Teleporter{
 
 	private final WorldServer worldServerInstance;
-    /**
-     * A private Random() function in Teleporter
-     */
     private final Random random;
 
     private final WorldServer currentWorld;
@@ -42,13 +39,10 @@ public class TeleporterHell extends Teleporter{
         }
     }
 
-    /**
-     * Place an entity in a nearby portal which already exists.
-     */
     public boolean placeInExistingPortal(Entity entity, double p_77184_2_, double p_77184_4_, double p_77184_6_, float p_77184_8_)
     {
     	
 		return true;
     }
 }
-
+*/

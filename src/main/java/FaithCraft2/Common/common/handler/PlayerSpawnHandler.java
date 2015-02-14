@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.handler;
+/*package FaithCraft2.Common.common.handler;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
@@ -34,3 +34,4 @@ public class PlayerSpawnHandler {
 		}
 	}
 }
+*/

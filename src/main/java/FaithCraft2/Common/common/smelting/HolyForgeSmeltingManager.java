@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.smelting;
+/*package FaithCraft2.Common.common.smelting;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -15,14 +15,11 @@ import FaithCraft2.Common.common.FaithCraft2;
 public class HolyForgeSmeltingManager{
 	
     private static final HolyForgeSmeltingManager smeltingBase = new HolyForgeSmeltingManager();
-    /** The list of smelting results. */
+
     private Map smeltingList = new HashMap();
     private Map experienceList = new HashMap();
     private static final String __OBFID = "CL_00000085";
 
-    /**
-     * Used to call methods addSmelting and getSmeltingResult.
-     */
     public static HolyForgeSmeltingManager smelting()
     {
         return smeltingBase;
@@ -49,9 +46,6 @@ public class HolyForgeSmeltingManager{
         this.experienceList.put(p_151394_2_, Float.valueOf(p_151394_3_));
     }
 
-    /**
-     * Returns the smelting result of an item.
-     */
     public ItemStack getSmeltingResult(ItemStack p_151395_1_)
     {
         Iterator iterator = this.smeltingList.entrySet().iterator();
@@ -103,3 +97,4 @@ public class HolyForgeSmeltingManager{
         return ((Float)entry.getValue()).floatValue();
     }
 }
+*/

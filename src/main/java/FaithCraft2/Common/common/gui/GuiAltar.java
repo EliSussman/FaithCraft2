@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.gui;
+/*package FaithCraft2.Common.common.gui;
 
 import org.lwjgl.opengl.GL11;
 
@@ -44,3 +44,4 @@ public class GuiAltar extends GuiContainer{
     }
 
 }
+*/

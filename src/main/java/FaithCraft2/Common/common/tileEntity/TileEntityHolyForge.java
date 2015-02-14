@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.tileEntity;
+/*package FaithCraft2.Common.common.tileEntity;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import FaithCraft2.Common.common.blocks.HolyForge;
@@ -296,3 +296,4 @@ public class TileEntityHolyForge extends TileEntity implements ISidedInventory{
 		}
 	}
 }
+*/

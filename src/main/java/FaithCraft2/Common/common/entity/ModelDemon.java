@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.entity;
+/*package FaithCraft2.Common.common.entity;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
@@ -146,3 +146,4 @@ public class ModelDemon extends ModelBase
   }
 
 }
+*/

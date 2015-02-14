@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.blocks;
+/*package FaithCraft2.Common.common.blocks;
 
 import FaithCraft2.Common.common.FaithCraft2;
 import net.minecraft.block.Block;
@@ -16,3 +16,4 @@ public class HolyOre extends Block{
 	}
 
 }
+*/

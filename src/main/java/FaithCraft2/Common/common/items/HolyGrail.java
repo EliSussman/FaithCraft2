@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.items;
+/*package FaithCraft2.Common.common.items;
 
 import java.awt.Event;
 
@@ -34,3 +34,4 @@ public class HolyGrail extends Item{
 	}
 	
 }
+*/

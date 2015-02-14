@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.entity;
+/*package FaithCraft2.Common.common.entity;
 
 import java.util.Random;
 
@@ -86,3 +86,4 @@ public class Jesus extends EntityCreature implements IBossDisplayData{
     }
 
 }
+*/

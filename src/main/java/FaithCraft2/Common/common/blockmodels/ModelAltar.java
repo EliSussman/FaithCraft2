@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.blockmodels;
+/*package FaithCraft2.Common.common.blockmodels;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
@@ -127,3 +127,4 @@ public class ModelAltar extends ModelBase
   }
 
 }
+*/

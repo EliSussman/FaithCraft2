@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.blocks;
+/*package FaithCraft2.Common.common.blocks;
 
 import java.util.List;
 
@@ -35,3 +35,4 @@ public class DogwoodPlank extends Block{
 		return dogwoodPlank;
 	}
 }
+*/

@@ -1,5 +1,6 @@
-package FaithCraft2.Common.common.handler;
+/*package FaithCraft2.Common.common.handler;
 
 public class CraftingHandler {
 
 }
+*/

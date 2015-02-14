@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.entity;
+/*package FaithCraft2.Common.common.entity;
 
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
@@ -29,19 +29,12 @@ public class RenderAngel extends RenderLiving{
     public void doRender(Jesus entity, double blarg1, double blarg2, double blarg3, float blarg4, float blarg5) {
 		super.doRender(entity, blarg1, blarg2, blarg3, blarg4, blarg5);
 	}
-
-    /**
-     * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
-     */
     
     protected ResourceLocation getEntityTexture(Angel angel)
     {
         return angelTextures;
     }
 
-    /**
-     * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
-     */
     @Override
     protected ResourceLocation getEntityTexture(Entity entity)
     {
@@ -49,3 +42,4 @@ public class RenderAngel extends RenderLiving{
     }
 	
 }
+*/

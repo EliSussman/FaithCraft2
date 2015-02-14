@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.dimension.heaven;
+/*package FaithCraft2.Common.common.dimension.heaven;
 
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.WorldChunkManagerHell;
@@ -26,7 +26,6 @@ public class WorldProviderHeaven extends WorldProvider{
 		return "Entering Heaven";
 	}
 
-	/** Can player re-spawn here **/
 	public boolean canRespawnHere()
 	{
 		return false;
@@ -36,3 +35,4 @@ public class WorldProviderHeaven extends WorldProvider{
 		return "Becoming an Angel";
 	}
 }
+*/

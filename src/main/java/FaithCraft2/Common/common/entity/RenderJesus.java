@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.entity;
+/*package FaithCraft2.Common.common.entity;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -28,9 +28,6 @@ public class RenderJesus extends RenderLiving
         
     }
 
-    /**
-     * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
-     */
     protected ResourceLocation getEntityTexture(Jesus p_110775_1_)
     {
         return jesusTextures;
@@ -49,9 +46,6 @@ public class RenderJesus extends RenderLiving
 		super.doRender(entity, blarg1, blarg2, blarg3, blarg4, blarg5);
 	}
 
-    /**
-     * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
-     */
     protected ResourceLocation getEntityTexture(Entity p_110775_1_)
     {
         return this.getEntityTexture((Jesus)p_110775_1_);
@@ -59,3 +53,4 @@ public class RenderJesus extends RenderLiving
     
     
 }
+*/

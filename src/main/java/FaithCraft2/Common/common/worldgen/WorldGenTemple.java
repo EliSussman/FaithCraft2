@@ -2,7 +2,7 @@
 *** MADE BY MITHION'S .SCHEMATIC TO JAVA CONVERTING TOOL v1.6 ***
 */
 
-package FaithCraft2.Common.common.worldgen;
+/*package FaithCraft2.Common.common.worldgen;
 
 import java.util.Random;
 
@@ -476,3 +476,4 @@ public class WorldGenTemple implements IWorldGenerator{
 		return false;
 	}
 }
+*/

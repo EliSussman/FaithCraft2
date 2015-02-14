@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.handler;
+/*package FaithCraft2.Common.common.handler;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -63,3 +63,4 @@ public class GuiHandler implements IGuiHandler{
 		return null;
 	}
 }
+*/

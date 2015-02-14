@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.renderers;
+/*package FaithCraft2.Common.common.renderers;
 
 import org.lwjgl.opengl.GL11;
 
@@ -23,9 +23,9 @@ public class RenderAltar extends TileEntitySpecialRenderer{
 	}
 	
 	@Override
-	public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float f) {
+	public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float f, int h) {
 		int i;
-        if (tileentity.getWorldObj() == null)
+        if (tileentity.getWorld() == null)
         {
                 i = 0;
         } else {
@@ -61,3 +61,4 @@ public class RenderAltar extends TileEntitySpecialRenderer{
 	}
 
 }
+*/

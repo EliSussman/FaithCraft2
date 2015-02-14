@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.items;
+/*package FaithCraft2.Common.common.items;
 
 import java.util.Iterator;
 import java.util.List;
@@ -59,3 +59,4 @@ public class HolyGrailOFWine extends ItemFood{
         return par1ItemStack.stackSize <= 0 ? new ItemStack(FaithCraft2.HolyGrail) : par1ItemStack;
     }
 }
+*/

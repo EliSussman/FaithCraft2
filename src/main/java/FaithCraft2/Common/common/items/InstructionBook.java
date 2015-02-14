@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.items;
+/*package FaithCraft2.Common.common.items;
 
 import java.util.List;
 
@@ -47,3 +47,4 @@ public class InstructionBook extends ItemBook{
 	}
 	
 }
+*/

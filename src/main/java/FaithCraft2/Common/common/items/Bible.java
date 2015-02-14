@@ -6,7 +6,10 @@ import net.minecraft.item.ItemStack;
 
 public class Bible extends Item{
 
+	private final String name = "Bible";
+	
 	public Bible(int i){
+		setUnlocalizedName(FaithCraft2.modid + ":" + name);
 		this.setCreativeTab(FaithCraft2.FaithCraft2Tab);
 	}
 	
@@ -15,4 +18,7 @@ public class Bible extends Item{
         return true;
     }
 	
+	public String getName(){
+		return name;
+	}
 }

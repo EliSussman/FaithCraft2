@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.entity;
+/*package FaithCraft2.Common.common.entity;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -45,3 +45,4 @@ public class Demon extends EntityMob{
         }
     }
 }
+*/

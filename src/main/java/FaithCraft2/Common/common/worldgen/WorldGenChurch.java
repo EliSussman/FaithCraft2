@@ -1,6 +1,6 @@
 //Schematic to java Structure by jajo_11 | inspired by "MITHION'S .SCHEMATIC TO JAVA CONVERTING TOOL"
 
-package FaithCraft2.Common.common.worldgen;
+/*package FaithCraft2.Common.common.worldgen;
 
 import java.util.Random;
 import cpw.mods.fml.common.IWorldGenerator;
@@ -1214,3 +1214,4 @@ public class WorldGenChurch extends WorldGenerator implements IWorldGenerator
 			new WeightedRandomChestContent(new ItemStack(FaithCraft2.Cross), 1, 7, 100),
 			new WeightedRandomChestContent(new ItemStack(FaithCraft2.HolyCross), 1, 1, 1000)};
 }
+*/

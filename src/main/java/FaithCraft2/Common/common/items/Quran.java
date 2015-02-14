@@ -6,7 +6,10 @@ import net.minecraft.item.ItemStack;
 
 public class Quran extends Item{
 	
+	private final String name = "Quran";
+	
 	public Quran(int i){
+		setUnlocalizedName(FaithCraft2.modid + ":" + name);
 		this.setCreativeTab(FaithCraft2.FaithCraft2Tab);
 	}
 	
@@ -14,5 +17,9 @@ public class Quran extends Item{
     public boolean hasEffect(ItemStack par1ItemStack) {
         return true;
     }
+	
+	public String getName(){
+		return name;
+	}
 	
 }

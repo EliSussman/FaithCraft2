@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.blocks;
+/*package FaithCraft2.Common.common.blocks;
 
 import java.util.Random;
 
@@ -94,3 +94,4 @@ public class DogwoodLog extends BlockLog{
     }
 	
 }
+*/

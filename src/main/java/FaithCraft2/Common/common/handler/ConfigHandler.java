@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.handler;
+/*package FaithCraft2.Common.common.handler;
 
 import java.io.File;
 
@@ -43,3 +43,4 @@ public class ConfigHandler
 		}
 	}
 }
+*/

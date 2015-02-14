@@ -1,4 +1,4 @@
-package FaithCraft2.Common.client.gui;
+/*package FaithCraft2.Common.client.gui;
 
 import java.util.Set;
 
@@ -30,3 +30,4 @@ public class GuiFactory implements IModGuiFactory{
 	}
 
 }
+*/

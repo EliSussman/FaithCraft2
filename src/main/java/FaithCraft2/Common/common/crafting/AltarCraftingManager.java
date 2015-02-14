@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.crafting;
+/*package FaithCraft2.Common.common.crafting;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,17 +18,11 @@ import net.minecraft.world.World;
 import FaithCraft2.Common.common.FaithCraft2;
 
 public class AltarCraftingManager{
-    /** The static instance of this class */
     private static final AltarCraftingManager instance = new AltarCraftingManager();
-    /** A list of all the recipes added */
     private List recipes = new ArrayList();
 
-    /**
-     * Returns the static instance of this class
-     */
     public static final AltarCraftingManager getInstance()
     {
-        /** The static instance of this class */
         return instance;
     }
 
@@ -206,12 +200,9 @@ public class AltarCraftingManager{
             return null;
         }
     }
-
-    /**
-     * returns the List<> of all recipes
-     */
     public List getRecipeList()
     {
         return this.recipes;
     }
 }
+*/

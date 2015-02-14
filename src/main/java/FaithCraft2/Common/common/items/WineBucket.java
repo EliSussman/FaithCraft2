@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.items;
+/*package FaithCraft2.Common.common.items;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,3 +19,4 @@ public class WineBucket extends ItemBucket{
 	}
 
 }
+*/

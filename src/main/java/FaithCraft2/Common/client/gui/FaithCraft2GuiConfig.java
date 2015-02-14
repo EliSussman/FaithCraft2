@@ -1,4 +1,4 @@
-package FaithCraft2.Common.client.gui;
+/*package FaithCraft2.Common.client.gui;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,3 +25,4 @@ public class FaithCraft2GuiConfig extends GuiConfig{
 	}
 
 }
+*/

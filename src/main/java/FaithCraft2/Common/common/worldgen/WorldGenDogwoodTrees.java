@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.worldgen;
+/*package FaithCraft2.Common.common.worldgen;
 
 import java.util.Random;
 
@@ -14,13 +14,9 @@ import FaithCraft2.Common.common.*;
 
 public class WorldGenDogwoodTrees extends WorldGenAbstractTree
 {
-    /** The minimum height of a generated tree. */
     private final int minTreeHeight;
-    /** True if this tree should grow Vines. */
     private final boolean vinesGrow;
-    /** The metadata value of the wood to use in tree generation. */
     private final int metaWood;
-    /** The metadata value of the leaves to use in tree generation. */
     private final int metaLeaves;
     private static final String __OBFID = "CL_00000438";
 
@@ -229,9 +225,6 @@ public class WorldGenDogwoodTrees extends WorldGenAbstractTree
         }
     }
 
-    /**
-     * Grows vines downward from the given block for a given length. Args: World, x, starty, z, vine-length
-     */
     private void growVines(World p_76529_1_, int p_76529_2_, int p_76529_3_, int p_76529_4_, int p_76529_5_)
     {
         this.setBlockAndNotifyAdequately(p_76529_1_, p_76529_2_, p_76529_3_, p_76529_4_, Blocks.vine, p_76529_5_);
@@ -251,3 +244,4 @@ public class WorldGenDogwoodTrees extends WorldGenAbstractTree
         }
     }
 }
+*/

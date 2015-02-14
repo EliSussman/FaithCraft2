@@ -1,4 +1,4 @@
-package FaithCraft2.Common.common.dimension.heaven;
+/*package FaithCraft2.Common.common.dimension.heaven;
 
 import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.CAVE;
 import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.MINESHAFT;
@@ -46,37 +46,26 @@ import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 
 public class ChunkProviderHeaven implements IChunkProvider{
-
-	/** RNG. */
     private Random rand;
     private NoiseGeneratorOctaves field_147431_j;
     private NoiseGeneratorOctaves field_147432_k;
     private NoiseGeneratorOctaves field_147429_l;
     private NoiseGeneratorPerlin field_147430_m;
-    /** A NoiseGeneratorOctaves used in generating terrain */
     public NoiseGeneratorOctaves noiseGen5;
-    /** A NoiseGeneratorOctaves used in generating terrain */
     public NoiseGeneratorOctaves noiseGen6;
     public NoiseGeneratorOctaves mobSpawnerNoise;
-    /** Reference to the World object. */
     private World worldObj;
-    /** are map structures going to be generated (e.g. strongholds) */
     private final boolean mapFeaturesEnabled;
     private WorldType field_147435_p;
     private final double[] field_147434_q;
     private final float[] varabolicField;
     private double[] stoneNoise = new double[256];
     private MapGenBase caveGenerator = new MapGenCaves();
-    /** Holds Stronghold Generator */
     private MapGenStronghold strongholdGenerator = new MapGenStronghold();
-    /** Holds Village Generator */
     private MapGenVillage villageGenerator = new MapGenVillage();
-    /** Holds Mineshaft Generator */
     private MapGenMineshaft mineshaftGenerator = new MapGenMineshaft();
     private MapGenScatteredFeature scatteredFeatureGenerator = new MapGenScatteredFeature();
-    /** Holds ravine generator */
     private MapGenBase ravineGenerator = new MapGenRavine();
-    /** The biomes that are used to generate the chunk */
     private BiomeGenBase[] biomesForGeneration;
     double[] field_147427_d;
     double[] field_147428_e;
@@ -532,3 +521,4 @@ public class ChunkProviderHeaven implements IChunkProvider{
 	}
 
 }
+*/
