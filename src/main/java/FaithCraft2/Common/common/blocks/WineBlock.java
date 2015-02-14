@@ -1,75 +1,50 @@
-/*package FaithCraft2.Common.common.blocks;
+package FaithCraft2.Common.common.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import FaithCraft2.Common.common.FaithCraft2;
-import static net.minecraftforge.common.util.ForgeDirection.DOWN;
-import static net.minecraftforge.common.util.ForgeDirection.EAST;
-import static net.minecraftforge.common.util.ForgeDirection.NORTH;
-import static net.minecraftforge.common.util.ForgeDirection.SOUTH;
-import static net.minecraftforge.common.util.ForgeDirection.UP;
-import static net.minecraftforge.common.util.ForgeDirection.WEST;
 
 public class WineBlock extends BlockFluidClassic{
-	@SideOnly(Side.CLIENT)
-    protected IIcon stillIcon;
-    @SideOnly(Side.CLIENT)
-    protected IIcon flowingIcon;
-    
-    public WineBlock(Fluid fluid, Material material) {
-            super(fluid, material);
-            
+	
+	private final String name = "WineBlock";
+	
+    public WineBlock() {
+    		super(FaithCraft2.Wine, Material.water);
+            setUnlocalizedName(FaithCraft2.modid + ":" + name);
             this.setCreativeTab(FaithCraft2.FaithCraft2Tab);
     }
-
-	@Override
-    public IIcon getIcon(int side, int meta) {
-            return (side == 0 || side == 1)? stillIcon : flowingIcon;
-    }
     
-    @SideOnly(Side.CLIENT)
+    public String getName(){
+		return name;
+	}
+    
     @Override
-    public void registerBlockIcons(IIconRegister register) {
-            stillIcon = register.registerIcon("FaithCraft2:WineStill");
-            flowingIcon = register.registerIcon("FaithCraft2:WineFlow");
+    public boolean canDisplace(IBlockAccess world, BlockPos pos) {
+            if (world.getBlockState(pos).getBlock().getMaterial().isLiquid()) return false;
+            return super.canDisplace(world, pos);
     }
     
     @Override
-    public boolean canDisplace(IBlockAccess world, int x, int y, int z) {
-            if (world.getBlock(x,  y,  z).getMaterial().isLiquid()) return false;
-            return super.canDisplace(world, x, y, z);
-    }
+    public boolean displaceIfPossible(World world, BlockPos pos) {
+            if (world.getBlockState(pos).getBlock().getMaterial().isLiquid()) return false;
+            return super.displaceIfPossible(world, pos);
+    } 
     
-    @Override
-    public boolean displaceIfPossible(World world, int x, int y, int z) {
-            if (world.getBlock(x,  y,  z).getMaterial().isLiquid()) return false;
-            return super.displaceIfPossible(world, x, y, z);
-    }
-    
-    private boolean canNeighborBurn(World p_149847_1_, int p_149847_2_, int p_149847_3_, int p_149847_4_)
+    public boolean isFlammable(IBlockAccess world, BlockPos pos, EnumFacing facing)
     {
-        return this.canCatchFire(p_149847_1_, p_149847_2_ + 1, p_149847_3_, p_149847_4_, WEST ) ||
-               this.canCatchFire(p_149847_1_, p_149847_2_ - 1, p_149847_3_, p_149847_4_, EAST ) ||
-               this.canCatchFire(p_149847_1_, p_149847_2_, p_149847_3_ - 1, p_149847_4_, UP   ) ||
-               this.canCatchFire(p_149847_1_, p_149847_2_, p_149847_3_ + 1, p_149847_4_, DOWN ) ||
-               this.canCatchFire(p_149847_1_, p_149847_2_, p_149847_3_, p_149847_4_ - 1, SOUTH) ||
-               this.canCatchFire(p_149847_1_, p_149847_2_, p_149847_3_, p_149847_4_ + 1, NORTH);
-    }
-    
-    public boolean canCatchFire(IBlockAccess world, int x, int y, int z, ForgeDirection face)
-    {
-        return world.getBlock(x, y, z).isFlammable(world, x, y, z, face);
+    	int x = pos.getX();
+    	int y = pos.getY();
+    	int z = pos.getZ();
+        return world.getBlockState(new BlockPos(x + -2, y + -1, z + -1)).getBlock().isFlammable(world, pos, facing);
     }
         
 }
-*/

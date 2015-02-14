@@ -39,7 +39,7 @@ import FaithCraft2.Common.common.blocks.HolyCobbleStone;
 //import FaithCraft2.Common.common.blocks.HolyForge;
 //import FaithCraft2.Common.common.blocks.HolyOre;
 import FaithCraft2.Common.common.blocks.HolyStone;
-//import FaithCraft2.Common.common.blocks.WineBlock;
+import FaithCraft2.Common.common.blocks.WineBlock;
 //import FaithCraft2.Common.common.dimension.heaven.WorldProviderHeaven;
 //import FaithCraft2.Common.common.dimension.hell.WorldProviderHell;
 //import FaithCraft2.Common.common.entity.EntityMobRegistry;
@@ -74,8 +74,6 @@ import FaithCraft2.Common.common.blocks.HolyBlock;
 //import FaithCraft2.Common.common.blocks.HellRock;
 //import FaithCraft2.Common.common.blocks.HellCobbleStone;
 import FaithCraft2.Common.common.blocks.Altar;
-
-
 
 import com.google.common.base.Throwables;
 import com.google.common.collect.ObjectArrays;
@@ -176,8 +174,9 @@ public static CommonProxy proxy;
 		//ConfigHandler.init(preEvent.getSuggestedConfigurationFile());
 		//FMLCommonHandler.instance().bus().register(new ConfigHandler());
 		
-		//Wine = new Fluid("Wine").setViscosity(900).setTemperature(250);
-		//FluidRegistry.registerFluid(Wine);
+		Wine = new Fluid("Wine").setDensity(500).setViscosity(500).setBlock(WineBlock);
+		FluidRegistry.registerFluid(Wine);
+		WineBlock = new WineBlock().setUnlocalizedName("Wine");
 	
 		Altar = new Altar(Material.rock).setUnlocalizedName("Altar"); 
 
@@ -221,7 +220,7 @@ public static CommonProxy proxy;
 		//GameRegistry.registerBlock(HolyOre, "HolyOre");
 		GameRegistry.registerBlock(HolyStone, "HolyStone");
 		GameRegistry.registerBlock(HolyCobbleStone, "HolyCobbleStone");
-		//GameRegistry.registerBlock(WineBlock, "WineBlock");
+		GameRegistry.registerBlock(WineBlock, "WineBlock");
 		GameRegistry.registerBlock(HolyBlock, "HolyBlock");
 		//GameRegistry.registerBlock(DogwoodLeaves, "DogwoodLeaves");
 		//GameRegistry.registerBlock(DogwoodLog, "DogwoodLog");
@@ -269,6 +268,7 @@ public static CommonProxy proxy;
 		    	renderItem.getItemModelMesher().register(Item.getItemFromBlock(HolyCobbleStone), 0, new ModelResourceLocation(modid + ":" + ((HolyCobbleStone) HolyCobbleStone).getName(), "inventory"));
 		    	renderItem.getItemModelMesher().register(Item.getItemFromBlock(Altar), 0, new ModelResourceLocation(modid + ":" + ((Altar) Altar).getName(), "inventory"));
 		    	renderItem.getItemModelMesher().register(Item.getItemFromBlock(HolyBlock), 0, new ModelResourceLocation(modid + ":" + ((HolyBlock) HolyBlock).getName(), "inventory"));
+		    	renderItem.getItemModelMesher().register(Item.getItemFromBlock(WineBlock), 0, new ModelResourceLocation(modid + ":" + ((WineBlock) WineBlock).getName(), "inventory"));
 		    	
 		    	//items
 		    	renderItem.getItemModelMesher().register(Bible, 0, new ModelResourceLocation(modid + ":" + ((Bible) Bible).getName(), "inventory"));
