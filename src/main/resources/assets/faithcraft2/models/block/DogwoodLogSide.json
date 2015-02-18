@@ -1,0 +1,7 @@
+{
+    "parent": "block/column_side",
+    "textures": {
+        "end": "faithcraft2:blocks/DogwoodLogTop",
+        "side": "faithcraft2:blocks/DogwoodLogSide"
+    }
+}

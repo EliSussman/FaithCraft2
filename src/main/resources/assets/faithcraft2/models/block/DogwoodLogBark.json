@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "faithcraft2:blocks/DogwoodLogSide"
+    }
+}

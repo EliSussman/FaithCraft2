@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "variant=dogwood": { "model": "faithcraft2:DogwoodPlanks" }
+    }
+}

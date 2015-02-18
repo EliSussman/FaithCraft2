@@ -1,0 +1,9 @@
+{
+    "variants": {
+        "normal": { "model": "faithcraft2:DogwoodLeaves" },
+        "check_decay=false,decayable=false,variant=dogwood": { "model": "faithcraft2:DogwoodLeaves" },
+        "check_decay=false,decayable=true,variant=dogwood": { "model": "faithcraft2:DogwoodLeaves" },
+        "check_decay=true,decayable=true,variant=dogwood": { "model": "faithcraft2:DogwoodLeaves" },
+        "check_decay=true,decayable=false,variant=dogwood": { "model": "faithcraft2:DogwoodLeaves" }
+    }
+}

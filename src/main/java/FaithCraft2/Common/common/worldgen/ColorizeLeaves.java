@@ -1,4 +1,4 @@
-/*package FaithCraft2.Common.common.worldgen;
+package FaithCraft2.Common.common.worldgen;
 
 public class ColorizeLeaves {
 	public static int getFoliageColorHeaven(){
@@ -9,4 +9,3 @@ public class ColorizeLeaves {
 		return 0xFFFFFF;
 	}
 }
-*/

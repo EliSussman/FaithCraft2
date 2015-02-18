@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "axis=y,variant=dogwood":    { "model": "faithcraft2:DogwoodLog" },
+        "axis=z,variant=dogwood":     { "model": "faithcraft2:DogwoodLogSide" },
+        "axis=x,variant=dogwood":     { "model": "faithcraft2:DogwoodLogSide", "y": 90 },
+        "axis=none,variant=dogwood":   { "model": "faithcraft2:DogwoodLogBark" }
+    }
+}

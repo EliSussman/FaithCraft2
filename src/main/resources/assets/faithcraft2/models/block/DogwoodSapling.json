@@ -1,0 +1,6 @@
+{
+    "parent": "block/cross",
+    "textures": {
+        "cross": "faithcraft2:blocks/DogwoodSapling"
+    }
+}

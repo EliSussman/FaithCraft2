@@ -1,73 +1,60 @@
-/*package FaithCraft2.Common.common.worldgen;
+package FaithCraft2.Common.common.worldgen;
 
 import java.util.Random;
 
-import FaithCraft2.Common.common.blocks.DogwoodSapling;
+import FaithCraft2.Common.common.blocks.FaithCraftPlanks;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.Direction;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraftforge.common.util.ForgeDirection;
 import FaithCraft2.Common.common.*;
 
 public class WorldGenDogwoodTrees extends WorldGenAbstractTree
 {
-    private final int minTreeHeight;
-    private final boolean vinesGrow;
-    private final int metaWood;
-    private final int metaLeaves;
-    private static final String __OBFID = "CL_00000438";
-
-    public WorldGenDogwoodTrees(boolean p_i2027_1_)
+	public WorldGenDogwoodTrees(boolean p_i2025_1_)
     {
-        this(p_i2027_1_, 4, 0, 0, false);
+        super(p_i2025_1_);
     }
 
-    public WorldGenDogwoodTrees(boolean p_i2028_1_, int p_i2028_2_, int p_i2028_3_, int p_i2028_4_, boolean p_i2028_5_)
+    public boolean generate(World worldIn, Random p_180709_2_, BlockPos p_180709_3_)
     {
-        super(p_i2028_1_);
-        this.minTreeHeight = p_i2028_2_;
-        this.metaWood = p_i2028_3_;
-        this.metaLeaves = p_i2028_4_;
-        this.vinesGrow = p_i2028_5_;
-    }
-
-    public boolean generate(World p_76484_1_, Random p_76484_2_, int p_76484_3_, int p_76484_4_, int p_76484_5_)
-    {
-        int l = p_76484_2_.nextInt(3) + this.minTreeHeight;
+        int i = p_180709_2_.nextInt(4) + 6;
+        int j = 1 + p_180709_2_.nextInt(2);
+        int k = i - j;
+        int l = 2 + p_180709_2_.nextInt(2);
         boolean flag = true;
 
-        if (p_76484_4_ >= 1 && p_76484_4_ + l + 1 <= 256)
+        if (p_180709_3_.getY() >= 1 && p_180709_3_.getY() + i + 1 <= 256)
         {
-            byte b0;
-            int k1;
-            Block block;
+            int j1;
+            int i3;
 
-            for (int i1 = p_76484_4_; i1 <= p_76484_4_ + 1 + l; ++i1)
+            for (int i1 = p_180709_3_.getY(); i1 <= p_180709_3_.getY() + 1 + i && flag; ++i1)
             {
-                b0 = 1;
+                boolean flag1 = true;
 
-                if (i1 == p_76484_4_)
+                if (i1 - p_180709_3_.getY() < j)
                 {
-                    b0 = 0;
+                    i3 = 0;
+                }
+                else
+                {
+                    i3 = l;
                 }
 
-                if (i1 >= p_76484_4_ + 1 + l - 2)
+                for (j1 = p_180709_3_.getX() - i3; j1 <= p_180709_3_.getX() + i3 && flag; ++j1)
                 {
-                    b0 = 2;
-                }
-
-                for (int j1 = p_76484_3_ - b0; j1 <= p_76484_3_ + b0 && flag; ++j1)
-                {
-                    for (k1 = p_76484_5_ - b0; k1 <= p_76484_5_ + b0 && flag; ++k1)
+                    for (int k1 = p_180709_3_.getZ() - i3; k1 <= p_180709_3_.getZ() + i3 && flag; ++k1)
                     {
                         if (i1 >= 0 && i1 < 256)
                         {
-                            block = p_76484_1_.getBlock(j1, i1, k1);
+                            BlockPos off = new BlockPos(j1, i1, k1);
+                            Block block = worldIn.getBlockState(off).getBlock();
 
-                            if (!this.isReplaceable(p_76484_1_, j1, i1, k1))
+                            if (!block.isAir(worldIn, off) && !block.isLeaves(worldIn, off))
                             {
                                 flag = false;
                             }
@@ -86,128 +73,70 @@ public class WorldGenDogwoodTrees extends WorldGenAbstractTree
             }
             else
             {
-                Block block2 = p_76484_1_.getBlock(p_76484_3_, p_76484_4_ - 1, p_76484_5_);
+                BlockPos down = p_180709_3_.down();
+                Block block1 = worldIn.getBlockState(down).getBlock();
+                boolean isSoil = block1.canSustainPlant(worldIn, down, net.minecraft.util.EnumFacing.UP, (net.minecraft.block.BlockSapling)FaithCraft2.FaithCraftSapling1);
 
-                boolean isSoil = block2.canSustainPlant(p_76484_1_, p_76484_3_, p_76484_4_ - 1, p_76484_5_, ForgeDirection.UP, (DogwoodSapling)FaithCraft2.DogwoodSapling);
-                if (isSoil && p_76484_4_ < 256 - l - 1)
+                if (isSoil && p_180709_3_.getY() < 256 - i - 1)
                 {
-                    block2.onPlantGrow(p_76484_1_, p_76484_3_, p_76484_4_ - 1, p_76484_5_, p_76484_3_, p_76484_4_, p_76484_5_);
-                    b0 = 3;
-                    byte b1 = 0;
+                    block1.onPlantGrow(worldIn, down, p_180709_3_);
+                    i3 = p_180709_2_.nextInt(2);
+                    j1 = 1;
+                    byte b0 = 0;
                     int l1;
-                    int i2;
-                    int j2;
-                    int i3;
+                    int j3;
 
-                    for (k1 = p_76484_4_ - b0 + l; k1 <= p_76484_4_ + l; ++k1)
+                    for (j3 = 0; j3 <= k; ++j3)
                     {
-                        i3 = k1 - (p_76484_4_ + l);
-                        l1 = b1 + 1 - i3 / 2;
+                        l1 = p_180709_3_.getY() + i - j3;
 
-                        for (i2 = p_76484_3_ - l1; i2 <= p_76484_3_ + l1; ++i2)
+                        for (int i2 = p_180709_3_.getX() - i3; i2 <= p_180709_3_.getX() + i3; ++i2)
                         {
-                            j2 = i2 - p_76484_3_;
+                            int j2 = i2 - p_180709_3_.getX();
 
-                            for (int k2 = p_76484_5_ - l1; k2 <= p_76484_5_ + l1; ++k2)
+                            for (int k2 = p_180709_3_.getZ() - i3; k2 <= p_180709_3_.getZ() + i3; ++k2)
                             {
-                                int l2 = k2 - p_76484_5_;
+                                int l2 = k2 - p_180709_3_.getZ();
 
-                                if (Math.abs(j2) != l1 || Math.abs(l2) != l1 || p_76484_2_.nextInt(2) != 0 && i3 != 0)
+                                if (Math.abs(j2) != i3 || Math.abs(l2) != i3 || i3 <= 0)
                                 {
-                                    Block block1 = p_76484_1_.getBlock(i2, k1, k2);
+                                    BlockPos blockpos1 = new BlockPos(i2, l1, k2);
 
-                                    if (block1.isAir(p_76484_1_, i2, k1, k2) || block1.isLeaves(p_76484_1_, i2, k1, k2))
+                                    if (worldIn.getBlockState(blockpos1).getBlock().canBeReplacedByLeaves(worldIn, blockpos1))
                                     {
-                                        this.setBlockAndNotifyAdequately(p_76484_1_, i2, k1, k2, FaithCraft2.DogwoodLeaves, this.metaLeaves);
+                                        this.func_175905_a(worldIn, blockpos1, FaithCraft2.FaithCraftLeaves1, FaithCraftPlanks.EnumType.DOGWOOD.getMetadata());
                                     }
                                 }
                             }
+                        }
+
+                        if (i3 >= j1)
+                        {
+                            i3 = b0;
+                            b0 = 1;
+                            ++j1;
+
+                            if (j1 > l)
+                            {
+                                j1 = l;
+                            }
+                        }
+                        else
+                        {
+                            ++i3;
                         }
                     }
 
-                    for (k1 = 0; k1 < l; ++k1)
+                    j3 = p_180709_2_.nextInt(3);
+
+                    for (l1 = 0; l1 < i - j3; ++l1)
                     {
-                        block = p_76484_1_.getBlock(p_76484_3_, p_76484_4_ + k1, p_76484_5_);
+                        BlockPos upN = p_180709_3_.up(l1);
+                        Block block2 = worldIn.getBlockState(upN).getBlock();
 
-                        if (block.isAir(p_76484_1_, p_76484_3_, p_76484_4_ + k1, p_76484_5_) || block.isLeaves(p_76484_1_, p_76484_3_, p_76484_4_ + k1, p_76484_5_))
+                        if (block2.isAir(worldIn, upN) || block2.isLeaves(worldIn, upN))
                         {
-                            this.setBlockAndNotifyAdequately(p_76484_1_, p_76484_3_, p_76484_4_ + k1, p_76484_5_, FaithCraft2.DogwoodLog, this.metaWood);
-
-                            if (this.vinesGrow && k1 > 0)
-                            {
-                                if (p_76484_2_.nextInt(3) > 0 && p_76484_1_.isAirBlock(p_76484_3_ - 1, p_76484_4_ + k1, p_76484_5_))
-                                {
-                                    this.setBlockAndNotifyAdequately(p_76484_1_, p_76484_3_ - 1, p_76484_4_ + k1, p_76484_5_, Blocks.vine, 8);
-                                }
-
-                                if (p_76484_2_.nextInt(3) > 0 && p_76484_1_.isAirBlock(p_76484_3_ + 1, p_76484_4_ + k1, p_76484_5_))
-                                {
-                                    this.setBlockAndNotifyAdequately(p_76484_1_, p_76484_3_ + 1, p_76484_4_ + k1, p_76484_5_, Blocks.vine, 2);
-                                }
-
-                                if (p_76484_2_.nextInt(3) > 0 && p_76484_1_.isAirBlock(p_76484_3_, p_76484_4_ + k1, p_76484_5_ - 1))
-                                {
-                                    this.setBlockAndNotifyAdequately(p_76484_1_, p_76484_3_, p_76484_4_ + k1, p_76484_5_ - 1, Blocks.vine, 1);
-                                }
-
-                                if (p_76484_2_.nextInt(3) > 0 && p_76484_1_.isAirBlock(p_76484_3_, p_76484_4_ + k1, p_76484_5_ + 1))
-                                {
-                                    this.setBlockAndNotifyAdequately(p_76484_1_, p_76484_3_, p_76484_4_ + k1, p_76484_5_ + 1, Blocks.vine, 4);
-                                }
-                            }
-                        }
-                    }
-
-                    if (this.vinesGrow)
-                    {
-                        for (k1 = p_76484_4_ - 3 + l; k1 <= p_76484_4_ + l; ++k1)
-                        {
-                            i3 = k1 - (p_76484_4_ + l);
-                            l1 = 2 - i3 / 2;
-
-                            for (i2 = p_76484_3_ - l1; i2 <= p_76484_3_ + l1; ++i2)
-                            {
-                                for (j2 = p_76484_5_ - l1; j2 <= p_76484_5_ + l1; ++j2)
-                                {
-                                    if (p_76484_1_.getBlock(i2, k1, j2).isLeaves(p_76484_1_, i2, k1, j2))
-                                    {
-                                        if (p_76484_2_.nextInt(4) == 0 && p_76484_1_.getBlock(i2 - 1, k1, j2).isAir(p_76484_1_, i2 - 1, k1, j2))
-                                        {
-                                            this.growVines(p_76484_1_, i2 - 1, k1, j2, 8);
-                                        }
-
-                                        if (p_76484_2_.nextInt(4) == 0 && p_76484_1_.getBlock(i2 + 1, k1, j2).isAir(p_76484_1_, i2 + 1, k1, j2))
-                                        {
-                                            this.growVines(p_76484_1_, i2 + 1, k1, j2, 2);
-                                        }
-
-                                        if (p_76484_2_.nextInt(4) == 0 && p_76484_1_.getBlock(i2, k1, j2 - 1).isAir(p_76484_1_, i2, k1, j2 - 1))
-                                        {
-                                            this.growVines(p_76484_1_, i2, k1, j2 - 1, 1);
-                                        }
-
-                                        if (p_76484_2_.nextInt(4) == 0 && p_76484_1_.getBlock(i2, k1, j2 + 1).isAir(p_76484_1_, i2, k1, j2 + 1))
-                                        {
-                                            this.growVines(p_76484_1_, i2, k1, j2 + 1, 4);
-                                        }
-                                    }
-                                }
-                            }
-                        }
-
-                        if (p_76484_2_.nextInt(5) == 0 && l > 5)
-                        {
-                            for (k1 = 0; k1 < 2; ++k1)
-                            {
-                                for (i3 = 0; i3 < 4; ++i3)
-                                {
-                                    if (p_76484_2_.nextInt(4 - k1) == 0)
-                                    {
-                                        l1 = p_76484_2_.nextInt(3);
-                                        this.setBlockAndNotifyAdequately(p_76484_1_, p_76484_3_ + Direction.offsetX[Direction.rotateOpposite[i3]], p_76484_4_ + l - 5 + k1, p_76484_5_ + Direction.offsetZ[Direction.rotateOpposite[i3]], Blocks.cocoa, l1 << 2 | i3);
-                                    }
-                                }
-                            }
+                            this.func_175905_a(worldIn, p_180709_3_.up(l1), FaithCraft2.FaithCraftLog1, FaithCraftPlanks.EnumType.DOGWOOD.getMetadata());
                         }
                     }
 
@@ -224,24 +153,4 @@ public class WorldGenDogwoodTrees extends WorldGenAbstractTree
             return false;
         }
     }
-
-    private void growVines(World p_76529_1_, int p_76529_2_, int p_76529_3_, int p_76529_4_, int p_76529_5_)
-    {
-        this.setBlockAndNotifyAdequately(p_76529_1_, p_76529_2_, p_76529_3_, p_76529_4_, Blocks.vine, p_76529_5_);
-        int i1 = 4;
-
-        while (true)
-        {
-            --p_76529_3_;
-
-            if (!p_76529_1_.getBlock(p_76529_2_, p_76529_3_, p_76529_4_).isAir(p_76529_1_, p_76529_2_, p_76529_3_, p_76529_4_) || i1 <= 0)
-            {
-                return;
-            }
-
-            this.setBlockAndNotifyAdequately(p_76529_1_, p_76529_2_, p_76529_3_, p_76529_4_, Blocks.vine, p_76529_5_);
-            --i1;
-        }
-    }
 }
-*/
