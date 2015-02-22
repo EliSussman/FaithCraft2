@@ -1,18 +1,22 @@
 {
-     "parent": "builtin/entity",
-    "display": {
-        "thirdperson": {
-            "rotation": [ 180, -45, 0 ],
-            "translation": [ 0, 1, -2.5 ],
-            "scale": [ 0.25, 0.25, 0.25 ]
-        },
-        "firstperson": {
-            "rotation": [ 0, -180, 0 ],
-            "scale": [ 0.55, 0.55, 0.55 ]
-        },
-        "gui": {
-            "rotation": [ 0, 180, 0 ],
-            "scale": [ 0.7, 0.7, 0.7 ]
-        }
+"__comment": "Designed by Ess0523 with BDcraft Cubik PRO 0.91 Beta - http://bdcraft.net",
+"ambientocclusion": false,
+"textures": {
+    "texture": "faithcraft2:entity/DemonicCreeper"
+},
+"elements": [ 
+{
+    "__comment": "Head",
+    "from": [ 4, 0, 4 ],
+    "to": [ 12, 8, 12 ],
+    "faces": {
+        "down":  { "uv": [ 0, 2, 2, 4 ], "texture": "#texture" },
+        "up":    { "uv": [ 4, 2, 6, 4 ], "texture": "#texture" },
+        "north": { "uv": [ 2, 2, 4, 4 ], "texture": "#texture" },
+        "south": { "uv": [ 6, 2, 8, 4 ], "texture": "#texture" },
+        "west":  { "uv": [ 2, 0, 4, 2 ], "texture": "#texture" },
+        "east":  { "uv": [ 4, 0, 6, 2 ], "texture": "#texture" }
     }
+}
+]
 }

@@ -9,6 +9,7 @@ import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ModelSkeletonHead;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.entity.RenderItem;
@@ -86,7 +87,7 @@ import FaithCraft2.Common.common.blocks.FaithCraftLog;
 import FaithCraft2.Common.common.blocks.FaithCraftSapling;
 import FaithCraft2.Common.common.blocks.FaithCraftPlanks;
 //import FaithCraft2.Common.common.items.InstructionBook;
-//import FaithCraft2.Common.common.blocks.HellRock;
+import FaithCraft2.Common.common.blocks.HellRock;
 //import FaithCraft2.Common.common.blocks.HellCobbleStone;
 import FaithCraft2.Common.common.blocks.Altar;
 import FaithCraft2.Common.common.fluids.WineBlock;
@@ -226,7 +227,7 @@ public static CommonProxy proxy;
 		FaithCraftPlanks1 = new FaithCraftPlanks();
 		FaithCraftLeaves1 = new FaithCraftLeaves();
 		FaithCraftSapling1 = new FaithCraftSapling();
-		//HellRock = new HellRock(3021, Material.rock).setBlockName("HellRock").setBlockTextureName("FaithCraft2:HellRock");
+		HellRock = new HellRock(3021, Material.rock).setUnlocalizedName("HellRock");
 		//HellCobbleStone = new HellCobbleStone(3022, Material.rock).setBlockName("HellCobbleStone").setBlockTextureName("FaithCraft2:HellCobbleStone");
 		
 		Bible = new Bible(3001).setUnlocalizedName("Bible");
@@ -262,7 +263,7 @@ public static CommonProxy proxy;
 		GameRegistry.registerBlock(DogwoodLeaves, "DogwoodLeaves");
 		GameRegistry.registerBlock(DogwoodSapling, "DogwoodSapling");
 		GameRegistry.registerBlock(DemonicCreeperSkull, "DemonicCreeperSkull");
-		//GameRegistry.registerBlock(HellRock, "HellRock");
+		GameRegistry.registerBlock(HellRock, "HellRock");
 		//GameRegistry.registerBlock(HellCobbleStone, "HellCobbleStone");
 		
 		GameRegistry.registerItem(Bible, "Bible");
@@ -313,6 +314,8 @@ public static CommonProxy proxy;
 		    	renderItem.getItemModelMesher().register(Item.getItemFromBlock(DogwoodPlanks), 0, new ModelResourceLocation("faithcraft2:DogwoodPlanks", "inventory"));
 		    	renderItem.getItemModelMesher().register(Item.getItemFromBlock(DogwoodLeaves), 0, new ModelResourceLocation("faithcraft2:DogwoodLeaves", "inventory"));
 		    	renderItem.getItemModelMesher().register(Item.getItemFromBlock(DogwoodSapling), 0, new ModelResourceLocation("faithcraft2:DogwoodSapling", "inventory"));
+		    	renderItem.getItemModelMesher().register(Item.getItemFromBlock(HellRock), 0, new ModelResourceLocation(modid + ":" + ((HellRock) HellRock).getName(), "inventory"));
+		    	
 		    	//items
 		    	renderItem.getItemModelMesher().register(Bible, 0, new ModelResourceLocation(modid + ":" + ((Bible) Bible).getName(), "inventory"));
 		    	renderItem.getItemModelMesher().register(BodyOFChrist, 0, new ModelResourceLocation(modid + ":" + ((BodyOFChrist) BodyOFChrist).getName(), "inventory"));

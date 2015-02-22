@@ -20,6 +20,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import FaithCraft2.Common.common.FaithCraft2;
@@ -122,6 +123,7 @@ public class DemonicCreeperSkullItem extends Item{
                         }
 
                         tileentityskull.setSkullRotation(i);
+                        DemonicCreeperSkull.checkDemonSpawn(worldIn, pos, tileentityskull);
                     }
 
                     --stack.stackSize;

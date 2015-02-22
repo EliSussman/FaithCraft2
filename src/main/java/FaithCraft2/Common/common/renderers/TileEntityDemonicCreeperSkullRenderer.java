@@ -9,6 +9,7 @@ import net.minecraft.client.model.ModelSkeletonHead;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
+import net.minecraft.client.renderer.tileentity.TileEntitySkullRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.resources.DefaultPlayerSkin;
 import net.minecraft.entity.Entity;
@@ -32,11 +33,10 @@ public class TileEntityDemonicCreeperSkullRenderer extends TileEntitySpecialRend
     public static TileEntityDemonicCreeperSkullRenderer instance;
     private ModelSkeletonHead skeletonHead = new ModelSkeletonHead(0, 0, 64, 64);
     
-    public void renderTileEntitySkull(TileEntityDemonicCreeperSkull p_180542_1_, double p_180542_2_, double p_180542_4_, double p_180542_6_, float p_180542_8_, int p_180542_9_)
+    public void renderTileEntityDemonicCreeperSkull(TileEntityDemonicCreeperSkull p_180542_1_, double p_180542_2_, double p_180542_4_, double p_180542_6_, float p_180542_8_, int p_180542_9_)
     {
         EnumFacing enumfacing = EnumFacing.getFront(p_180542_1_.getBlockMetadata() & 7);
-        this.renderSkull((float)p_180542_2_, (float)p_180542_4_, (float)p_180542_6_, enumfacing, (float)(p_180542_1_.getSkullRotation() * 360) / 16.0F, -1, p_180542_1_.getPlayerProfile(), p_180542_9_);
-        this.bindTexture(TEXTURE);
+        this.renderSkull((float)p_180542_2_, (float)p_180542_4_, (float)p_180542_6_, enumfacing, (float)(p_180542_1_.getSkullRotation() * 360) / 16.0F, p_180542_1_.getSkullType(), p_180542_1_.getPlayerProfile(), p_180542_9_);
     }
 
     public void setRendererDispatcher(TileEntityRendererDispatcher p_147497_1_)
@@ -60,7 +60,13 @@ public class TileEntityDemonicCreeperSkullRenderer extends TileEntitySpecialRend
         }
         else
         {
-            this.bindTexture(TEXTURE);
+            switch (p_180543_6_)
+            {
+                case 0:
+                default:
+                    this.bindTexture(TEXTURE);
+                    break;
+            }
         }
 
         GlStateManager.pushMatrix();
@@ -105,36 +111,13 @@ public class TileEntityDemonicCreeperSkullRenderer extends TileEntitySpecialRend
             GlStateManager.popMatrix();
             GlStateManager.matrixMode(5888);
         }
-        
-        GlStateManager.rotate(180, 0.0F, 0.0F, 1.0F);
-        int facing = TileEntityDemonicCreeperSkull.getSkullRotation();
-        int k = 0;
-        //South
-        if (facing == 2) {
-            k = 0;
-        }
-        //North
-        if (facing == 3) {
-            k = 180;
-        }
-        //East
-        if (facing == 4) {
-            k = -90;
-        }
-        //West
-        if (facing == 5) {
-            k = 90;
-        }
-        //Rotates model on the spot, depending on direction, making the front always to player) (k = angle, 1.0F in middle = about y axis)
-        GlStateManager.rotate(k, 0.0F, 1.0F, 0.0F);
     }
 
     public void renderTileEntityAt(TileEntity p_180535_1_, double posX, double posZ, double p_180535_6_, float p_180535_8_, int p_180535_9_)
     {
-        this.renderTileEntitySkull((TileEntityDemonicCreeperSkull)p_180535_1_, posX, posZ, p_180535_6_, p_180535_8_, p_180535_9_);
-        this.bindTexture(TEXTURE);
+        this.renderTileEntityDemonicCreeperSkull((TileEntityDemonicCreeperSkull)p_180535_1_, posX, posZ, p_180535_6_, p_180535_8_, p_180535_9_);
     }
-    
+
     @SideOnly(Side.CLIENT)
 
     static final class SwitchEnumFacing

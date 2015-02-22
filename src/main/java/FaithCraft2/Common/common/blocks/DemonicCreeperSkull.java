@@ -42,6 +42,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import FaithCraft2.Common.common.FaithCraft2;
+import FaithCraft2.Common.common.entity.Demon;
 import FaithCraft2.Common.common.tileEntity.TileEntityDemonicCreeperSkull;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -49,6 +50,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class DemonicCreeperSkull extends BlockContainer{
 	public static final PropertyDirection FACING = PropertyDirection.create("facing");
     public static final PropertyBool NODROP = PropertyBool.create("nodrop");
+
+    private static BlockPattern demonPattern;
     
     private final String name = "DemonicCreeperSkull";
 
@@ -62,6 +65,75 @@ public class DemonicCreeperSkull extends BlockContainer{
 
     public String getName(){
     	return this.name;
+    }
+    
+    protected static BlockPattern getDemonPattern()
+    {
+        if (DemonicCreeperSkull.demonPattern == null)
+        {
+        	DemonicCreeperSkull.demonPattern = FactoryBlockPattern.start().aisle(new String[] {"~^~", "~#~", "~#~"}).where('#', BlockWorldState.hasState(BlockStateHelper.forBlock(FaithCraft2.HellRock))).where('^', BlockWorldState.hasState(BlockStateHelper.forBlock(FaithCraft2.DemonicCreeperSkull))).where('~', BlockWorldState.hasState(BlockStateHelper.forBlock(Blocks.air))).build();
+        }
+
+        return DemonicCreeperSkull.demonPattern;
+    }
+    
+    public static void checkDemonSpawn(World worldIn, BlockPos pos, TileEntityDemonicCreeperSkull te)
+    {
+        if (pos.getY() >= 2 && worldIn.getDifficulty() != EnumDifficulty.PEACEFUL && !worldIn.isRemote)
+        {
+            BlockPattern blockpattern = DemonicCreeperSkull.getDemonPattern();
+            BlockPattern.PatternHelper patternhelper = blockpattern.match(worldIn, pos);
+
+            if (patternhelper != null)
+            {
+                int i;
+
+                /*for (i = 0; i < 3; ++i)
+                {
+                    BlockWorldState blockworldstate = patternhelper.translateOffset(i, 0, 0);
+                    worldIn.setBlockState(blockworldstate.getPos(), blockworldstate.getBlockState().withProperty(NODROP, Boolean.valueOf(true)), 2);
+                }*/
+
+                for (i = 0; i < blockpattern.getPalmLength(); ++i)
+                {
+                    for (int j = 0; j < blockpattern.getThumbLength(); ++j)
+                    {
+                        BlockWorldState blockworldstate1 = patternhelper.translateOffset(i, j, 0);
+                        worldIn.setBlockState(blockworldstate1.getPos(), Blocks.air.getDefaultState(), 2);
+                    }
+                }
+
+                BlockPos blockpos1 = patternhelper.translateOffset(1, 0, 0).getPos();
+                Demon demon = new Demon(worldIn);
+                BlockPos blockpos2 = patternhelper.translateOffset(1, 2, 0).getPos();
+                demon.setLocationAndAngles((double)blockpos2.getX() + 0.5D, (double)blockpos2.getY() + 0.55D, (double)blockpos2.getZ() + 0.5D, patternhelper.getFinger().getAxis() == EnumFacing.Axis.X ? 0.0F : 90.0F, 0.0F);
+                demon.renderYawOffset = patternhelper.getFinger().getAxis() == EnumFacing.Axis.X ? 0.0F : 90.0F;
+                Iterator iterator = worldIn.getEntitiesWithinAABB(EntityPlayer.class, demon.getEntityBoundingBox().expand(50.0D, 50.0D, 50.0D)).iterator();
+
+                /*while (iterator.hasNext())
+                {
+                    EntityPlayer entityplayer = (EntityPlayer)iterator.next();
+                    //entityplayer.triggerAchievement(AchievementList.spawnWither);
+                }*/
+
+                worldIn.spawnEntityInWorld(demon);
+                int k;
+
+                for (k = 0; k < 120; ++k)
+                {
+                    worldIn.spawnParticle(EnumParticleTypes.FLAME, (double)blockpos1.getX() + worldIn.rand.nextDouble(), (double)(blockpos1.getY() - 2) + worldIn.rand.nextDouble() * 3.9D, (double)blockpos1.getZ() + worldIn.rand.nextDouble(), 0.0D, 0.0D, 0.0D, new int[0]);
+                }
+
+                for (k = 0; k < blockpattern.getPalmLength(); ++k)
+                {
+                    for (int l = 0; l < blockpattern.getThumbLength(); ++l)
+                    {
+                        BlockWorldState blockworldstate2 = patternhelper.translateOffset(k, l, 0);
+                        worldIn.notifyNeighborsRespectDebug(blockworldstate2.getPos(), Blocks.air);
+                    }
+                }
+            }
+        }
     }
     
     public boolean isOpaqueCube()

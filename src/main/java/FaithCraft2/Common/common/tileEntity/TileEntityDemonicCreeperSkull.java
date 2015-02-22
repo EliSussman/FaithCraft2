@@ -19,6 +19,12 @@ import com.mojang.authlib.properties.Property;
 public class TileEntityDemonicCreeperSkull extends TileEntity{
     private static int skullRotation;
     private GameProfile playerProfile = null;
+    
+    private int skullType = 0;
+    
+    public int getSkullType(){
+    	return this.skullType;
+    }
 
     public void writeToNBT(NBTTagCompound compound)
     {
