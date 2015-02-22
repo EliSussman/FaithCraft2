@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Random;
 
 import FaithCraft2.Common.common.FaithCraft2;
+import FaithCraft2.Common.common.worldgen.WorldGenDogwoodTrees;
+import FaithCraft2.Common.common.worldgen.WorldGenMegaDogwoodTrees;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.BlockSapling;
@@ -65,13 +67,13 @@ public class FaithCraftSapling extends BlockBush implements IGrowable{
         else
         {
             this.generateTree(worldIn, pos, state, rand);
-        }
+        } 
     }
 
     public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
         if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(worldIn, rand, pos)) return;
-        Object object = rand.nextInt(10) == 0 ? new WorldGenBigTree(true) : new WorldGenTrees(true);
+        Object object = rand.nextInt(10) == 0 ? new WorldGenMegaDogwoodTrees(true, rand.nextBoolean()) : new WorldGenDogwoodTrees(true);
         int i = 0;
         int j = 0;
         boolean flag = false;
@@ -87,7 +89,7 @@ public class FaithCraftSapling extends BlockBush implements IGrowable{
                     {
                         if (this.isTypeAt(worldIn, pos.add(i, 0, j), FaithCraftPlanks.EnumType.DOGWOOD) && this.isTypeAt(worldIn, pos.add(i + 1, 0, j), FaithCraftPlanks.EnumType.DOGWOOD) && this.isTypeAt(worldIn, pos.add(i, 0, j + 1), FaithCraftPlanks.EnumType.DOGWOOD) && this.isTypeAt(worldIn, pos.add(i + 1, 0, j + 1), FaithCraftPlanks.EnumType.DOGWOOD))
                         {
-                            object = new WorldGenMegaPineTree(false, rand.nextBoolean());
+                            object = new WorldGenMegaDogwoodTrees(false, rand.nextBoolean());
                             flag = true;
                             break label78;
                         }
@@ -98,7 +100,7 @@ public class FaithCraftSapling extends BlockBush implements IGrowable{
                 {
                     j = 0;
                     i = 0;
-                    object = new WorldGenTaiga2(true);
+                    object = new WorldGenDogwoodTrees(true);
                 }
 
                 break;

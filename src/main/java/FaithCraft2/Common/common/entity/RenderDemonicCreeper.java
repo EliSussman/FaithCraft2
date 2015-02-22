@@ -8,22 +8,22 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderDemon extends RenderLiving{
+public class RenderDemonicCreeper extends RenderLiving{
 
-	private static final ResourceLocation demonTextures = new ResourceLocation("faithcraft2:textures/entity/Demon.png");
+	private static final ResourceLocation demonicCreeperTextures = new ResourceLocation("faithcraft2:textures/entity/DemonicCreeper.png");
 	
-	public RenderDemon(RenderManager manager) {
-		super(manager, new ModelDemon(), 1.0F);
+	public RenderDemonicCreeper(RenderManager manager) {
+		super(manager, new ModelDemonicCreeper(), 1.0F);
 	}
 
-	protected ResourceLocation getEntityTexture(Demon demon)
+	protected ResourceLocation getEntityTexture(DemonicCreeper demonicCreeper)
     {
-        return demonTextures;
+        return demonicCreeperTextures;
     }
 	
 	protected ResourceLocation getEntityTexture(Entity p_110775_1_)
     {
-        return this.getEntityTexture((Demon)p_110775_1_);
+        return this.getEntityTexture((DemonicCreeper)p_110775_1_);
     }
 
 }

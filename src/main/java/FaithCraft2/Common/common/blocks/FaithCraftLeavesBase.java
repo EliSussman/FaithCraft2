@@ -232,7 +232,7 @@ public abstract class FaithCraftLeavesBase extends BlockLeavesBase implements IS
 
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(FaithCraft2.FaithCraftSapling1);
+        return Item.getItemFromBlock(FaithCraft2.DogwoodSapling);
     }
 
     public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)

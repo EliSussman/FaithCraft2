@@ -44,6 +44,9 @@ public class FaithCraftLog extends BlockRotatedPillar
     {
         list.add(new ItemStack(itemIn, 1, FaithCraftPlanks.EnumType.DOGWOOD.getMetadata()));
     }
+    
+    @Override public boolean canSustainLeaves(net.minecraft.world.IBlockAccess world, BlockPos pos){ return true; }
+    @Override public boolean isWood(net.minecraft.world.IBlockAccess world, BlockPos pos){ return true; }
 
     public IBlockState getStateFromMeta(int meta)
     {

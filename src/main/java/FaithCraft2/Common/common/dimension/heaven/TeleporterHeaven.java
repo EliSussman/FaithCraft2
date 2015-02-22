@@ -1,4 +1,4 @@
-/*package FaithCraft2.Common.common.dimension.heaven;
+package FaithCraft2.Common.common.dimension.heaven;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +25,7 @@ public class TeleporterHeaven extends Teleporter{
     
     public void placeInPortal(Entity entity, double p_77185_2_, double p_77185_4_, double p_77185_6_, float p_77185_8_)
     {
-        if (this.worldServerInstance.provider.dimensionId != 1)
+        if (this.worldServerInstance.provider.getDimensionId() != 1)
         {
             if (!this.placeInExistingPortal(entity, p_77185_2_, p_77185_4_, p_77185_6_, p_77185_8_))
             {
@@ -45,4 +45,3 @@ public class TeleporterHeaven extends Teleporter{
 		return true;
     }
 }
-*/
