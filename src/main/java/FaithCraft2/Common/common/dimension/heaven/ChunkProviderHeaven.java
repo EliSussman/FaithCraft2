@@ -68,7 +68,6 @@ private final WorldGenHellLava field_177473_x;
 private final WorldGenHellLava field_177472_y;
 private final GeneratorBushFeature field_177471_z;
 private final GeneratorBushFeature field_177465_A;
-private final MapGenNetherBridge genNetherBridge;
 private final MapGenBase netherCaveGenerator;
 double[] noiseData1;
 double[] noiseData2;
@@ -83,7 +82,6 @@ public ChunkProviderHeaven(World worldIn, boolean p_i45637_2_, long p_i45637_3_)
     this.field_177472_y = new WorldGenHellLava(FaithCraft2.WineBlock, false);
     this.field_177471_z = new GeneratorBushFeature(Blocks.red_flower);
     this.field_177465_A = new GeneratorBushFeature(Blocks.yellow_flower);
-    this.genNetherBridge = (MapGenNetherBridge) TerrainGen.getModdedMapGen(new MapGenNetherBridge(), NETHER_BRIDGE);
     this.netherCaveGenerator = TerrainGen.getModdedMapGen(new MapGenCavesHell(), NETHER_CAVE);
     this.worldObj = worldIn;
     this.field_177466_i = p_i45637_2_;
@@ -286,11 +284,6 @@ public Chunk provideChunk(int x, int z)
     this.func_180516_b(x, z, chunkprimer);
     this.netherCaveGenerator.func_175792_a(this, this.worldObj, x, z, chunkprimer);
 
-    if (this.field_177466_i)
-    {
-        this.genNetherBridge.func_175792_a(this, this.worldObj, x, z, chunkprimer);
-    }
-
     Chunk chunk = new Chunk(this.worldObj, chunkprimer, x, z);
     BiomeGenBase[] abiomegenbase = this.worldObj.getWorldChunkManager().loadBlockGeneratorData((BiomeGenBase[])null, x * 16, z * 16, 16, 16);
     byte[] abyte = chunk.getBiomeArray();
@@ -408,7 +401,6 @@ public void populate(IChunkProvider p_73153_1_, int p_73153_2_, int p_73153_3_)
 
     BlockPos blockpos = new BlockPos(p_73153_2_ * 16, 0, p_73153_3_ * 16);
     ChunkCoordIntPair chunkcoordintpair = new ChunkCoordIntPair(p_73153_2_, p_73153_3_);
-    this.genNetherBridge.func_175794_a(this.worldObj, this.heavenRNG, chunkcoordintpair);
     int k;
 
     boolean doGen = TerrainGen.populate(p_73153_1_, worldObj, heavenRNG, p_73153_2_, p_73153_3_, false, NETHER_LAVA);
@@ -489,25 +481,6 @@ public String makeString()
     return "HeavenRandomLevelSource";
 }
 
-public List func_177458_a(EnumCreatureType p_177458_1_, BlockPos p_177458_2_)
-{
-    if (p_177458_1_ == EnumCreatureType.AMBIENT)
-    {
-        if (this.genNetherBridge.func_175795_b(p_177458_2_))
-        {
-            return this.genNetherBridge.getSpawnList();
-        }
-
-        if (this.genNetherBridge.func_175796_a(this.worldObj, p_177458_2_) && this.worldObj.getBlockState(p_177458_2_.down()).getBlock() == FaithCraft2.HolyBlock)
-        {
-            return this.genNetherBridge.getSpawnList();
-        }
-    }
-
-    BiomeGenBase biomegenbase = this.worldObj.getBiomeGenForCoords(p_177458_2_);
-    return biomegenbase.getSpawnableList(p_177458_1_);
-}
-
 public BlockPos getStrongholdGen(World worldIn, String p_180513_2_, BlockPos p_180513_3_)
 {
     return null;
@@ -518,13 +491,18 @@ public int getLoadedChunkCount()
     return 0;
 }
 
-public void recreateStructures(Chunk p_180514_1_, int p_180514_2_, int p_180514_3_)
-{
-    this.genNetherBridge.func_175792_a(this, this.worldObj, p_180514_2_, p_180514_3_, (ChunkPrimer)null);
-}
-
 public Chunk provideChunk(BlockPos blockPosIn)
 {
     return this.provideChunk(blockPosIn.getX() >> 4, blockPosIn.getZ() >> 4);
+}
+
+@Override
+public List func_177458_a(EnumCreatureType p_177458_1_, BlockPos p_177458_2_) {
+	return null;
+}
+
+@Override
+public void recreateStructures(Chunk p_180514_1_, int p_180514_2_,int p_180514_3_) {
+	
 }
 }

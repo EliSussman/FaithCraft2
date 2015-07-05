@@ -3,6 +3,8 @@ package FaithCraft2.Common.common.items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.item.Item.ToolMaterial;
+import net.minecraft.util.BlockPos;
+import net.minecraft.world.World;
 import FaithCraft2.Common.common.FaithCraft2;
 
 public class HolyCross extends ItemSword{
@@ -23,5 +25,4 @@ public class HolyCross extends ItemSword{
 	public String getName(){
 		return name;
 	}
-	
 }

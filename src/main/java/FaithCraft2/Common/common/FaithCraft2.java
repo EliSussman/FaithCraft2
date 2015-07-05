@@ -12,6 +12,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelSkeletonHead;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.ItemMeshDefinition;
+import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -92,6 +93,7 @@ import FaithCraft2.Common.common.blocks.HellRock;
 import FaithCraft2.Common.common.blocks.Altar;
 import FaithCraft2.Common.common.fluids.WineBlock;
 import FaithCraft2.Common.common.fluids.WineFluid;
+import FaithCraft2.Common.common.blocks.HeavenPortal;
 
 import com.google.common.base.Throwables;
 import com.google.common.collect.ObjectArrays;
@@ -228,8 +230,8 @@ public static CommonProxy proxy;
 		FaithCraftLeaves1 = new FaithCraftLeaves();
 		FaithCraftSapling1 = new FaithCraftSapling();
 		HellRock = new HellRock(3021, Material.rock).setUnlocalizedName("HellRock");
+		HeavenPortal = new HeavenPortal().setUnlocalizedName("HeavenPortal");
 		//HellCobbleStone = new HellCobbleStone(3022, Material.rock).setBlockName("HellCobbleStone").setBlockTextureName("FaithCraft2:HellCobbleStone");
-		
 		Bible = new Bible(3001).setUnlocalizedName("Bible");
 		BodyOFChrist = new BodyOFChrist(3002).setUnlocalizedName("BodyOFChrist");
 		Cross = new Cross(3003, Christianity).setUnlocalizedName("Cross");
@@ -243,7 +245,6 @@ public static CommonProxy proxy;
 		//HolyGrail = new HolyGrail(3012).setUnlocalizedName("HolyGrail").setTextureName("FaithCraft2:HolyGrail");
 		//HolyGrailOFWine = new HolyGrailOFWine(0, 0.0F, true).setAlwaysEdible().setUnlocalizedName("HolyGrailOFWine").setTextureName("FaithCraft2:HolyGrailOFWine");
 		//InstructionBook = new InstructionBook(3020).setUnlocalizedName("InstructionBook").setTextureName("FaithCraft2:InstructionBook");
-		
 		HeavenBiome = new HeavenBiome(245).setBiomeName("Heaven").setDisableRain();
 		
 		//HellBiome = new HellBiome(246).setBiomeName("Hell").setDisableRain();
@@ -264,6 +265,7 @@ public static CommonProxy proxy;
 		GameRegistry.registerBlock(DogwoodSapling, "DogwoodSapling");
 		GameRegistry.registerBlock(DemonicCreeperSkull, "DemonicCreeperSkull");
 		GameRegistry.registerBlock(HellRock, "HellRock");
+		GameRegistry.registerBlock(HeavenPortal, "HeavenPortal");
 		//GameRegistry.registerBlock(HellCobbleStone, "HellCobbleStone");
 		
 		GameRegistry.registerItem(Bible, "Bible");
@@ -315,6 +317,7 @@ public static CommonProxy proxy;
 		    	renderItem.getItemModelMesher().register(Item.getItemFromBlock(DogwoodLeaves), 0, new ModelResourceLocation("faithcraft2:DogwoodLeaves", "inventory"));
 		    	renderItem.getItemModelMesher().register(Item.getItemFromBlock(DogwoodSapling), 0, new ModelResourceLocation("faithcraft2:DogwoodSapling", "inventory"));
 		    	renderItem.getItemModelMesher().register(Item.getItemFromBlock(HellRock), 0, new ModelResourceLocation(modid + ":" + ((HellRock) HellRock).getName(), "inventory"));
+		    	renderItem.getItemModelMesher().register(Item.getItemFromBlock(HeavenPortal), 0, new ModelResourceLocation(modid + ":" + ((HeavenPortal) HeavenPortal).getName(), "inventory"));
 		    	
 		    	//items
 		    	renderItem.getItemModelMesher().register(Bible, 0, new ModelResourceLocation(modid + ":" + ((Bible) Bible).getName(), "inventory"));

@@ -12,6 +12,7 @@ import FaithCraft2.Common.common.entity.ModelDemon;
 import FaithCraft2.Common.common.entity.RenderDemon;
 import FaithCraft2.Common.common.entity.RenderDemonicCreeper;
 import FaithCraft2.Common.common.renderers.TileEntityDemonicCreeperSkullRenderer;
+import FaithCraft2.Common.common.renderers.TileEntityHeavenPortalSpecialRenderer;
 //import FaithCraft2.Common.common.entity.Angel;
 //import FaithCraft2.Common.common.entity.Demon;
 //import FaithCraft2.Common.common.entity.Jesus;
@@ -39,6 +40,7 @@ public class CommonProxy{
 	
 	public static void registerTileEntitySpecialRenderer(){
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDemonicCreeperSkull.class, new TileEntityDemonicCreeperSkullRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHeavenPortal.class, new TileEntityHeavenPortalSpecialRenderer());
 	}
 	
 }

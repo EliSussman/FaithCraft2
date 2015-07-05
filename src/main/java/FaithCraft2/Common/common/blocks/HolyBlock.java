@@ -7,8 +7,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -32,20 +34,14 @@ public class HolyBlock extends Block{
 		return name;
 	}
 	
-	/*public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection direction, IPlantable plantable)
-    {
-        Block plant = plantable.getPlant(world, x, y + 1, z);
-        EnumPlantType plantType = plantable.getPlantType(world, x, y + 1, z);
-
-        if (plant == Blocks.cactus && this == Blocks.cactus)
-        {
-            return true;
-        }
-
-        if (plant == Blocks.reeds && this == Blocks.reeds)
-        {
-            return true;
-        }
-		return true;
-    }*/
+	public void onBlockDestroyedByPlayer(World worldIn, BlockPos pos, IBlockState state) {
+		for (int i=pos.getX()-4;i<pos.getX()+4;i++){
+			for (int k=pos.getZ()-4;k<pos.getZ()+4;k++){
+				if (worldIn.getBlockState(new BlockPos(i,pos.getY(),k)).getBlock() == FaithCraft2.HeavenPortal){
+					worldIn.setBlockToAir(new BlockPos(i,pos.getY(),k));
+				}
+			}
+		}
+	}
+	
 }

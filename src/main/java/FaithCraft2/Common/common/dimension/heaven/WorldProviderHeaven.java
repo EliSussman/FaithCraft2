@@ -40,7 +40,7 @@ public class WorldProviderHeaven extends WorldProvider{
     @SideOnly(Side.CLIENT)
     public Vec3 getFogColor(float p_76562_1_, float p_76562_2_)
     {
-        return new Vec3(0.20000000298023224D, 0.029999999329447746D, 0.029999999329447746D);
+        return new Vec3(0.1D, 0.1D, 0.0D);
     }
 
     @SideOnly(Side.CLIENT)
@@ -51,7 +51,7 @@ public class WorldProviderHeaven extends WorldProvider{
 
     public boolean canRespawnHere()
     {
-        return true;
+        return false;
     }
 
     public boolean isSurfaceWorld()

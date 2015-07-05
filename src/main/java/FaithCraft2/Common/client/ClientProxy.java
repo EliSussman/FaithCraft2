@@ -21,7 +21,9 @@ import FaithCraft2.Common.common.entity.ModelDemon;
 import FaithCraft2.Common.common.entity.RenderDemon;
 import FaithCraft2.Common.common.entity.RenderDemonicCreeper;
 import FaithCraft2.Common.common.renderers.TileEntityDemonicCreeperSkullRenderer;
+import FaithCraft2.Common.common.renderers.TileEntityHeavenPortalSpecialRenderer;
 import FaithCraft2.Common.common.tileEntity.TileEntityDemonicCreeperSkull;
+import FaithCraft2.Common.common.tileEntity.TileEntityHeavenPortal;
 import FaithCraft2.Common.common.FaithCraft2;
 
 public class ClientProxy extends CommonProxy{
@@ -29,9 +31,10 @@ public class ClientProxy extends CommonProxy{
 public static void registerRenderThings(){
 		RenderingRegistry.registerEntityRenderingHandler(Demon.class, new RenderDemon(Minecraft.getMinecraft().getRenderManager()));
 		RenderingRegistry.registerEntityRenderingHandler(DemonicCreeper.class, new RenderDemonicCreeper(Minecraft.getMinecraft().getRenderManager()));
-	}
+}
 
 	public static void registerTileEntitySpecialRenderer(){
 		 ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDemonicCreeperSkull.class, new TileEntityDemonicCreeperSkullRenderer());
+		 ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHeavenPortal.class, new TileEntityHeavenPortalSpecialRenderer());
 	}
 }
