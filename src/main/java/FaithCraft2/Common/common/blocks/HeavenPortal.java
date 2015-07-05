@@ -135,12 +135,16 @@ public class HeavenPortal extends BlockContainer{
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
 		if(entityIn instanceof EntityPlayerMP){
 			EntityPlayerMP player = (EntityPlayerMP) entityIn;
-			if (worldIn.provider.getDimensionId() != FaithCraft2.HeavenId){
+			if (player.timeUntilPortal > 0)
+			{
+				player.timeUntilPortal = 10;
+			}
+			else if (worldIn.provider.getDimensionId() != FaithCraft2.HeavenId){
+				player.timeUntilPortal = 10;
 				player.mcServer.getConfigurationManager().transferPlayerToDimension(player, FaithCraft2.HeavenId, new TeleporterHeaven(player.mcServer.worldServerForDimension(FaithCraft2.HeavenId)));
+			}else{
 				player.timeUntilPortal = 10;
-			}else if (worldIn.provider.getDimensionId() == FaithCraft2.HeavenId){
-				player.mcServer.getConfigurationManager().transferPlayerToDimension(player, 0, new TeleporterHeaven(player.mcServer.worldServerForDimension(0)));
-				player.timeUntilPortal = 10;
+				player.mcServer.getConfigurationManager().transferPlayerToDimension(player, 0, new TeleporterHeaven(player.mcServer.worldServerForDimension(1)));
 			}
 		}
 	}

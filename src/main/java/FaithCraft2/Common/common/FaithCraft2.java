@@ -115,6 +115,7 @@ import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import FaithCraft2.Common.common.items.DemonicCreeperSkullItem;
 import FaithCraft2.Common.common.tileEntity.TileEntityDemonicCreeperSkull;
+import FaithCraft2.Common.common.tileEntity.TileEntityHeavenPortal;
 import FaithCraft2.Common.common.blocks.DemonicCreeperSkull;
 
 
