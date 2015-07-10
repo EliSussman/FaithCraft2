@@ -1,4 +1,4 @@
-/*package FaithCraft2.Common.common.gui;
+package FaithCraft2.Common.common.gui;
 
 import org.lwjgl.opengl.GL11;
 
@@ -42,6 +42,4 @@ public class GuiAltar extends GuiContainer{
         int l = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
     }
-
 }
-*/

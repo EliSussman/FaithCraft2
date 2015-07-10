@@ -1,9 +1,10 @@
-/*package FaithCraft2.Common.common.crafting;
+package FaithCraft2.Common.common.crafting;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import net.minecraft.block.Block;
@@ -173,8 +174,8 @@ public class AltarCraftingManager{
         if (i == 2 && itemstack.getItem() == itemstack1.getItem() && itemstack.stackSize == 1 && itemstack1.stackSize == 1 && itemstack.getItem().isRepairable())
         {
             Item item = itemstack.getItem();
-            int j1 = item.getMaxDamage() - itemstack.getItemDamageForDisplay();
-            int k = item.getMaxDamage() - itemstack1.getItemDamageForDisplay();
+            int j1 = item.getMaxDamage() - itemstack.getItemDamage();
+            int k = item.getMaxDamage() - itemstack1.getItemDamage();
             int l = j1 + k + item.getMaxDamage() * 5 / 100;
             int i1 = item.getMaxDamage() - l;
 
@@ -204,5 +205,28 @@ public class AltarCraftingManager{
     {
         return this.recipes;
     }
+    
+    public ItemStack[] func_180303_b(InventoryCrafting p_180303_1_, World worldIn)
+    {
+        Iterator iterator = this.recipes.iterator();
+
+        while (iterator.hasNext())
+        {
+            IRecipe irecipe = (IRecipe)iterator.next();
+
+            if (irecipe.matches(p_180303_1_, worldIn))
+            {
+                return irecipe.getRemainingItems(p_180303_1_);
+            }
+        }
+
+        ItemStack[] aitemstack = new ItemStack[p_180303_1_.getSizeInventory()];
+
+        for (int i = 0; i < aitemstack.length; ++i)
+        {
+            aitemstack[i] = p_180303_1_.getStackInSlot(i);
+        }
+
+        return aitemstack;
+    }
 }
-*/

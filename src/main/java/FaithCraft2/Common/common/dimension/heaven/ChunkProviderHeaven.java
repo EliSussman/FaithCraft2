@@ -78,8 +78,8 @@ double[] noiseData5;
 public ChunkProviderHeaven(World worldIn, boolean p_i45637_2_, long p_i45637_3_)
 {
     this.field_177467_w = new WorldGenMinable(Blocks.diamond_ore.getDefaultState(), 14, BlockHelper.forBlock(FaithCraft2.HolyCobbleStone));
-    this.field_177473_x = new WorldGenHellLava(FaithCraft2.WineBlock, true);
-    this.field_177472_y = new WorldGenHellLava(FaithCraft2.WineBlock, false);
+    this.field_177473_x = new WorldGenHellLava(FaithCraft2.wineBlock, true);
+    this.field_177472_y = new WorldGenHellLava(FaithCraft2.wineBlock, false);
     this.field_177471_z = new GeneratorBushFeature(Blocks.red_flower);
     this.field_177465_A = new GeneratorBushFeature(Blocks.yellow_flower);
     this.netherCaveGenerator = TerrainGen.getModdedMapGen(new MapGenCavesHell(), NETHER_CAVE);
@@ -152,7 +152,7 @@ public void func_180515_a(int p_180515_1_, int p_180515_2_, ChunkPrimer p_180515
 
                             if (k1 * 8 + l1 < b1)
                             {
-                                iblockstate = FaithCraft2.WineBlock.getDefaultState();
+                                iblockstate = FaithCraft2.wineBlock.getDefaultState();
                             }
 
                             if (d15 > 0.0D)
@@ -241,7 +241,7 @@ public void func_180516_b(int p_180516_1_, int p_180516_2_, ChunkPrimer p_180516
 
                                 if (k1 < b0 && (iblockstate == null || iblockstate.getBlock().getMaterial() == Material.air))
                                 {
-                                    iblockstate = FaithCraft2.WineBlock.getDefaultState();
+                                    iblockstate = FaithCraft2.wineBlock.getDefaultState();
                                 }
 
                                 j1 = i1;

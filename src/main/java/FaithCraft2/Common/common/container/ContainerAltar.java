@@ -1,4 +1,4 @@
-/*package FaithCraft2.Common.common.container;
+package FaithCraft2.Common.common.container;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -13,6 +13,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import FaithCraft2.Common.common.FaithCraft2;
 import FaithCraft2.Common.common.crafting.AltarCraftingManager;
+import FaithCraft2.Common.common.crafting.AltarCraftingSlot;
 import FaithCraft2.Common.common.tileEntity.TileEntityAltar;
 
 public class ContainerAltar extends Container {
@@ -28,7 +29,7 @@ public class ContainerAltar extends Container {
 		craftMatrix = new InventoryCrafting(this, 3, 3);
 		craftResult = new InventoryCraftResult();
 
-		this.addSlotToContainer(new SlotCrafting(invPlayer.player, craftMatrix, craftResult, 0, 124, 35));
+		this.addSlotToContainer(new AltarCraftingSlot(invPlayer.player, craftMatrix, craftResult, 0, 124, 35));
         int l;
         int i1;
 
@@ -137,4 +138,3 @@ public class ContainerAltar extends Container {
     }
 
 }
-*/

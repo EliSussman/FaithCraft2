@@ -18,7 +18,7 @@ public class WineBucket extends ItemBucket{
 	private final String name = "WineBucket";
 	
 	public WineBucket(Block fluidBlock) {
-		super(FaithCraft2.WineBlock);
+		super(FaithCraft2.wineBlock);
 		setUnlocalizedName(FaithCraft2.modid + ":" + name);
 		this.setCreativeTab(FaithCraft2.FaithCraft2Tab);
 	}

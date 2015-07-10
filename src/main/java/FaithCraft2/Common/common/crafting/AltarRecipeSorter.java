@@ -1,4 +1,4 @@
-/*package FaithCraft2.Common.common.crafting;
+package FaithCraft2.Common.common.crafting;
 
 import java.util.Comparator;
 
@@ -22,4 +22,3 @@ public class AltarRecipeSorter implements Comparator{
 	}
 
 }
-*/

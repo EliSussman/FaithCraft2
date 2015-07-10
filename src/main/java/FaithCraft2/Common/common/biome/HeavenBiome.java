@@ -62,7 +62,7 @@ public class HeavenBiome extends BiomeGenBase{
 
         if (random.nextInt(10) == 0)
         {
-            WorldGenLakes worldGenlakes = new WorldGenLakes(FaithCraft2.WineBlock);
+            WorldGenLakes worldGenlakes = new WorldGenLakes(FaithCraft2.wineBlock);
             worldGenlakes.generate(world, random, pos);
         }
     }

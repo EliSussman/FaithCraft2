@@ -1,4 +1,4 @@
-/*package FaithCraft2.Common.common.crafting;
+package FaithCraft2.Common.common.crafting;
 
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
@@ -9,37 +9,57 @@ import net.minecraft.world.World;
 
 public class AltarShapedRecipes implements IRecipe
 {
+    /** How many horizontal slots this recipe is wide. */
     public final int recipeWidth;
+    /** How many vertical slots this recipe uses. */
     public final int recipeHeight;
+    /** Is a array of ItemStack that composes the recipe. */
     public final ItemStack[] recipeItems;
-    private ItemStack recipeOutput;
+    /** Is the ItemStack that you get when craft the recipe. */
+    private final ItemStack recipeOutput;
     private boolean field_92101_f;
-    private static final String __OBFID = "CL_00000093";
 
-    public AltarShapedRecipes(int par1, int par2, ItemStack[] par3ArrayOfItemStack, ItemStack par4ItemStack)
+    public AltarShapedRecipes(int width, int height, ItemStack[] p_i1917_3_, ItemStack output)
     {
-        this.recipeWidth = par1;
-        this.recipeHeight = par2;
-        this.recipeItems = par3ArrayOfItemStack;
-        this.recipeOutput = par4ItemStack;
+        this.recipeWidth = width;
+        this.recipeHeight = height;
+        this.recipeItems = p_i1917_3_;
+        this.recipeOutput = output;
     }
 
     public ItemStack getRecipeOutput()
     {
         return this.recipeOutput;
     }
-    public boolean matches(InventoryCrafting par1InventoryCrafting, World par2World)
+
+    public ItemStack[] getRemainingItems(InventoryCrafting p_179532_1_)
+    {
+        ItemStack[] aitemstack = new ItemStack[p_179532_1_.getSizeInventory()];
+
+        for (int i = 0; i < aitemstack.length; ++i)
+        {
+            ItemStack itemstack = p_179532_1_.getStackInSlot(i);
+            aitemstack[i] = net.minecraftforge.common.ForgeHooks.getContainerItem(itemstack);
+        }
+
+        return aitemstack;
+    }
+
+    /**
+     * Used to check if a recipe matches current crafting inventory
+     */
+    public boolean matches(InventoryCrafting p_77569_1_, World worldIn)
     {
         for (int i = 0; i <= 3 - this.recipeWidth; ++i)
         {
             for (int j = 0; j <= 3 - this.recipeHeight; ++j)
             {
-                if (this.checkMatch(par1InventoryCrafting, i, j, true))
+                if (this.checkMatch(p_77569_1_, i, j, true))
                 {
                     return true;
                 }
 
-                if (this.checkMatch(par1InventoryCrafting, i, j, false))
+                if (this.checkMatch(p_77569_1_, i, j, false))
                 {
                     return true;
                 }
@@ -48,19 +68,23 @@ public class AltarShapedRecipes implements IRecipe
 
         return false;
     }
-    private boolean checkMatch(InventoryCrafting par1InventoryCrafting, int par2, int par3, boolean par4)
+
+    /**
+     * Checks if the region of a crafting inventory is match for the recipe.
+     */
+    private boolean checkMatch(InventoryCrafting p_77573_1_, int p_77573_2_, int p_77573_3_, boolean p_77573_4_)
     {
         for (int k = 0; k < 3; ++k)
         {
             for (int l = 0; l < 3; ++l)
             {
-                int i1 = k - par2;
-                int j1 = l - par3;
+                int i1 = k - p_77573_2_;
+                int j1 = l - p_77573_3_;
                 ItemStack itemstack = null;
 
                 if (i1 >= 0 && j1 >= 0 && i1 < this.recipeWidth && j1 < this.recipeHeight)
                 {
-                    if (par4)
+                    if (p_77573_4_)
                     {
                         itemstack = this.recipeItems[this.recipeWidth - i1 - 1 + j1 * this.recipeWidth];
                     }
@@ -70,7 +94,7 @@ public class AltarShapedRecipes implements IRecipe
                     }
                 }
 
-                ItemStack itemstack1 = par1InventoryCrafting.getStackInRowAndColumn(k, l);
+                ItemStack itemstack1 = p_77573_1_.getStackInRowAndColumn(k, l);
 
                 if (itemstack1 != null || itemstack != null)
                 {
@@ -84,7 +108,7 @@ public class AltarShapedRecipes implements IRecipe
                         return false;
                     }
 
-                    if (itemstack.getItemDamage() != 32767 && itemstack.getItemDamage() != itemstack1.getItemDamage())
+                    if (itemstack.getMetadata() != 32767 && itemstack.getMetadata() != itemstack1.getMetadata())
                     {
                         return false;
                     }
@@ -94,25 +118,33 @@ public class AltarShapedRecipes implements IRecipe
 
         return true;
     }
-    public ItemStack getCraftingResult(InventoryCrafting par1InventoryCrafting)
+
+    /**
+     * Returns an Item that is the result of this recipe
+     */
+    public ItemStack getCraftingResult(InventoryCrafting p_77572_1_)
     {
         ItemStack itemstack = this.getRecipeOutput().copy();
 
         if (this.field_92101_f)
         {
-            for (int i = 0; i < par1InventoryCrafting.getSizeInventory(); ++i)
+            for (int i = 0; i < p_77572_1_.getSizeInventory(); ++i)
             {
-                ItemStack itemstack1 = par1InventoryCrafting.getStackInSlot(i);
+                ItemStack itemstack1 = p_77572_1_.getStackInSlot(i);
 
                 if (itemstack1 != null && itemstack1.hasTagCompound())
                 {
-                    itemstack.setTagCompound((NBTTagCompound)itemstack1.stackTagCompound.copy());
+                    itemstack.setTagCompound((NBTTagCompound)itemstack1.getTagCompound().copy());
                 }
             }
         }
 
         return itemstack;
     }
+
+    /**
+     * Returns the size of the recipe area
+     */
     public int getRecipeSize()
     {
         return this.recipeWidth * this.recipeHeight;
@@ -124,4 +156,3 @@ public class AltarShapedRecipes implements IRecipe
         return this;
     }
 }
-*/

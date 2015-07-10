@@ -1,8 +1,8 @@
-# THIS IS THE BLOCKSTATE FILE. IT GOES IN THE assets/faithcraft2/blockstates/ folder.
-# Generated using sheenrox82's JSON File Generator for Minecraft 1.8.
-
 {
     "variants": {
-        "normal": { "model": "faithcraft2:Altar" }
+        "facing=north": { "model": "faithcraft2:Altar" },
+        "facing=south": { "model": "faithcraft2:Altar" },
+        "facing=west":  { "model": "faithcraft2:Altar" },
+        "facing=east":  { "model": "faithcraft2:Altar" }
     }
 }

@@ -1,4 +1,4 @@
-/*package FaithCraft2.Common.common.renderers;
+package FaithCraft2.Common.common.renderers;
 
 import org.lwjgl.opengl.GL11;
 
@@ -43,16 +43,16 @@ public class RenderAltar extends TileEntitySpecialRenderer{
 			GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
 			int j = 0;
             if(i == 3) {
-                j = 270;
+                j = 360;//South
             }
             if(i == 2) {
-                j = 180;
+                j = 180;//North
             }
-            if(i == 1) {
-                j = 90;
+            if(i == 4) {
+                j = 90;//West
             }
-            if(i == 0) {
-            	j = 360;
+            if(i == 5) {
+            	j = -90;//East
             }
             GL11.glRotatef(j, 0.0F, 1.0F, 0F);
 			this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
@@ -61,4 +61,3 @@ public class RenderAltar extends TileEntitySpecialRenderer{
 	}
 
 }
-*/

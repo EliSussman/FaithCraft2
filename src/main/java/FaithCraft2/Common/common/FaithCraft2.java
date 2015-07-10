@@ -7,15 +7,19 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.BlockStairs;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelSkeletonHead;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.ItemMeshDefinition;
+import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.creativetab.CreativeTabs;
@@ -43,6 +47,7 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.terraingen.WorldTypeEvent;
+import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -55,6 +60,7 @@ import FaithCraft2.Common.common.blocks.HolyCobbleStone;
 import FaithCraft2.Common.common.blocks.HolyOre;
 import FaithCraft2.Common.common.blocks.HolyStone;
 import FaithCraft2.Common.common.handler.BucketHandler;
+import FaithCraft2.Common.common.handler.GuiHandler;
 import FaithCraft2.Common.common.dimension.heaven.WorldProviderHeaven;
 import FaithCraft2.Common.common.entity.Demon;
 //import FaithCraft2.Common.common.dimension.hell.WorldProviderHell;
@@ -114,15 +120,16 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import FaithCraft2.Common.common.items.DemonicCreeperSkullItem;
+import FaithCraft2.Common.common.tileEntity.TileEntityAltar;
 import FaithCraft2.Common.common.tileEntity.TileEntityDemonicCreeperSkull;
 import FaithCraft2.Common.common.tileEntity.TileEntityHeavenPortal;
 import FaithCraft2.Common.common.blocks.DemonicCreeperSkull;
 
-
-@Mod(modid = FaithCraft2.modid, version = FaithCraft2.version, guiFactory = FaithCraft2.guiFactory)
+@Mod(modid = FaithCraft2.modid, version = FaithCraft2.version, name = FaithCraft2.name ,guiFactory = FaithCraft2.guiFactory)
 public class FaithCraft2{
-	public static final String modid = "FaithCraft2";
-	public static final String version = "2.1 Alpha";
+	public static final String modid = "faithcraft2";
+	public static final String version = "2.2 Alpha";
+	public static final String name = "FaithCraft2";
 	public static final String guiFactory = "FaithCraft2.Common.client.gui.GuiFactory";
 
 //public static HolyWorldGen worldgen1 = new HolyWorldGen();
@@ -136,6 +143,8 @@ public static CreativeTabs FaithCraft2Tab = new FaithCraft2Tab(CreativeTabs.getN
 public static FaithCraft2 instance;
 
 public static final int guiIDInstructionBook = 2;
+
+public static Fluid Wine;
 
 public static final int guiIDAltar = 1;
 public static Block Altar;
@@ -152,7 +161,7 @@ public static Block HolyBlock;
 public static Block AltarMB;
 public static Block HellRock;
 public static Block HellCobbleStone;
-public static Block WineBlock;
+public static Block wineBlock;
 public static Block DogwoodLog;
 public static Block DogwoodPlanks;
 public static Block DogwoodLeaves;
@@ -179,16 +188,12 @@ public static Item DemonicCreeperSkullItem;
 
 public static Block block1;
 
-public static Fluid wine;
-
 public static BiomeGenBase HeavenBiome;
 
 public static BiomeGenBase HellBiome;
 
 public static IWorldGenerator genTemple;
 public static IWorldGenerator genChurch;
-
-public static TextureAtlasSprite[] atlasSpritesWine = new TextureAtlasSprite[2];
 
 public static int HeavenId = 10;
 
@@ -197,6 +202,9 @@ public static int HellId = 11;
 public static MerchantRecipeList merchantRecipeList;
 //public static Angel angel;
 public static Random rand;
+
+public static ResourceLocation still = new ResourceLocation("faithcraft2:blocks/WineStill");
+public static ResourceLocation flowing = new ResourceLocation("faithcraft2:blocks/WineFlow");
 
 @SidedProxy(clientSide = "FaithCraft2.Common.client.ClientProxy", serverSide = "FaithCraft2.Common.common.CommonProxy")
 public static CommonProxy proxy;
@@ -208,9 +216,9 @@ public static CommonProxy proxy;
 		//ConfigHandler.init(preEvent.getSuggestedConfigurationFile());
 		//FMLCommonHandler.instance().bus().register(new ConfigHandler());
 		
-		wine = new WineFluid("Wine");
-		FluidRegistry.registerFluid(wine);
-		WineBlock = new WineBlock(wine).setUnlocalizedName("Wine");
+		Wine = new Fluid("Wine", still, flowing);
+		FluidRegistry.registerFluid(Wine);
+		wineBlock = new WineBlock(Wine, Material.water);
 		
 		Altar = new Altar(Material.rock).setUnlocalizedName("Altar"); 
 
@@ -242,7 +250,7 @@ public static CommonProxy proxy;
 		DogwoodStick = new DogwoodStick(3008).setUnlocalizedName("DogwoodStick");
 		GoldenDogwoodStick = new GoldenDogwoodStick(3009).setUnlocalizedName("GoldenDogwoodStick");
 		DemonicCreeperSkullItem = new DemonicCreeperSkullItem().setUnlocalizedName("DemonicCreeperSkullItem");
-		WineBucket = new WineBucket(WineBlock).setUnlocalizedName("WineBucket").setContainerItem(Items.bucket);
+		WineBucket = new WineBucket(wineBlock).setUnlocalizedName("WineBucket").setContainerItem(Items.bucket);
 		//HolyGrail = new HolyGrail(3012).setUnlocalizedName("HolyGrail").setTextureName("FaithCraft2:HolyGrail");
 		//HolyGrailOFWine = new HolyGrailOFWine(0, 0.0F, true).setAlwaysEdible().setUnlocalizedName("HolyGrailOFWine").setTextureName("FaithCraft2:HolyGrailOFWine");
 		//InstructionBook = new InstructionBook(3020).setUnlocalizedName("InstructionBook").setTextureName("FaithCraft2:InstructionBook");
@@ -259,7 +267,6 @@ public static CommonProxy proxy;
 		GameRegistry.registerBlock(HolyStone, "HolyStone");
 		GameRegistry.registerBlock(HolyCobbleStone, "HolyCobbleStone");
 		GameRegistry.registerBlock(HolyBlock, "HolyBlock");
-		GameRegistry.registerBlock(WineBlock, "WineBlock");
 		GameRegistry.registerBlock(DogwoodLog, "DogwoodLog");
 		GameRegistry.registerBlock(DogwoodPlanks, "DogwoodPlanks");
 		GameRegistry.registerBlock(DogwoodLeaves, "DogwoodLeaves");
@@ -267,6 +274,7 @@ public static CommonProxy proxy;
 		GameRegistry.registerBlock(DemonicCreeperSkull, "DemonicCreeperSkull");
 		GameRegistry.registerBlock(HellRock, "HellRock");
 		GameRegistry.registerBlock(HeavenPortal, "HeavenPortal");
+		GameRegistry.registerBlock(wineBlock, "WineBlock");
 		//GameRegistry.registerBlock(HellCobbleStone, "HellCobbleStone");
 		
 		GameRegistry.registerItem(Bible, "Bible");
@@ -287,7 +295,7 @@ public static CommonProxy proxy;
 		
 		//GameRegistry.registerWorldGenerator(worldgen1, 1);
 		
-		FluidContainerRegistry.registerFluidContainer(new FluidStack(wine, FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(WineBucket), new ItemStack(Items.bucket));
+		FluidContainerRegistry.registerFluidContainer(new FluidStack(Wine, FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(WineBucket), new ItemStack(Items.bucket));
 		
 		//GameRegistry.registerWorldGenerator(genTemple, 1);
 		//GameRegistry.registerWorldGenerator(genChurch, 1);
@@ -297,6 +305,8 @@ public static CommonProxy proxy;
 		
 		//DimensionManager.registerProviderType(HellId, WorldProviderHell.class, true);
 		//DimensionManager.registerDimension(HellId, HellId);*/
+		
+		proxy.preInit(preEvent);
 	}
 
 	@EventHandler
@@ -311,7 +321,6 @@ public static CommonProxy proxy;
 		    	renderItem.getItemModelMesher().register(Item.getItemFromBlock(HolyCobbleStone), 0, new ModelResourceLocation(modid + ":" + ((HolyCobbleStone) HolyCobbleStone).getName(), "inventory"));
 		    	renderItem.getItemModelMesher().register(Item.getItemFromBlock(Altar), 0, new ModelResourceLocation(modid + ":" + ((Altar) Altar).getName(), "inventory"));
 		    	renderItem.getItemModelMesher().register(Item.getItemFromBlock(HolyBlock), 0, new ModelResourceLocation(modid + ":" + ((HolyBlock) HolyBlock).getName(), "inventory"));
-		    	renderItem.getItemModelMesher().register(Item.getItemFromBlock(WineBlock), 0, new ModelResourceLocation(modid + ":" + ((WineBlock) WineBlock).getName(), "inventory"));
 		    	renderItem.getItemModelMesher().register(Item.getItemFromBlock(HolyOre), 0, new ModelResourceLocation(modid + ":" + ((HolyOre) HolyOre).getName(), "inventory"));
 		    	renderItem.getItemModelMesher().register(Item.getItemFromBlock(DogwoodLog), 0, new ModelResourceLocation("faithcraft2:DogwoodLog", "inventory"));
 		    	renderItem.getItemModelMesher().register(Item.getItemFromBlock(DogwoodPlanks), 0, new ModelResourceLocation("faithcraft2:DogwoodPlanks", "inventory"));
@@ -332,27 +341,44 @@ public static CommonProxy proxy;
 		    	renderItem.getItemModelMesher().register(WineBucket, 0, new ModelResourceLocation(modid + ":" + ((WineBucket) WineBucket).getName(), "inventory"));
 		    	renderItem.getItemModelMesher().register(DemonicCreeperSkullItem, 0, new ModelResourceLocation(modid + ":" + ((DemonicCreeperSkullItem) DemonicCreeperSkullItem).getName(), "inventory"));
 		    	
-		    	TextureMap texturemap = Minecraft.getMinecraft().getTextureMapBlocks();
-				this.atlasSpritesWine[0] = texturemap.registerSprite(new ResourceLocation(modid + ":" + "textures/blocks/WineStill_OLD.png"));
-		        this.atlasSpritesWine[1] = texturemap.registerSprite(new ResourceLocation(modid + ":" + "textures/blocks/WineFlow_OLD.png"));
-		        wine.setStillIcon(atlasSpritesWine[0]).setFlowingIcon(atlasSpritesWine[1]);
-		    	
 		}
 		
-		//GameRegistry.registerTileEntity(TileEntityAltar.class, "Altar");
+		//Recipes
+		GameRegistry.addRecipe(new ItemStack(FaithCraft2.HolyCobbleStone),
+		    	"GGG",
+		    	"GSG",
+		    	"GGG",
+		    	'S', Blocks.cobblestone, 'G', Items.gold_nugget
+		    	);
+		GameRegistry.addRecipe(new ItemStack(FaithCraft2.HolyBlock),
+		    	"HHH",
+		    	"HGH",
+		    	"HHH",
+		    	'H', FaithCraft2.HolyStone, 'S', Blocks.gold_block
+		    	);
+		GameRegistry.addRecipe(new ItemStack(FaithCraft2.Altar),
+		    	"NWN",
+		    	" S ",
+		    	"PPP",
+		    	'N', Items.gold_nugget, 'W', Blocks.wool, 'S', FaithCraft2.DogwoodStick, 'P', FaithCraft2.DogwoodPlanks
+		    	);
+		GameRegistry.addSmelting(FaithCraft2.HolyCobbleStone, new ItemStack(FaithCraft2.HolyStone,1), 1F);
+		
+		GameRegistry.registerTileEntity(TileEntityAltar.class, "Altar");
 		//GameRegistry.registerTileEntity(TileEntityHolyForge.class, "HolyForge");
 		//FMLCommonHandler.instance().bus().register(new CraftingHandler());
-		//NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
-		BiomeManager.addBiome(BiomeType.WARM, new BiomeEntry(HeavenBiome, 1000));
+		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
+		BiomeManager.addBiome(BiomeType.WARM, new BiomeEntry(HeavenBiome, 100));
 		//MinecraftForge.EVENT_BUS.register(PlayerSpawnHandler.INSTANCE);
 		MinecraftForge.EVENT_BUS.register(BucketHandler.INSTANCE);
-		BucketHandler.INSTANCE.buckets.put(WineBlock, WineBucket);
+		BucketHandler.INSTANCE.buckets.put(wineBlock, WineBucket);
 		proxy.registerRenderThings();
 		proxy.registerTileEntitySpecialRenderer();
 	}
 	
 	@EventHandler
 	public void PostInit(FMLPostInitializationEvent postevent){
+		
 	}
 	
 }
