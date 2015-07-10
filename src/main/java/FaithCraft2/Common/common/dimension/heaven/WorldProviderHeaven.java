@@ -40,7 +40,7 @@ public class WorldProviderHeaven extends WorldProvider{
     @SideOnly(Side.CLIENT)
     public Vec3 getFogColor(float p_76562_1_, float p_76562_2_)
     {
-        return new Vec3(0.1D, 0.1D, 0.0D);
+        return new Vec3(0.4D, 0.5D, 0.0D);
     }
 
     @SideOnly(Side.CLIENT)
