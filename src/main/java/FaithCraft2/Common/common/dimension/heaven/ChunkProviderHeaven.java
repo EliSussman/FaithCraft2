@@ -1,7 +1,6 @@
 package FaithCraft2.Common.common.dimension.heaven;
 
 import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.SHROOM;
-import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.NETHER_BRIDGE;
 import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.NETHER_CAVE;
 import static net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.QUARTZ;
 import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.FIRE;
@@ -12,7 +11,6 @@ import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.Ev
 import java.util.List;
 import java.util.Random;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -39,11 +37,13 @@ import net.minecraft.world.gen.feature.WorldGenGlowStone2;
 import net.minecraft.world.gen.feature.WorldGenHellLava;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraft.world.gen.structure.MapGenNetherBridge;
-import net.minecraftforge.common.*;
-import net.minecraftforge.fml.common.eventhandler.Event.*;
-import net.minecraftforge.event.terraingen.*;
-import FaithCraft2.Common.common.FaithCraft2;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.terraingen.ChunkProviderEvent;
+import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
+import net.minecraftforge.event.terraingen.PopulateChunkEvent;
+import net.minecraftforge.event.terraingen.TerrainGen;
+import net.minecraftforge.fml.common.eventhandler.Event.Result;
+import FaithCraft2.Common.common.blocks.FaithCraftBlocks;
 
 public class ChunkProviderHeaven implements IChunkProvider
 {private final World worldObj;
@@ -77,9 +77,9 @@ double[] noiseData5;
 
 public ChunkProviderHeaven(World worldIn, boolean p_i45637_2_, long p_i45637_3_)
 {
-    this.field_177467_w = new WorldGenMinable(Blocks.diamond_ore.getDefaultState(), 14, BlockHelper.forBlock(FaithCraft2.HolyCobbleStone));
-    this.field_177473_x = new WorldGenHellLava(FaithCraft2.wineBlock, true);
-    this.field_177472_y = new WorldGenHellLava(FaithCraft2.wineBlock, false);
+    this.field_177467_w = new WorldGenMinable(Blocks.diamond_ore.getDefaultState(), 14, BlockHelper.forBlock(FaithCraftBlocks.HolyCobbleStone));
+    this.field_177473_x = new WorldGenHellLava(FaithCraftBlocks.wineBlock, true);
+    this.field_177472_y = new WorldGenHellLava(FaithCraftBlocks.wineBlock, false);
     this.field_177471_z = new GeneratorBushFeature(Blocks.red_flower);
     this.field_177465_A = new GeneratorBushFeature(Blocks.yellow_flower);
     this.netherCaveGenerator = TerrainGen.getModdedMapGen(new MapGenCavesHell(), NETHER_CAVE);
@@ -152,12 +152,12 @@ public void func_180515_a(int p_180515_1_, int p_180515_2_, ChunkPrimer p_180515
 
                             if (k1 * 8 + l1 < b1)
                             {
-                                iblockstate = FaithCraft2.wineBlock.getDefaultState();
+                                iblockstate = FaithCraftBlocks.wineBlock.getDefaultState();
                             }
 
                             if (d15 > 0.0D)
                             {
-                                iblockstate = FaithCraft2.HolyCobbleStone.getDefaultState();
+                                iblockstate = FaithCraftBlocks.HolyCobbleStone.getDefaultState();
                             }
 
                             int k2 = i2 + i1 * 4;
@@ -201,8 +201,8 @@ public void func_180516_b(int p_180516_1_, int p_180516_2_, ChunkPrimer p_180516
             boolean flag1 = this.gravelNoise[k + l * 16] + this.heavenRNG.nextDouble() * 0.2D > 0.0D;
             int i1 = (int)(this.netherrackExclusivityNoise[k + l * 16] / 3.0D + 3.0D + this.heavenRNG.nextDouble() * 0.25D);
             int j1 = -1;
-            IBlockState iblockstate = FaithCraft2.HolyCobbleStone.getDefaultState();
-            IBlockState iblockstate1 = FaithCraft2.HolyCobbleStone.getDefaultState();
+            IBlockState iblockstate = FaithCraftBlocks.HolyCobbleStone.getDefaultState();
+            IBlockState iblockstate1 = FaithCraftBlocks.HolyCobbleStone.getDefaultState();
 
             for (int k1 = 127; k1 >= 0; --k1)
             {
@@ -212,36 +212,36 @@ public void func_180516_b(int p_180516_1_, int p_180516_2_, ChunkPrimer p_180516
 
                     if (iblockstate2.getBlock() != null && iblockstate2.getBlock().getMaterial() != Material.air)
                     {
-                        if (iblockstate2.getBlock() == FaithCraft2.HolyCobbleStone)
+                        if (iblockstate2.getBlock() == FaithCraftBlocks.HolyCobbleStone)
                         {
                             if (j1 == -1)
                             {
                                 if (i1 <= 0)
                                 {
                                     iblockstate = null;
-                                    iblockstate1 = FaithCraft2.HolyCobbleStone.getDefaultState();
+                                    iblockstate1 = FaithCraftBlocks.HolyCobbleStone.getDefaultState();
                                 }
                                 else if (k1 >= b0 - 4 && k1 <= b0 + 1)
                                 {
-                                    iblockstate = FaithCraft2.HolyCobbleStone.getDefaultState();
-                                    iblockstate1 = FaithCraft2.HolyCobbleStone.getDefaultState();
+                                    iblockstate = FaithCraftBlocks.HolyCobbleStone.getDefaultState();
+                                    iblockstate1 = FaithCraftBlocks.HolyCobbleStone.getDefaultState();
 
                                     if (flag1)
                                     {
-                                        iblockstate = FaithCraft2.HolyOre.getDefaultState();
-                                        iblockstate1 = FaithCraft2.HolyCobbleStone.getDefaultState();
+                                        iblockstate = FaithCraftBlocks.HolyOre.getDefaultState();
+                                        iblockstate1 = FaithCraftBlocks.HolyCobbleStone.getDefaultState();
                                     }
 
                                     if (flag)
                                     {
-                                        iblockstate = FaithCraft2.HolyStone.getDefaultState();
-                                        iblockstate1 = FaithCraft2.HolyStone.getDefaultState();
+                                        iblockstate = FaithCraftBlocks.HolyStone.getDefaultState();
+                                        iblockstate1 = FaithCraftBlocks.HolyStone.getDefaultState();
                                     }
                                 }
 
                                 if (k1 < b0 && (iblockstate == null || iblockstate.getBlock().getMaterial() == Material.air))
                                 {
-                                    iblockstate = FaithCraft2.wineBlock.getDefaultState();
+                                    iblockstate = FaithCraftBlocks.wineBlock.getDefaultState();
                                 }
 
                                 j1 = i1;

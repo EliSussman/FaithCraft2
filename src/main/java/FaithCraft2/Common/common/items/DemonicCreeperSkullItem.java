@@ -1,30 +1,21 @@
 package FaithCraft2.Common.common.items;
 
-import java.util.List;
 import java.util.UUID;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockSkull;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntitySkull;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import net.minecraftforge.client.IItemRenderer;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import FaithCraft2.Common.common.FaithCraft2;
 import FaithCraft2.Common.common.blocks.DemonicCreeperSkull;
+import FaithCraft2.Common.common.blocks.FaithCraftBlocks;
 import FaithCraft2.Common.common.tileEntity.TileEntityDemonicCreeperSkull;
 
 import com.mojang.authlib.GameProfile;
@@ -74,7 +65,7 @@ public class DemonicCreeperSkullItem extends Item{
             {
                 return false;
             }
-            else if (!FaithCraft2.DemonicCreeperSkull.canPlaceBlockAt(worldIn, pos))
+            else if (!FaithCraftBlocks.DemonicCreeperSkull.canPlaceBlockAt(worldIn, pos))
             {
                 return false;
             }
@@ -82,8 +73,8 @@ public class DemonicCreeperSkullItem extends Item{
             {
                 if (!worldIn.isRemote)
                 {
-                    if (!FaithCraft2.DemonicCreeperSkull.canPlaceBlockOnSide(worldIn, pos, side)) return false;
-                    worldIn.setBlockState(pos, FaithCraft2.DemonicCreeperSkull.getDefaultState().withProperty(DemonicCreeperSkull.FACING, side), 3);
+                    if (!FaithCraftBlocks.DemonicCreeperSkull.canPlaceBlockOnSide(worldIn, pos, side)) return false;
+                    worldIn.setBlockState(pos, FaithCraftBlocks.DemonicCreeperSkull.getDefaultState().withProperty(DemonicCreeperSkull.FACING, side), 3);
                     int i = 0;
 
                     if (side == EnumFacing.UP)

@@ -2,16 +2,13 @@ package FaithCraft2.Common.common.worldgen;
 
 import java.util.Random;
 
-import FaithCraft2.Common.common.blocks.FaithCraftPlanks;
-import FaithCraft2.Common.common.blocks.FaithCraftSapling;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockPlanks;
-import net.minecraft.block.BlockSapling;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import FaithCraft2.Common.common.*;
+import FaithCraft2.Common.common.blocks.FaithCraftBlocks;
+import FaithCraft2.Common.common.blocks.FaithCraftPlanks;
+import FaithCraft2.Common.common.blocks.FaithCraftSapling;
 
 public class WorldGenDogwoodTrees extends WorldGenAbstractTree
 {
@@ -76,7 +73,7 @@ public class WorldGenDogwoodTrees extends WorldGenAbstractTree
             {
                 BlockPos down = p_180709_3_.down();
                 Block block1 = worldIn.getBlockState(down).getBlock();
-                boolean isSoil = block1.canSustainPlant(worldIn, down, net.minecraft.util.EnumFacing.UP, (FaithCraftSapling)FaithCraft2.DogwoodSapling);
+                boolean isSoil = block1.canSustainPlant(worldIn, down, net.minecraft.util.EnumFacing.UP, (FaithCraftSapling)FaithCraftBlocks.DogwoodSapling);
 
                 if (isSoil && p_180709_3_.getY() < 256 - i - 1)
                 {
@@ -105,7 +102,7 @@ public class WorldGenDogwoodTrees extends WorldGenAbstractTree
 
                                     if (worldIn.getBlockState(blockpos1).getBlock().canBeReplacedByLeaves(worldIn, blockpos1))
                                     {
-                                        this.func_175905_a(worldIn, blockpos1, FaithCraft2.DogwoodLeaves, FaithCraftPlanks.EnumType.DOGWOOD.getMetadata());
+                                        this.func_175905_a(worldIn, blockpos1, FaithCraftBlocks.DogwoodLeaves, FaithCraftPlanks.EnumType.DOGWOOD.getMetadata());
                                     }
                                 }
                             }
@@ -137,7 +134,7 @@ public class WorldGenDogwoodTrees extends WorldGenAbstractTree
 
                         if (block2.isAir(worldIn, upN) || block2.isLeaves(worldIn, upN))
                         {
-                            this.func_175905_a(worldIn, p_180709_3_.up(l1), FaithCraft2.DogwoodLog, FaithCraftPlanks.EnumType.DOGWOOD.getMetadata());
+                            this.func_175905_a(worldIn, p_180709_3_.up(l1), FaithCraftBlocks.DogwoodLog, FaithCraftPlanks.EnumType.DOGWOOD.getMetadata());
                         }
                     }
 

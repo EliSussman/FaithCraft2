@@ -2,35 +2,21 @@ package FaithCraft2.Common.common.blocks;
 
 import java.util.Random;
 
-import FaithCraft2.Common.common.FaithCraft2;
-import FaithCraft2.Common.common.dimension.heaven.TeleporterHeaven;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockBreakable;
 import net.minecraft.block.BlockContainer;
-import net.minecraft.block.BlockEndPortal;
-import net.minecraft.block.BlockPortal;
-import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.common.IPlantable;
-import FaithCraft2.Common.common.tileEntity.*;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import FaithCraft2.Common.common.FaithCraft2;
+import FaithCraft2.Common.common.dimension.heaven.TeleporterHeaven;
+import FaithCraft2.Common.common.tileEntity.TileEntityHeavenPortal;
 
 public class HeavenPortal extends BlockContainer{
 	
@@ -75,41 +61,41 @@ public class HeavenPortal extends BlockContainer{
     }
 	
 	public static void makePortal(World world, Entity entityIn){
-		world.setBlockState(new BlockPos(entityIn.getPosition().getX(),entityIn.getPosition().getY(),entityIn.getPosition().getZ()), FaithCraft2.HeavenPortal.getDefaultState());
-		world.setBlockState(new BlockPos(entityIn.getPosition().getX()-1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()-1), FaithCraft2.HeavenPortal.getDefaultState());
-		world.setBlockState(new BlockPos(entityIn.getPosition().getX()-1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()), FaithCraft2.HeavenPortal.getDefaultState());
-		world.setBlockState(new BlockPos(entityIn.getPosition().getX()-1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()+1), FaithCraft2.HeavenPortal.getDefaultState());
-		world.setBlockState(new BlockPos(entityIn.getPosition().getX(),entityIn.getPosition().getY(),entityIn.getPosition().getZ()-1), FaithCraft2.HeavenPortal.getDefaultState());
-		world.setBlockState(new BlockPos(entityIn.getPosition().getX(),entityIn.getPosition().getY(),entityIn.getPosition().getZ()+1), FaithCraft2.HeavenPortal.getDefaultState());
-		world.setBlockState(new BlockPos(entityIn.getPosition().getX()+1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()-1), FaithCraft2.HeavenPortal.getDefaultState());
-		world.setBlockState(new BlockPos(entityIn.getPosition().getX()+1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()), FaithCraft2.HeavenPortal.getDefaultState());
-		world.setBlockState(new BlockPos(entityIn.getPosition().getX()+1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()+1), FaithCraft2.HeavenPortal.getDefaultState());
+		world.setBlockState(new BlockPos(entityIn.getPosition().getX(),entityIn.getPosition().getY(),entityIn.getPosition().getZ()), FaithCraftBlocks.HeavenPortal.getDefaultState());
+		world.setBlockState(new BlockPos(entityIn.getPosition().getX()-1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()-1), FaithCraftBlocks.HeavenPortal.getDefaultState());
+		world.setBlockState(new BlockPos(entityIn.getPosition().getX()-1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()), FaithCraftBlocks.HeavenPortal.getDefaultState());
+		world.setBlockState(new BlockPos(entityIn.getPosition().getX()-1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()+1), FaithCraftBlocks.HeavenPortal.getDefaultState());
+		world.setBlockState(new BlockPos(entityIn.getPosition().getX(),entityIn.getPosition().getY(),entityIn.getPosition().getZ()-1), FaithCraftBlocks.HeavenPortal.getDefaultState());
+		world.setBlockState(new BlockPos(entityIn.getPosition().getX(),entityIn.getPosition().getY(),entityIn.getPosition().getZ()+1), FaithCraftBlocks.HeavenPortal.getDefaultState());
+		world.setBlockState(new BlockPos(entityIn.getPosition().getX()+1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()-1), FaithCraftBlocks.HeavenPortal.getDefaultState());
+		world.setBlockState(new BlockPos(entityIn.getPosition().getX()+1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()), FaithCraftBlocks.HeavenPortal.getDefaultState());
+		world.setBlockState(new BlockPos(entityIn.getPosition().getX()+1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()+1), FaithCraftBlocks.HeavenPortal.getDefaultState());
 		if (bottom = true){
-			world.setBlockState(new BlockPos(entityIn.getPosition().getX(),entityIn.getPosition().getY()-1,entityIn.getPosition().getZ()), FaithCraft2.HolyBlock.getDefaultState());
-			world.setBlockState(new BlockPos(entityIn.getPosition().getX()-1,entityIn.getPosition().getY()-1,entityIn.getPosition().getZ()-1), FaithCraft2.HolyBlock.getDefaultState());
-			world.setBlockState(new BlockPos(entityIn.getPosition().getX()-1,entityIn.getPosition().getY()-1,entityIn.getPosition().getZ()), FaithCraft2.HolyBlock.getDefaultState());
-			world.setBlockState(new BlockPos(entityIn.getPosition().getX()-1,entityIn.getPosition().getY()-1,entityIn.getPosition().getZ()+1), FaithCraft2.HolyBlock.getDefaultState());
-			world.setBlockState(new BlockPos(entityIn.getPosition().getX(),entityIn.getPosition().getY()-1,entityIn.getPosition().getZ()-1), FaithCraft2.HolyBlock.getDefaultState());
-			world.setBlockState(new BlockPos(entityIn.getPosition().getX(),entityIn.getPosition().getY()-1,entityIn.getPosition().getZ()+1), FaithCraft2.HolyBlock.getDefaultState());
-			world.setBlockState(new BlockPos(entityIn.getPosition().getX()+1,entityIn.getPosition().getY()-1,entityIn.getPosition().getZ()-1), FaithCraft2.HolyBlock.getDefaultState());
-			world.setBlockState(new BlockPos(entityIn.getPosition().getX()+1,entityIn.getPosition().getY()-1,entityIn.getPosition().getZ()), FaithCraft2.HolyBlock.getDefaultState());
-			world.setBlockState(new BlockPos(entityIn.getPosition().getX()+1,entityIn.getPosition().getY()-1,entityIn.getPosition().getZ()+1), FaithCraft2.HolyBlock.getDefaultState());
-			world.setBlockState(new BlockPos(entityIn.getPosition().getX()-2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()-2), FaithCraft2.HolyBlock.getDefaultState());
-			world.setBlockState(new BlockPos(entityIn.getPosition().getX()-2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()-1), FaithCraft2.HolyBlock.getDefaultState());
-			world.setBlockState(new BlockPos(entityIn.getPosition().getX()-2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()), FaithCraft2.HolyBlock.getDefaultState());
-			world.setBlockState(new BlockPos(entityIn.getPosition().getX()-2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()+1), FaithCraft2.HolyBlock.getDefaultState());
-			world.setBlockState(new BlockPos(entityIn.getPosition().getX()-2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()+2), FaithCraft2.HolyBlock.getDefaultState());
-			world.setBlockState(new BlockPos(entityIn.getPosition().getX()-1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()-2), FaithCraft2.HolyBlock.getDefaultState());
-			world.setBlockState(new BlockPos(entityIn.getPosition().getX()-1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()+2), FaithCraft2.HolyBlock.getDefaultState());
-			world.setBlockState(new BlockPos(entityIn.getPosition().getX(),entityIn.getPosition().getY(),entityIn.getPosition().getZ()-2), FaithCraft2.HolyBlock.getDefaultState());
-			world.setBlockState(new BlockPos(entityIn.getPosition().getX(),entityIn.getPosition().getY(),entityIn.getPosition().getZ()+2), FaithCraft2.HolyBlock.getDefaultState());
-			world.setBlockState(new BlockPos(entityIn.getPosition().getX()+1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()-2), FaithCraft2.HolyBlock.getDefaultState());
-			world.setBlockState(new BlockPos(entityIn.getPosition().getX()+1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()+2), FaithCraft2.HolyBlock.getDefaultState());
-			world.setBlockState(new BlockPos(entityIn.getPosition().getX()+2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()-2), FaithCraft2.HolyBlock.getDefaultState());
-			world.setBlockState(new BlockPos(entityIn.getPosition().getX()+2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()-1), FaithCraft2.HolyBlock.getDefaultState());
-			world.setBlockState(new BlockPos(entityIn.getPosition().getX()+2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()), FaithCraft2.HolyBlock.getDefaultState());
-			world.setBlockState(new BlockPos(entityIn.getPosition().getX()+2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()+1), FaithCraft2.HolyBlock.getDefaultState());
-			world.setBlockState(new BlockPos(entityIn.getPosition().getX()+2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()+2), FaithCraft2.HolyBlock.getDefaultState());
+			world.setBlockState(new BlockPos(entityIn.getPosition().getX(),entityIn.getPosition().getY()-1,entityIn.getPosition().getZ()), FaithCraftBlocks.HolyBlock.getDefaultState());
+			world.setBlockState(new BlockPos(entityIn.getPosition().getX()-1,entityIn.getPosition().getY()-1,entityIn.getPosition().getZ()-1), FaithCraftBlocks.HolyBlock.getDefaultState());
+			world.setBlockState(new BlockPos(entityIn.getPosition().getX()-1,entityIn.getPosition().getY()-1,entityIn.getPosition().getZ()), FaithCraftBlocks.HolyBlock.getDefaultState());
+			world.setBlockState(new BlockPos(entityIn.getPosition().getX()-1,entityIn.getPosition().getY()-1,entityIn.getPosition().getZ()+1), FaithCraftBlocks.HolyBlock.getDefaultState());
+			world.setBlockState(new BlockPos(entityIn.getPosition().getX(),entityIn.getPosition().getY()-1,entityIn.getPosition().getZ()-1), FaithCraftBlocks.HolyBlock.getDefaultState());
+			world.setBlockState(new BlockPos(entityIn.getPosition().getX(),entityIn.getPosition().getY()-1,entityIn.getPosition().getZ()+1), FaithCraftBlocks.HolyBlock.getDefaultState());
+			world.setBlockState(new BlockPos(entityIn.getPosition().getX()+1,entityIn.getPosition().getY()-1,entityIn.getPosition().getZ()-1), FaithCraftBlocks.HolyBlock.getDefaultState());
+			world.setBlockState(new BlockPos(entityIn.getPosition().getX()+1,entityIn.getPosition().getY()-1,entityIn.getPosition().getZ()), FaithCraftBlocks.HolyBlock.getDefaultState());
+			world.setBlockState(new BlockPos(entityIn.getPosition().getX()+1,entityIn.getPosition().getY()-1,entityIn.getPosition().getZ()+1), FaithCraftBlocks.HolyBlock.getDefaultState());
+			world.setBlockState(new BlockPos(entityIn.getPosition().getX()-2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()-2), FaithCraftBlocks.HolyBlock.getDefaultState());
+			world.setBlockState(new BlockPos(entityIn.getPosition().getX()-2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()-1), FaithCraftBlocks.HolyBlock.getDefaultState());
+			world.setBlockState(new BlockPos(entityIn.getPosition().getX()-2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()), FaithCraftBlocks.HolyBlock.getDefaultState());
+			world.setBlockState(new BlockPos(entityIn.getPosition().getX()-2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()+1), FaithCraftBlocks.HolyBlock.getDefaultState());
+			world.setBlockState(new BlockPos(entityIn.getPosition().getX()-2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()+2), FaithCraftBlocks.HolyBlock.getDefaultState());
+			world.setBlockState(new BlockPos(entityIn.getPosition().getX()-1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()-2), FaithCraftBlocks.HolyBlock.getDefaultState());
+			world.setBlockState(new BlockPos(entityIn.getPosition().getX()-1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()+2), FaithCraftBlocks.HolyBlock.getDefaultState());
+			world.setBlockState(new BlockPos(entityIn.getPosition().getX(),entityIn.getPosition().getY(),entityIn.getPosition().getZ()-2), FaithCraftBlocks.HolyBlock.getDefaultState());
+			world.setBlockState(new BlockPos(entityIn.getPosition().getX(),entityIn.getPosition().getY(),entityIn.getPosition().getZ()+2), FaithCraftBlocks.HolyBlock.getDefaultState());
+			world.setBlockState(new BlockPos(entityIn.getPosition().getX()+1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()-2), FaithCraftBlocks.HolyBlock.getDefaultState());
+			world.setBlockState(new BlockPos(entityIn.getPosition().getX()+1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()+2), FaithCraftBlocks.HolyBlock.getDefaultState());
+			world.setBlockState(new BlockPos(entityIn.getPosition().getX()+2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()-2), FaithCraftBlocks.HolyBlock.getDefaultState());
+			world.setBlockState(new BlockPos(entityIn.getPosition().getX()+2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()-1), FaithCraftBlocks.HolyBlock.getDefaultState());
+			world.setBlockState(new BlockPos(entityIn.getPosition().getX()+2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()), FaithCraftBlocks.HolyBlock.getDefaultState());
+			world.setBlockState(new BlockPos(entityIn.getPosition().getX()+2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()+1), FaithCraftBlocks.HolyBlock.getDefaultState());
+			world.setBlockState(new BlockPos(entityIn.getPosition().getX()+2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()+2), FaithCraftBlocks.HolyBlock.getDefaultState());
 		}
 	}
 
@@ -125,7 +111,7 @@ public class HeavenPortal extends BlockContainer{
 	public void onBlockDestroyedByPlayer(World worldIn, BlockPos pos, IBlockState state) {
 		for (int i=pos.getX()-2;i<pos.getX()+2;i++){
 			for (int k=pos.getZ()-2;k<pos.getZ()+2;k++){
-				if (worldIn.getBlockState(new BlockPos(i,pos.getY(),k)).getBlock() == FaithCraft2.HeavenPortal){
+				if (worldIn.getBlockState(new BlockPos(i,pos.getY(),k)).getBlock() == FaithCraftBlocks.HeavenPortal){
 					worldIn.setBlockToAir(new BlockPos(i,pos.getY(),k));
 				}
 			}

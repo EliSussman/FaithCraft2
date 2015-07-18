@@ -1,40 +1,25 @@
 package FaithCraft2.Common.common.fluids;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.model.ModelResourceLocation;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.IFluidBlock;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import FaithCraft2.Common.common.blocks.*;
-import FaithCraft2.Common.common.items.*;
-import FaithCraft2.Common.common.*;
-import net.minecraft.block.BlockLiquid;
+import FaithCraft2.Common.common.FaithCraft2;
+import FaithCraft2.Common.common.blocks.FaithCraftBlocks;
+import FaithCraft2.Common.common.blocks.HeavenPortal;
+import FaithCraft2.Common.common.blocks.HolyController;
 
 public class WineBlock extends BlockFluidClassic{
 	
 	public final static String name = "WineBlock";
-	public static final WineBlock instance = new WineBlock(FaithCraft2.Wine, Material.water);
+	public static final WineBlock instance = new WineBlock(FaithCraftBlocks.Wine, Material.water);
+	HolyController holyController = new HolyController(Material.iron);
 	
     public WineBlock(Fluid fluid, Material material) {
     		super(fluid, material);
@@ -45,7 +30,7 @@ public class WineBlock extends BlockFluidClassic{
     @Override
 	public Fluid getFluid()
 	{
-		return FaithCraft2.Wine;
+		return FaithCraftBlocks.Wine;
 	}
     
     @Override
@@ -74,32 +59,62 @@ public class WineBlock extends BlockFluidClassic{
     public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn){
     	if (entityIn instanceof EntityItem){
     		EntityItem eItem = (EntityItem) entityIn;
+    		if (eItem.getEntityItem().getItem() == new ItemStack(FaithCraftBlocks.HolyOre).getItem()){
+    			if (worldIn.getBlockState(new BlockPos(pos.getX(), pos.getY(), pos.getZ()+1)).getBlock() == FaithCraftBlocks.HolyController){
+    				if ((!worldIn.isRemote) && (holyController.isHolyForge == true)){
+    					EntityItem dropItem = new EntityItem(worldIn, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ()+2, new ItemStack(FaithCraft2.HolyIngot));
+    					worldIn.spawnEntityInWorld(dropItem);
+    					eItem.setDead();
+    				}
+    			}
+    			if (worldIn.getBlockState(new BlockPos(pos.getX(), pos.getY(), pos.getZ()-1)).getBlock() == FaithCraftBlocks.HolyController){
+    				if ((!worldIn.isRemote) && (holyController.isHolyForge == true)){
+    					EntityItem dropItem = new EntityItem(worldIn, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ()-2, new ItemStack(FaithCraft2.HolyIngot));
+    					worldIn.spawnEntityInWorld(dropItem);
+    					eItem.setDead();
+    				}
+    			}
+    			if (worldIn.getBlockState(new BlockPos(pos.getX()+1, pos.getY(), pos.getZ())).getBlock() == FaithCraftBlocks.HolyController){
+    				if ((!worldIn.isRemote) && (holyController.isHolyForge == true)){
+    					EntityItem dropItem = new EntityItem(worldIn, (double)pos.getX()+2, (double)pos.getY(), (double)pos.getZ(), new ItemStack(FaithCraft2.HolyIngot));
+    					worldIn.spawnEntityInWorld(dropItem);
+    					eItem.setDead();
+    				}
+    			}
+    			if (worldIn.getBlockState(new BlockPos(pos.getX()-1, pos.getY(), pos.getZ())).getBlock() == FaithCraftBlocks.HolyController){
+    				if ((!worldIn.isRemote) && (holyController.isHolyForge == true)){
+    					EntityItem dropItem = new EntityItem(worldIn, (double)pos.getX()-2, (double)pos.getY(), (double)pos.getZ(), new ItemStack(FaithCraft2.HolyIngot));
+    					worldIn.spawnEntityInWorld(dropItem);
+    					eItem.setDead();
+    				}
+    			}
+    		}
     		if (eItem.getEntityItem().getItem() == FaithCraft2.HolyCross){
-    			if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX(),entityIn.getPosition().getY(),entityIn.getPosition().getZ())).getBlock() == FaithCraft2.wineBlock)
-    			if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()-1,entityIn.getPosition().getY(),entityIn.getPosition().getZ())).getBlock() == FaithCraft2.wineBlock)
-    			if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()+1,entityIn.getPosition().getY(),entityIn.getPosition().getZ())).getBlock() == FaithCraft2.wineBlock)
-    			if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX(),entityIn.getPosition().getY(),entityIn.getPosition().getZ()-1)).getBlock() == FaithCraft2.wineBlock)
-    			if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX(),entityIn.getPosition().getY(),entityIn.getPosition().getZ()+1)).getBlock() == FaithCraft2.wineBlock)
-    			if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()-1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()-1)).getBlock() == FaithCraft2.wineBlock)
-    			if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()+1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()+1)).getBlock() == FaithCraft2.wineBlock)
-    			if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()-1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()+1)).getBlock() == FaithCraft2.wineBlock)
-    			if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()+1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()-1)).getBlock() == FaithCraft2.wineBlock){
-    				if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()-2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()-2)).getBlock() == FaithCraft2.HolyBlock)
-    				if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()-2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()-1)).getBlock() == FaithCraft2.HolyBlock)
-    				if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()-2,entityIn.getPosition().getY(),entityIn.getPosition().getZ())).getBlock() == FaithCraft2.HolyBlock)
-    				if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()-2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()+1)).getBlock() == FaithCraft2.HolyBlock)
-    				if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()-2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()+2)).getBlock() == FaithCraft2.HolyBlock)
-    				if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()-1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()-2)).getBlock() == FaithCraft2.HolyBlock)
-    				if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()-1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()+2)).getBlock() == FaithCraft2.HolyBlock)
-    				if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX(),entityIn.getPosition().getY(),entityIn.getPosition().getZ()-2)).getBlock() == FaithCraft2.HolyBlock)
-    	    		if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX(),entityIn.getPosition().getY(),entityIn.getPosition().getZ()+2)).getBlock() == FaithCraft2.HolyBlock)
-    	    		if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()+1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()-2)).getBlock() == FaithCraft2.HolyBlock)
-    	    		if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()+1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()+2)).getBlock() == FaithCraft2.HolyBlock)
-    	    		if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()+2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()-2)).getBlock() == FaithCraft2.HolyBlock)
-    	    		if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()+2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()-1)).getBlock() == FaithCraft2.HolyBlock)
-    	    		if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()+2,entityIn.getPosition().getY(),entityIn.getPosition().getZ())).getBlock() == FaithCraft2.HolyBlock)
-    	    		if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()+2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()+1)).getBlock() == FaithCraft2.HolyBlock)
-    	    		if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()+2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()+2)).getBlock() == FaithCraft2.HolyBlock){
+    			if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX(),entityIn.getPosition().getY(),entityIn.getPosition().getZ())).getBlock() == FaithCraftBlocks.wineBlock)
+    			if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()-1,entityIn.getPosition().getY(),entityIn.getPosition().getZ())).getBlock() == FaithCraftBlocks.wineBlock)
+    			if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()+1,entityIn.getPosition().getY(),entityIn.getPosition().getZ())).getBlock() == FaithCraftBlocks.wineBlock)
+    			if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX(),entityIn.getPosition().getY(),entityIn.getPosition().getZ()-1)).getBlock() == FaithCraftBlocks.wineBlock)
+    			if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX(),entityIn.getPosition().getY(),entityIn.getPosition().getZ()+1)).getBlock() == FaithCraftBlocks.wineBlock)
+    			if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()-1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()-1)).getBlock() == FaithCraftBlocks.wineBlock)
+    			if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()+1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()+1)).getBlock() == FaithCraftBlocks.wineBlock)
+    			if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()-1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()+1)).getBlock() == FaithCraftBlocks.wineBlock)
+    			if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()+1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()-1)).getBlock() == FaithCraftBlocks.wineBlock){
+    				if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()-2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()-2)).getBlock() == FaithCraftBlocks.HolyBlock)
+    				if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()-2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()-1)).getBlock() == FaithCraftBlocks.HolyBlock)
+    				if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()-2,entityIn.getPosition().getY(),entityIn.getPosition().getZ())).getBlock() == FaithCraftBlocks.HolyBlock)
+    				if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()-2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()+1)).getBlock() == FaithCraftBlocks.HolyBlock)
+    				if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()-2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()+2)).getBlock() == FaithCraftBlocks.HolyBlock)
+    				if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()-1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()-2)).getBlock() == FaithCraftBlocks.HolyBlock)
+    				if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()-1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()+2)).getBlock() == FaithCraftBlocks.HolyBlock)
+    				if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX(),entityIn.getPosition().getY(),entityIn.getPosition().getZ()-2)).getBlock() == FaithCraftBlocks.HolyBlock)
+    	    		if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX(),entityIn.getPosition().getY(),entityIn.getPosition().getZ()+2)).getBlock() == FaithCraftBlocks.HolyBlock)
+    	    		if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()+1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()-2)).getBlock() == FaithCraftBlocks.HolyBlock)
+    	    		if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()+1,entityIn.getPosition().getY(),entityIn.getPosition().getZ()+2)).getBlock() == FaithCraftBlocks.HolyBlock)
+    	    		if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()+2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()-2)).getBlock() == FaithCraftBlocks.HolyBlock)
+    	    		if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()+2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()-1)).getBlock() == FaithCraftBlocks.HolyBlock)
+    	    		if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()+2,entityIn.getPosition().getY(),entityIn.getPosition().getZ())).getBlock() == FaithCraftBlocks.HolyBlock)
+    	    		if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()+2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()+1)).getBlock() == FaithCraftBlocks.HolyBlock)
+    	    		if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()+2,entityIn.getPosition().getY(),entityIn.getPosition().getZ()+2)).getBlock() == FaithCraftBlocks.HolyBlock){
     					HeavenPortal.makePortal(worldIn,eItem);
     					eItem.setDead();
     				}

@@ -2,13 +2,12 @@ package FaithCraft2.Common.common.worldgen;
 
 import java.util.Random;
 
-import FaithCraft2.Common.common.blocks.FaithCraftSapling;
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import FaithCraft2.Common.common.FaithCraft2;
+import FaithCraft2.Common.common.blocks.FaithCraftBlocks;
+import FaithCraft2.Common.common.blocks.FaithCraftSapling;
 
 public abstract class WorldGenHugeDogwoodTrees extends WorldGenAbstractTree
 {
@@ -82,7 +81,7 @@ public abstract class WorldGenHugeDogwoodTrees extends WorldGenAbstractTree
     {
         BlockPos blockpos1 = p_175927_1_.down();
         Block block = worldIn.getBlockState(blockpos1).getBlock();
-        boolean isSoil = block.canSustainPlant(worldIn, blockpos1, net.minecraft.util.EnumFacing.UP, ((FaithCraftSapling)FaithCraft2.DogwoodSapling));
+        boolean isSoil = block.canSustainPlant(worldIn, blockpos1, net.minecraft.util.EnumFacing.UP, ((FaithCraftSapling)FaithCraftBlocks.DogwoodSapling));
 
         if (isSoil && p_175927_1_.getY() >= 2)
         {
@@ -121,7 +120,7 @@ public abstract class WorldGenHugeDogwoodTrees extends WorldGenAbstractTree
 
                     if (state.getBlock().isAir(worldIn, blockpos1) || state.getBlock().isLeaves(worldIn, blockpos1))
                     {
-                        this.func_175905_a(worldIn, blockpos1, FaithCraft2.DogwoodLeaves, this.leavesMetadata);
+                        this.func_175905_a(worldIn, blockpos1, FaithCraftBlocks.DogwoodLeaves, this.leavesMetadata);
                     }
                 }
             }
@@ -143,7 +142,7 @@ public abstract class WorldGenHugeDogwoodTrees extends WorldGenAbstractTree
 
                     if (block.isAir(worldIn, blockpos1) || block.isLeaves(worldIn, blockpos1))
                     {
-                        this.func_175905_a(worldIn, blockpos1, FaithCraft2.DogwoodLeaves, this.leavesMetadata);
+                        this.func_175905_a(worldIn, blockpos1, FaithCraftBlocks.DogwoodLeaves, this.leavesMetadata);
                     }
                 }
             }

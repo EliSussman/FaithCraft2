@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "variant=off": { "model": "faithcraft2:HolyController" },
+        "variant=on": { "model": "faithcraft2:HolyControllerOn" }
+    }
+}

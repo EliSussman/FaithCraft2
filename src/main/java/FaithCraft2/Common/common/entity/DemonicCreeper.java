@@ -1,47 +1,31 @@
 package FaithCraft2.Common.common.entity;
 
-import com.google.common.base.Predicate;
-
-import net.minecraft.block.Block;
-import net.minecraft.command.server.CommandTeleport;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
-import net.minecraft.entity.ai.EntityAIBreakDoor;
-import net.minecraft.entity.ai.EntityAICreeperSwell;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIMoveThroughVillage;
-import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.effect.EntityLightningBolt;
-import net.minecraft.entity.item.EntityXPOrb;
-import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.passive.EntityOcelot;
-import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import FaithCraft2.Common.common.FaithCraft2;
-import FaithCraft2.Common.common.dimension.heaven.TeleporterHeaven;
+import FaithCraft2.Common.common.blocks.FaithCraftBlocks;
+
+import com.google.common.base.Predicate;
 
 public class DemonicCreeper extends EntityMob{
 
@@ -58,7 +42,6 @@ public class DemonicCreeper extends EntityMob{
         this.tasks.addTask(2, this.field_175455_a);
         this.tasks.addTask(3, new EntityAIAvoidEntity(this, new Predicate()
         {
-            private static final String __OBFID = "CL_00002224";
             public boolean func_179958_a(Entity p_179958_1_)
             {
                 return p_179958_1_ instanceof EntityOcelot;
@@ -200,7 +183,7 @@ public class DemonicCreeper extends EntityMob{
         else if (cause.getEntity() instanceof DemonicCreeper && cause.getEntity() != this && ((DemonicCreeper)cause.getEntity()).getPowered() && ((DemonicCreeper)cause.getEntity()).isAIEnabled())
         {
             ((DemonicCreeper)cause.getEntity()).func_175493_co();
-            this.entityDropItem(new ItemStack(FaithCraft2.DemonicCreeperSkull, 1, 0), 0.0F);
+            this.entityDropItem(new ItemStack(FaithCraftBlocks.DemonicCreeperSkull, 1, 0), 0.0F);
         }
     }
 

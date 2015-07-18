@@ -3,11 +3,7 @@ package FaithCraft2.Common.common.blocks;
 import java.util.Iterator;
 import java.util.Random;
 
-import com.google.common.base.Predicate;
-
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
-import net.minecraft.block.BlockSkull;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
@@ -18,9 +14,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockPattern;
 import net.minecraft.block.state.pattern.BlockStateHelper;
 import net.minecraft.block.state.pattern.FactoryBlockPattern;
-import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -28,24 +22,20 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
-import net.minecraft.stats.AchievementList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntitySkull;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import FaithCraft2.Common.common.FaithCraft2;
 import FaithCraft2.Common.common.entity.Demon;
 import FaithCraft2.Common.common.tileEntity.TileEntityDemonicCreeperSkull;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class DemonicCreeperSkull extends BlockContainer{
 	public static final PropertyDirection FACING = PropertyDirection.create("facing");
@@ -71,7 +61,7 @@ public class DemonicCreeperSkull extends BlockContainer{
     {
         if (DemonicCreeperSkull.demonPattern == null)
         {
-        	DemonicCreeperSkull.demonPattern = FactoryBlockPattern.start().aisle(new String[] {"~^~", "~#~", "~#~"}).where('#', BlockWorldState.hasState(BlockStateHelper.forBlock(FaithCraft2.HellRock))).where('^', BlockWorldState.hasState(BlockStateHelper.forBlock(FaithCraft2.DemonicCreeperSkull))).where('~', BlockWorldState.hasState(BlockStateHelper.forBlock(Blocks.air))).build();
+        	DemonicCreeperSkull.demonPattern = FactoryBlockPattern.start().aisle(new String[] {"~^~", "~#~", "~#~"}).where('#', BlockWorldState.hasState(BlockStateHelper.forBlock(FaithCraftBlocks.HellRock))).where('^', BlockWorldState.hasState(BlockStateHelper.forBlock(FaithCraftBlocks.DemonicCreeperSkull))).where('~', BlockWorldState.hasState(BlockStateHelper.forBlock(Blocks.air))).build();
         }
 
         return DemonicCreeperSkull.demonPattern;

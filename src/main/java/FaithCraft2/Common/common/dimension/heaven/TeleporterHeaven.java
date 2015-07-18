@@ -1,16 +1,10 @@
 package FaithCraft2.Common.common.dimension.heaven;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-import com.google.common.collect.Lists;
-
-import net.minecraft.block.BlockPortal;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.LongHashMap;
@@ -18,8 +12,10 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
-import FaithCraft2.Common.common.*;
+import FaithCraft2.Common.common.blocks.FaithCraftBlocks;
 import FaithCraft2.Common.common.blocks.HeavenPortal;
+
+import com.google.common.collect.Lists;
 
 public class TeleporterHeaven extends Teleporter{
 	private final WorldServer worldServerInstance;
@@ -86,9 +82,9 @@ public class TeleporterHeaven extends Teleporter{
                     {
                         blockpos1 = blockpos.down();
 
-                        if (this.worldServerInstance.getBlockState(blockpos).getBlock() == FaithCraft2.HeavenPortal)
+                        if (this.worldServerInstance.getBlockState(blockpos).getBlock() == FaithCraftBlocks.HeavenPortal)
                         {
-                            while (this.worldServerInstance.getBlockState(blockpos1 = blockpos.down()).getBlock() == FaithCraft2.HeavenPortal)
+                            while (this.worldServerInstance.getBlockState(blockpos1 = blockpos.down()).getBlock() == FaithCraftBlocks.HeavenPortal)
                             {
                                 blockpos = blockpos1;
                             }

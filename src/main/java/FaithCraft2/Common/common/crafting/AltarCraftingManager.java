@@ -2,7 +2,6 @@ package FaithCraft2.Common.common.crafting;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -13,10 +12,10 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.world.World;
 import FaithCraft2.Common.common.FaithCraft2;
+import FaithCraft2.Common.common.blocks.FaithCraftBlocks;
 
 public class AltarCraftingManager{
     private static final AltarCraftingManager instance = new AltarCraftingManager();
@@ -34,6 +33,7 @@ public class AltarCraftingManager{
     	
     	this.addRecipe(new ItemStack(FaithCraft2.Cross, 1), new Object[] {"SSS", "XSX", "XSX", 'S', FaithCraft2.DogwoodStick});
     	this.addRecipe(new ItemStack(FaithCraft2.HolyCross, 1), new Object[] {"SSS", "XSX", "XSX", 'S', FaithCraft2.GoldenDogwoodStick});
+    	this.addRecipe(new ItemStack(FaithCraftBlocks.HolyController, 1), new Object[] {"GRG", "RBR", "GRG", 'G', Items.gold_ingot, 'R', Items.redstone, 'B', FaithCraftBlocks.HolyBlock});
     	
         Collections.sort(this.recipes, new AltarRecipeSorter(this));
     }

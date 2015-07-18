@@ -2,17 +2,15 @@ package FaithCraft2.Common.common.worldgen;
 
 import java.util.Random;
 
-import FaithCraft2.Common.common.blocks.FaithCraftPlanks;
-import FaithCraft2.Common.common.blocks.FaithCraftSapling;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
-import net.minecraft.block.BlockPlanks;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenHugeTrees;
-import FaithCraft2.Common.common.FaithCraft2;
+import FaithCraft2.Common.common.blocks.FaithCraftBlocks;
+import FaithCraft2.Common.common.blocks.FaithCraftPlanks;
+import FaithCraft2.Common.common.blocks.FaithCraftSapling;
 
 public class WorldGenMegaDogwoodTrees extends WorldGenHugeDogwoodTrees
 {
@@ -40,24 +38,24 @@ public class WorldGenMegaDogwoodTrees extends WorldGenHugeDogwoodTrees
             {
                 if (this.isAirLeaves(worldIn, p_180709_3_.up(j)))
                 {
-                    this.func_175905_a(worldIn, p_180709_3_.up(j), FaithCraft2.DogwoodLog, this.woodMetadata);
+                    this.func_175905_a(worldIn, p_180709_3_.up(j), FaithCraftBlocks.DogwoodLog, this.woodMetadata);
                 }
 
                 if (j < i - 1)
                 {
                     if (this.isAirLeaves(worldIn, p_180709_3_.add(1, j, 0)))
                     {
-                        this.func_175905_a(worldIn, p_180709_3_.add(1, j, 0), FaithCraft2.DogwoodLog, this.woodMetadata);
+                        this.func_175905_a(worldIn, p_180709_3_.add(1, j, 0), FaithCraftBlocks.DogwoodLog, this.woodMetadata);
                     }
 
                     if (this.isAirLeaves(worldIn, p_180709_3_.add(1, j, 1)))
                     {
-                        this.func_175905_a(worldIn, p_180709_3_.add(1, j, 1), FaithCraft2.DogwoodLog, this.woodMetadata);
+                        this.func_175905_a(worldIn, p_180709_3_.add(1, j, 1), FaithCraftBlocks.DogwoodLog, this.woodMetadata);
                     }
 
                     if (this.isAirLeaves(worldIn, p_180709_3_.add(0, j, 1)))
                     {
-                        this.func_175905_a(worldIn, p_180709_3_.add(0, j, 1), FaithCraft2.DogwoodLog, this.woodMetadata);
+                        this.func_175905_a(worldIn, p_180709_3_.add(0, j, 1), FaithCraftBlocks.DogwoodLog, this.woodMetadata);
                     }
                 }
             }
@@ -121,7 +119,7 @@ public class WorldGenMegaDogwoodTrees extends WorldGenHugeDogwoodTrees
             BlockPos blockpos1 = p_175934_2_.up(i);
             Block block = worldIn.getBlockState(blockpos1).getBlock();
 
-            if (block.canSustainPlant(worldIn, blockpos1, net.minecraft.util.EnumFacing.UP, ((FaithCraftSapling)FaithCraft2.DogwoodSapling)))
+            if (block.canSustainPlant(worldIn, blockpos1, net.minecraft.util.EnumFacing.UP, ((FaithCraftSapling)FaithCraftBlocks.DogwoodSapling)))
             {
                 this.func_175905_a(worldIn, blockpos1, Blocks.dirt, BlockDirt.DirtType.PODZOL.getMetadata());
                 break;
