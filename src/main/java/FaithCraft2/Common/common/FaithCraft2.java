@@ -72,6 +72,8 @@ import FaithCraft2.Common.common.items.DemonicCreeperSkullItem;
 import FaithCraft2.Common.common.items.DogwoodStick;
 import FaithCraft2.Common.common.items.GoldenDogwoodStick;
 import FaithCraft2.Common.common.items.HolyCross;
+import FaithCraft2.Common.common.items.HolyGrail;
+import FaithCraft2.Common.common.items.HolyGrailOFWine;
 //import FaithCraft2.Common.common.entity.Angel;
 import FaithCraft2.Common.common.items.HolyIngot;
 import FaithCraft2.Common.common.items.Quran;
@@ -162,8 +164,8 @@ public static CommonProxy proxy;
 		DemonicCreeperSkullItem = new DemonicCreeperSkullItem().setUnlocalizedName("DemonicCreeperSkullItem");
 		WineBucket = new WineBucket(FaithCraftBlocks.wineBlock).setUnlocalizedName("WineBucket").setContainerItem(Items.bucket);
 		HolyIngot = new HolyIngot().setUnlocalizedName("HolyIngot");
-		//HolyGrail = new HolyGrail(3012).setUnlocalizedName("HolyGrail").setTextureName("FaithCraft2:HolyGrail");
-		//HolyGrailOFWine = new HolyGrailOFWine(0, 0.0F, true).setAlwaysEdible().setUnlocalizedName("HolyGrailOFWine").setTextureName("FaithCraft2:HolyGrailOFWine");
+		HolyGrail = new HolyGrail(3012).setUnlocalizedName("HolyGrail");
+		HolyGrailOFWine = new HolyGrailOFWine(0, 0.0F, true).setAlwaysEdible().setUnlocalizedName("HolyGrailOFWine");
 		//InstructionBook = new InstructionBook(3020).setUnlocalizedName("InstructionBook").setTextureName("FaithCraft2:InstructionBook");
 		HeavenBiome = new HeavenBiome(245).setBiomeName("Heaven").setDisableRain();
 		
@@ -200,8 +202,8 @@ public static CommonProxy proxy;
 		GameRegistry.registerItem(WineBucket, "WineBucket");
 		GameRegistry.registerItem(DemonicCreeperSkullItem, "DemonicCreeperSkullItem");
 		GameRegistry.registerItem(HolyIngot, "HolyIngot");
-		//GameRegistry.registerItem(HolyGrail, "HolyGrail");
-		//GameRegistry.registerItem(HolyGrailOFWine, "HolyGrailOFWine");
+		GameRegistry.registerItem(HolyGrail, "HolyGrail");
+		GameRegistry.registerItem(HolyGrailOFWine, "HolyGrailOFWine");
 		//GameRegistry.registerItem(InstructionBook, "InstructionBook");
 		  
 		GameRegistry.registerTileEntity(TileEntityDemonicCreeperSkull.class, "DemonicCreeperSkull");
@@ -255,6 +257,8 @@ public static CommonProxy proxy;
 		    	renderItem.getItemModelMesher().register(WineBucket, 0, new ModelResourceLocation(modid + ":" + ((WineBucket) WineBucket).getName(), "inventory"));
 		    	renderItem.getItemModelMesher().register(DemonicCreeperSkullItem, 0, new ModelResourceLocation(modid + ":" + ((DemonicCreeperSkullItem) DemonicCreeperSkullItem).getName(), "inventory"));
 		    	renderItem.getItemModelMesher().register(HolyIngot, 0, new ModelResourceLocation(modid + ":" + ((HolyIngot) HolyIngot).getName(), "inventory"));
+		    	renderItem.getItemModelMesher().register(HolyGrail, 0, new ModelResourceLocation(modid + ":" + ((HolyGrail) HolyGrail).getName(), "inventory"));
+		    	renderItem.getItemModelMesher().register(HolyGrailOFWine, 0, new ModelResourceLocation(modid + ":" + ((HolyGrailOFWine) HolyGrailOFWine).getName(), "inventory"));
 		}
 		
 		//Recipes

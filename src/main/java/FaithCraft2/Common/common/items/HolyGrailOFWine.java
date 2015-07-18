@@ -1,29 +1,28 @@
-/*package FaithCraft2.Common.common.items;
+package FaithCraft2.Common.common.items;
 
-import java.util.Iterator;
-import java.util.List;
-
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityPotion;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import FaithCraft2.Common.common.FaithCraft2;
+import FaithCraft2.Common.common.blocks.FaithCraftBlocks;
 
 public class HolyGrailOFWine extends ItemFood{
+	
+	public static final String name = "HolyGrailOFWine";
 	
 	public HolyGrailOFWine(int x, float y, boolean alwaysEdible) {
 		super(x, y, alwaysEdible);
 		this.setCreativeTab(FaithCraft2.FaithCraft2Tab);
+	}
+	
+	public String getName(){
+		return name;
 	}
 	
 	@Override
@@ -31,32 +30,31 @@ public class HolyGrailOFWine extends ItemFood{
         return true;
     }
 	
-	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float px, float py, float pz){
-		world.setBlock(x, y+1, z, FaithCraft2.WineBlock, 0, 3);
-		player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(FaithCraft2.HolyGrail));
+	public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ){
+		if (!worldIn.isRemote){
+			worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY()+1, pos.getZ()), FaithCraftBlocks.wineBlock.getDefaultState(), 0);
+			playerIn.inventory.setInventorySlotContents(playerIn.inventory.currentItem, new ItemStack(FaithCraft2.HolyGrail));
+		}
 		return true;
 	}
 	
 	public EnumAction getItemUseAction(ItemStack par1ItemStack)
     {
-        return EnumAction.drink;
+        return EnumAction.DRINK;
     }
 	
-	public ItemStack onEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
-    {
-        if (!par3EntityPlayer.capabilities.isCreativeMode)
+	@Override
+	protected void onFoodEaten(ItemStack stack, World worldIn, EntityPlayer player){
+        if (!player.capabilities.isCreativeMode)
         {
-            --par1ItemStack.stackSize;
+            stack.stackSize = 0;
         }
-
-        if (!par2World.isRemote)
+        if (!worldIn.isRemote)
         {
-            par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.blindness.id, 600, 0));
-            par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.regeneration.id, 600, 4));
-            par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.confusion.id, 600, 1));
+        	player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 600, 4));
+        	player.addPotionEffect(new PotionEffect(Potion.absorption.id, 600, 4));
+        	player.addPotionEffect(new PotionEffect(Potion.confusion.id, 500, 1));
+        	player.addPotionEffect(new PotionEffect(Potion.hunger.id, 500, 2));
         }
-
-        return par1ItemStack.stackSize <= 0 ? new ItemStack(FaithCraft2.HolyGrail) : par1ItemStack;
     }
 }
-*/
