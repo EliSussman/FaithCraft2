@@ -33,7 +33,6 @@ public class HolyGrailOFWine extends ItemFood{
 	public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ){
 		if (!worldIn.isRemote){
 			worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY()+1, pos.getZ()), FaithCraftBlocks.wineBlock.getDefaultState(), 0);
-			playerIn.inventory.setInventorySlotContents(playerIn.inventory.currentItem, new ItemStack(FaithCraft2.HolyGrail));
 		}
 		return true;
 	}

@@ -76,6 +76,7 @@ import FaithCraft2.Common.common.items.HolyGrail;
 import FaithCraft2.Common.common.items.HolyGrailOFWine;
 //import FaithCraft2.Common.common.entity.Angel;
 import FaithCraft2.Common.common.items.HolyIngot;
+import FaithCraft2.Common.common.items.HolyStaffOFPower;
 import FaithCraft2.Common.common.items.Quran;
 import FaithCraft2.Common.common.items.Torah;
 import FaithCraft2.Common.common.items.WineBucket;
@@ -93,6 +94,9 @@ public class FaithCraft2{
 
 public static ToolMaterial Christianity = EnumHelper.addToolMaterial("CHRISTIANITY", 1, 1, 1.0F, 10, 10);
 public static ToolMaterial Holy = EnumHelper.addToolMaterial("HOLY", 2, 3, 2.0F, 20, 20);
+public static ToolMaterial HolyWood = EnumHelper.addToolMaterial("HOLYWOOD", 0, 60, 2.0F, 5.0F, 30);
+public static ToolMaterial HolyStone = EnumHelper.addToolMaterial("HOLYSTONE", 1, 150, 4.0F, 7.0F, 30);
+public static ToolMaterial HolyIron = EnumHelper.addToolMaterial("HOLYIRON", 2, 250, 6.0F, 12.0F, 30);
 
 public static CreativeTabs FaithCraft2Tab = new FaithCraft2Tab(CreativeTabs.getNextID(), "FaithCraft 2.0 Tab");
 
@@ -121,6 +125,9 @@ public static Item HolyGrailOFWine;
 public static Item InstructionBook;
 public static Item DemonicCreeperSkullItem;
 public static Item HolyIngot;
+public static Item HolyStaffOFPower;
+public static Item HolyStaffOFPower_LEVEL1;
+public static Item HolyStaffOFPower_LEVEL2;
 
 public static Block block1;
 
@@ -166,6 +173,9 @@ public static CommonProxy proxy;
 		HolyIngot = new HolyIngot().setUnlocalizedName("HolyIngot");
 		HolyGrail = new HolyGrail(3012).setUnlocalizedName("HolyGrail");
 		HolyGrailOFWine = new HolyGrailOFWine(0, 0.0F, true).setAlwaysEdible().setUnlocalizedName("HolyGrailOFWine");
+		HolyStaffOFPower = new HolyStaffOFPower(HolyWood).setUnlocalizedName("HolyStaffOFPower");
+		HolyStaffOFPower_LEVEL1 = new HolyStaffOFPower(HolyStone).setUnlocalizedName("HolyStaffOFPower_LEVEL1");
+		HolyStaffOFPower_LEVEL2 = new HolyStaffOFPower(HolyIron).setUnlocalizedName("HolyStaffOFPower_LEVEL2");
 		//InstructionBook = new InstructionBook(3020).setUnlocalizedName("InstructionBook").setTextureName("FaithCraft2:InstructionBook");
 		HeavenBiome = new HeavenBiome(245).setBiomeName("Heaven").setDisableRain();
 		
@@ -204,6 +214,9 @@ public static CommonProxy proxy;
 		GameRegistry.registerItem(HolyIngot, "HolyIngot");
 		GameRegistry.registerItem(HolyGrail, "HolyGrail");
 		GameRegistry.registerItem(HolyGrailOFWine, "HolyGrailOFWine");
+		GameRegistry.registerItem(HolyStaffOFPower, "HolyStaffOFPower");
+		GameRegistry.registerItem(HolyStaffOFPower_LEVEL1, "HolyStaffOFPower_LEVEL1");
+		GameRegistry.registerItem(HolyStaffOFPower_LEVEL2, "HolyStaffOFPower_LEVEL2");
 		//GameRegistry.registerItem(InstructionBook, "InstructionBook");
 		  
 		GameRegistry.registerTileEntity(TileEntityDemonicCreeperSkull.class, "DemonicCreeperSkull");
@@ -259,6 +272,9 @@ public static CommonProxy proxy;
 		    	renderItem.getItemModelMesher().register(HolyIngot, 0, new ModelResourceLocation(modid + ":" + ((HolyIngot) HolyIngot).getName(), "inventory"));
 		    	renderItem.getItemModelMesher().register(HolyGrail, 0, new ModelResourceLocation(modid + ":" + ((HolyGrail) HolyGrail).getName(), "inventory"));
 		    	renderItem.getItemModelMesher().register(HolyGrailOFWine, 0, new ModelResourceLocation(modid + ":" + ((HolyGrailOFWine) HolyGrailOFWine).getName(), "inventory"));
+		    	renderItem.getItemModelMesher().register(HolyStaffOFPower, 0, new ModelResourceLocation(modid + ":" + ((HolyStaffOFPower) HolyStaffOFPower).getName(), "inventory"));
+		    	renderItem.getItemModelMesher().register(HolyStaffOFPower_LEVEL1, 0, new ModelResourceLocation("faithcraft2:HolyStaffOFPower_LEVEL1", "inventory"));
+		    	renderItem.getItemModelMesher().register(HolyStaffOFPower_LEVEL2, 0, new ModelResourceLocation("faithcraft2:HolyStaffOFPower_LEVEL2", "inventory"));
 		}
 		
 		//Recipes
@@ -286,7 +302,7 @@ public static CommonProxy proxy;
 		//GameRegistry.registerTileEntity(TileEntityHolyForge.class, "HolyForge");
 		//FMLCommonHandler.instance().bus().register(new CraftingHandler());
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
-		BiomeManager.addBiome(BiomeType.WARM, new BiomeEntry(HeavenBiome, 100));
+		BiomeManager.addBiome(BiomeType.WARM, new BiomeEntry(HeavenBiome, 10));
 		//MinecraftForge.EVENT_BUS.register(PlayerSpawnHandler.INSTANCE);
 		MinecraftForge.EVENT_BUS.register(FaithCraftEventHandler.INSTANCE);
 		MinecraftForge.EVENT_BUS.register(BucketHandler.INSTANCE);

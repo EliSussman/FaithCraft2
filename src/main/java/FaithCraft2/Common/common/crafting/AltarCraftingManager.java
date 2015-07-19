@@ -35,6 +35,8 @@ public class AltarCraftingManager{
     	this.addRecipe(new ItemStack(FaithCraft2.HolyCross, 1), new Object[] {"SSS", "XSX", "XSX", 'S', FaithCraft2.GoldenDogwoodStick});
     	this.addRecipe(new ItemStack(FaithCraftBlocks.HolyController, 1), new Object[] {"GRG", "RBR", "GRG", 'G', Items.gold_ingot, 'R', Items.redstone, 'B', FaithCraftBlocks.HolyBlock});
     	this.addRecipe(new ItemStack(FaithCraft2.HolyGrail, 1), new Object[] { "HXH", "HHH", "XHX", 'H', FaithCraft2.HolyIngot});
+    	this.addRecipe(new ItemStack(FaithCraft2.HolyStaffOFPower, 1, 0), new Object[] { "XIS", "XSI", "SXX", 'I', FaithCraft2.HolyIngot, 'S', FaithCraft2.GoldenDogwoodStick});
+    	this.addRecipe(new ItemStack(FaithCraft2.HolyStaffOFPower_LEVEL2, 1, 0), new Object[] { "III", "ISI", "III", 'I', FaithCraft2.HolyIngot, 'S', FaithCraft2.HolyStaffOFPower_LEVEL1});
     	
         Collections.sort(this.recipes, new AltarRecipeSorter(this));
     }

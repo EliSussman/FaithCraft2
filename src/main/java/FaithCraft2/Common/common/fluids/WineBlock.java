@@ -89,6 +89,36 @@ public class WineBlock extends BlockFluidClassic{
     				}
     			}
     		}
+    		if (eItem.getEntityItem().getItem() == new ItemStack(FaithCraft2.HolyStaffOFPower).getItem()){
+    			if (worldIn.getBlockState(new BlockPos(pos.getX(), pos.getY(), pos.getZ()+1)).getBlock() == FaithCraftBlocks.HolyController){
+    				if ((!worldIn.isRemote) && (holyController.isHolyForge == true)){
+    					EntityItem dropItem = new EntityItem(worldIn, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ()+2, new ItemStack(FaithCraft2.HolyStaffOFPower_LEVEL1));
+    					worldIn.spawnEntityInWorld(dropItem);
+    					eItem.setDead();
+    				}
+    			}
+    			if (worldIn.getBlockState(new BlockPos(pos.getX(), pos.getY(), pos.getZ()-1)).getBlock() == FaithCraftBlocks.HolyController){
+    				if ((!worldIn.isRemote) && (holyController.isHolyForge == true)){
+    					EntityItem dropItem = new EntityItem(worldIn, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ()-2, new ItemStack(FaithCraft2.HolyStaffOFPower_LEVEL1));
+    					worldIn.spawnEntityInWorld(dropItem);
+    					eItem.setDead();
+    				}
+    			}
+    			if (worldIn.getBlockState(new BlockPos(pos.getX()+1, pos.getY(), pos.getZ())).getBlock() == FaithCraftBlocks.HolyController){
+    				if ((!worldIn.isRemote) && (holyController.isHolyForge == true)){
+    					EntityItem dropItem = new EntityItem(worldIn, (double)pos.getX()+2, (double)pos.getY(), (double)pos.getZ(), new ItemStack(FaithCraft2.HolyStaffOFPower_LEVEL1));
+    					worldIn.spawnEntityInWorld(dropItem);
+    					eItem.setDead();
+    				}
+    			}
+    			if (worldIn.getBlockState(new BlockPos(pos.getX()-1, pos.getY(), pos.getZ())).getBlock() == FaithCraftBlocks.HolyController){
+    				if ((!worldIn.isRemote) && (holyController.isHolyForge == true)){
+    					EntityItem dropItem = new EntityItem(worldIn, (double)pos.getX()-2, (double)pos.getY(), (double)pos.getZ(), new ItemStack(FaithCraft2.HolyStaffOFPower_LEVEL1));
+    					worldIn.spawnEntityInWorld(dropItem);
+    					eItem.setDead();
+    				}
+    			}
+    		}
     		if (eItem.getEntityItem().getItem() == FaithCraft2.HolyCross){
     			if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX(),entityIn.getPosition().getY(),entityIn.getPosition().getZ())).getBlock() == FaithCraftBlocks.wineBlock)
     			if (worldIn.getBlockState(new BlockPos(entityIn.getPosition().getX()-1,entityIn.getPosition().getY(),entityIn.getPosition().getZ())).getBlock() == FaithCraftBlocks.wineBlock)
