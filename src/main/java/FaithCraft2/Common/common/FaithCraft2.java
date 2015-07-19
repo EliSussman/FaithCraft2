@@ -96,7 +96,8 @@ public static ToolMaterial Christianity = EnumHelper.addToolMaterial("CHRISTIANI
 public static ToolMaterial Holy = EnumHelper.addToolMaterial("HOLY", 2, 3, 2.0F, 20, 20);
 public static ToolMaterial HolyWood = EnumHelper.addToolMaterial("HOLYWOOD", 0, 60, 2.0F, 5.0F, 30);
 public static ToolMaterial HolyStone = EnumHelper.addToolMaterial("HOLYSTONE", 1, 150, 4.0F, 7.0F, 30);
-public static ToolMaterial HolyIron = EnumHelper.addToolMaterial("HOLYIRON", 2, 250, 6.0F, 12.0F, 30);
+public static ToolMaterial HolyIron = EnumHelper.addToolMaterial("HOLYIRON", 2, 300, 6.0F, 12.0F, 30);
+public static ToolMaterial HolyDiamond = EnumHelper.addToolMaterial("HOLYDIAMOND", 3, 1333, 9.0F, 17.0F, 30);
 
 public static CreativeTabs FaithCraft2Tab = new FaithCraft2Tab(CreativeTabs.getNextID(), "FaithCraft 2.0 Tab");
 
@@ -128,6 +129,7 @@ public static Item HolyIngot;
 public static Item HolyStaffOFPower;
 public static Item HolyStaffOFPower_LEVEL1;
 public static Item HolyStaffOFPower_LEVEL2;
+public static Item HolyStaffOFPower_LEVEL3;
 
 public static Block block1;
 
@@ -176,6 +178,7 @@ public static CommonProxy proxy;
 		HolyStaffOFPower = new HolyStaffOFPower(HolyWood).setUnlocalizedName("HolyStaffOFPower");
 		HolyStaffOFPower_LEVEL1 = new HolyStaffOFPower(HolyStone).setUnlocalizedName("HolyStaffOFPower_LEVEL1");
 		HolyStaffOFPower_LEVEL2 = new HolyStaffOFPower(HolyIron).setUnlocalizedName("HolyStaffOFPower_LEVEL2");
+		HolyStaffOFPower_LEVEL3 = new HolyStaffOFPower(HolyDiamond).setUnlocalizedName("HolyStaffOFPower_LEVEL3");
 		//InstructionBook = new InstructionBook(3020).setUnlocalizedName("InstructionBook").setTextureName("FaithCraft2:InstructionBook");
 		HeavenBiome = new HeavenBiome(245).setBiomeName("Heaven").setDisableRain();
 		
@@ -217,6 +220,7 @@ public static CommonProxy proxy;
 		GameRegistry.registerItem(HolyStaffOFPower, "HolyStaffOFPower");
 		GameRegistry.registerItem(HolyStaffOFPower_LEVEL1, "HolyStaffOFPower_LEVEL1");
 		GameRegistry.registerItem(HolyStaffOFPower_LEVEL2, "HolyStaffOFPower_LEVEL2");
+		GameRegistry.registerItem(HolyStaffOFPower_LEVEL3, "HolyStaffOFPower_LEVEL3");
 		//GameRegistry.registerItem(InstructionBook, "InstructionBook");
 		  
 		GameRegistry.registerTileEntity(TileEntityDemonicCreeperSkull.class, "DemonicCreeperSkull");
@@ -275,6 +279,7 @@ public static CommonProxy proxy;
 		    	renderItem.getItemModelMesher().register(HolyStaffOFPower, 0, new ModelResourceLocation(modid + ":" + ((HolyStaffOFPower) HolyStaffOFPower).getName(), "inventory"));
 		    	renderItem.getItemModelMesher().register(HolyStaffOFPower_LEVEL1, 0, new ModelResourceLocation("faithcraft2:HolyStaffOFPower_LEVEL1", "inventory"));
 		    	renderItem.getItemModelMesher().register(HolyStaffOFPower_LEVEL2, 0, new ModelResourceLocation("faithcraft2:HolyStaffOFPower_LEVEL2", "inventory"));
+		    	renderItem.getItemModelMesher().register(HolyStaffOFPower_LEVEL3, 0, new ModelResourceLocation("faithcraft2:HolyStaffOFPower_LEVEL3", "inventory"));
 		}
 		
 		//Recipes

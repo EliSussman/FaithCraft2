@@ -4,6 +4,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -20,6 +21,7 @@ public class WineBlock extends BlockFluidClassic{
 	public final static String name = "WineBlock";
 	public static final WineBlock instance = new WineBlock(FaithCraftBlocks.Wine, Material.water);
 	HolyController holyController = new HolyController(Material.iron);
+	public boolean staffInForge = false;
 	
     public WineBlock(Fluid fluid, Material material) {
     		super(fluid, material);
@@ -116,6 +118,66 @@ public class WineBlock extends BlockFluidClassic{
     					EntityItem dropItem = new EntityItem(worldIn, (double)pos.getX()-2, (double)pos.getY(), (double)pos.getZ(), new ItemStack(FaithCraft2.HolyStaffOFPower_LEVEL1));
     					worldIn.spawnEntityInWorld(dropItem);
     					eItem.setDead();
+    				}
+    			}
+    		}
+    		if (eItem.getEntityItem().getItem() == FaithCraft2.HolyStaffOFPower_LEVEL2){
+    			if (worldIn.getBlockState(new BlockPos(pos.getX(), pos.getY(), pos.getZ()+1)).getBlock() == FaithCraftBlocks.HolyController){
+    				if ((!worldIn.isRemote) && (holyController.isHolyForge == true)){
+    					staffInForge = true;
+    					eItem.setDead();
+    				}
+    			}
+    			if (worldIn.getBlockState(new BlockPos(pos.getX(), pos.getY(), pos.getZ()-1)).getBlock() == FaithCraftBlocks.HolyController){
+    				if ((!worldIn.isRemote) && (holyController.isHolyForge == true)){
+    					staffInForge = true;
+    					eItem.setDead();
+    				}
+    			}
+    			if (worldIn.getBlockState(new BlockPos(pos.getX()+1, pos.getY(), pos.getZ())).getBlock() == FaithCraftBlocks.HolyController){
+    				if ((!worldIn.isRemote) && (holyController.isHolyForge == true)){
+    					staffInForge = true;
+    					eItem.setDead();
+    				}
+    			}
+    			if (worldIn.getBlockState(new BlockPos(pos.getX()-1, pos.getY(), pos.getZ())).getBlock() == FaithCraftBlocks.HolyController){
+    				if ((!worldIn.isRemote) && (holyController.isHolyForge == true)){
+    					staffInForge = true;
+    					eItem.setDead();
+    				}
+    			}
+    		}
+    		if (eItem.getEntityItem().getItem() == Items.diamond && staffInForge == true){
+    			if (worldIn.getBlockState(new BlockPos(pos.getX(), pos.getY(), pos.getZ()+1)).getBlock() == FaithCraftBlocks.HolyController){
+    				if ((!worldIn.isRemote) && (holyController.isHolyForge == true)){
+    					EntityItem dropItem = new EntityItem(worldIn, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ()+2, new ItemStack(FaithCraft2.HolyStaffOFPower_LEVEL3));
+    					worldIn.spawnEntityInWorld(dropItem);
+    					eItem.setDead();
+    					staffInForge = false;
+    				}
+    			}
+    			if (worldIn.getBlockState(new BlockPos(pos.getX(), pos.getY(), pos.getZ()-1)).getBlock() == FaithCraftBlocks.HolyController){
+    				if ((!worldIn.isRemote) && (holyController.isHolyForge == true)){
+    					EntityItem dropItem = new EntityItem(worldIn, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ()-2, new ItemStack(FaithCraft2.HolyStaffOFPower_LEVEL3));
+    					worldIn.spawnEntityInWorld(dropItem);
+    					eItem.setDead();
+    					staffInForge = false;
+    				}
+    			}
+    			if (worldIn.getBlockState(new BlockPos(pos.getX()+1, pos.getY(), pos.getZ())).getBlock() == FaithCraftBlocks.HolyController){
+    				if ((!worldIn.isRemote) && (holyController.isHolyForge == true)){
+    					EntityItem dropItem = new EntityItem(worldIn, (double)pos.getX()+2, (double)pos.getY(), (double)pos.getZ(), new ItemStack(FaithCraft2.HolyStaffOFPower_LEVEL3));
+    					worldIn.spawnEntityInWorld(dropItem);
+    					eItem.setDead();
+    					staffInForge = false;
+    				}
+    			}
+    			if (worldIn.getBlockState(new BlockPos(pos.getX()-1, pos.getY(), pos.getZ())).getBlock() == FaithCraftBlocks.HolyController){
+    				if ((!worldIn.isRemote) && (holyController.isHolyForge == true)){
+    					EntityItem dropItem = new EntityItem(worldIn, (double)pos.getX()-2, (double)pos.getY(), (double)pos.getZ(), new ItemStack(FaithCraft2.HolyStaffOFPower_LEVEL3));
+    					worldIn.spawnEntityInWorld(dropItem);
+    					eItem.setDead();
+    					staffInForge = false;
     				}
     			}
     		}
