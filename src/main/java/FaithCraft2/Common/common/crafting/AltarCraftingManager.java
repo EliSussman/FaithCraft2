@@ -37,6 +37,10 @@ public class AltarCraftingManager{
     	this.addRecipe(new ItemStack(FaithCraft2.HolyGrail, 1), new Object[] { "HXH", "HHH", "XHX", 'H', FaithCraft2.HolyIngot});
     	this.addRecipe(new ItemStack(FaithCraft2.HolyStaffOFPower, 1, 0), new Object[] { "XIS", "XSI", "SXX", 'I', FaithCraft2.HolyIngot, 'S', FaithCraft2.GoldenDogwoodStick});
     	this.addRecipe(new ItemStack(FaithCraft2.HolyStaffOFPower_LEVEL2, 1, 0), new Object[] { "III", "ISI", "III", 'I', FaithCraft2.HolyIngot, 'S', FaithCraft2.HolyStaffOFPower_LEVEL1});
+    	this.addRecipe(new ItemStack(FaithCraft2.HolyHelmet, 1, 0), new Object[] { "III", "ISI", "III", 'I', FaithCraft2.HolyIngot, 'S', Items.diamond_helmet});
+    	this.addRecipe(new ItemStack(FaithCraft2.HolyChestplate, 1, 0), new Object[] { "III", "ISI", "III", 'I', FaithCraft2.HolyIngot, 'S', Items.diamond_chestplate});
+    	this.addRecipe(new ItemStack(FaithCraft2.HolyLeggings, 1, 0), new Object[] { "III", "ISI", "III", 'I', FaithCraft2.HolyIngot, 'S', Items.diamond_leggings});
+    	this.addRecipe(new ItemStack(FaithCraft2.HolyBoots, 1, 0), new Object[] { "III", "ISI", "III", 'I', FaithCraft2.HolyIngot, 'S', Items.diamond_boots});
     	
         Collections.sort(this.recipes, new AltarRecipeSorter(this));
     }

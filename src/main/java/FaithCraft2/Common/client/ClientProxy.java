@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import FaithCraft2.Common.common.CommonProxy;
 import FaithCraft2.Common.common.FaithCraft2;
@@ -19,6 +20,7 @@ import FaithCraft2.Common.common.entity.Demon;
 import FaithCraft2.Common.common.entity.DemonicCreeper;
 import FaithCraft2.Common.common.entity.RenderDemon;
 import FaithCraft2.Common.common.entity.RenderDemonicCreeper;
+import FaithCraft2.Common.common.handler.TickHandler;
 import FaithCraft2.Common.common.renderers.RenderAltar;
 import FaithCraft2.Common.common.renderers.TileEntityDemonicCreeperSkullRenderer;
 import FaithCraft2.Common.common.renderers.TileEntityHeavenPortalSpecialRenderer;
@@ -62,5 +64,10 @@ public static void registerRenderThings(){
             }
         });
     }
+	
+	@Override
+	public void init(){
+		FMLCommonHandler.instance().bus().register(new TickHandler());
+	}
 
 }

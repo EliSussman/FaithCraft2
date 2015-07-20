@@ -11,6 +11,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -33,6 +34,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
+import FaithCraft2.Common.common.armor.HolyArmor;
 import FaithCraft2.Common.common.biome.HeavenBiome;
 //import FaithCraft2.Common.common.blocks.HellCobbleStone;
 import FaithCraft2.Common.common.blocks.Altar;
@@ -98,6 +100,7 @@ public static ToolMaterial HolyWood = EnumHelper.addToolMaterial("HOLYWOOD", 0, 
 public static ToolMaterial HolyStone = EnumHelper.addToolMaterial("HOLYSTONE", 1, 150, 4.0F, 7.0F, 30);
 public static ToolMaterial HolyIron = EnumHelper.addToolMaterial("HOLYIRON", 2, 300, 6.0F, 12.0F, 30);
 public static ToolMaterial HolyDiamond = EnumHelper.addToolMaterial("HOLYDIAMOND", 3, 1333, 9.0F, 17.0F, 30);
+public static ArmorMaterial HolyArmorType = EnumHelper.addArmorMaterial("HolyArmor", modid + ":HolyArmor", 50, new int[]{3, 8, 6, 3}, 30);
 
 public static CreativeTabs FaithCraft2Tab = new FaithCraft2Tab(CreativeTabs.getNextID(), "FaithCraft 2.0 Tab");
 
@@ -130,6 +133,10 @@ public static Item HolyStaffOFPower;
 public static Item HolyStaffOFPower_LEVEL1;
 public static Item HolyStaffOFPower_LEVEL2;
 public static Item HolyStaffOFPower_LEVEL3;
+public static Item HolyHelmet;
+public static Item HolyChestplate;
+public static Item HolyLeggings;
+public static Item HolyBoots;
 
 public static Block block1;
 
@@ -179,6 +186,10 @@ public static CommonProxy proxy;
 		HolyStaffOFPower_LEVEL1 = new HolyStaffOFPower(HolyStone).setUnlocalizedName("HolyStaffOFPower_LEVEL1");
 		HolyStaffOFPower_LEVEL2 = new HolyStaffOFPower(HolyIron).setUnlocalizedName("HolyStaffOFPower_LEVEL2");
 		HolyStaffOFPower_LEVEL3 = new HolyStaffOFPower(HolyDiamond).setUnlocalizedName("HolyStaffOFPower_LEVEL3");
+		HolyHelmet = new HolyArmor("HolyHelmet", HolyArmorType, 1, 0).setUnlocalizedName("HolyHelmet");
+		HolyChestplate = new HolyArmor("HolyChestplate", HolyArmorType, 1, 1).setUnlocalizedName("HolyChestplate");
+		HolyLeggings = new HolyArmor("HolyLeggings", HolyArmorType, 2, 2).setUnlocalizedName("HolyLeggings");
+		HolyBoots = new HolyArmor("HolyBoots", HolyArmorType, 1, 3).setUnlocalizedName("HolyBoots");
 		//InstructionBook = new InstructionBook(3020).setUnlocalizedName("InstructionBook").setTextureName("FaithCraft2:InstructionBook");
 		HeavenBiome = new HeavenBiome(245).setBiomeName("Heaven").setDisableRain();
 		
@@ -221,6 +232,10 @@ public static CommonProxy proxy;
 		GameRegistry.registerItem(HolyStaffOFPower_LEVEL1, "HolyStaffOFPower_LEVEL1");
 		GameRegistry.registerItem(HolyStaffOFPower_LEVEL2, "HolyStaffOFPower_LEVEL2");
 		GameRegistry.registerItem(HolyStaffOFPower_LEVEL3, "HolyStaffOFPower_LEVEL3");
+		GameRegistry.registerItem(HolyHelmet, "HolyHelmet");
+		GameRegistry.registerItem(HolyChestplate, "HolyChestplate");
+		GameRegistry.registerItem(HolyLeggings, "HolyLeggings");
+		GameRegistry.registerItem(HolyBoots, "HolyBoots");
 		//GameRegistry.registerItem(InstructionBook, "InstructionBook");
 		  
 		GameRegistry.registerTileEntity(TileEntityDemonicCreeperSkull.class, "DemonicCreeperSkull");
@@ -280,6 +295,10 @@ public static CommonProxy proxy;
 		    	renderItem.getItemModelMesher().register(HolyStaffOFPower_LEVEL1, 0, new ModelResourceLocation("faithcraft2:HolyStaffOFPower_LEVEL1", "inventory"));
 		    	renderItem.getItemModelMesher().register(HolyStaffOFPower_LEVEL2, 0, new ModelResourceLocation("faithcraft2:HolyStaffOFPower_LEVEL2", "inventory"));
 		    	renderItem.getItemModelMesher().register(HolyStaffOFPower_LEVEL3, 0, new ModelResourceLocation("faithcraft2:HolyStaffOFPower_LEVEL3", "inventory"));
+		    	renderItem.getItemModelMesher().register(HolyHelmet, 0, new ModelResourceLocation("faithcraft2:HolyHelmet", "inventory"));
+		    	renderItem.getItemModelMesher().register(HolyChestplate, 0, new ModelResourceLocation("faithcraft2:HolyChestplate", "inventory"));
+		    	renderItem.getItemModelMesher().register(HolyLeggings, 0, new ModelResourceLocation("faithcraft2:HolyLeggings", "inventory"));
+		    	renderItem.getItemModelMesher().register(HolyBoots, 0, new ModelResourceLocation("faithcraft2:HolyBoots", "inventory"));
 		}
 		
 		//Recipes
@@ -314,6 +333,7 @@ public static CommonProxy proxy;
 		BucketHandler.INSTANCE.buckets.put(FaithCraftBlocks.wineBlock, WineBucket);
 		proxy.registerRenderThings();
 		proxy.registerTileEntitySpecialRenderer();
+		proxy.init();
 	}
 	
 	@EventHandler

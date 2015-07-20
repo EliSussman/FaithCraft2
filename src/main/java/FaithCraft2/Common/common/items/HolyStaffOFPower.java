@@ -48,26 +48,26 @@ public class HolyStaffOFPower extends ItemPickaxe{
 	
 	public void addInformation(ItemStack itemStack, EntityPlayer entityPlayer, List list, boolean bool) {
 		list.add("\u00A7eHanded Down From GOD!");
+		if (itemStack.hasTagCompound() == false){
+			list.add("\u00A7cRIGHT CLICK TO INITIALIZE");
+		}
+		if (this == FaithCraft2.HolyStaffOFPower){
+			list.add("\u00A7cTier 1");
+		}
 		if (this == FaithCraft2.HolyStaffOFPower_LEVEL1){
 			list.add("\u00A7cTier 2");
-			list.add("\u00A7cFire Aspect");
 		}
 		if (this == FaithCraft2.HolyStaffOFPower_LEVEL2){
 			list.add("\u00A7cTier 3");
-			list.add("\u00A7cFire Aspect");
-			list.add("\u00A72Poison");
-			list.add("\u00A77Knockback");
-			list.add("\u00A75Looting");
+			if (itemStack.hasTagCompound() == true){
+				list.add("\u00A72Poison");
+			}
 		}
 		if (this == FaithCraft2.HolyStaffOFPower_LEVEL3){
 			list.add("\u00A7cTier 4");
-			list.add("\u00A7cFire Aspect");
-			list.add("\u00A72Poison");
-			list.add("\u00A77Knockback");
-			list.add("\u00A75Looting");
-			list.add("\u00A7fSharpness");
-			list.add("\u00A7bFortune");
-			list.add("\u00A7bEfficiency");
+			if (itemStack.hasTagCompound() == true){
+				list.add("\u00A72Poison");
+			}
 		}
 	}
 	
@@ -95,6 +95,5 @@ public class HolyStaffOFPower extends ItemPickaxe{
 			}
 		}
 		return true;
-		
 	}
 }

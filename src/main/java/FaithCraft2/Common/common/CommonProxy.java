@@ -1,21 +1,17 @@
 package FaithCraft2.Common.common;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import FaithCraft2.Common.common.entity.Demon;
 import FaithCraft2.Common.common.entity.DemonicCreeper;
-import FaithCraft2.Common.common.entity.ModelDemon;
 import FaithCraft2.Common.common.entity.RenderDemon;
 import FaithCraft2.Common.common.entity.RenderDemonicCreeper;
 import FaithCraft2.Common.common.renderers.RenderAltar;
 import FaithCraft2.Common.common.renderers.TileEntityDemonicCreeperSkullRenderer;
 import FaithCraft2.Common.common.renderers.TileEntityHeavenPortalSpecialRenderer;
+import FaithCraft2.Common.common.tileEntity.TileEntityAltar;
 //import FaithCraft2.Common.common.entity.Angel;
 //import FaithCraft2.Common.common.entity.Demon;
 //import FaithCraft2.Common.common.entity.Jesus;
@@ -26,8 +22,8 @@ import FaithCraft2.Common.common.renderers.TileEntityHeavenPortalSpecialRenderer
 //import FaithCraft2.Common.common.entity.RenderDemon;
 //import FaithCraft2.Common.common.entity.RenderJesus;
 //import FaithCraft2.Common.common.renderers.RenderAltar;
-import FaithCraft2.Common.common.tileEntity.*;
-import FaithCraft2.Common.common.entity.RenderDemon;
+import FaithCraft2.Common.common.tileEntity.TileEntityDemonicCreeperSkull;
+import FaithCraft2.Common.common.tileEntity.TileEntityHeavenPortal;
 
 public class CommonProxy{
 	
@@ -49,4 +45,8 @@ public class CommonProxy{
     {
 		
     }
+	
+	public void init(){
+		
+	}
 }
