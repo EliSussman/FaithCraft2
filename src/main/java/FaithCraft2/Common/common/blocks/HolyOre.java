@@ -1,8 +1,8 @@
 package FaithCraft2.Common.common.blocks;
 
-import FaithCraft2.Common.common.FaithCraft2;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import FaithCraft2.Common.common.FaithCraft2;
 
 public class HolyOre extends Block{
 

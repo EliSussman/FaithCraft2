@@ -503,6 +503,5 @@ public List func_177458_a(EnumCreatureType p_177458_1_, BlockPos p_177458_2_) {
 
 @Override
 public void recreateStructures(Chunk p_180514_1_, int p_180514_2_,int p_180514_3_) {
-	
 }
 }

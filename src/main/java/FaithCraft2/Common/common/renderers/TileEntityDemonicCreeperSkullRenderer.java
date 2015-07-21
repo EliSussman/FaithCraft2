@@ -1,21 +1,11 @@
 package FaithCraft2.Common.common.renderers;
 
-import java.util.Map;
-import java.util.UUID;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelHumanoidHead;
 import net.minecraft.client.model.ModelSkeletonHead;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
-import net.minecraft.client.renderer.tileentity.TileEntitySkullRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.client.resources.DefaultPlayerSkin;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntitySkull;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
@@ -23,8 +13,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import FaithCraft2.Common.common.tileEntity.TileEntityDemonicCreeperSkull;
 
 import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.minecraft.MinecraftProfileTexture;
-import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityDemonicCreeperSkullRenderer extends TileEntitySpecialRenderer

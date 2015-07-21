@@ -1,7 +1,5 @@
 package FaithCraft2.Common.common.tileEntity;
 
-import java.util.UUID;
-
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.network.Packet;

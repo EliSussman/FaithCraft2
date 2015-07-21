@@ -4,13 +4,8 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.world.World;
-import FaithCraft2.Common.common.FaithCraft2Tab;
 import FaithCraft2.Common.common.FaithCraft2;
-import FaithCraft2.Common.common.entity.Demon;
 
 public class HellRock extends Block{
 	

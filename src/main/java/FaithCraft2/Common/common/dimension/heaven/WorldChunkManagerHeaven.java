@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import FaithCraft2.Common.common.biome.HeavenBiome;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManager;

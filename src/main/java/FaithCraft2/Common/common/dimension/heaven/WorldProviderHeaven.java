@@ -1,17 +1,12 @@
 package FaithCraft2.Common.common.dimension.heaven;
 
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.WorldProvider;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.ChunkProviderEnd;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import FaithCraft2.Common.common.FaithCraft2;
-import FaithCraft2.Common.common.biome.HeavenBiome;;
 
 public class WorldProviderHeaven extends WorldProvider{
 	

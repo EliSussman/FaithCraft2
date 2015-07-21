@@ -1,4 +1,4 @@
-/*package FaithCraft2.Common.common.entity;
+package FaithCraft2.Common.common.entity;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -6,28 +6,21 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 
-import cpw.mods.fml.common.registry.VillagerRegistry;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentData;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
-import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.IMerchant;
 import net.minecraft.entity.INpc;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAITradePlayer;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.IChatComponent;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Tuple;
 import net.minecraft.village.MerchantRecipe;
@@ -35,8 +28,6 @@ import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.village.Village;
 import net.minecraft.world.World;
 import FaithCraft2.Common.common.FaithCraft2;
-import FaithCraft2.Common.common.dimension.heaven.TeleporterHeaven;
-import FaithCraft2.Common.common.dimension.hell.TeleporterHell;
 
 public class Angel extends EntityVillager implements INpc, IMerchant{
 
@@ -58,51 +49,39 @@ public class Angel extends EntityVillager implements INpc, IMerchant{
 		this.tasks.addTask(1, new EntityAITradePlayer(this));
 	}
 	
-	public boolean interact(EntityPlayer p_70085_1_)
+	public boolean interact(EntityPlayer player)
     {
-        ItemStack itemstack = p_70085_1_.inventory.getCurrentItem();
+        ItemStack itemstack = player.inventory.getCurrentItem();
         boolean flag = itemstack != null && itemstack.getItem() == Items.spawn_egg;
 
-        if (!flag && this.isEntityAlive() && !this.isTrading() && !this.isChild() && !p_70085_1_.isSneaking())
+        if (!flag && this.isEntityAlive() && !this.isTrading() && !this.isChild() && !player.isSneaking())
         {
             if (!this.worldObj.isRemote)
             {
-                this.setCustomer(p_70085_1_);
-                p_70085_1_.displayGUIMerchant(this, "Angel");
+                this.setCustomer(player);
+                player.displayVillagerTradeGui(this);
             }
 
             return true;
         }
         else
         {
-            return super.interact(p_70085_1_);
+            return super.interact(player);
         }
     }
+	
+	@Override
+	public IChatComponent getDisplayName(){
+		return new ChatComponentText("Angel");
+	}
 	
 	@Override
 	protected void updateAITick()
     {
         if (--this.randomTickDivider <= 0)
         {
-            this.worldObj.villageCollectionObj.addVillagerPosition(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ));
+            this.worldObj.villageCollectionObj.addToVillagerPositionList(new BlockPos(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ)));
             this.randomTickDivider = 70 + this.rand.nextInt(50);
-            this.villageObj = this.worldObj.villageCollectionObj.findNearestVillage(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ), 32);
-
-            if (this.villageObj == null)
-            {
-                this.detachHome();
-            }
-            else
-            {
-                ChunkCoordinates chunkcoordinates = this.villageObj.getCenter();
-                this.setHomeArea(chunkcoordinates.posX, chunkcoordinates.posY, chunkcoordinates.posZ, (int)((float)this.villageObj.getVillageRadius() * 0.6F));
-
-                if (this.isLookingForHome)
-                {
-                    this.isLookingForHome = false;
-                    this.villageObj.setDefaultPlayerReputation(5);
-                }
-            }
         }
 
         if (!this.isTrading() && this.timeUntilReset > 0)
@@ -123,7 +102,7 @@ public class Angel extends EntityVillager implements INpc, IMerchant{
 
                             if (MerchantRecipe.isRecipeDisabled())
                             {
-                                MerchantRecipe.func_82783_a(this.rand.nextInt(6) + this.rand.nextInt(6) + 2);
+                                MerchantRecipe.increaseMaxTradeUses(this.rand.nextInt(6) + this.rand.nextInt(6) + 2);
                             }
                         }
                     }
@@ -210,8 +189,25 @@ public class Angel extends EntityVillager implements INpc, IMerchant{
         if (p_146091_2_.nextFloat() < p_146091_3_)
         {
             p_146091_0_.add(new MerchantRecipe(func_146088_a(p_146091_1_, p_146091_2_), FaithCraft2.HolyCross));
+            p_146091_0_.add(new MerchantRecipe(func_146088_a(p_146091_1_, p_146091_2_), FaithCraft2.HolyCross));
+            p_146091_0_.add(new MerchantRecipe(func_146088_a(p_146091_1_, p_146091_2_), FaithCraft2.HolyCross));
+            p_146091_0_.add(new MerchantRecipe(func_146088_a(p_146091_1_, p_146091_2_), FaithCraft2.HolyCross));
+            p_146091_0_.add(new MerchantRecipe(func_146088_a(p_146091_1_, p_146091_2_), FaithCraft2.Cross));
+            p_146091_0_.add(new MerchantRecipe(func_146088_a(p_146091_1_, p_146091_2_), FaithCraft2.Cross));
+            p_146091_0_.add(new MerchantRecipe(func_146088_a(p_146091_1_, p_146091_2_), FaithCraft2.Cross));
+            p_146091_0_.add(new MerchantRecipe(func_146088_a(p_146091_1_, p_146091_2_), FaithCraft2.Cross));
+            p_146091_0_.add(new MerchantRecipe(func_146088_a(p_146091_1_, p_146091_2_), FaithCraft2.Cross));
+            p_146091_0_.add(new MerchantRecipe(func_146088_a(p_146091_1_, p_146091_2_), FaithCraft2.Cross));
+            p_146091_0_.add(new MerchantRecipe(func_146088_a(p_146091_1_, p_146091_2_), FaithCraft2.Cross));
+            p_146091_0_.add(new MerchantRecipe(func_146088_a(p_146091_1_, p_146091_2_), FaithCraft2.Cross));
             p_146091_0_.add(new MerchantRecipe(func_146088_a(p_146091_1_, p_146091_2_), FaithCraft2.Cross));
             p_146091_0_.add(new MerchantRecipe(func_146088_a(p_146091_1_, p_146091_2_), FaithCraft2.Bible));
+            p_146091_0_.add(new MerchantRecipe(func_146088_a(p_146091_1_, p_146091_2_), FaithCraft2.HolyBoots));
+            p_146091_0_.add(new MerchantRecipe(func_146088_a(p_146091_1_, p_146091_2_), FaithCraft2.HolyChestplate));
+            p_146091_0_.add(new MerchantRecipe(func_146088_a(p_146091_1_, p_146091_2_), FaithCraft2.HolyLeggings));
+            p_146091_0_.add(new MerchantRecipe(func_146088_a(p_146091_1_, p_146091_2_), FaithCraft2.HolyHelmet));
+            p_146091_0_.add(new MerchantRecipe(func_146088_a(p_146091_1_, p_146091_2_), FaithCraft2.HolyGrail));
+            p_146091_0_.add(new MerchantRecipe(func_146088_a(p_146091_1_, p_146091_2_), FaithCraft2.HolyGrail));
         }
     }
 
@@ -245,7 +241,6 @@ public class Angel extends EntityVillager implements INpc, IMerchant{
         MerchantRecipeList MerchantRecipeList;
         MerchantRecipeList = new MerchantRecipeList();
         int k;
-        label50:
 
         switch (this.getProfession())
         {
@@ -269,7 +264,7 @@ public class Angel extends EntityVillager implements INpc, IMerchant{
 
         for (int l = 0; l < p_70950_1_ && l < MerchantRecipeList.size(); ++l)
         {
-            this.buyingList.addToListWithCheck((MerchantRecipe)MerchantRecipeList.get(l));
+            this.buyingList.add(MerchantRecipeList.get(1));
         }
 	}
 
@@ -279,51 +274,6 @@ public class Angel extends EntityVillager implements INpc, IMerchant{
         float f1 = p_82188_1_ + this.field_82191_bN;
         return f1 > 0.9F ? 0.9F - (f1 - 0.9F) : f1;
     }
-
-
-	public void setRecipes(MerchantRecipeList p_70930_1_) {
-		
-	}
-	
-	public IEntityLivingData onSpawnWithEgg(IEntityLivingData p_110161_1_)
-    {
-        p_110161_1_ = super.onSpawnWithEgg(p_110161_1_);
-        this.applyRandomTrade(this, worldObj.rand);
-        return p_110161_1_;
-    }
-	
-	public static void applyRandomTrade(Angel angel, Random rand)
-	   {
-	       int trade = rand.nextInt(5);
-	   }
-
-
-	public void useRecipe(MerchantRecipe p_70933_1_) {
-		p_70933_1_.incrementToolUses();
-        this.livingSoundTime = -this.getTalkInterval();
-        this.playSound("mob.villager.yes", this.getSoundVolume(), this.getSoundPitch());
-
-        if (p_70933_1_.hasSameIDsAs((MerchantRecipe)this.buyingList.get(this.buyingList.size() - 1)))
-        {
-            this.timeUntilReset = 40;
-            this.needsInitilization = true;
-
-            if (this.buyingPlayer != null)
-            {
-                this.lastBuyingPlayer = this.buyingPlayer.getCommandSenderName();
-            }
-            else
-            {
-                this.lastBuyingPlayer = null;
-            }
-        }
-
-        if (p_70933_1_.getItemToBuy().getItem() == Items.emerald)
-        {
-            this.wealth += p_70933_1_.getItemToBuy().stackSize;
-        }
-	}
-
 
 	public void func_110297_a_(ItemStack p_110297_1_) {
 		if (!this.worldObj.isRemote && this.livingSoundTime > -this.getTalkInterval() + 20)
@@ -351,22 +301,5 @@ public class Angel extends EntityVillager implements INpc, IMerchant{
     {
         return true;
     }
-    
-    protected void onDeathUpdate()
-	{
-		this.setDead();
-		
-		Entity entity = attackingPlayer;
-		if (entity instanceof EntityPlayerMP){
-			EntityPlayerMP player = (EntityPlayerMP) entity;
-            if (entity.dimension != FaithCraft2.HellId){
-            	player.timeUntilPortal = 10;
-            	{
-            		 player.mcServer.getConfigurationManager().transferPlayerToDimension(player, FaithCraft2.HellId, new TeleporterHell(player.mcServer.worldServerForDimension(FaithCraft2.HellId)));
-            	}
-            }
-        }
-    }
 	
 }
-*/

@@ -1,16 +1,15 @@
 package FaithCraft2.Common.common.renderers;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-import FaithCraft2.Common.common.FaithCraft2;
+
+import org.lwjgl.opengl.GL11;
+
 import FaithCraft2.Common.common.blockmodels.ModelAltar;
-import FaithCraft2.Common.common.tileEntity.TileEntityAltar;
 
 public class RenderAltar extends TileEntitySpecialRenderer{
 

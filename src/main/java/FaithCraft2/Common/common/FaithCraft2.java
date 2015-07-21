@@ -84,6 +84,7 @@ import FaithCraft2.Common.common.items.Torah;
 import FaithCraft2.Common.common.items.WineBucket;
 import FaithCraft2.Common.common.tileEntity.TileEntityAltar;
 import FaithCraft2.Common.common.tileEntity.TileEntityDemonicCreeperSkull;
+import FaithCraft2.Common.common.worldgen.WorldGenChurch;
 
 @Mod(modid = FaithCraft2.modid, version = FaithCraft2.version, name = FaithCraft2.name ,guiFactory = FaithCraft2.guiFactory)
 public class FaithCraft2{
@@ -144,7 +145,6 @@ public static BiomeGenBase HeavenBiome;
 
 public static BiomeGenBase HellBiome;
 
-public static IWorldGenerator genTemple;
 public static IWorldGenerator genChurch;
 
 public static int HeavenId = 10;
@@ -152,7 +152,6 @@ public static int HeavenId = 10;
 public static int HellId = 11;
 
 public static MerchantRecipeList merchantRecipeList;
-//public static Angel angel;
 public static Random rand;
 
 @SidedProxy(clientSide = "FaithCraft2.Common.client.ClientProxy", serverSide = "FaithCraft2.Common.common.CommonProxy")
@@ -166,11 +165,9 @@ public static CommonProxy proxy;
 		//ConfigHandler.init(preEvent.getSuggestedConfigurationFile());
 		//FMLCommonHandler.instance().bus().register(new ConfigHandler());
 		
-		//HolyForgeIdle = new HolyForge(false).setBlockName("HolyForgeIdle").setCreativeTab(FaithCraft2.FaithCraft2Tab).setHardness(3.5F);
-		//HolyForgeActive = new HolyForge(true).setBlockName("HolyForgeActive").setLightLevel(0.625F).setHardness(3.6F);
 		//HellCobbleStone = new HellCobbleStone(3022, Material.rock).setBlockName("HellCobbleStone").setBlockTextureName("FaithCraft2:HellCobbleStone");
 		Bible = new Bible(3001).setUnlocalizedName("Bible");
-		BodyOFChrist = new BodyOFChrist(3002).setUnlocalizedName("BodyOFChrist");
+		BodyOFChrist = new BodyOFChrist(3, 0.3F, false).setAlwaysEdible().setUnlocalizedName("BodyOFChrist");
 		Cross = new Cross(3003, Christianity).setUnlocalizedName("Cross");
 		Quran = new Quran(3004).setUnlocalizedName("Quran");
 		Torah = new Torah(3005).setUnlocalizedName("Torah");
@@ -195,10 +192,8 @@ public static CommonProxy proxy;
 		
 		//HellBiome = new HellBiome(246).setBiomeName("Hell").setDisableRain();
 		
-		//genTemple = new WorldGenTemple();
-		//genChurch = new WorldGenChurch();
-		//GameRegistry.registerBlock(HolyForgeIdle, "HolyForgeIdle");
-		//GameRegistry.registerBlock(HolyForgeActive, "HolyForgeActive");
+		genChurch = new WorldGenChurch();
+		
 		GameRegistry.registerBlock(FaithCraftBlocks.Altar, "Altar");
 		GameRegistry.registerBlock(FaithCraftBlocks.HolyController, "HolyController");
 		GameRegistry.registerBlock(FaithCraftBlocks.HolyOre, "HolyOre");
@@ -245,7 +240,7 @@ public static CommonProxy proxy;
 		FluidContainerRegistry.registerFluidContainer(new FluidStack(FaithCraftBlocks.Wine, FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(WineBucket), new ItemStack(Items.bucket));
 		
 		//GameRegistry.registerWorldGenerator(genTemple, 1);
-		//GameRegistry.registerWorldGenerator(genChurch, 1);
+		GameRegistry.registerWorldGenerator(genChurch, 1);
 		
 		DimensionManager.registerProviderType(HeavenId, WorldProviderHeaven.class, true);
 		DimensionManager.registerDimension(HeavenId, HeavenId);
@@ -323,7 +318,6 @@ public static CommonProxy proxy;
 		GameRegistry.addSmelting(FaithCraftBlocks.HolyCobbleStone, new ItemStack(FaithCraftBlocks.HolyStone,1), 1F);
 		
 		GameRegistry.registerTileEntity(TileEntityAltar.class, "Altar");
-		//GameRegistry.registerTileEntity(TileEntityHolyForge.class, "HolyForge");
 		//FMLCommonHandler.instance().bus().register(new CraftingHandler());
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
 		BiomeManager.addBiome(BiomeType.WARM, new BiomeEntry(HeavenBiome, 10));

@@ -3,7 +3,6 @@ package FaithCraft2.Common.common.blocks;
 import java.util.List;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;

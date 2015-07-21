@@ -4,8 +4,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import FaithCraft2.Common.common.entity.Angel;
 import FaithCraft2.Common.common.entity.Demon;
 import FaithCraft2.Common.common.entity.DemonicCreeper;
+import FaithCraft2.Common.common.entity.RenderAngel;
 import FaithCraft2.Common.common.entity.RenderDemon;
 import FaithCraft2.Common.common.entity.RenderDemonicCreeper;
 import FaithCraft2.Common.common.renderers.RenderAltar;
@@ -32,6 +34,7 @@ public class CommonProxy{
 		//RenderingRegistry.registerEntityRenderingHandler(Jesus.class, new RenderJesus(new ModelJesus(), 0));
 		//RenderingRegistry.registerEntityRenderingHandler(Angel.class, new RenderAngel(new ModelAngel(), 0));
 		RenderingRegistry.registerEntityRenderingHandler(Demon.class, new RenderDemon(Minecraft.getMinecraft().getRenderManager()));
+		RenderingRegistry.registerEntityRenderingHandler(Angel.class, new RenderAngel(Minecraft.getMinecraft().getRenderManager()));
 		RenderingRegistry.registerEntityRenderingHandler(DemonicCreeper.class, new RenderDemonicCreeper(Minecraft.getMinecraft().getRenderManager()));
 	}
 	

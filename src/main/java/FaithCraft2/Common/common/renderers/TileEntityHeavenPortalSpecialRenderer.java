@@ -3,7 +3,6 @@ package FaithCraft2.Common.common.renderers;
 import java.nio.FloatBuffer;
 import java.util.Random;
 
-import FaithCraft2.Common.common.tileEntity.TileEntityHeavenPortal;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.client.renderer.GLAllocation;
@@ -12,10 +11,10 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityEndPortal;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import FaithCraft2.Common.common.tileEntity.TileEntityHeavenPortal;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityHeavenPortalSpecialRenderer extends TileEntitySpecialRenderer

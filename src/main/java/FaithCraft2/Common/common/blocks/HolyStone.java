@@ -1,19 +1,8 @@
 package FaithCraft2.Common.common.blocks;
 
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import FaithCraft2.Common.common.FaithCraft2;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.particle.EffectRenderer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
-import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.common.IPlantable;
+import FaithCraft2.Common.common.FaithCraft2;
 
 public class HolyStone extends Block{
 

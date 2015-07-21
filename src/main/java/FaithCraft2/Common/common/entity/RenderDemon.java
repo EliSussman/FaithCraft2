@@ -1,11 +1,8 @@
 package FaithCraft2.Common.common.entity;
 
-import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 
 public class RenderDemon extends RenderLiving{

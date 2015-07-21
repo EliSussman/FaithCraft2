@@ -7,14 +7,11 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryCraftResult;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.inventory.Slot;
-import net.minecraft.inventory.SlotCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import FaithCraft2.Common.common.FaithCraft2;
 import FaithCraft2.Common.common.crafting.AltarCraftingManager;
 import FaithCraft2.Common.common.crafting.AltarCraftingSlot;
-import FaithCraft2.Common.common.tileEntity.TileEntityAltar;
 
 public class ContainerAltar extends Container {
 

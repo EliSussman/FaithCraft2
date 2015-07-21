@@ -3,12 +3,7 @@ package FaithCraft2.Common.common.blocks;
 import java.util.List;
 import java.util.Random;
 
-import FaithCraft2.Common.common.FaithCraft2;
-import FaithCraft2.Common.common.worldgen.WorldGenDogwoodTrees;
-import FaithCraft2.Common.common.worldgen.WorldGenMegaDogwoodTrees;
 import net.minecraft.block.BlockBush;
-import net.minecraft.block.BlockPlanks;
-import net.minecraft.block.BlockSapling;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -21,17 +16,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenBigTree;
-import net.minecraft.world.gen.feature.WorldGenCanopyTree;
-import net.minecraft.world.gen.feature.WorldGenForest;
-import net.minecraft.world.gen.feature.WorldGenMegaJungle;
-import net.minecraft.world.gen.feature.WorldGenMegaPineTree;
-import net.minecraft.world.gen.feature.WorldGenSavannaTree;
-import net.minecraft.world.gen.feature.WorldGenTaiga2;
-import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import FaithCraft2.Common.common.FaithCraft2;
+import FaithCraft2.Common.common.worldgen.WorldGenDogwoodTrees;
+import FaithCraft2.Common.common.worldgen.WorldGenMegaDogwoodTrees;
 
 public class FaithCraftSapling extends BlockBush implements IGrowable{
 	public static final PropertyEnum TYPE = PropertyEnum.create("type", FaithCraftPlanks.EnumType.class);

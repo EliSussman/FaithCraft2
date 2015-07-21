@@ -1,39 +1,23 @@
 package FaithCraft2.Common.common.blocks;
 
 import java.util.List;
-import java.util.Random;
 
-import com.google.common.base.Predicate;
-
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockLeaves;
-import net.minecraft.block.BlockLeavesBase;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.EnumWorldBlockLayer;
-import net.minecraft.world.ColorizerFoliage;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.common.IShearable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import FaithCraft2.Common.common.FaithCraft2;
-import FaithCraft2.Common.common.blocks.FaithCraftPlanks.EnumType;
-import FaithCraft2.Common.common.worldgen.ColorizeLeaves;
 
 public class FaithCraftLeaves extends FaithCraftLeavesBase implements IShearable{
 	public static final PropertyEnum VARIANT = PropertyEnum.create("variant", FaithCraftPlanks.EnumType.class);
